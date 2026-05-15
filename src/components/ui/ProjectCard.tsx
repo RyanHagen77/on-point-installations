@@ -1,0 +1,41 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import { ProjectImage } from '@/types/project';
+
+interface ProjectCardProps {
+  title: string;
+  slug: string;
+  city?: string;
+  serviceType?: string;
+  thumbnail?: ProjectImage;
+}
+
+export default function ProjectCard({ title, slug, city, serviceType, thumbnail }: ProjectCardProps) {
+  return (
+    <Link
+      href={`/project/${slug}/`}
+      className="block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow group"
+    >
+      <div className="aspect-video bg-gray-100 relative">
+        {thumbnail ? (
+          <Image
+            src={thumbnail.src}
+            alt={thumbnail.alt}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+            Project Photo
+          </div>
+        )}
+      </div>
+      <div className="p-4">
+        <h3 className="font-semibold text-[#1a3a5c] group-hover:underline text-sm leading-snug">{title}</h3>
+        {(city || serviceType) && (
+          <p className="text-xs text-gray-500 mt-1">{[serviceType, city].filter(Boolean).join(' · ')}</p>
+        )}
+      </div>
+    </Link>
+  );
+}
