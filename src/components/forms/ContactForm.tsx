@@ -61,7 +61,7 @@ export default function ContactForm() {
           <input
             id="name"
             type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#800000]"
             {...register('name', { required: 'Name is required' })}
           />
           {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
@@ -73,7 +73,7 @@ export default function ContactForm() {
           <input
             id="company"
             type="text"
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#800000]"
             {...register('company')}
           />
         </div>
@@ -87,7 +87,7 @@ export default function ContactForm() {
           <input
             id="phone"
             type="tel"
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#800000]"
             {...register('phone', { required: 'Phone is required' })}
           />
           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
@@ -99,7 +99,7 @@ export default function ContactForm() {
           <input
             id="email"
             type="email"
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#800000]"
             {...register('email', {
               required: 'Email is required',
               pattern: { value: /^\S+@\S+\.\S+$/, message: 'Enter a valid email' },
@@ -115,7 +115,7 @@ export default function ContactForm() {
         </label>
         <select
           id="city"
-          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#800000]"
           {...register('city')}
         >
           <option value="">Select a city</option>
@@ -134,7 +134,7 @@ export default function ContactForm() {
           id="projectDetails"
           rows={4}
           placeholder="Describe your project: furniture type, quantity, timeline, building type..."
-          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a3a5c]"
+          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#800000]"
           {...register('projectDetails', { required: 'Please describe your project' })}
         />
         {errors.projectDetails && <p className="text-red-500 text-xs mt-1">{errors.projectDetails.message}</p>}
@@ -143,7 +143,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full bg-[#1a3a5c] text-white font-semibold py-3 rounded hover:bg-[#122840] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full bg-[#800000] text-white font-semibold py-3 rounded hover:bg-[#5A0000] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {submitting ? 'Sending...' : 'Send Message'}
       </button>

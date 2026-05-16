@@ -20,7 +20,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
             <li key={item.url} className="flex items-center gap-1">
               {index > 0 && <span aria-hidden="true">/</span>}
               {index < items.length - 1 ? (
-                <Link href={item.url} className="hover:text-[#1a3a5c] transition-colors">
+                <Link href={item.url} className="hover:text-[#800000] transition-colors">
                   {item.name}
                 </Link>
               ) : (

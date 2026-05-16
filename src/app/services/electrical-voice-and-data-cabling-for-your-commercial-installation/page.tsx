@@ -18,7 +18,7 @@ export default function ElectricalVoiceDataCablingPage() {
           { name: 'Services', url: '/services/' },
           { name: 'Electrical, Voice & Data Cabling', url: '/services/electrical-voice-and-data-cabling-for-your-commercial-installation/' },
         ]} />
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-6 mb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
           Electrical, Voice &amp; Data Cabling in Chicago, IL
         </h1>
         <p className="text-gray-600">Full service page content coming in Phase 2.</p>

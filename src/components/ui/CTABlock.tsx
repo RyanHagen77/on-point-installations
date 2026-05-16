@@ -16,22 +16,22 @@ export default function CTABlock({
 }: CTABlockProps) {
   if (variant === 'banner') {
     return (
-      <section className={`bg-[#1a3a5c] py-12 px-4 ${className}`}>
+      <section className={`bg-[#800000] py-12 px-4 ${className}`}>
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-2xl sm:text-3xl font-bold mb-3">
             {heading ?? 'Ready to Get Started?'}
           </h2>
-          {subtext && <p className="text-gray-300 mb-6">{subtext}</p>}
+          {subtext && <p className="text-white/80 mb-6">{subtext}</p>}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={SITE.phoneHref}
-              className="bg-[#e8a020] text-white font-semibold px-8 py-3 rounded hover:bg-[#d09018] transition-colors text-lg"
+              className="bg-white text-[#800000] font-semibold uppercase tracking-wide px-8 py-3 rounded-[3px] hover:bg-[#F8F8F8] transition-colors text-lg"
             >
               Call {SITE.phone}
             </a>
             <Link
               href="/contact/"
-              className="border-2 border-white text-white font-semibold px-8 py-3 rounded hover:bg-white hover:text-[#1a3a5c] transition-colors text-lg"
+              className="border-2 border-white text-white font-semibold uppercase tracking-wide px-8 py-3 rounded-[3px] hover:bg-white hover:text-[#800000] transition-colors text-lg"
             >
               Request a Quote
             </Link>
@@ -49,7 +49,7 @@ export default function CTABlock({
         </p>
         <Link
           href="/contact/"
-          className="text-[#1a3a5c] font-semibold underline hover:text-[#2a5080] transition-colors whitespace-nowrap"
+          className="text-[#800000] font-semibold underline hover:text-[#C53333] transition-colors whitespace-nowrap"
         >
           Request a Quote →
         </Link>
@@ -59,21 +59,21 @@ export default function CTABlock({
 
   // primary (default)
   return (
-    <div className={`bg-[#f3f4f6] rounded-lg p-6 sm:p-8 ${className}`}>
-      <h2 className="text-xl sm:text-2xl font-bold text-[#1a3a5c] mb-2">
+    <div className={`bg-[#F3F3F3] rounded-[3px] p-6 sm:p-8 ${className}`}>
+      <h2 className="text-xl sm:text-2xl font-bold text-[#800000] mb-2">
         {heading ?? 'Get a Free Quote'}
       </h2>
-      {subtext && <p className="text-gray-600 mb-5">{subtext}</p>}
+      {subtext && <p className="text-[#535353] mb-5">{subtext}</p>}
       <div className="flex flex-col sm:flex-row gap-3">
         <a
           href={SITE.phoneHref}
-          className="bg-[#1a3a5c] text-white font-semibold px-6 py-3 rounded hover:bg-[#122840] transition-colors text-center"
+          className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors text-center"
         >
           Call {SITE.phone}
         </a>
         <Link
           href="/contact/"
-          className="border-2 border-[#1a3a5c] text-[#1a3a5c] font-semibold px-6 py-3 rounded hover:bg-[#1a3a5c] hover:text-white transition-colors text-center"
+          className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#800000] hover:text-white transition-colors text-center"
         >
           Request a Quote
         </Link>

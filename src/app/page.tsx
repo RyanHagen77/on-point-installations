@@ -18,24 +18,24 @@ export default function HomePage() {
       <OrganizationSchema />
       <WebSiteSchema />
       <main>
-        <section className="bg-[#1a3a5c] text-white py-16 px-4">
+        <section className="bg-white py-16 px-4 border-b border-[#E9E9E9]">
           <div className="max-w-5xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#800000] mb-4">
               Commercial Office Furniture Installer in Chicago, IL
             </h1>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-[#535353] mb-8 max-w-2xl mx-auto">
               On Point Installations provides expert commercial furniture installation across Chicagoland and the Tri-State area. Non-union. Trusted since 2010.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={SITE.phoneHref}
-                className="bg-[#e8a020] text-white font-semibold px-8 py-3 rounded text-lg hover:bg-[#d09018] transition-colors"
+                className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-8 py-3 rounded-[3px] text-lg hover:bg-[#5A0000] transition-colors"
               >
                 Call {SITE.phone}
               </a>
               <a
                 href="/contact/"
-                className="border-2 border-white text-white font-semibold px-8 py-3 rounded text-lg hover:bg-white hover:text-[#1a3a5c] transition-colors"
+                className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-8 py-3 rounded-[3px] text-lg hover:bg-[#800000] hover:text-white transition-colors"
               >
                 Request a Quote
               </a>

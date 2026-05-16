@@ -19,7 +19,7 @@ export default function FAQAccordion({ items, heading = 'Frequently Asked Questi
   return (
     <section>
       <FAQSchema items={items} />
-      <h2 className="text-2xl font-bold text-[#1a3a5c] mb-6">{heading}</h2>
+      <h2 className="text-2xl font-bold text-[#800000] mb-6">{heading}</h2>
       <div className="divide-y divide-gray-200 border border-gray-200 rounded-lg overflow-hidden">
         {items.map((item, index) => (
           <div key={index}>
@@ -28,9 +28,9 @@ export default function FAQAccordion({ items, heading = 'Frequently Asked Questi
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
               aria-expanded={openIndex === index}
             >
-              <span className="font-semibold text-[#1a3a5c] text-sm sm:text-base pr-4">{item.question}</span>
+              <span className="font-semibold text-[#800000] text-sm sm:text-base pr-4">{item.question}</span>
               <svg
-                className={`w-5 h-5 flex-shrink-0 text-[#1a3a5c] transition-transform ${openIndex === index ? 'rotate-180' : ''}`}
+                className={`w-5 h-5 flex-shrink-0 text-[#800000] transition-transform ${openIndex === index ? 'rotate-180' : ''}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

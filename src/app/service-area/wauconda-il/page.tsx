@@ -18,7 +18,7 @@ export default function WaucondaServiceAreaPage() {
           { name: 'Service Area', url: '/service-area/chicagoland-commercial-furniture-installation/' },
           { name: 'Wauconda, IL', url: '/service-area/wauconda-il/' },
         ]} />
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-6 mb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
           Commercial Furniture Installation in Wauconda, IL
         </h1>
         <p className="text-gray-600">Full service area page content coming in Phase 3.</p>

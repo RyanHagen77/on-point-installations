@@ -12,7 +12,7 @@ export default function ReviewsPage() {
   return (
     <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Breadcrumb items={[{ name: 'Home', url: '/' }, { name: 'Reviews', url: '/reviews/' }]} />
-      <h1 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-6 mb-4">
+      <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
         Client Reviews &amp; Testimonials
       </h1>
       <p className="text-gray-600">Full reviews page content coming in Phase 2.</p>

@@ -18,7 +18,7 @@ export default function CommercialFurnitureInstallationWaukeganPage() {
           { name: 'Services', url: '/services/' },
           { name: 'Commercial Furniture Installation Waukegan', url: '/services/commercial-furniture-installation-waukegan-il/' },
         ]} />
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-6 mb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
           Commercial Furniture Installation in Waukegan, IL
         </h1>
         <p className="text-gray-600">Full city service page content coming in Phase 3.</p>

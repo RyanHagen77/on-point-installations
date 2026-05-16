@@ -32,7 +32,7 @@ export default async function BlogPostPage({
           { name: 'Blog', url: '/blog/' },
           { name: slug, url: `/blog/${slug}/` },
         ]} />
-        <h1 className="text-3xl font-bold text-[#1a3a5c] mt-6 mb-4">
+        <h1 className="text-3xl font-bold text-[#800000] mt-6 mb-4">
           {slug.replace(/-/g, ' ')}
         </h1>
         <p className="text-gray-600">Full blog post content powered by Sanity CMS coming in Phase 4.</p>

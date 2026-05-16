@@ -31,7 +31,7 @@ export default function ProjectCard({ title, slug, city, serviceType, thumbnail 
         )}
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-[#1a3a5c] group-hover:underline text-sm leading-snug">{title}</h3>
+        <h3 className="font-semibold text-[#800000] group-hover:underline text-sm leading-snug">{title}</h3>
         {(city || serviceType) && (
           <p className="text-xs text-gray-500 mt-1">{[serviceType, city].filter(Boolean).join(' · ')}</p>
         )}

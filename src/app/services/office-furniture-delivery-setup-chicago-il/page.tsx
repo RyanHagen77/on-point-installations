@@ -18,7 +18,7 @@ export default function OfficeFurnitureDeliverySetupChicagoPage() {
           { name: 'Services', url: '/services/' },
           { name: 'Office Furniture Delivery & Setup Chicago', url: '/services/office-furniture-delivery-setup-chicago-il/' },
         ]} />
-        <h1 className="text-3xl sm:text-4xl font-bold text-[#1a3a5c] mt-6 mb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
           Office Furniture Delivery &amp; Setup in Chicago, IL
         </h1>
         <p className="text-gray-600">Full service page content coming in Phase 2.</p>

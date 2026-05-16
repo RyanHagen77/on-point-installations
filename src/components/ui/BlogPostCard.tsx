@@ -31,9 +31,9 @@ export default function BlogPostCard({
         )}
         <div className="p-6">
           <p className="text-xs text-gray-500 mb-2">{date}</p>
-          <h2 className="text-xl font-bold text-[#1a3a5c] group-hover:underline mb-3 leading-snug">{title}</h2>
+          <h2 className="text-xl font-bold text-[#800000] group-hover:underline mb-3 leading-snug">{title}</h2>
           {excerpt && <p className="text-gray-600 text-sm line-clamp-3">{excerpt}</p>}
-          <span className="text-[#e8a020] font-semibold text-sm mt-4 block">Read more →</span>
+          <span className="text-[#800000] font-semibold text-sm mt-4 block">Read more →</span>
         </div>
       </Link>
     );
@@ -48,7 +48,7 @@ export default function BlogPostCard({
       )}
       <div className="flex-1 min-w-0">
         <p className="text-xs text-gray-500 mb-1">{date}</p>
-        <h3 className="font-semibold text-[#1a3a5c] group-hover:underline text-sm leading-snug line-clamp-2">{title}</h3>
+        <h3 className="font-semibold text-[#800000] group-hover:underline text-sm leading-snug line-clamp-2">{title}</h3>
       </div>
     </Link>
   );

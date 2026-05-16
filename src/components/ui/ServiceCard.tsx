@@ -13,7 +13,7 @@ export default function ServiceCard({ name, slug, description, variant = 'grid' 
   if (variant === 'list') {
     return (
       <li>
-        <Link href={href} className="flex items-center gap-2 text-[#1a3a5c] hover:underline font-medium">
+        <Link href={href} className="flex items-center gap-2 text-[#800000] hover:underline font-medium">
           <span>&rarr;</span>
           <span>{name}</span>
         </Link>
@@ -25,11 +25,11 @@ export default function ServiceCard({ name, slug, description, variant = 'grid' 
   return (
     <Link
       href={href}
-      className="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md hover:border-[#1a3a5c] transition-all group"
+      className="block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md hover:border-[#800000] transition-all group"
     >
-      <h3 className="font-semibold text-[#1a3a5c] group-hover:underline mb-2">{name}</h3>
+      <h3 className="font-semibold text-[#800000] group-hover:underline mb-2">{name}</h3>
       {description && <p className="text-sm text-gray-600">{description}</p>}
-      <span className="text-sm text-[#e8a020] font-medium mt-3 block">Learn more →</span>
+      <span className="text-sm text-[#800000] font-medium mt-3 block">Learn more →</span>
     </Link>
   );
 }

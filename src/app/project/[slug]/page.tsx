@@ -31,7 +31,7 @@ export default async function ProjectPage({
           { name: 'Project Gallery', url: '/project-gallery/' },
           { name: slug.replace(/-/g, ' '), url: `/project/${slug}/` },
         ]} />
-        <h1 className="text-3xl font-bold text-[#1a3a5c] mt-6 mb-4">
+        <h1 className="text-3xl font-bold text-[#800000] mt-6 mb-4">
           {slug.replace(/-/g, ' ')}
         </h1>
         <p className="text-gray-600">Full project page content coming in Phase 2.</p>
