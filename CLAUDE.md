@@ -192,12 +192,17 @@ These are non-negotiable in every file:
 
 ## IMAGE INCLUSION TEST
 
-Before placing any image on a page, ask:
-1. Does this show actual On Point work, or illustrate a specific service described in adjacent copy?
-2. If it's a stock photo, does it add information the copy doesn't already convey?
-3. If the answer to both is no, omit it.
+Before placing any image on a page, all three must be true:
 
-A section without an image is not incomplete. Decorative stock photos make the page look like a generic services template, which is the opposite of what we're trying to build. Brian's voice is concrete; the visual treatment should match. Real install photos > stock photos > no image > bad stock photo.
+1. Does this show actual On Point work, OR illustrate a specific service described in adjacent copy?
+
+2. Is the composition strong enough to read at the display size used? (Subject fills the frame, not crammed in a corner. No large dead space. Sharp at the rendered width.)
+
+3. Does it add information the copy doesn't already convey?
+
+If any answer is no, omit. Real-work photos with bad composition are not better than no photo. A page without images is not incomplete.
+
+Test bias: when in doubt, omit. The remaining three service pages and three supporting pages will all face this decision. Default to omission unless the image clearly earns its place.
 
 ---
 

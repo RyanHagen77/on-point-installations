@@ -117,20 +117,6 @@ export default function ElectricalVoiceDataCablingPage() {
             <p className="text-[#292929] leading-relaxed mb-6">
               On Point Installations offers high voltage electrical installations to supply the main power sources to cubicles and modular furniture systems. Our experienced staff can handle any electrical project your office requires.
             </p>
-            {/* Verbatim from onpointinstallations.com/services/electrical-voice-and-data-cabling-for-your-commercial-installation/, fetched 2026-05-16 */}
-            <div className="py-8">
-              <div className="max-w-2xl mx-auto rounded-sm overflow-hidden shadow-md">
-                <Image
-                  src="/images/on-point-installations-high-voltage-electrical-install.jpg"
-                  alt="High voltage electrical installation for modular office cubicle systems by On Point Installations in Chicago, IL"
-                  width={800}
-                  height={700}
-                  className="w-full h-auto"
-                  quality={85}
-                  sizes="(min-width: 672px) 672px, 100vw"
-                />
-              </div>
-            </div>
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
                 <h3 className="font-bold text-[#292929] mb-3">Scope of Work</h3>
@@ -179,6 +165,20 @@ export default function ElectricalVoiceDataCablingPage() {
             <p className="text-[#292929] leading-relaxed mb-6">
               We install voice and data cabling for new and existing cubicles, private offices, and conference rooms. That includes overhead paging systems and televisions for video calls.
             </p>
+            {/* Verbatim from onpointinstallations.com/services/electrical-voice-and-data-cabling-for-your-commercial-installation/, fetched 2026-05-16 */}
+            <div className="py-8">
+              <div className="max-w-2xl mx-auto rounded-sm overflow-hidden shadow-md">
+                <Image
+                  src="/images/on-point-installations-fiber-optic-data-cabling.jpg"
+                  alt="Structured data cabling installation, cable management rack for a commercial office network in Chicago, IL"
+                  width={800}
+                  height={700}
+                  className="w-full h-auto"
+                  quality={85}
+                  sizes="(min-width: 672px) 672px, 100vw"
+                />
+              </div>
+            </div>
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
                 <h3 className="font-bold text-[#292929] mb-3">Cabling We Run</h3>
