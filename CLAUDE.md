@@ -186,6 +186,7 @@ These are non-negotiable in every file:
 6. **No external image hotlinks.** All images must be stored in `public/images/` and served locally. Do not reintroduce hotlinks to `onpointinstallations.com/wp-content/uploads/`.
 7. **`priority` prop only on above-the-fold images.** The hero image on each page gets `priority`. All other images do not.
 8. **SOURCE QUALITY.** Images must match or exceed live-site quality at every breakpoint. When porting from WordPress, always pull from `-scaled.jpg` or unsuffixed originals. Never use `-1200x800`, `-600x400`, or other WordPress resized variants as the source file. Verify final dimensions are at least 1600px on the longest edge for hero images and content photos. (Logos and icons exempt — native size is fine.)
+9. **Content images render constrained, not full-width.** Inline illustration images inside page sections must be wrapped in `max-w-2xl mx-auto` (or a narrower cap if appropriate) with `py-8` vertical breathing room. Full-width treatment is reserved for hero images handled by the `ServiceHero` component. Never display an image wider than its native resolution — upscaling exposes source quality issues. Set the `sizes` attribute to match the actual display cap (e.g. `"(min-width: 672px) 672px, 100vw"` for `max-w-2xl`).
 
 ---
 
