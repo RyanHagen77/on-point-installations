@@ -66,9 +66,9 @@ export default function CommercialFurnitureInstallationChicagoPage() {
           imageWidth={1920}
           imageHeight={1280}
         >
-          {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15 */}
+          {/* Ported from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15; rewritten for voice — removed "look no further" AI tell and trailing tricolon */}
           <p className="text-[#292929] leading-relaxed mb-4">
-            When you need experienced, highly skilled office furniture installers in the Greater Chicago Metropolitan Area, look no further than On Point Installations. We assemble and install office furniture from leading and emerging commercial manufacturers. We're fully insured, non-union labor, and we maintain the highest quality standards.
+            On Point Installations has been installing commercial office furniture across the Chicago metro since 2010. We assemble and install from leading commercial manufacturers. The crew is fully insured and non-union.
           </p>
           <p className="text-[#535353] leading-relaxed mb-6">
             From{' '}
