@@ -62,6 +62,17 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
+## Cubicle Wall & Upholstery Cleaning — "Swinging Pendulum" Section Omitted
+
+**Added:** 2026-05-16
+**Status:** Approved by outline review; structural omission only
+**Location:** `src/app/services/cubicle-wall-upholstery-cleaning-chicago-il/`
+**Present on live site:** Yes. The live page includes a section framing the service around the "swinging pendulum" of office design trends (open plan vs. cubicles). The new build omits this section.
+**Rationale:** The swinging-pendulum framing reads as think-piece content rather than service description. It doesn't serve the contractor voice or the B2B buyer (dealer, facility manager). The section omission was approved in the outline review session 2026-05-16.
+**Source authorization:** Outline approved in session 2026-05-16 before drafting.
+
+---
+
 ## Office Relocation Service Page — Expanded Beyond Live-Site Content
 
 **Added:** 2026-05-16

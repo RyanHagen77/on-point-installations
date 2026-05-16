@@ -115,6 +115,24 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 **Owner:** Brian Vetter
 **Phase:** Review before Phase 5 launch prep
 
+### Cubicle Wall & Upholstery Cleaning — FAQ Content Drafted (Not Sourced from Live Site)
+**Status:** Drafted per Voice Rules. Not on live site. Needs Brian review before launch.
+**Issue:** The live Cubicle Wall & Upholstery Cleaning page has no FAQ section. Five Q&As were drafted in Brian's contractor voice covering: what surfaces are cleaned, what condition fabric can be returned to, standalone vs. project-bundled cleaning, pre-delivery panel cleaning, and job-site disruption.
+**Resolution needed from Brian:** Review and approve or revise the 5 FAQ items before Phase 5 launch prep.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+---
+
+### Cubicle Wall & Upholstery Cleaning — Productivity Statistics (Source Unverified)
+**Status:** Statistics omitted from Phase 2 build pending Brian verification.
+**Issue:** The live Cubicle Cleaning page references productivity statistics (e.g., percentage improvement from a clean workspace). These were not included in the Phase 2 build because the source is unverified. If Brian wants these stats on the page, he needs to provide the original source so they can be quoted accurately.
+**Resolution needed from Brian:** Provide source documentation for any productivity statistics to be included. If no source is available, the stats stay omitted.
+**Owner:** Brian Vetter
+**Phase:** Resolve before Phase 5 launch prep
+
+---
+
 ## General
 
 *(Add items here as they are identified during Phase 2–4 builds)*
