@@ -40,6 +40,17 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
+## Artwork Installation — Section Split: Paragraphs 3 and 4 into Separate H2s
+
+**Added:** 2026-05-16
+**Status:** Approved by outline review; structural addition only, no new copy
+**Location:** `src/app/services/artwork-installation-chicago-il/`
+**Present on live site:** No. The live page presents paragraphs 3 and 4 as continuous prose under a single H2 ("Artwork Installation Chicago"). The new build splits them into two H2 sections: "What On Point Installations Handles" (door-to-door service scope + media types) and "Where We Install" (settings: commercial, residential, facilities).
+**Rationale:** Improved scannability and distinct SEO signal for each topic. Live-site copy for both sections is ported near-verbatim; only the sectioning is new.
+**Source authorization:** Outline approved in session 2026-05-16 before drafting.
+
+---
+
 ## Office Relocation Service Page — Expanded Beyond Live-Site Content
 
 **Added:** 2026-05-16

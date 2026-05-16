@@ -79,6 +79,15 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 
 ## Content — Drafted Copy Pending Brian Review
 
+### Artwork Installation — FAQ Content Drafted (Not Sourced from Live Site)
+**Status:** Drafted per Voice Rules. Not on live site. Needs Brian review before launch.
+**Issue:** The live Artwork Installation page has no FAQ section. Five Q&As were drafted in Brian's contractor voice covering: types of pieces installed, oversized/heavy work, delivery and unpacking, wall types (drywall, brick, glass partition), and insurance coverage.
+**Resolution needed from Brian:** Review and approve or revise the 5 FAQ items before Phase 5 launch prep.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+---
+
 ### Office Installations Money Page — 3 Absorbed H2 Sections
 **Status:** Drafted per Voice Rules. Not sourced from live site or audit spec. Needs Brian review before launch.
 **Issue:** The Office Installations page (`/services/commercial-furniture-installation-chicago-il/`) absorbs three audit-only URLs as H2 sections. No direct live-site equivalent exists for any of these three sections — the live site's Office Installations page does not break out cubicle installation, systems furniture, or delivery & setup as distinct sections. Copy was drafted in Brian's contractor voice per CLAUDE.md Voice Rules.
