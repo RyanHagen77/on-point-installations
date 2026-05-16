@@ -195,7 +195,7 @@ Direct, plain-spoken, professional but approachable. Speaks to B2B buyers — fa
 1. **No em dashes.** Em dashes (—) are not permitted in body copy. Restructure the sentence, use a comma, or split into two sentences.
 2. **No title-case compound adjectives.** Never "World-Class Service," "Best-in-Class Team," "High-Quality Results," or similar.
 3. **No corporate plurals.** Avoid "solutions," "partnerships," "offerings," "capabilities," "deliverables." Say what the thing actually is.
-4. **No consultant verbs.** Avoid "leverage," "optimize," "synergize," "enable," "facilitate," "deliver" (used abstractly). Use plain verbs: install, move, plan, build, coordinate.
+4. **No consultant verbs.** Avoid "leverage," "optimize," "synergize," "enable," "facilitate," "deliver" (used abstractly). Permitted plain verbs (concrete usage only): install, move, plan, build, coordinate, deliver, set up, finish, handle. These are fine when describing a literal action on a concrete object. Still prohibited when used abstractly: "deliver excellence," "coordinate strategy," "streamline operations."
 5. **No "white-glove."** Flagged as a voice violation. Do not use it.
 6. **Contractions required where natural.** We're, don't, can't, we'll, it's. Stiff formal writing sounds wrong for this brand.
 
