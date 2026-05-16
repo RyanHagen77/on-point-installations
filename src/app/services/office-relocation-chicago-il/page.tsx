@@ -12,7 +12,7 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/services/office-relocation-chicago-il/`,
 });
 
-// SEO-driven FAQ content — drafted per Voice Rules. See docs/known-issues.md
+// SEO-driven FAQ content : drafted per Voice Rules. See docs/known-issues.md
 const FAQS = [
   {
     question: 'What does commercial office relocation in Chicago include?',
@@ -77,7 +77,7 @@ export default function OfficeRelocationChicagoPage() {
         </ServiceHero>
 
         {/* ── H2: WHAT WE HANDLE ──────────────────────────────────────── */}
-        {/* Bullets verbatim from live site. Surrounding copy drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Bullets verbatim from live site. Surrounding copy drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -106,7 +106,7 @@ export default function OfficeRelocationChicagoPage() {
                 </ul>
               </div>
               <div>
-                {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+                {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
                 <h3 className="font-bold text-[#292929] mb-3">Also Available</h3>
                 <ul className="space-y-2">
                   {[
@@ -134,7 +134,7 @@ export default function OfficeRelocationChicagoPage() {
         </section>
 
         {/* ── H2: MINIMIZING DOWNTIME ─────────────────────────────────── */}
-        {/* Opening sentence verbatim from live site. Remainder drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Opening sentence verbatim from live site. Remainder drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -144,7 +144,7 @@ export default function OfficeRelocationChicagoPage() {
             <p className="text-[#292929] leading-relaxed mb-4">
               Our goal is to make your office relocation and transition as seamless as possible while minimizing downtime to ensure you are back up and running your operation as soon as possible.
             </p>
-            {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+            {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
             <p className="text-[#292929] leading-relaxed mb-4">
               We plan the move in day-by-day stages so every person involved knows what happens when. The day before we start, you'll know who's on site and what gets done. At the end of each workday, you'll get a photo update showing the current state of the project so you can spot anything that needs attention before the next day begins.
             </p>
@@ -155,7 +155,7 @@ export default function OfficeRelocationChicagoPage() {
         </section>
 
         {/* ── H2: FOR FURNITURE DEALERS ───────────────────────────────── */}
-        {/* Intro sentence verbatim from live site. Remainder drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Intro sentence verbatim from live site. Remainder drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -165,7 +165,7 @@ export default function OfficeRelocationChicagoPage() {
             <p className="text-[#292929] leading-relaxed mb-4">
               If you're a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help.
             </p>
-            {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+            {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
             <p className="text-[#292929] leading-relaxed mb-4">
               We work directly with your dealer team and the end client at the same time. You give us the scope and schedule, we handle the physical move, and you get progress updates at each stage. You don't have to manage the installation crew separately from your own work with the client.
             </p>

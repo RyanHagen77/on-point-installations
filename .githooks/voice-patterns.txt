@@ -6,15 +6,19 @@
 # If the hook fires on legitimate use: rewrite the copy. Do not --no-verify.
 # --no-verify requires explicit supervisor approval.
 
-# ── EM DASH ─────────────────────────────────────────────────────────────────
+# ── EM DASH AND EN DASH ─────────────────────────────────────────────────────
 # Always a violation in body copy. Use comma, parentheses, colon, or recast.
+# Note: en dash in numeric ranges (12–15) is exempt by style rule but will
+# fire here — if that becomes noisy, rewrite ranges with a hyphen (12-15).
 —
+–
 
 # ── AI TELLS ────────────────────────────────────────────────────────────────
 # Phrases that read as machine-generated regardless of surrounding context.
 look no further
 it's worth noting
 in today's fast-paced world
+whether you're
 we've got you covered
 elevate your
 unlock the potential

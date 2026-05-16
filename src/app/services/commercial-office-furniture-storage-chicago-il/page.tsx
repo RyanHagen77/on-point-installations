@@ -12,7 +12,7 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/services/commercial-office-furniture-storage-chicago-il/`,
 });
 
-// SEO-driven FAQ content — drafted per Voice Rules
+// SEO-driven FAQ content : drafted per Voice Rules
 const FAQS = [
   {
     question: 'What types of commercial furniture storage do you offer?',

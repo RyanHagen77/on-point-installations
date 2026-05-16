@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t-2 border-[#800000] mt-auto">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* 4-column grid — stacks to single column on mobile */}
+        {/* 4-column grid : stacks to single column on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
           {/* Col 1: Logo + NAP + Hours + Social */}
@@ -96,7 +96,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Service Areas — exactly the 5 spec-approved cities */}
+          {/* Col 3: Service Areas : exactly the 5 spec-approved cities */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-[#800000] mb-4">Service Areas</h3>
             <ul className="space-y-2">

@@ -18,7 +18,7 @@ const BRANDS = [
   'Hon', 'KI', 'Kimball', 'Knoll', 'OFS', 'Steelcase', 'Teknion', 'Three H', 'Trendway',
 ];
 
-// SEO-driven FAQ content — no live-site source required (per content-source-map.md)
+// SEO-driven FAQ content : no live-site source required (per content-source-map.md)
 const FAQS = [
   {
     question: 'What types of commercial furniture does On Point Installations install?',
@@ -66,7 +66,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
           imageWidth={1920}
           imageHeight={1280}
         >
-          {/* Ported from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15; rewritten for voice — removed "look no further" AI tell and trailing tricolon */}
+          {/* Ported from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15; rewritten for voice: removed AI tell and trailing tricolon */}
           <p className="text-[#292929] leading-relaxed mb-4">
             On Point Installations has been installing commercial office furniture across the Chicago metro since 2010. We assemble and install from leading commercial manufacturers. The crew is fully insured and non-union.
           </p>
@@ -140,7 +140,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── H2 #2: CUBICLE INSTALLATION ─────────────────────────────── */}
-        {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section id="cubicle-installation" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -166,7 +166,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── H2 #3: SYSTEMS FURNITURE ────────────────────────────────── */}
-        {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section id="systems-furniture" className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -189,7 +189,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── H2 #4: DELIVERY AND SETUP ───────────────────────────────── */}
-        {/* Ported from live site RDI section; framing drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Ported from live site RDI section; framing drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section id="office-furniture-delivery-setup" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -221,7 +221,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── H2 #5: WHY CHOOSE ON POINT ──────────────────────────────── */}
-        {/* Ported from onpointinstallations.com/about/ "Why Our Clients Choose Us", fetched 2026-05-15. Some differentiator framing drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Ported from onpointinstallations.com/about/ "Why Our Clients Choose Us", fetched 2026-05-15. Some differentiator framing drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-8">

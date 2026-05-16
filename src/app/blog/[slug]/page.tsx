@@ -3,7 +3,7 @@ import { SITE } from '@/lib/constants';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
 
-// Sanity-powered blog post route — fully implemented in Phase 4
+// Sanity-powered blog post route : fully implemented in Phase 4
 export async function generateMetadata({
   params,
 }: {

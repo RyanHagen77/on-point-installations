@@ -4,7 +4,7 @@ export const SITE = {
   domain: "https://onpointinstallations.com",
   phone: "(847) 550-4042",
   phoneHref: "tel:+18475504042",
-  email: "", // TBD — get from Brian
+  email: "", // TBD : get from Brian
   address: {
     street: "1220 Karl Ct",
     city: "Wauconda",
@@ -13,8 +13,8 @@ export const SITE = {
     full: "1220 Karl Ct, Wauconda, IL 60084",
   },
   hours: {
-    weekdays: "Monday–Friday: 9:00 AM – 5:00 PM",
-    weekend: "Saturday–Sunday: Closed",
+    weekdays: "Monday-Friday: 9:00 AM - 5:00 PM",
+    weekend: "Saturday-Sunday: Closed",
   },
   founded: "2010",
   owner: "Brian Vetter",
@@ -26,8 +26,8 @@ export const SITE = {
     facebook: "https://www.facebook.com/onpointinstallationsinc",
     instagram: "https://www.instagram.com/onpointinstallations/",
     linkedin: "https://www.linkedin.com/company/on-point-installations-inc/",
-    youtube: "", // TBD — confirm corrected channel URL
-    twitter: "", // TBD — account to be created
+    youtube: "", // TBD : confirm corrected channel URL
+    twitter: "", // TBD : account to be created
   },
   reviews: {
     count: 25,
@@ -38,9 +38,9 @@ export const SITE = {
     yearsInBusiness: 15,
     projectsCompleted: "11,000+",
     teamExperience: "130+ years combined",
-    employees: "12–15",
+    employees: "12-15",
   },
-  gtmId: "", // TBD — new GTM container ID
+  gtmId: "", // TBD : new GTM container ID
   ga4Id: "G-1GSQDRFR9D",
 };
 
@@ -52,7 +52,7 @@ export const SERVICE_CITIES = [
   { name: "Wauconda", state: "IL", slug: "wauconda-il" },
 ];
 
-// Canonical 8 services — same names, same order, everywhere (nav dropdown, footer, homepage grid, /services/ hub)
+// Canonical 8 services : same names, same order, everywhere (nav dropdown, footer, homepage grid, /services/ hub)
 export const PRIMARY_SERVICES = [
   {
     name: "Office Installations",

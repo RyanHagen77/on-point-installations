@@ -13,7 +13,7 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/`,
 });
 
-// Service card descriptions — verbatim from onpointinstallations.com service pages (fetched 2026-05-15)
+// Service card descriptions : verbatim from onpointinstallations.com service pages (fetched 2026-05-15)
 const SERVICE_DESCRIPTIONS: Record<string, string> = {
   'commercial-furniture-installation-chicago-il':
     'On Point Installations installs commercial office furniture across the Chicago metro. Dealers and facility managers have been calling us since 2010.',
@@ -33,7 +33,7 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
     'At On Point Installations, we offer commercial specialty deep cleaning services for our installation customers in the Chicago Tristate Area.',
 };
 
-// Who We Serve — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
+// Who We Serve : verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
 const WHO_WE_SERVE = [
   'Office Furniture Dealerships and Sales Staff',
   'Corporate Facilities Managers and Procurement Teams',
@@ -43,7 +43,7 @@ const WHO_WE_SERVE = [
   'Healthcare Facilities, including medical offices and long-term care facilities',
 ];
 
-// Projects We Handle — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
+// Projects We Handle : verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
 const FURNITURE_SERVICES = [
   'Office or facility moves, adds, changes (MAC)',
   'Commercial office relocations',
@@ -53,7 +53,7 @@ const FURNITURE_SERVICES = [
   'New commercial office spaces, healthcare facilities, or restaurants/bars',
 ];
 
-// Furniture brands — verbatim from live site
+// Furniture brands : verbatim from live site
 const BRANDS = [
   'AIS', 'Allsteel', 'Bernhardt', 'Friant', 'Haworth', 'Herman Miller',
   'Hon', 'KI', 'Kimball', 'Knoll', 'OFS', 'Steelcase', 'Teknion', 'Three H', 'Trendway',
@@ -110,7 +110,7 @@ export default function HomePage() {
         </section>
 
         {/* ── 2. TRUST BAR ──────────────────────────────────────────── */}
-        {/* Source: Phase 2 spec — see docs/spec-additions.md */}
+        {/* Source: Phase 2 spec : see docs/spec-additions.md */}
         <section className="bg-[#800000] py-8 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white">
@@ -127,7 +127,7 @@ export default function HomePage() {
                 <div className="text-sm text-white/80 mt-1">Projects Completed</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold">12–15</div>
+                <div className="text-2xl sm:text-3xl font-bold">12-15</div>
                 <div className="text-sm text-white/80 mt-1">Person Crew</div>
               </div>
             </div>
@@ -135,7 +135,7 @@ export default function HomePage() {
         </section>
 
         {/* ── 3. MISSION ────────────────────────────────────────────── */}
-        {/* Ported from onpointinstallations.com, fetched 2026-05-15; first paragraph rewritten for voice — removed consultant-speak tricolon */}
+        {/* Ported from onpointinstallations.com, fetched 2026-05-15; first paragraph rewritten for voice : removed consultant-speak tricolon */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-12 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-[#800000] mb-4">Our Mission</h2>

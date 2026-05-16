@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Contact form handler — wire to email or CRM in Phase 2 once Brian confirms preference
+// Contact form handler : wire to email or CRM in Phase 2 once Brian confirms preference
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json();

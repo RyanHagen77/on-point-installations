@@ -1,4 +1,4 @@
-// Sanity client — configured in Phase 4
+// Sanity client : configured in Phase 4
 // Placeholder until Sanity project is created
 
 export const sanityConfig = {

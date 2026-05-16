@@ -34,14 +34,14 @@ export default function ServiceHero({
         */}
         <div className="mt-6 lg:grid lg:grid-cols-2 lg:gap-x-12 lg:gap-y-4 lg:items-start">
 
-          {/* 1. H1 — always first; desktop: left col, row 1 */}
+          {/* 1. H1 : always first; desktop: left col, row 1 */}
           <div className="lg:col-start-1 lg:row-start-1">
             <h1 className="text-[28px] leading-snug sm:text-[36px] lg:text-[42px] font-bold text-[#800000]">
               {h1}
             </h1>
           </div>
 
-          {/* 2. Image — mobile: immediately after H1; desktop: right col spanning both rows */}
+          {/* 2. Image : mobile: immediately after H1; desktop: right col spanning both rows */}
           <div className="mt-6 lg:mt-0 relative rounded-sm overflow-hidden shadow-md lg:col-start-2 lg:row-start-1 lg:row-span-2">
             <Image
               src={imageSrc}
@@ -55,7 +55,7 @@ export default function ServiceHero({
             />
           </div>
 
-          {/* 3. Body text + CTAs — mobile: after image; desktop: left col, row 2 */}
+          {/* 3. Body text + CTAs : mobile: after image; desktop: left col, row 2 */}
           <div className="mt-6 lg:mt-0 lg:col-start-1 lg:row-start-2">
             {children}
             <div className="flex flex-col sm:flex-row gap-3">

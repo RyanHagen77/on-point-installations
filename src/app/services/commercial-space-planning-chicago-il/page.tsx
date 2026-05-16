@@ -12,7 +12,7 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/services/commercial-space-planning-chicago-il/`,
 });
 
-// SEO-driven FAQ content — drafted per Voice Rules. See docs/known-issues.md and docs/spec-additions.md
+// SEO-driven FAQ content : drafted per Voice Rules. See docs/known-issues.md and docs/spec-additions.md
 const FAQS = [
   {
     question: 'What does commercial space planning include?',
@@ -77,7 +77,7 @@ export default function CommercialSpacePlanningChicagoPage() {
         </ServiceHero>
 
         {/* ── H2: WHAT SPACE PLANNING INCLUDES ────────────────────────── */}
-        {/* Opening based on live site paragraph. Details drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Opening based on live site paragraph. Details drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -116,7 +116,7 @@ export default function CommercialSpacePlanningChicagoPage() {
         </section>
 
         {/* ── H2: WHY IT MATTERS ──────────────────────────────────────── */}
-        {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
@@ -139,7 +139,7 @@ export default function CommercialSpacePlanningChicagoPage() {
         </section>
 
         {/* ── H2: FOR DEALERS AND FACILITY MANAGERS ───────────────────── */}
-        {/* Drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
+        {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
