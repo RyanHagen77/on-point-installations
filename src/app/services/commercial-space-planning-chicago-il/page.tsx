@@ -95,7 +95,7 @@ export default function CommercialSpacePlanningChicagoPage() {
                 },
                 {
                   title: 'Floor Core Chalking',
-                  body: "We mark the floor core locations — the electrical and data connections built into the floor — before furniture is positioned. Getting this right before installation means furniture lines up with the connections it needs.",
+                  body: "We mark the floor core locations (the electrical and data connections built into the floor) before furniture is positioned. Getting this right before installation means furniture lines up with the connections it needs.",
                 },
                 {
                   title: 'Code Compliance Guidance',
@@ -133,7 +133,7 @@ export default function CommercialSpacePlanningChicagoPage() {
               <Link href="/services/commercial-furniture-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
                 commercial furniture installation Chicago
               </Link>{' '}
-              projects on schedule. We've been doing both — planning and installation — since 2010.
+              projects on schedule. We've been handling both planning and installation since 2010.
             </p>
           </div>
         </section>
