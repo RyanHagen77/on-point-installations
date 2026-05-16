@@ -36,6 +36,13 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 
 ---
 
+### Electrical & Voice/Data — Stock Photo License
+**Issue:** The service card image for Electrical & Voice/Data (`on-point-installations-electrical-voice-data.jpg`) was sourced from the live site, but its original filename was `depositphotos_32139119_xl-scaled-1...` — indicating it is a licensed stock image from Depositphotos.com.
+**Action needed from Brian:** Confirm the Depositphotos license is still active and covers use on the new domain before launch. If the license has lapsed or is seat-limited, replace with a non-stock photo or a licensed alternative.
+**Phase:** Resolve before Phase 5 launch prep
+
+---
+
 ## General
 
 *(Add items here as they are identified during Phase 2–4 builds)*

@@ -166,18 +166,27 @@ export default function HomePage() {
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}/`}
-                  className="group block bg-white border border-[#E9E9E9] p-6 hover:border-[#800000] hover:shadow-md transition-all rounded-[3px]"
+                  className="group block bg-white border border-[#E9E9E9] overflow-hidden hover:border-[#800000] hover:shadow-md transition-all rounded-[3px]"
                 >
-                  <div className="w-8 h-0.5 bg-[#800000] mb-4" />
-                  <h3 className="font-bold text-[#292929] group-hover:text-[#800000] transition-colors mb-2">
-                    {service.name}
-                  </h3>
-                  <p className="text-sm text-[#535353] leading-relaxed mb-4">
-                    {SERVICE_DESCRIPTIONS[service.slug]}
-                  </p>
-                  <span className="text-sm font-semibold text-[#800000] uppercase tracking-wide">
-                    Learn more →
-                  </span>
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
+                      src={`/images/${service.image}`}
+                      alt={service.imageAlt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-bold text-[#292929] group-hover:text-[#800000] transition-colors mb-2">
+                      {service.name}
+                    </h3>
+                    <p className="text-sm text-[#535353] leading-relaxed mb-4">
+                      {SERVICE_DESCRIPTIONS[service.slug]}
+                    </p>
+                    <span className="text-sm font-semibold text-[#800000] uppercase tracking-wide">
+                      Learn more →
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>
