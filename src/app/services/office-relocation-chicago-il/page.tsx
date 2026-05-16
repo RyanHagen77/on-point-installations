@@ -5,6 +5,7 @@ import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
 import ServiceSchema from '@/components/schema/ServiceSchema';
+import FAQSchema from '@/components/schema/FAQSchema';
 
 export const metadata = generatePageMetadata({
   title: 'Office Relocation Services Chicago | On Point Installations',
@@ -45,6 +46,7 @@ export default function OfficeRelocationChicagoPage() {
         url={`${SITE.domain}/services/office-relocation-chicago-il/`}
         areaServed="Chicago"
       />
+      <FAQSchema items={FAQS} />
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
