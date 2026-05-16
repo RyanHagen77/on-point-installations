@@ -2,27 +2,38 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Brand colors — pending hex confirmation from Brian; using navy/white/gray palette */
-  --color-brand-navy: #1a3a5c;
-  --color-brand-navy-dark: #122840;
-  --color-brand-navy-light: #2a5080;
-  --color-brand-white: #ffffff;
-  --color-brand-gray: #6b7280;
-  --color-brand-gray-light: #f3f4f6;
-  --color-brand-gray-dark: #374151;
-  --color-brand-accent: #e8a020;
+  /* Primary brand — extracted from live site CSS 2026-05-15 */
+  --color-brand-primary: #800000;
+  --color-brand-primary-dark: #5A0000;
+  --color-brand-primary-light: #C53333;
 
-  /* Typography — pending brand style guide from Brian */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Secondary / neutral */
+  --color-brand-secondary: #535353;
+  --color-brand-secondary-dark: #131313;
+  --color-brand-secondary-light: #B4B3B3;
+
+  /* Dark text scale */
+  --color-dark-1: #292929;
+  --color-dark-2: #5A5A5A;
+  --color-dark-3: #898989;
+
+  /* Light background scale */
+  --color-light-1: #E9E9E9;
+  --color-light-2: #F3F3F3;
+  --color-light-3: #F8F8F8;
+
+  /* Typography — Wix Madefor Text, extracted from live site */
+  --font-brand: var(--font-wix-madefor-text), 'Wix Madefor Text', sans-serif;
+  --font-sans: var(--font-brand);
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #292929;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-brand);
 }
