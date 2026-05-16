@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 
 export const metadata = generatePageMetadata({
   title: 'Privacy Policy | On Point Installations, Inc.',
-  description: 'Privacy Policy for On Point Installations, Inc. — Wauconda, IL.',
+  description: 'Privacy Policy for On Point Installations, Inc. | Wauconda, IL.',
   canonical: `${SITE.domain}/privacy-policy/`,
 });
 

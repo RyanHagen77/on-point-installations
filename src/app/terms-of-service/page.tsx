@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 
 export const metadata = generatePageMetadata({
   title: 'Terms of Service | On Point Installations, Inc.',
-  description: 'Terms of Service for On Point Installations, Inc. — Wauconda, IL.',
+  description: 'Terms of Service for On Point Installations, Inc. | Wauconda, IL.',
   canonical: `${SITE.domain}/terms-of-service/`,
 });
 

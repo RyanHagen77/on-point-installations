@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'On Point Installations, Inc. — Commercial Office Furniture Installer in Chicago, IL';
+export const alt = 'On Point Installations, Inc. | Commercial Office Furniture Installer in Chicago, IL';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -41,7 +41,7 @@ export default function Image() {
             textAlign: 'center',
           }}
         >
-          Commercial Office Furniture Installer — Chicago, IL
+          Commercial Office Furniture Installer | Chicago, IL
         </div>
         <div
           style={{

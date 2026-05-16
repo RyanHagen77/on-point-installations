@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 
 export const metadata = generatePageMetadata({
   title: 'Cookie Policy | On Point Installations, Inc.',
-  description: 'Cookie Policy for On Point Installations, Inc. — Wauconda, IL.',
+  description: 'Cookie Policy for On Point Installations, Inc. | Wauconda, IL.',
   canonical: `${SITE.domain}/cookie-policy/`,
 });
 

@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb';
 
 export const metadata = generatePageMetadata({
   title: 'Disclaimer | On Point Installations, Inc.',
-  description: 'Disclaimer for On Point Installations, Inc. — Wauconda, IL.',
+  description: 'Disclaimer for On Point Installations, Inc. | Wauconda, IL.',
   canonical: `${SITE.domain}/disclaimer/`,
 });
 
