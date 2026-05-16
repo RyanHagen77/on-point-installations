@@ -1,0 +1,36 @@
+# Voice violation patterns — literal string matches (grep -F)
+# One pattern per line. No regex. Case-insensitive match is applied by the hook.
+#
+# Adding a pattern: add the literal string here and commit this file.
+# Removing a pattern: delete the line and commit. Do not work around the hook.
+# If the hook fires on legitimate use: rewrite the copy. Do not --no-verify.
+# --no-verify requires explicit supervisor approval.
+
+# ── EM DASH ─────────────────────────────────────────────────────────────────
+# Always a violation in body copy. Use comma, parentheses, colon, or recast.
+—
+
+# ── AI TELLS ────────────────────────────────────────────────────────────────
+# Phrases that read as machine-generated regardless of surrounding context.
+look no further
+it's worth noting
+in today's fast-paced world
+we've got you covered
+elevate your
+unlock the potential
+seamlessly integrate
+robust solutions
+cutting-edge
+state-of-the-art
+
+# ── EXPLICITLY BANNED TERMS ─────────────────────────────────────────────────
+white-glove
+best-in-class
+world-class
+
+# ── HUMAN REVIEW ONLY (not machine-checked — too broad for grep on .tsx) ────
+# These require judgment in context. Catch them in code review, not the hook.
+#   optimize     — banned as abstract verb; fine in comments about perf
+#   streamline   — banned as abstract verb; fine in tech contexts
+#   leverage     — banned as abstract verb; fine as a literal noun
+#   transform    — banned as abstract verb; fine when describing physical change

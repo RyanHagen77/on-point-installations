@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Voice pre-commit hook — blocks commits containing banned patterns
+# Patterns: .githooks/voice-patterns.txt (literal strings, not regex)
+# If this fires on legitimate copy: rewrite the line. Do not --no-verify.
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+PATTERNS_FILE="$REPO_ROOT/.githooks/voice-patterns.txt"
+FAILED=0
+
+if [ ! -f "$PATTERNS_FILE" ]; then
+  echo "pre-commit: voice-patterns.txt not found at $PATTERNS_FILE — skipping voice check"
+  exit 0
+fi
+
+# Only check staged .tsx, .ts, and .mdx files (content files)
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(tsx|ts|mdx)$')
+
+if [ -z "$STAGED_FILES" ]; then
+  exit 0
+fi
+
+while IFS= read -r pattern; do
+  # Skip empty lines and comment lines
+  [[ -z "$pattern" || "$pattern" == \#* ]] && continue
+
+  while IFS= read -r file; do
+    # Check the staged version of the file (not working tree)
+    MATCHES=$(git show ":$file" 2>/dev/null | grep -Fin "$pattern")
+    if [ -n "$MATCHES" ]; then
+      echo ""
+      echo "  VOICE VIOLATION — pattern: \"$pattern\""
+      echo "  File: $file"
+      echo "$MATCHES" | head -3 | while IFS= read -r line; do
+        echo "    $line"
+      done
+      FAILED=1
+    fi
+  done <<< "$STAGED_FILES"
+done < "$PATTERNS_FILE"
+
+if [ "$FAILED" -eq 1 ]; then
+  echo ""
+  echo "Commit blocked: voice violations found above."
+  echo "Fix the copy, re-stage, and commit again."
+  echo "Do not use --no-verify without explicit supervisor approval."
+  exit 1
+fi
+
+exit 0
