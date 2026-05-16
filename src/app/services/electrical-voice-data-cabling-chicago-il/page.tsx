@@ -6,7 +6,7 @@ import CTABlock from '@/components/ui/CTABlock';
 export const metadata = generatePageMetadata({
   title: 'Electrical, Voice & Data Cabling Chicago | On Point Installations',
   description: 'Commercial electrical, voice, and data cabling installation in Chicago, IL. High and low voltage for office furniture systems. Non-union. Call (847) 550-4042.',
-  canonical: `${SITE.domain}/services/electrical-voice-and-data-cabling-for-your-commercial-installation/`,
+  canonical: `${SITE.domain}/services/electrical-voice-data-cabling-chicago-il/`,
 });
 
 export default function ElectricalVoiceDataCablingPage() {
@@ -16,7 +16,7 @@ export default function ElectricalVoiceDataCablingPage() {
         <Breadcrumb items={[
           { name: 'Home', url: '/' },
           { name: 'Services', url: '/services/' },
-          { name: 'Electrical, Voice & Data Cabling', url: '/services/electrical-voice-and-data-cabling-for-your-commercial-installation/' },
+          { name: 'Electrical, Voice & Data Cabling', url: '/services/electrical-voice-data-cabling-chicago-il/' },
         ]} />
         <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
           Electrical, Voice &amp; Data Cabling in Chicago, IL

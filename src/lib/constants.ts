@@ -52,7 +52,7 @@ export const SERVICE_CITIES = [
   { name: "Wauconda", state: "IL", slug: "wauconda-il" },
 ];
 
-// Matches the 8 services on onpointinstallations.com — same names, same order, everywhere
+// Canonical 8 services — same names, same order, everywhere (nav dropdown, footer, homepage grid, /services/ hub)
 export const PRIMARY_SERVICES = [
   {
     name: "Office Installations",
@@ -80,25 +80,25 @@ export const PRIMARY_SERVICES = [
   },
   {
     name: "Electrical & Voice/Data",
-    slug: "electrical-voice-and-data-cabling-for-your-commercial-installation",
+    slug: "electrical-voice-data-cabling-chicago-il",
     image: "on-point-installations-electrical-voice-data.jpg",
     imageAlt: "Electrical and voice data cabling installation for a commercial office",
   },
   {
     name: "Artwork Installation",
-    slug: "artwork-installation",
+    slug: "artwork-installation-chicago-il",
     image: "on-point-installations-artwork-installation.jpg",
     imageAlt: "Professional artwork installation by On Point Installations in a Chicago commercial space",
   },
   {
     name: "Window Treatment Installations",
-    slug: "window-treatment-installations",
+    slug: "window-treatment-installation-chicago-il",
     image: "on-point-installations-window-treatment-installations.jpg",
     imageAlt: "Window treatment installation for a commercial office building",
   },
   {
     name: "Cubicle Wall and Upholstery Cleaning",
-    slug: "cubicle-wall-and-upholstery-cleaning",
+    slug: "cubicle-wall-upholstery-cleaning-chicago-il",
     image: "on-point-installations-cubicle-wall-upholstery-cleaning.jpg",
     imageAlt: "Cubicle wall and upholstery deep cleaning service by On Point Installations",
   },

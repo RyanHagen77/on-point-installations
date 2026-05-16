@@ -23,13 +23,13 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
     'On Point Installations provides commercial office furniture storage in our 15,000-square-foot facility and has an additional 40,000 square feet available in a secondary warehouse.',
   'commercial-space-planning-chicago-il':
     'On Point Installations, Inc. provides design support services to create flexible, responsive and supportive work environments.',
-  'electrical-voice-and-data-cabling-for-your-commercial-installation':
+  'electrical-voice-data-cabling-chicago-il':
     'That\'s why On Point Installations takes care of everything for you, from delivery, assembly, and installation of your furniture, to installing the required power and low voltage cabling.',
-  'artwork-installation':
+  'artwork-installation-chicago-il':
     'Art can transform any space, which is why many residential, commercial, and even industrial buildings display pictures, paintings, mirrors, and sculptures.',
-  'window-treatment-installations':
+  'window-treatment-installation-chicago-il':
     'Having a view is a great way to improve productivity, wellbeing, and overall morale. On Point Installations offers professional window treatment installations to keep your building cool, comfortable, and stylish.',
-  'cubicle-wall-and-upholstery-cleaning':
+  'cubicle-wall-upholstery-cleaning-chicago-il':
     'At On Point Installations, we offer commercial specialty deep cleaning services for our installation customers in the Chicago Tristate Area.',
 };
 

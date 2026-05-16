@@ -6,12 +6,11 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 
 ## Content — Needs Real Source Material (BLOCKING for launch)
 
-### REVIEWS — Homepage + /reviews/ page
-**Status:** Placeholder shown. Do not populate until resolved.
-**Issue:** The live onpointinstallations.com/reviews/ page renders review text via a JavaScript widget (not static HTML). Static curl fetch returns no review text. The "selfishly don't recommend" quote referenced in CLAUDE.md is an audit-identified *theme*, not a verbatim quote.
+### REVIEWS — Homepage review section + /reviews/ page
+**Status:** Sections not yet built. Do not populate until resolved.
+**Issue:** The live onpointinstallations.com/reviews/ page renders review text via a JavaScript widget (not static HTML). Static curl fetch returns no review text. The "selfishly don't recommend" quote referenced in CLAUDE.md is an audit-identified *theme*, not a verbatim quote. Brian has approved using verbatim Google review text (see CLAUDE.md — Phase 2 Decisions), but the actual quote text has not been provided.
 **Affected locations:**
-- Homepage section 6 (review cards) — 3 placeholder cards currently shown
-- Homepage section 4 (Why On Point pull quote) — placeholder shown
+- Homepage — "Why On Point" section and review snippet section are not yet built; they require real quotes
 - /reviews/ page — full page build blocked
 **Resolution needed from Brian:** Provide 5–10 verbatim Google review quotes with reviewer first name + last initial. Alternatively, grant access to the Google Business Profile account so reviews can be pulled directly.
 **Owner:** Brian Vetter
@@ -25,6 +24,33 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 **Resolution needed:** Brian to confirm this claim is accurate and provide preferred phrasing, OR confirm the live About page language can be used to infer it. If confirmed, body copy should be drafted from Brian's words.
 **Owner:** Brian Vetter
 **Phase:** Resolve before Phase 5 launch prep
+
+---
+
+### Contact Form Email — Destination address unverified
+**Status:** Address confirmed by Brian but not yet verified as correct.
+**Issue:** Brian confirmed the contact form should send to `info@onpointinstall.com` — note this is a *shorter* domain than the website (`onpointinstall.com` vs `onpointinstallations.com`). This may be a typo. If wrong, form submissions would go nowhere — silently dropped leads.
+**Resolution needed:** Verify the correct email address before Phase 5 deploy. Correct options: `info@onpointinstall.com` or `info@onpointinstallations.com`.
+**Owner:** Brian Vetter
+**Phase:** Verify before contact form is wired in Phase 4/5
+
+---
+
+### SVG Logo — Phase 5 deliverable
+**Status:** Using PNG logo downloaded from live site. SVG is not yet available.
+**Issue:** The current logo in the build (`/images/logo.png`) is a PNG downloaded from the live WordPress site. Brian will commission an SVG file as a Phase 5 deliverable. Until then, the PNG is acceptable for staging.
+**Resolution needed:** Brian to provide SVG file before Phase 5 launch prep.
+**Owner:** Brian Vetter
+**Phase:** Phase 5
+
+---
+
+### Favicon — Generated from ImageResponse, not from official brand assets
+**Status:** Functional but not final.
+**Issue:** `src/app/icon.tsx` generates a 32×32 maroon favicon with an "OPI" monogram using Next.js `ImageResponse`. This is a placeholder until Brian provides the official favicon file or SVG logo it can be derived from.
+**Resolution needed:** When Brian provides the SVG logo (Phase 5), replace `icon.tsx` with a proper favicon generated from the brand mark.
+**Owner:** Brian Vetter
+**Phase:** Phase 5
 
 ---
 
@@ -42,6 +68,26 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 **Phase:** Resolve before Phase 5 launch prep
 
 ---
+
+## Content — Drafted Copy Pending Brian Review
+
+### Office Installations Money Page — 3 Absorbed H2 Sections
+**Status:** Drafted per Voice Rules. Not sourced from live site or audit spec. Needs Brian review before launch.
+**Issue:** The Office Installations page (`/services/commercial-furniture-installation-chicago-il/`) absorbs three audit-only URLs as H2 sections. No direct live-site equivalent exists for any of these three sections — the live site's Office Installations page does not break out cubicle installation, systems furniture, or delivery & setup as distinct sections. Copy was drafted in Brian's contractor voice per CLAUDE.md Voice Rules.
+**Affected sections:**
+- H2: "Cubicle Installation in Chicago" — body copy drafted
+- H2: "Systems Furniture Installation" — body copy drafted
+- H2: "Office Furniture Delivery and Setup" — body copy drafted
+**Resolution needed:** Brian to review and approve or revise these three sections before Phase 5 launch prep.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+### Office Installations Money Page — "Why Chicago Businesses Choose On Point" Section
+**Status:** Partially ported from live About page; remainder drafted per Voice Rules. Needs Brian review.
+**Issue:** The "Why Chicago Businesses Choose On Point Installations" H2 section draws from the live About page where possible, but the live About page doesn't have an exact equivalent differentiator block. Some copy was drafted to fill gaps.
+**Resolution needed:** Brian to review the differentiator claims for accuracy (especially: non-union pricing, same-crew commitment, quote accuracy).
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
 
 ## General
 

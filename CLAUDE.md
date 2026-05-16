@@ -184,29 +184,77 @@ These are non-negotiable in every file:
 
 ---
 
-## CONTENT GUIDANCE
+## VOICE AND CONTENT RULES — ENFORCE THROUGHOUT
 
-For page body copy:
+These rules apply to every piece of copy written for this site. Read before writing any body copy.
 
-**Voice and tone:** Direct, plain-spoken, professional but approachable. Speaks to B2B buyers — facilities directors, office managers, furniture dealers. Not corporate, not salesy. Sounds like someone who has been doing this for 15 years and knows the business cold.
+### Tone
+Direct, plain-spoken, professional but approachable. Speaks to B2B buyers — facilities directors, office managers, furniture dealers. Sounds like someone who has been doing this for 15 years and knows the business cold. Not corporate, not salesy.
 
-**Homepage hero copy example:**
-"When your Chicago office needs furniture installed right — on time, on budget, and without the need to babysit the crew — On Point Installations is the team dealers and facility managers call first."
+### Specific prohibitions
+1. **No em dashes.** Em dashes (—) are not permitted in body copy. Restructure the sentence, use a comma, or split into two sentences.
+2. **No title-case compound adjectives.** Never "World-Class Service," "Best-in-Class Team," "High-Quality Results," or similar.
+3. **No corporate plurals.** Avoid "solutions," "partnerships," "offerings," "capabilities," "deliverables." Say what the thing actually is.
+4. **No consultant verbs.** Avoid "leverage," "optimize," "synergize," "enable," "facilitate," "deliver" (used abstractly). Use plain verbs: install, move, plan, build, coordinate.
+5. **No "white-glove."** Flagged as a voice violation. Do not use it.
+6. **Contractions required where natural.** We're, don't, can't, we'll, it's. Stiff formal writing sounds wrong for this brand.
 
-**Key proof points to weave into every service page:**
+### Voice test
+Read the copy aloud. If it sounds like a consultant's slide deck, rewrite it. If it sounds like Brian talking to a furniture dealer he's worked with for five years, it's right.
+
+### Proof points — verified sources only
+These are cleared for use on service pages:
 - 15+ years in business (founded 2010)
 - 11,000+ completed projects
 - 12–15 person non-union crew
 - 130+ years combined team experience
 - 5.0★ Google rating / 25 reviews
 - Fully insured
-- No subcontracting
 
-**Review language to use (from the audit — these are real quotes):**
-The most powerful review theme identified: clients say they "selfishly don't want to recommend" On Point because they don't want competitors to find them. Use this angle in the "Why Choose On Point" sections — it signals exclusivity and quality without bragging.
+"No subcontracting" is flagged in `docs/known-issues.md`. Do not assert it until Brian confirms.
 
-**FAQ content:**
-Every service page needs a minimum of 5 FAQ Q&As. Use the FAQ blocks from the schema in `Phase2_Kickoff_Homepage_ServicePages.md`. Write them in the same direct, plain voice.
+### Reviews and testimonials
+The "selfishly don't want to recommend" angle is an audit-identified *theme*, not a verbatim quote. Use it as a framing device only. Verbatim review text is blocked until Brian provides it. See `docs/known-issues.md`.
+
+### FAQs
+Every service page needs minimum 5 FAQ Q&As. Same direct voice. Source from live service pages or the Phase 2 spec — do not invent questions or answers.
+
+---
+
+## SOURCING RULE — ENFORCE THROUGHOUT
+
+Every piece of content — copy, statistics, review quotes, testimonials, customer attributions — must trace to one of three sources:
+
+1. **The Phase 2 audit** — SEO configuration: title tags, meta descriptions, H1s, canonical URLs, schema, internal link anchor texts. Do not modify these without flagging it.
+2. **The current live site at onpointinstallations.com** — Published copy is cleared for use verbatim or near-verbatim. Mark sourced content with a comment: `{/* Verbatim from onpointinstallations.com, fetched YYYY-MM-DD */}`
+3. **Real source documents provided by Brian** — actual review text, case studies, customer names, confirmed business claims.
+
+If content cannot be traced to one of those three, use **placeholder text** and add a flag to `docs/known-issues.md`. Do not generate plausible-sounding B2B copy to fill gaps.
+
+---
+
+## LIVE-SITE PARITY RULE — ENFORCE THROUGHOUT
+
+Every section on every page must either:
+- **Exist on the current live site** — port it verbatim or near-verbatim and note the source, OR
+- **Be a documented intentional addition** — logged in `docs/spec-additions.md` with rationale and approval status.
+
+No section gets invented. If a needed section doesn't exist on the live site, port the closest equivalent and flag for Brian's review. Do not write new sections in a generic B2B voice to fill perceived gaps.
+
+Before building any page, fetch the corresponding live-site URL and compare section-by-section.
+
+---
+
+## SESSION-START VERIFICATION
+
+At the start of every new session:
+1. Re-read this CLAUDE.md.
+2. Identify the most recently built or modified page.
+3. Audit it against all current rules in this file.
+
+Rules added mid-session do not retroactively scrub copy written before them — only the next audit pass does. If violations are found, fix them before building new pages.
+
+When a correction is made during a session, add the resulting rule to this file before the session ends.
 
 ---
 
