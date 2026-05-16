@@ -22,6 +22,8 @@ export default function ProjectCard({ title, slug, city, serviceType, thumbnail 
             src={thumbnail.src}
             alt={thumbnail.alt}
             fill
+            quality={85}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover"
           />
         ) : (

@@ -188,6 +188,8 @@ export default function HomePage() {
                       src={`/images/${service.image}`}
                       alt={service.imageAlt}
                       fill
+                      quality={85}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>

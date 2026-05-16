@@ -24,7 +24,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
             className="aspect-video relative rounded overflow-hidden hover:opacity-90 transition-opacity"
             aria-label={`View ${image.alt}`}
           >
-            <Image src={image.src} alt={image.alt} fill className="object-cover" />
+            <Image src={image.src} alt={image.alt} fill quality={85} sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
           </button>
         ))}
       </div>
@@ -40,6 +40,8 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
                 src={images[lightboxIndex].src}
                 alt={images[lightboxIndex].alt}
                 fill
+                quality={90}
+                sizes="(min-width: 896px) 896px, 100vw"
                 className="object-contain"
               />
             </div>

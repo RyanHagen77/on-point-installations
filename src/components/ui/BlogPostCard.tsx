@@ -26,7 +26,7 @@ export default function BlogPostCard({
       <Link href={href} className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
         {featuredImage && (
           <div className="aspect-video relative">
-            <Image src={featuredImage} alt={title} fill className="object-cover" />
+            <Image src={featuredImage} alt={title} fill quality={85} sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
           </div>
         )}
         <div className="p-6">
@@ -43,7 +43,7 @@ export default function BlogPostCard({
     <Link href={href} className="group flex gap-4 py-4 border-b border-gray-100 last:border-0">
       {featuredImage && (
         <div className="w-24 h-16 relative flex-shrink-0 rounded overflow-hidden">
-          <Image src={featuredImage} alt={title} fill className="object-cover" />
+          <Image src={featuredImage} alt={title} fill quality={85} sizes="96px" className="object-cover" />
         </div>
       )}
       <div className="flex-1 min-w-0">
