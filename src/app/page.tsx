@@ -72,23 +72,11 @@ export default function HomePage() {
           <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-14 lg:py-20">
               <div>
-                <h1 className="text-4xl sm:text-5xl font-bold text-[#800000] leading-tight mb-4">
+                <h1 className="text-[32px] leading-[1.15] sm:text-[42px] sm:leading-tight lg:text-5xl font-bold text-[#800000] mb-4">
                   Commercial Office Furniture Installer in Chicago, IL
                 </h1>
-                <p className="text-lg text-[#535353] mb-4 font-medium">
+                <p className="text-lg text-[#535353] mb-6 font-medium">
                   Non-union. Fully insured. 11,000+ projects since 2010.
-                </p>
-                {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
-                <p className="text-[#5A5A5A] mb-3 leading-relaxed">
-                  At On Point Installations, our mission is to provide exceptional, customer-focused
-                  furniture installation services. We are committed to delivering quality workmanship,
-                  ensuring client satisfaction, and fostering long-term relationships with our partners
-                  through professionalism, precision, and integrity.
-                </p>
-                <p className="text-[#5A5A5A] mb-8 leading-relaxed">
-                  From our Wauconda, IL, headquarters, On Point Installations provides fully insured,
-                  non-union commercial furniture services throughout Chicagoland and the Tri-State Area,
-                  including the city of Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
@@ -144,7 +132,32 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 3. SERVICES GRID ──────────────────────────────────────── */}
+        {/* ── 3. MISSION ────────────────────────────────────────────── */}
+        {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
+        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-12 px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold text-[#800000] mb-4">Our Mission</h2>
+            <p className="text-[#292929] leading-relaxed mb-5">
+              At On Point Installations, our mission is to provide exceptional, customer-focused
+              furniture installation services. We are committed to delivering quality workmanship,
+              ensuring client satisfaction, and fostering long-term relationships with our partners
+              through professionalism, precision, and integrity.
+            </p>
+            <p className="text-[#292929] leading-relaxed mb-8">
+              From our Wauconda, IL, headquarters, On Point Installations provides fully insured,
+              non-union commercial furniture services throughout Chicagoland and the Tri-State Area,
+              including the city of Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
+            </p>
+            <Link
+              href="/about/"
+              className="inline-block bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors"
+            >
+              Read About Us
+            </Link>
+          </div>
+        </section>
+
+        {/* ── 4. SERVICES GRID ──────────────────────────────────────── */}
         <section className="bg-white py-16 px-4 border-b border-[#E9E9E9]">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <div className="text-center mb-10">
@@ -193,7 +206,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 4. WHO WE SERVE ───────────────────────────────────────── */}
+        {/* ── 5. WHO WE SERVE ───────────────────────────────────────── */}
         {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
         <section className="bg-[#F8F8F8] py-16 px-4 border-b border-[#E9E9E9]">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
@@ -221,7 +234,7 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* ── 5. PROJECTS WE HANDLE (right column) ── */}
+              {/* ── 6. PROJECTS WE HANDLE (right column) ── */}
               {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
               <div>
                 <h2 className="text-3xl font-bold text-[#800000] mb-5">Projects We Handle</h2>
@@ -238,7 +251,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 6. FURNITURE BRANDS WE INSTALL ────────────────────────── */}
+        {/* ── 7. FURNITURE BRANDS WE INSTALL ────────────────────────── */}
         {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
         <section className="bg-white py-16 px-4 border-b border-[#E9E9E9]">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
@@ -261,7 +274,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 7. CTA BLOCK ──────────────────────────────────────────── */}
+        {/* ── 8. CTA BLOCK ──────────────────────────────────────────── */}
         {/* Verbatim heading and description from onpointinstallations.com, fetched 2026-05-15 */}
         <section className="bg-[#800000] py-14 px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
