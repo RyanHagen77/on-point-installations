@@ -16,7 +16,7 @@ export const metadata = generatePageMetadata({
 // Service card descriptions — verbatim from onpointinstallations.com service pages (fetched 2026-05-15)
 const SERVICE_DESCRIPTIONS: Record<string, string> = {
   'commercial-furniture-installation-chicago-il':
-    'When you need experienced, highly skilled office furniture installers in the Greater Chicago Metropolitan Area, look no further than On Point Installations.',
+    'On Point Installations installs commercial office furniture across the Chicago metro. Dealers and facility managers have been calling us since 2010.',
   'office-relocation-chicago-il':
     'If you\'re a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help.',
   'commercial-office-furniture-storage-chicago-il':
@@ -28,7 +28,7 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
   'artwork-installation-chicago-il':
     'Art can transform any space, which is why many residential, commercial, and even industrial buildings display pictures, paintings, mirrors, and sculptures.',
   'window-treatment-installation-chicago-il':
-    'Having a view is a great way to improve productivity, wellbeing, and overall morale. On Point Installations offers professional window treatment installations to keep your building cool, comfortable, and stylish.',
+    'We install blinds, shades, and drapery for offices and commercial buildings across the Chicago metro. Professional installation keeps the space comfortable and cuts down on afternoon glare.',
   'cubicle-wall-upholstery-cleaning-chicago-il':
     'At On Point Installations, we offer commercial specialty deep cleaning services for our installation customers in the Chicago Tristate Area.',
 };
@@ -135,15 +135,12 @@ export default function HomePage() {
         </section>
 
         {/* ── 3. MISSION ────────────────────────────────────────────── */}
-        {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
+        {/* Ported from onpointinstallations.com, fetched 2026-05-15; first paragraph rewritten for voice — removed consultant-speak tricolon */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-12 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-[#800000] mb-4">Our Mission</h2>
             <p className="text-[#292929] leading-relaxed mb-5">
-              At On Point Installations, our mission is to provide exceptional, customer-focused
-              furniture installation services. We are committed to delivering quality workmanship,
-              ensuring client satisfaction, and fostering long-term relationships with our partners
-              through professionalism, precision, and integrity.
+              On Point Installations installs commercial office furniture for dealers, facility managers, and corporate clients across the Chicago metro. Fully insured and non-union, we’ve handled 11,000+ projects since 2010.
             </p>
             <p className="text-[#292929] leading-relaxed mb-8">
               From our Wauconda, IL, headquarters, On Point Installations provides fully insured,
