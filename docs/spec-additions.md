@@ -51,6 +51,17 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
+## Window Treatment — Section Split: Paragraphs 2 and 3 into Separate H2s
+
+**Added:** 2026-05-16
+**Status:** Approved by outline review; structural addition only, no new copy
+**Location:** `src/app/services/window-treatment-installation-chicago-il/`
+**Present on live site:** No. The live page presents all body copy as continuous prose under one H2 ("Window Treatment Installation Chicago"). The new build splits paras 2 and 3 into two H2 sections: "Window Treatment Installation Services" (service scope, product types) and "Where We Work" (door-to-door, dealer/end-user angle, settings).
+**Rationale:** Improved scannability and distinct SEO signals for service scope vs. coverage area. Live-site copy for both sections is ported near-verbatim; only the sectioning is new.
+**Source authorization:** Outline approved in session 2026-05-16 before drafting.
+
+---
+
 ## Office Relocation Service Page — Expanded Beyond Live-Site Content
 
 **Added:** 2026-05-16

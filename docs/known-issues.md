@@ -79,6 +79,15 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 
 ## Content — Drafted Copy Pending Brian Review
 
+### Window Treatment Installation — FAQ Content Drafted (Not Sourced from Live Site)
+**Status:** Drafted per Voice Rules. Not on live site. Needs Brian review before launch.
+**Issue:** The live Window Treatment page has no FAQ section. Five Q&As were drafted in Brian's contractor voice covering: commercial product types, automated shades, receiving and delivery, same-time install with furniture, and who supplies the product (dealer/customer vs. On Point).
+**Resolution needed from Brian:** Review and approve or revise the 5 FAQ items before Phase 5 launch prep.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+---
+
 ### Artwork Installation — FAQ Content Drafted (Not Sourced from Live Site)
 **Status:** Drafted per Voice Rules. Not on live site. Needs Brian review before launch.
 **Issue:** The live Artwork Installation page has no FAQ section. Five Q&As were drafted in Brian's contractor voice covering: types of pieces installed, oversized/heavy work, delivery and unpacking, wall types (drywall, brick, glass partition), and insurance coverage.
