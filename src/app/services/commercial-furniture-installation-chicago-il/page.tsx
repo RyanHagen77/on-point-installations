@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     question: 'Are you union or non-union?',
-    answer: "We're non-union, which keeps your costs lower. We also have access to union labor when a project requires it — for example, in jurisdictions with union-only requirements. You get the flexibility of non-union pricing with the coverage when you need it.",
+    answer: "We're non-union, which keeps your costs lower. We also have access to union labor when a project requires it, for example in jurisdictions where union-only rules apply. You get the flexibility of non-union pricing with the coverage when you need it.",
   },
   {
     question: 'How accurate are your installation quotes?',
