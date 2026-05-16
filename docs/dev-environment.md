@@ -126,6 +126,8 @@ Do not use --no-verify without explicit supervisor approval.
 
 **The fix is always to rewrite the copy.** Find the flagged line, replace the banned pattern with prose that says the same thing without the pattern, re-stage the file, and commit again.
 
+**The hook matches comments too.** It scans the full staged file, not just JSX output. If a banned pattern appears in a code comment — for example, a comment that quotes the pattern to explain what was changed — paraphrase the comment so it describes the issue without reproducing the string. "Removed AI tell from intro" is fine. Quoting the specific phrase is not.
+
 **Do not use `--no-verify`** unless you have explicit supervisor approval. Bypassing the hook without approval defeats the purpose of having it.
 
 To add a new pattern to the hook: add a line to `.githooks/voice-patterns.txt` (literal string, no regex) and commit the file.
