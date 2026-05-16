@@ -62,20 +62,16 @@ Items flagged for resolution. Each entry has a source rule, owner, and phase.
 
 ---
 
-### Electrical & Voice/Data — Stock Photo License (two images)
-**Issue:** Two images on the Electrical page were sourced from the live site and appear to be licensed stock:
-- `on-point-installations-electrical-voice-data.jpg` (hero/service card) — original filename on WP was `depositphotos_32139119_xl-scaled-1...`
-- `on-point-installations-fiber-optic-data-cabling.jpg` (Voice & Data section) — original filename on WP was `depositphotos_328753568.jpg`
-**Action needed from Brian:** Confirm both Depositphotos licenses are still active and cover use on the new domain before launch. If either has lapsed or is seat-limited, replace with a non-stock photo or a licensed alternative.
+### Electrical & Voice/Data — Stock Photo License (hero image)
+**Issue:** The hero/service card image (`on-point-installations-electrical-voice-data.jpg`) was sourced from the live site. Its original WP filename was `depositphotos_32139119_xl-scaled-1...` — a Depositphotos stock image.
+**Action needed from Brian:** Confirm the Depositphotos license is still active and covers use on the new domain before launch. If it has lapsed or is seat-limited, replace with a job-site photo or a licensed alternative.
 **Phase:** Resolve before Phase 5 launch prep
 
 ---
 
-### Electrical & Voice/Data — Two Content Images Below 1600px Rule
-**Issue:** Two body content images on the Electrical page are 800×700px, which is below the CLAUDE.md spec of 1600px on the longest edge for content photos:
-- `on-point-installations-high-voltage-electrical-install.jpg` (800×700) — sourced from `img-6417.jpg` on the live WP site; this appears to be Brian's own job photo, no higher-res version available on the server
-- `on-point-installations-fiber-optic-data-cabling.jpg` (800×700) — stock image; no higher-res version available on the server
-**Action needed:** Source higher-resolution replacements. Brian's job photos or a licensed stock alternative at 1600px+ would satisfy the rule.
+### Electrical & Voice/Data — High Voltage Content Image Below 1600px Rule
+**Issue:** `on-point-installations-high-voltage-electrical-install.jpg` (800×700) is below the CLAUDE.md spec of 1600px on the longest edge for content photos. Sourced from `img-6417.jpg` on the live WP site — appears to be a Brian job-site photo; no higher-res version available on the server.
+**Action needed:** If Brian has the original higher-resolution version of this photo, replace with it. Otherwise flag for replacement with a new job-site photo during Phase 5 photography sourcing.
 **Phase:** Replace before Phase 5 launch prep
 
 ---

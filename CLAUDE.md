@@ -190,6 +190,17 @@ These are non-negotiable in every file:
 
 ---
 
+## IMAGE INCLUSION TEST
+
+Before placing any image on a page, ask:
+1. Does this show actual On Point work, or illustrate a specific service described in adjacent copy?
+2. If it's a stock photo, does it add information the copy doesn't already convey?
+3. If the answer to both is no, omit it.
+
+A section without an image is not incomplete. Decorative stock photos make the page look like a generic services template, which is the opposite of what we're trying to build. Brian's voice is concrete; the visual treatment should match. Real install photos > stock photos > no image > bad stock photo.
+
+---
+
 ## VOICE AND CONTENT RULES — ENFORCE THROUGHOUT
 
 All user-facing copy is in Brian Vetter's voice. Brian is a contractor, not a consultant or marketer. Content is ported from the existing live site (onpointinstallations.com) unless explicitly flagged as drafted in `docs/content-source-map.md`.
