@@ -4,6 +4,49 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
+## Office Installations Money Page — Absorbed-URL H2 Sections
+
+**Added:** 2026-05-16
+**Status:** Drafted per Voice Rules. Needs Brian review before launch.
+**Location:** `src/app/services/commercial-furniture-installation-chicago-il/`
+**Present on live site:** No. The live Office Installations page does not break out cubicle installation, systems furniture, or delivery & setup as distinct sections.
+**Rationale:** Three audit-only slugs (`cubicle-installation-chicago-il`, `systems-furniture-installation-chicago-il`, `office-furniture-delivery-setup-chicago-il`) are not built as standalone pages. Their SEO target keywords are preserved as H2 sections on the money page. 301 redirects from all three slugs point to the money page with jump anchors. See `docs/design-decisions.md` — "Service Architecture" for the full rationale.
+
+**Drafted sections:**
+- H2: "Cubicle Installation in Chicago" — body copy drafted per Voice Rules
+- H2: "Systems Furniture Installation" — body copy drafted per Voice Rules
+- H2: "Office Furniture Delivery and Setup" — body copy drafted per Voice Rules
+
+**Resolution needed from Brian:** Review and approve or revise these three sections. See `docs/known-issues.md`.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+---
+
+## Electrical & Voice/Data — Services Overview Card Grid
+
+**Added:** 2026-05-15
+**Status:** Drafted per Voice Rules; intro cards added as structural addition
+**Location:** `src/app/services/electrical-voice-data-cabling-chicago-il/`
+**Present on live site:** No. The live page goes directly from intro paragraph to the High Voltage section, then the Voice & Data section. The new build adds a "What Our Electrical & Cabling Services Cover" H2 with two summary cards before the detailed H2 sections.
+**Rationale:** The two-card overview gives users an immediate visual summary of High Voltage vs. Voice & Data scope before reading the detailed sections. The cards were drafted per Voice Rules; bullet details within each card are verbatim from the live site.
+**Source authorization:** Outline approved in session 2026-05-15 before drafting.
+
+---
+
+## Cubicle Wall & Upholstery Cleaning — Productivity Statistics Omitted
+
+**Added:** 2026-05-16
+**Status:** Omitted pending source verification; Brian action required
+**Location:** `src/app/services/cubicle-wall-upholstery-cleaning-chicago-il/`
+**Present on live site:** Yes. The live page references productivity statistics (percentage improvement in workspace productivity from clean panels).
+**Rationale:** No verifiable source was available for these statistics during Phase 2 build. Including unverified statistics violates the Sourcing Rule in CLAUDE.md. Statistics were omitted rather than cited without a source.
+**Resolution needed from Brian:** Provide the original study or citation. If no source is available, statistics stay omitted permanently. See `docs/known-issues.md`.
+**Owner:** Brian Vetter
+**Phase:** Resolve before Phase 5 launch prep
+
+---
+
 ## Trust Bar (Homepage)
 
 **Added:** 2026-05-15

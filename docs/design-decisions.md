@@ -69,6 +69,22 @@ Their audit-specified keywords and FAQ content are preserved inside the Office I
 
 ---
 
+## Phase 2 Content Images — Hero Only, Inline Deferred
+
+**Decision (locked 2026-05-16):** All Phase 2 service pages and supporting pages ship with a hero image only. No inline content images inside body sections.
+
+**Context:** During the Electrical page build, three candidate content images were evaluated across four iterations. Every image failed on at least one of: composition, source quality, or relevance to the adjacent copy. Rather than ship low-quality decorative stock images, the decision was made to defer all inline content images until Brian provides a vetted set of real job-site photos.
+
+**Scope:** Applies to all 8 service pages and all 3 supporting pages (/about/, /contact/, /reviews/).
+
+**Why not piecemeal:** Adding content images one page at a time creates inconsistent page quality and forces repeated evaluation cycles. A single batch update — when Brian delivers photos — is cleaner and easier to audit.
+
+**Resuming in Phase 5:** When Brian provides high-resolution job-site photos (1600px+ longest edge, real On Point work), inline images can be added across all service pages in one focused pass. See `docs/known-issues.md` — "All Service Pages — Real Job-Site Photos Needed."
+
+**CLAUDE.md cross-reference:** "CONTENT IMAGES — PHASE 2 RULE" section. Image sizing and `sizes` attribute rules for when content images are added: IMAGE SEO RULES rule 9.
+
+---
+
 ## H1 Size Scale — Responsive Typography
 
 **Decision:** Three-step responsive H1 scale: `text-[32px]` mobile → `text-[42px]` tablet (sm) → `text-5xl` desktop (lg)

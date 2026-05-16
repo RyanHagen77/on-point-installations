@@ -43,6 +43,20 @@ This blog post is specified in the Phase 2 audit as an internal link target from
 
 ---
 
+## Blog Post Topics Surfaced During Phase 2 Service Page Builds
+
+These topics emerged naturally from the Phase 2 service page copy. None are Phase 3 items (Phase 3 is city pages). They are candidates for a blog phase after city pages are live. Captured here so they don't get lost.
+
+| Topic | Source page | Why it surfaced |
+|---|---|---|
+| How to choose window treatments for a commercial office (manual vs. motorized, product types) | `/services/window-treatment-installation-chicago-il/` | FAQ about automated shades is a natural top-of-funnel keyword target |
+| How long does cubicle wall fabric last and when should you clean vs. replace | `/services/cubicle-wall-upholstery-cleaning-chicago-il/` | FAQ about fabric condition naturally leads to a lifespan/replacement guide |
+| What to expect from a commercial artwork installation (rigging, wall types, oversized pieces) | `/services/artwork-installation-chicago-il/` | FAQ answers about heavy work and wall types could support a longer-form post |
+
+None of these require Phase 3 action. Add to blog planning when that phase is scoped.
+
+---
+
 ## Phantom Blog Links — Retrofit When Blog Content Is Built
 
 These are internal links specified in the Phase 2 audit that point to blog posts not yet written or published. **Do not add any of these as live anchors** until the corresponding blog post is live. Retrofit each link after the blog post is built and deployed.
