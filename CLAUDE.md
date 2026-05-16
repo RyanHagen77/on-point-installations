@@ -226,6 +226,15 @@ Direct, plain-spoken, professional but approachable. Speaks to B2B buyers — fa
 
 7. **Contractions are required where natural.** "We will" reads as a robot. Brian says "we'll." Same for we're, don't, can't, it's, you're.
 
+### Tricolon rule — do not fix a tricolon with a tricolon
+When a banned tricolon needs to be replaced, the replacement must not itself be a three-part rhythmic list. "Show up when we say, communicate through the job, and finish clean" is structurally identical to "professionalism, precision, and integrity" — three balanced phrases for cadence. Wrong fix.
+
+Rewrites must be prose: one or two sentences, concrete facts, no rhythmic grouping.
+
+Enumerations of real things (products, customer types, service offerings) are not tricolons. "Blinds, shades, and drapery" or "dealers, facility managers, and end users" are lists — they stay.
+
+Test: if removing the third item leaves the sentence saying the same thing, it was a list (fine). If removing the third item changes the meaning or breaks the rhythm, it was a tricolon doing rhetorical work — rewrite as prose.
+
 ### When porting live-site copy
 If you find yourself wanting any of the above while porting, the live site copy probably needs a small rewrite to land in voice. Flag the line, propose the rewrite, get approval before committing.
 
