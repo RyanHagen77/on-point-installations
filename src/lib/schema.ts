@@ -156,7 +156,8 @@ export function buildPersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: SITE.owner,
-    jobTitle: "Founder & Owner",
+    jobTitle: "Founder and Owner",
+    description: "Brian Vetter founded On Point Installations, Inc. in 2010 and has built it into a leading commercial furniture installation company serving the Chicagoland metropolitan area and Tri-State region.",
     worksFor: {
       "@type": "Organization",
       name: SITE.name,

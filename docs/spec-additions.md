@@ -128,3 +128,29 @@ Items in this file are features or content present in the new build that do NOT 
 **Drafted content:** Dealer workflow description, downtime communication details, FAQ Q&As. All flagged in `docs/known-issues.md`.
 **Owner:** Brian Vetter
 **Phase:** Review before Phase 5 launch prep
+
+---
+
+## About Page — Non-Union Advantage Section
+
+**Added:** 2026-05-16
+**Status:** Drafted per Voice Rules. Needs Brian review before launch.
+**Location:** `src/app/about/page.tsx`, H2: "Non-Union: What That Means for You"
+**Present on live site:** No. The live About page mentions Brian's union background in "Our Beginnings" and calls the company "non-union" in the intro, but there is no dedicated section explaining the non-union advantage to clients.
+**Rationale:** Phase 2 spec (`Phase2_Kickoff_Homepage_ServicePages.md`) explicitly calls for a non-union advantage section on /about/. Three points specified: flexibility, no jurisdiction restrictions, same crew start to finish. No live-site source exists to port from, so the section was drafted per Voice Rules.
+
+**Drafted content:** Two paragraphs covering no trade-jurisdiction limits, same-crew commitment, and Brian's deliberate non-union choice at founding.
+**Resolution needed from Brian:** Review and approve or revise. Particularly confirm whether the "same crew start to finish" claim accurately reflects how jobs are staffed.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+---
+
+## About Page — "The On Point Advantage" Heading Simplified
+
+**Added:** 2026-05-16
+**Status:** Approved in outline review; structural change only, copy unchanged.
+**Location:** `src/app/about/page.tsx`, H2 heading
+**Present on live site:** The live site uses "The On Point A++++++ Advantage" as the heading.
+**Rationale:** The "A++++++++" suffix is a WordPress-era marketing affectation that renders poorly in a clean typographic context. The six A-principles and their descriptions are ported verbatim; only the heading string changed.
+**Source authorization:** Approved in outline review session 2026-05-16.

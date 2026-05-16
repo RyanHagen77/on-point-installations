@@ -137,6 +137,17 @@ All FAQ sections on service pages without a live-site FAQ equivalent were drafte
 
 ---
 
+## About Page — Drafted Sections Needing Brian Review
+
+### Non-Union Advantage Section
+**Action needed:** Brian to review and approve or revise the non-union advantage section on /about/.
+**Detail:** The Phase 2 spec calls for a non-union advantage section. No live-site source exists to port from. The section was drafted per Voice Rules covering: no trade-jurisdiction limits, same crew from start to finish, deliberate non-union choice at founding. The "same crew start to finish" claim in particular needs Brian to confirm it accurately reflects how jobs are staffed.
+**Owner:** Brian Vetter
+**Affects:** `/about/` — H2 "Non-Union: What That Means for You"
+**Phase:** Review before Phase 5 launch prep
+
+---
+
 ## Contact Info Verification
 
 ### Contact Form Email — Address Needs Verification
