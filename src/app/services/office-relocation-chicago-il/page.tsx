@@ -153,9 +153,9 @@ export default function OfficeRelocationChicagoPage() {
               </div>
             </div>
             <p className="text-[#535353] leading-relaxed mt-6">
-              Need furniture installation at the new space as well? We handle{' '}
-              <Link href="/services/commercial-furniture-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
-                commercial furniture installation
+              Need furniture delivered and set up at the new space as well? We handle{' '}
+              <Link href="/services/commercial-furniture-installation-chicago-il/#office-furniture-delivery-setup" className="text-[#800000] underline hover:text-[#5A0000]">
+                office furniture delivery and setup
               </Link>{' '}
               as part of the same project.
             </p>

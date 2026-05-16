@@ -40,3 +40,17 @@ Note: the anchor text is slightly awkward as inline text in a sentence. Acceptab
 This blog post is specified in the Phase 2 audit as an internal link target from the space planning page. It does not exist as a stub or built page yet. Do not link to it until the blog post is live.
 
 **Suggested placement:** In the intro paragraph or the H2 section on why space planning matters — a natural place to mention the common problem of furniture not fitting and link out to the post for more detail.
+
+---
+
+## Phantom Blog Links — Retrofit When Blog Content Is Built
+
+These are internal links specified in the Phase 2 audit that point to blog posts not yet written or published. **Do not add any of these as live anchors** until the corresponding blog post is live. Retrofit each link after the blog post is built and deployed.
+
+| Page that should contain the link | Audit anchor text | Destination URL |
+|---|---|---|
+| `/services/commercial-furniture-installation-chicago-il/` (Cubicle Installation H2) | `what is cubicle installation` | `/blog/what-is-cubicle-installation/` |
+| `/services/commercial-furniture-installation-chicago-il/` (Systems Furniture H2) | `what is systems furniture` | `/blog/what-is-systems-furniture/` |
+| `/services/commercial-space-planning-chicago-il/` | `what to do when office furniture doesn't fit` | `/blog/what-to-do-when-office-furniture-doesnt-fit/` |
+
+**Note on placement for the money page blog links:** The cubicle and systems furniture blog links are specified in the retired audit URLs for those service pages. Their natural home is in the corresponding H2 intro paragraph on the money page — a single sentence like "Learn more about [what is cubicle installation](/blog/what-is-cubicle-installation/)." Add both after the H2 intro copy, before the feature cards.

@@ -219,7 +219,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
 
         {/* ── H2 #4: DELIVERY AND SETUP ───────────────────────────────── */}
         {/* Ported from live site RDI section; framing drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
-        <section id="delivery-setup" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+        <section id="office-furniture-delivery-setup" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Office Furniture Delivery and Setup

@@ -169,6 +169,10 @@ These are non-negotiable in every file:
 7. Phone number always uses `href={SITE.phoneHref}` — never hardcoded
 8. Brand name everywhere: "On Point Installations, Inc." — with the 's'
 9. Internal links use the exact anchor text from the Phase 2 spec
+10. **Retired-URL substitution rule.** When a spec internal link points to a retired audit URL, substitute with a jump anchor to the corresponding H2 on the money page. The audit anchor text stays exactly as written — only the destination changes.
+    - `/services/cubicle-installation-chicago-il/` → `/services/commercial-furniture-installation-chicago-il/#cubicle-installation`
+    - `/services/systems-furniture-installation-chicago-il/` → `/services/commercial-furniture-installation-chicago-il/#systems-furniture`
+    - `/services/office-furniture-delivery-setup-chicago-il/` → `/services/commercial-furniture-installation-chicago-il/#office-furniture-delivery-setup`
 
 ---
 
