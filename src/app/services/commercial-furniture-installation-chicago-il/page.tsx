@@ -63,7 +63,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
           h1="Commercial Furniture Installation in Chicago, IL"
           imageSrc="/images/on-point-installations-office-installations.jpg"
           imageAlt="Commercial office furniture installation completed by On Point Installations in Chicago, IL"
-          imageWidth={1523}
+          imageWidth={1920}
           imageHeight={1280}
         >
           {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15 */}
