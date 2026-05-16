@@ -190,19 +190,15 @@ These are non-negotiable in every file:
 
 ---
 
-## IMAGE INCLUSION TEST
+## CONTENT IMAGES — PHASE 2 RULE
 
-Before placing any image on a page, all three must be true:
+Service pages and supporting pages in Phase 2 ship with a hero image only. No inline content images inside sections.
 
-1. Does this show actual On Point work, OR illustrate a specific service described in adjacent copy?
+Rationale: every content image evaluated so far has failed on composition, source quality, or relevance. Until Brian provides a vetted set of real job-site photos, inline content images do more harm than good. The hero image is sufficient.
 
-2. Is the composition strong enough to read at the display size used? (Subject fills the frame, not crammed in a corner. No large dead space. Sharp at the rendered width.)
+When Brian provides real photos (tracked in known-issues.md), inline images can be revisited as a single focused pass across all service pages. Not piecemeal.
 
-3. Does it add information the copy doesn't already convey?
-
-If any answer is no, omit. Real-work photos with bad composition are not better than no photo. A page without images is not incomplete.
-
-Test bias: when in doubt, omit. The remaining three service pages and three supporting pages will all face this decision. Default to omission unless the image clearly earns its place.
+This rule applies to Electrical (now), Artwork Installation, Window Treatment, Cubicle Cleaning, About, Contact, and Reviews.
 
 ---
 
