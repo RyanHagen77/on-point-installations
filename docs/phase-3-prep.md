@@ -25,3 +25,18 @@ Can become:
 > "We work regularly in [Schaumburg furniture installation](/services/commercial-furniture-installation-schaumburg-il/), [Naperville furniture installation](/services/commercial-furniture-installation-naperville-il/), Waukegan, and Wauconda..."
 
 Note: the anchor text is slightly awkward as inline text in a sentence. Acceptable per audit spec; do not change the anchor text to make it flow better.
+
+---
+
+## Phase 3 Retrofit Required on Space Planning Page
+
+**Page:** `/services/commercial-space-planning-chicago-il/`
+**When:** After the blog post is built in a future phase
+**Action:** Add one internal link to the space planning page body copy
+
+**Link to add:**
+- Anchor: `what to do when office furniture doesn't fit` → `/blog/what-to-do-when-office-furniture-doesnt-fit/`
+
+This blog post is specified in the Phase 2 audit as an internal link target from the space planning page. It does not exist as a stub or built page yet. Do not link to it until the blog post is live.
+
+**Suggested placement:** In the intro paragraph or the H2 section on why space planning matters — a natural place to mention the common problem of furniture not fitting and link out to the post for more detail.
