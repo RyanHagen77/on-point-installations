@@ -41,7 +41,7 @@ export default function CommercialOfficeFurnitureStorageChicagoPage() {
     <>
       <ServiceSchema
         name="Commercial Office Furniture Storage in Chicago, IL"
-        description="Commercial office furniture warehousing and storage near Chicago, IL. On Point Installations receives, inspects, stores, and redelivers commercial furniture at two climate-controlled facilities — 15,000 sq ft primary in Wauconda and 40,000 sq ft secondary near O'Hare."
+        description="Commercial office furniture warehousing and storage near Chicago, IL. On Point Installations receives, inspects, stores, and redelivers commercial furniture at two climate-controlled facilities: 15,000 sq ft primary in Wauconda and 40,000 sq ft secondary near O'Hare."
         url={`${SITE.domain}/services/commercial-office-furniture-storage-chicago-il/`}
         areaServed="Chicago"
       />
@@ -124,7 +124,7 @@ export default function CommercialOfficeFurnitureStorageChicagoPage() {
             </p>
             <div className="bg-[#F8F8F8] border-l-4 border-[#800000] pl-6 py-4 pr-4">
               <p className="text-[#292929] font-semibold mb-1">Nothing goes to the job site until it's confirmed complete.</p>
-              <p className="text-sm text-[#535353]">We cross-check every delivery against the purchase order before it leaves our dock. If something is missing or wrong, we catch it here — not at the install.</p>
+              <p className="text-sm text-[#535353]">We cross-check every delivery against the purchase order before it leaves our dock. If something is missing or wrong, we catch it here, not at the install.</p>
             </div>
           </div>
         </section>
@@ -138,13 +138,13 @@ export default function CommercialOfficeFurnitureStorageChicagoPage() {
             </h2>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="bg-white border border-[#E9E9E9] rounded-[3px] p-6">
-                <h3 className="font-bold text-[#292929] mb-2">Primary Warehouse — Wauconda, IL</h3>
+                <h3 className="font-bold text-[#292929] mb-2">Primary Warehouse (Wauconda, IL)</h3>
                 <p className="text-sm text-[#535353] leading-relaxed">
                   Our primary office furniture warehouse is in Wauconda, IL, northwest of Chicago. 15,000+ square feet of climate-controlled storage space operated by experienced warehouse staff.
                 </p>
               </div>
               <div className="bg-white border border-[#E9E9E9] rounded-[3px] p-6">
-                <h3 className="font-bold text-[#292929] mb-2">Secondary Warehouse — Near O'Hare</h3>
+                <h3 className="font-bold text-[#292929] mb-2">Secondary Warehouse (Near O'Hare)</h3>
                 <p className="text-sm text-[#535353] leading-relaxed">
                   Our secondary warehouse near Chicago O'Hare International Airport has 14 dock-height doors, a drive-up ramp to expedite traffic flow, and racking capacity for up to 350 skids. Climate controlled.
                 </p>
