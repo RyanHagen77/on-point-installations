@@ -97,10 +97,12 @@ export default function HomePage() {
                 <Image
                   src="/images/chicago-office-furniture-installation.jpg"
                   alt="Commercial office furniture installation project completed by On Point Installations in Chicago, IL"
-                  width={1200}
-                  height={800}
+                  width={1920}
+                  height={1280}
                   className="w-full h-auto object-cover"
                   priority
+                  quality={85}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                 />
               </div>
             </div>

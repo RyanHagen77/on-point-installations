@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
 import ServiceSchema from '@/components/schema/ServiceSchema';
@@ -49,54 +48,26 @@ export default function CommercialOfficeFurnitureStorageChicagoPage() {
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
-        <section className="bg-white border-b border-[#E9E9E9] py-10 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <Breadcrumb items={[
-              { name: 'Home', url: '/' },
-              { name: 'Services', url: '/services/' },
-              { name: 'Office Furniture Storage Chicago', url: '/services/commercial-office-furniture-storage-chicago-il/' },
-            ]} />
-
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-6">
-              <div>
-                <h1 className="text-[28px] leading-snug sm:text-[36px] lg:text-[42px] font-bold text-[#800000] mb-4">
-                  Commercial Office Furniture Storage in Chicago, IL
-                </h1>
-                {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-storage-chicago-il/, fetched 2026-05-15 */}
-                <p className="text-[#292929] leading-relaxed mb-4">
-                  On Point Installations provides commercial office furniture storage in our 15,000-square-foot facility and has an additional 40,000 square feet available in a secondary warehouse. Both locations are climate controlled and staffed by experienced warehouse personnel.
-                </p>
-                <p className="text-[#535353] leading-relaxed mb-6">
-                  We receive, inspect, store, and redeliver your furniture when you're ready. Whether you need short-term staging between phases or long-term warehousing, we've got the space and the crew.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={SITE.phoneHref}
-                    className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors text-center"
-                  >
-                    Call {SITE.phone}
-                  </a>
-                  <Link
-                    href="/contact/"
-                    className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#800000] hover:text-white transition-colors text-center"
-                  >
-                    Get a Free Quote
-                  </Link>
-                </div>
-              </div>
-              <div className="relative rounded-sm overflow-hidden shadow-md">
-                <Image
-                  src="/images/on-point-installations-warehousing-chicago.jpg"
-                  alt="On Point Installations warehouse facility in Wauconda, IL used for commercial office furniture storage"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          breadcrumbItems={[
+            { name: 'Home', url: '/' },
+            { name: 'Services', url: '/services/' },
+            { name: 'Office Furniture Storage Chicago', url: '/services/commercial-office-furniture-storage-chicago-il/' },
+          ]}
+          h1="Commercial Office Furniture Storage in Chicago, IL"
+          imageSrc="/images/on-point-installations-warehousing-chicago.jpg"
+          imageAlt="On Point Installations warehouse facility in Wauconda, IL used for commercial office furniture storage"
+          imageWidth={2560}
+          imageHeight={1828}
+        >
+          {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-storage-chicago-il/, fetched 2026-05-15 */}
+          <p className="text-[#292929] leading-relaxed mb-4">
+            On Point Installations provides commercial office furniture storage in our 15,000-square-foot facility and has an additional 40,000 square feet available in a secondary warehouse. Both locations are climate controlled and staffed by experienced warehouse personnel.
+          </p>
+          <p className="text-[#535353] leading-relaxed mb-6">
+            We receive, inspect, store, and redeliver your furniture when you're ready. Whether you need short-term staging between phases or long-term warehousing, we've got the space and the crew.
+          </p>
+        </ServiceHero>
 
         {/* ── H2: WHEN YOU NEED STORAGE ───────────────────────────────── */}
         {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-storage-chicago-il/, fetched 2026-05-15 */}

@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
 import ServiceSchema from '@/components/schema/ServiceSchema';
@@ -55,65 +54,37 @@ export default function CommercialFurnitureInstallationChicagoPage() {
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
-        <section className="bg-white border-b border-[#E9E9E9] py-10 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <Breadcrumb items={[
-              { name: 'Home', url: '/' },
-              { name: 'Services', url: '/services/' },
-              { name: 'Commercial Furniture Installation Chicago', url: '/services/commercial-furniture-installation-chicago-il/' },
-            ]} />
-
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-6">
-              <div>
-                <h1 className="text-[28px] leading-snug sm:text-[36px] lg:text-[42px] font-bold text-[#800000] mb-4">
-                  Commercial Furniture Installation in Chicago, IL
-                </h1>
-                {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15 */}
-                <p className="text-[#292929] leading-relaxed mb-4">
-                  When you need experienced, highly skilled office furniture installers in the Greater Chicago Metropolitan Area, look no further than On Point Installations. We assemble and install office furniture from leading and emerging commercial manufacturers. We're fully insured, non-union labor, and we maintain the highest quality standards.
-                </p>
-                <p className="text-[#535353] leading-relaxed mb-6">
-                  From{' '}
-                  <a href="#cubicle-installation" className="text-[#800000] underline hover:text-[#5A0000]">
-                    cubicle installation in Chicago
-                  </a>{' '}
-                  to full systems furniture buildouts, we handle every scope. Need help with the layout first? We offer{' '}
-                  <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
-                    commercial space planning Chicago
-                  </Link>{' '}
-                  businesses rely on before a build. To see past work,{' '}
-                  <Link href="/project-gallery/" className="text-[#800000] underline hover:text-[#5A0000]">
-                    see our completed Chicago projects
-                  </Link>.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={SITE.phoneHref}
-                    className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors text-center"
-                  >
-                    Call {SITE.phone}
-                  </a>
-                  <Link
-                    href="/contact/"
-                    className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#800000] hover:text-white transition-colors text-center"
-                  >
-                    Get a Free Quote
-                  </Link>
-                </div>
-              </div>
-              <div className="relative rounded-sm overflow-hidden shadow-md">
-                <Image
-                  src="/images/on-point-installations-office-installations.jpg"
-                  alt="Commercial office furniture installation completed by On Point Installations in Chicago, IL"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          breadcrumbItems={[
+            { name: 'Home', url: '/' },
+            { name: 'Services', url: '/services/' },
+            { name: 'Commercial Furniture Installation Chicago', url: '/services/commercial-furniture-installation-chicago-il/' },
+          ]}
+          h1="Commercial Furniture Installation in Chicago, IL"
+          imageSrc="/images/on-point-installations-office-installations.jpg"
+          imageAlt="Commercial office furniture installation completed by On Point Installations in Chicago, IL"
+          imageWidth={1523}
+          imageHeight={1280}
+        >
+          {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15 */}
+          <p className="text-[#292929] leading-relaxed mb-4">
+            When you need experienced, highly skilled office furniture installers in the Greater Chicago Metropolitan Area, look no further than On Point Installations. We assemble and install office furniture from leading and emerging commercial manufacturers. We're fully insured, non-union labor, and we maintain the highest quality standards.
+          </p>
+          <p className="text-[#535353] leading-relaxed mb-6">
+            From{' '}
+            <a href="#cubicle-installation" className="text-[#800000] underline hover:text-[#5A0000]">
+              cubicle installation in Chicago
+            </a>{' '}
+            to full systems furniture buildouts, we handle every scope. Need help with the layout first? We offer{' '}
+            <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+              commercial space planning Chicago
+            </Link>{' '}
+            businesses rely on before a build. To see past work,{' '}
+            <Link href="/project-gallery/" className="text-[#800000] underline hover:text-[#5A0000]">
+              see our completed Chicago projects
+            </Link>.
+          </p>
+        </ServiceHero>
 
         {/* ── H2 #1: WHAT WE INSTALL ──────────────────────────────────── */}
         {/* Verbatim from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15 */}

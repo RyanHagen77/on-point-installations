@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
 import ServiceSchema from '@/components/schema/ServiceSchema';
@@ -49,61 +48,33 @@ export default function OfficeRelocationChicagoPage() {
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
-        <section className="bg-white border-b border-[#E9E9E9] py-10 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <Breadcrumb items={[
-              { name: 'Home', url: '/' },
-              { name: 'Services', url: '/services/' },
-              { name: 'Office Relocation Chicago', url: '/services/office-relocation-chicago-il/' },
-            ]} />
-
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-6">
-              <div>
-                <h1 className="text-[28px] leading-snug sm:text-[36px] lg:text-[42px] font-bold text-[#800000] mb-4">
-                  Office Relocation Services in Chicago, IL
-                </h1>
-                {/* Verbatim from onpointinstallations.com/services/company-office-relocation-chicago-il/, fetched 2026-05-15 */}
-                <p className="text-[#292929] leading-relaxed mb-4">
-                  If you're a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help. From small office moves to large corporate office relocations, On Point Installations has the resources to handle your project.
-                </p>
-                <p className="text-[#535353] leading-relaxed mb-6">
-                  We handle teardown, transport, reinstallation, electrical disconnect and reconnect, and furniture storage when timing gaps require it. One crew, one call.{' '}
-                  <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
-                    Get a free quote
-                  </Link>{' '}
-                  or call{' '}
-                  <a href={SITE.phoneHref} className="text-[#800000] underline hover:text-[#5A0000]">
-                    {SITE.phone}
-                  </a>.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={SITE.phoneHref}
-                    className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors text-center"
-                  >
-                    Call {SITE.phone}
-                  </a>
-                  <Link
-                    href="/contact/"
-                    className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#800000] hover:text-white transition-colors text-center"
-                  >
-                    Get a Free Quote
-                  </Link>
-                </div>
-              </div>
-              <div className="relative rounded-sm overflow-hidden shadow-md">
-                <Image
-                  src="/images/on-point-installations-office-relocation.jpg"
-                  alt="On Point Installations crew managing a commercial office relocation in the Chicago area"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          breadcrumbItems={[
+            { name: 'Home', url: '/' },
+            { name: 'Services', url: '/services/' },
+            { name: 'Office Relocation Chicago', url: '/services/office-relocation-chicago-il/' },
+          ]}
+          h1="Office Relocation Services in Chicago, IL"
+          imageSrc="/images/on-point-installations-office-relocation.jpg"
+          imageAlt="On Point Installations crew managing a commercial office relocation in the Chicago area"
+          imageWidth={1920}
+          imageHeight={1280}
+        >
+          {/* Verbatim from onpointinstallations.com/services/company-office-relocation-chicago-il/, fetched 2026-05-15 */}
+          <p className="text-[#292929] leading-relaxed mb-4">
+            If you're a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help. From small office moves to large corporate office relocations, On Point Installations has the resources to handle your project.
+          </p>
+          <p className="text-[#535353] leading-relaxed mb-6">
+            We handle teardown, transport, reinstallation, electrical disconnect and reconnect, and furniture storage when timing gaps require it. One crew, one call.{' '}
+            <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
+              Get a free quote
+            </Link>{' '}
+            or call{' '}
+            <a href={SITE.phoneHref} className="text-[#800000] underline hover:text-[#5A0000]">
+              {SITE.phone}
+            </a>.
+          </p>
+        </ServiceHero>
 
         {/* ── H2: WHAT WE HANDLE ──────────────────────────────────────── */}
         {/* Bullets verbatim from live site. Surrounding copy drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}

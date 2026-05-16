@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
 import ServiceSchema from '@/components/schema/ServiceSchema';
@@ -49,61 +48,33 @@ export default function CommercialSpacePlanningChicagoPage() {
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
-        <section className="bg-white border-b border-[#E9E9E9] py-10 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <Breadcrumb items={[
-              { name: 'Home', url: '/' },
-              { name: 'Services', url: '/services/' },
-              { name: 'Commercial Space Planning Chicago', url: '/services/commercial-space-planning-chicago-il/' },
-            ]} />
-
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-6">
-              <div>
-                <h1 className="text-[28px] leading-snug sm:text-[36px] lg:text-[42px] font-bold text-[#800000] mb-4">
-                  Commercial Space Planning in Chicago, IL
-                </h1>
-                {/* Verbatim from onpointinstallations.com/services/space-planning/, fetched 2026-05-15 */}
-                <p className="text-[#292929] leading-relaxed mb-4">
-                  On Point Installations, Inc. provides design support services to create flexible, responsive and supportive work environments. We offer on-site space measurement and verification services, floor core chalking, and code compliance guidance for all installations we perform.
-                </p>
-                <p className="text-[#535353] leading-relaxed mb-6">
-                  Space planning before the furniture order saves time and money at installation. If you're planning a buildout in the Chicago area,{' '}
-                  <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
-                    get a free quote
-                  </Link>{' '}
-                  or call{' '}
-                  <a href={SITE.phoneHref} className="text-[#800000] underline hover:text-[#5A0000]">
-                    {SITE.phone}
-                  </a>.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={SITE.phoneHref}
-                    className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors text-center"
-                  >
-                    Call {SITE.phone}
-                  </a>
-                  <Link
-                    href="/contact/"
-                    className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#800000] hover:text-white transition-colors text-center"
-                  >
-                    Get a Free Quote
-                  </Link>
-                </div>
-              </div>
-              <div className="relative rounded-sm overflow-hidden shadow-md">
-                <Image
-                  src="/images/on-point-installations-space-planning.jpg"
-                  alt="Commercial office space planning and floor plan verification by On Point Installations in Chicago, IL"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceHero
+          breadcrumbItems={[
+            { name: 'Home', url: '/' },
+            { name: 'Services', url: '/services/' },
+            { name: 'Commercial Space Planning Chicago', url: '/services/commercial-space-planning-chicago-il/' },
+          ]}
+          h1="Commercial Space Planning in Chicago, IL"
+          imageSrc="/images/on-point-installations-space-planning.jpg"
+          imageAlt="Commercial office space planning and floor plan verification by On Point Installations in Chicago, IL"
+          imageWidth={1920}
+          imageHeight={1304}
+        >
+          {/* Verbatim from onpointinstallations.com/services/space-planning/, fetched 2026-05-15 */}
+          <p className="text-[#292929] leading-relaxed mb-4">
+            On Point Installations, Inc. provides design support services to create flexible, responsive and supportive work environments. We offer on-site space measurement and verification services, floor core chalking, and code compliance guidance for all installations we perform.
+          </p>
+          <p className="text-[#535353] leading-relaxed mb-6">
+            Space planning before the furniture order saves time and money at installation. If you're planning a buildout in the Chicago area,{' '}
+            <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
+              get a free quote
+            </Link>{' '}
+            or call{' '}
+            <a href={SITE.phoneHref} className="text-[#800000] underline hover:text-[#5A0000]">
+              {SITE.phone}
+            </a>.
+          </p>
+        </ServiceHero>
 
         {/* ── H2: WHAT SPACE PLANNING INCLUDES ────────────────────────── */}
         {/* Opening based on live site paragraph. Details drafted per Voice Rules — needs Brian review. See docs/known-issues.md */}
