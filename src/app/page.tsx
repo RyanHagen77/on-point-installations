@@ -13,20 +13,26 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/`,
 });
 
-// Service card descriptions — contractor voice, no em dashes, no unverified claims
+// Service card descriptions — sourced from onpointinstallations.com service pages (fetched 2026-05-15)
 const SERVICE_DESCRIPTIONS: Record<string, string> = {
+  // Verbatim from /services/commercial-office-furniture-installation-chicago-il/
   'commercial-furniture-installation-chicago-il':
-    'New office buildouts, reconfigurations, and complete furniture installs for businesses across Chicagoland.',
+    'When you need experienced, highly skilled office furniture installers in the Greater Chicago Metropolitan Area, look no further than On Point Installations.',
+  // Adapted from /services/commercial-office-furniture-installation-chicago-il/ (no dedicated cubicle page on live site)
   'cubicle-installation-chicago-il':
-    'Panel systems, cubicle assembly, and workstation configurations for offices of any size.',
+    'We assemble and install cubicle systems and panel configurations from leading commercial manufacturers. Fully insured, non-union installers serving the Greater Chicago Metro Area.',
+  // Verbatim from /services/company-office-relocation-chicago-il/
   'office-relocation-chicago-il':
-    'Teardown, transport, and reinstallation when your office moves.',
+    'If you\'re a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help. We handle any office move or corporate relocation.',
+  // Adapted from /services/commercial-office-furniture-installation-chicago-il/ (no dedicated systems furniture page on live site)
   'systems-furniture-installation-chicago-il':
-    'We install Herman Miller, Steelcase, Haworth, Knoll, Teknion, and more.',
+    'We assemble and install systems furniture from leading and emerging commercial manufacturers, including Herman Miller, Steelcase, Haworth, Knoll, and Teknion.',
+  // Adapted from /services/commercial-office-furniture-storage-chicago-il/ (receipt and redelivery section)
   'office-furniture-delivery-setup-chicago-il':
-    'Delivery, assembly, and placement for commercial furniture orders of any size.',
+    'We receive, inspect, and redeliver commercial office furniture for any size project, crosschecking the bill of lading with your order to confirm everything arrives undamaged and complete.',
+  // Verbatim from /services/space-planning/
   'commercial-space-planning-chicago-il':
-    'Floor plan verification and on-site measurement before installation day.',
+    'On Point Installations, Inc. provides design support services to create flexible, responsive and supportive work environments.',
 };
 
 // Who We Serve — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
