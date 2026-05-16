@@ -263,6 +263,25 @@ When a correction is made during a session, add the resulting rule to this file 
 
 ---
 
+## DEPLOYMENT VERIFICATION
+
+After every `git push` operation, immediately run:
+
+```
+git fetch origin && git log origin/main..HEAD --oneline
+```
+
+If the output is non-empty, the push failed silently — retry before proceeding. If the output is empty, the push succeeded.
+
+Always report after any push:
+- The commit hash that is now at `origin/main`
+- The commit timestamp (`git log origin/main -1 --format="%H %ci"`)
+- Whether the output of `git log origin/main..HEAD` was empty (push confirmed) or non-empty (push failed)
+
+This gives the user a hash and timestamp they can match against the Vercel dashboard to confirm the correct build deployed.
+
+---
+
 ## SCHEMA IMPLEMENTATION FOR PHASE 2
 
 Implement these schema components fully in Phase 2 (they were stubbed in Phase 1):
