@@ -199,7 +199,11 @@ export default function OfficeRelocationChicagoPage() {
               We work directly with your dealer team and the end client at the same time. You give us the scope and schedule, we handle the physical move, and you get progress updates at each stage. You don't have to manage the installation crew separately from your own work with the client.
             </p>
             <p className="text-[#292929] leading-relaxed">
-              We've been the installation partner for furniture dealers in the Chicago area since 2010. If you need a crew that shows up, communicates, and finishes the job, call us or{' '}
+              We've been doing{' '}
+              <Link href="/services/commercial-furniture-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+                commercial furniture installation
+              </Link>{' '}
+              for Chicago-area dealers since 2010. If you need a crew that shows up, communicates, and finishes the job, call us or{' '}
               <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
                 get a free quote
               </Link>.
