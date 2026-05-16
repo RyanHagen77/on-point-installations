@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
@@ -103,6 +104,17 @@ export default function ElectricalVoiceDataCablingPage() {
                 </p>
               </div>
             </div>
+            <div className="relative rounded-sm overflow-hidden shadow-md mt-8">
+              <Image
+                src="/images/on-point-installations-electrical-power-strip.jpg"
+                alt="Commercial electrical power strip and outlet installation for office furniture systems in Chicago, IL"
+                width={1920}
+                height={1280}
+                className="w-full h-auto object-cover"
+                quality={85}
+                sizes="(min-width: 1320px) 1256px, (min-width: 640px) calc(100vw - 48px), 100vw"
+              />
+            </div>
           </div>
         </section>
 
@@ -116,6 +128,18 @@ export default function ElectricalVoiceDataCablingPage() {
             <p className="text-[#292929] leading-relaxed mb-6">
               On Point Installations offers high voltage electrical installations to supply the main power sources to cubicles and modular furniture systems. Our experienced staff can handle any electrical project your office requires.
             </p>
+            {/* Verbatim from onpointinstallations.com/services/electrical-voice-and-data-cabling-for-your-commercial-installation/, fetched 2026-05-16 */}
+            <div className="relative rounded-sm overflow-hidden shadow-md mb-8">
+              <Image
+                src="/images/on-point-installations-high-voltage-electrical-install.jpg"
+                alt="High voltage electrical installation for modular office cubicle systems by On Point Installations in Chicago, IL"
+                width={800}
+                height={700}
+                className="w-full h-auto object-cover"
+                quality={85}
+                sizes="(min-width: 1320px) 1256px, (min-width: 640px) calc(100vw - 48px), 100vw"
+              />
+            </div>
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
                 <h3 className="font-bold text-[#292929] mb-3">Scope of Work</h3>
@@ -164,6 +188,18 @@ export default function ElectricalVoiceDataCablingPage() {
             <p className="text-[#292929] leading-relaxed mb-6">
               We install voice and data cabling for new and existing cubicles, private offices, and conference rooms. That includes overhead paging systems and televisions for video calls.
             </p>
+            {/* Verbatim from onpointinstallations.com/services/electrical-voice-and-data-cabling-for-your-commercial-installation/, fetched 2026-05-16 */}
+            <div className="relative rounded-sm overflow-hidden shadow-md mb-8">
+              <Image
+                src="/images/on-point-installations-fiber-optic-data-cabling.jpg"
+                alt="Fiber optic data cabling installation for commercial office network infrastructure in Chicago, IL"
+                width={800}
+                height={700}
+                className="w-full h-auto object-cover"
+                quality={85}
+                sizes="(min-width: 1320px) 1256px, (min-width: 640px) calc(100vw - 48px), 100vw"
+              />
+            </div>
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
                 <h3 className="font-bold text-[#292929] mb-3">Cabling We Run</h3>
