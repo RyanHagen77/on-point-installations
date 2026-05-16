@@ -1,5 +1,5 @@
 import { generatePageMetadata } from '@/lib/metadata';
-import { SITE, ALL_SERVICES } from '@/lib/constants';
+import { SITE, PRIMARY_SERVICES } from '@/lib/constants';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import ServiceCard from '@/components/ui/ServiceCard';
 
@@ -17,7 +17,7 @@ export default function ServicesPage() {
         Our Services
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {ALL_SERVICES.map((service) => (
+        {PRIMARY_SERVICES.map((service) => (
           <ServiceCard key={service.slug} name={service.name} slug={service.slug} />
         ))}
       </div>

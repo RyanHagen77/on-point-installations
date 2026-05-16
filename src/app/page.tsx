@@ -13,26 +13,24 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/`,
 });
 
-// Service card descriptions — sourced from onpointinstallations.com service pages (fetched 2026-05-15)
+// Service card descriptions — verbatim from onpointinstallations.com service pages (fetched 2026-05-15)
 const SERVICE_DESCRIPTIONS: Record<string, string> = {
-  // Verbatim from /services/commercial-office-furniture-installation-chicago-il/
   'commercial-furniture-installation-chicago-il':
     'When you need experienced, highly skilled office furniture installers in the Greater Chicago Metropolitan Area, look no further than On Point Installations.',
-  // Adapted from /services/commercial-office-furniture-installation-chicago-il/ (no dedicated cubicle page on live site)
-  'cubicle-installation-chicago-il':
-    'We assemble and install cubicle systems and panel configurations from leading commercial manufacturers. Fully insured, non-union installers serving the Greater Chicago Metro Area.',
-  // Verbatim from /services/company-office-relocation-chicago-il/
   'office-relocation-chicago-il':
-    'If you\'re a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help. We handle any office move or corporate relocation.',
-  // Adapted from /services/commercial-office-furniture-installation-chicago-il/ (no dedicated systems furniture page on live site)
-  'systems-furniture-installation-chicago-il':
-    'We assemble and install systems furniture from leading and emerging commercial manufacturers, including Herman Miller, Steelcase, Haworth, Knoll, and Teknion.',
-  // Adapted from /services/commercial-office-furniture-storage-chicago-il/ (receipt and redelivery section)
-  'office-furniture-delivery-setup-chicago-il':
-    'We receive, inspect, and redeliver commercial office furniture for any size project, crosschecking the bill of lading with your order to confirm everything arrives undamaged and complete.',
-  // Verbatim from /services/space-planning/
+    'If you\'re a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help.',
+  'commercial-office-furniture-storage-chicago-il':
+    'On Point Installations provides commercial office furniture storage in our 15,000-square-foot facility and has an additional 40,000 square feet available in a secondary warehouse.',
   'commercial-space-planning-chicago-il':
     'On Point Installations, Inc. provides design support services to create flexible, responsive and supportive work environments.',
+  'electrical-voice-and-data-cabling-for-your-commercial-installation':
+    'That\'s why On Point Installations takes care of everything for you, from delivery, assembly, and installation of your furniture, to installing the required power and low voltage cabling.',
+  'artwork-installation':
+    'Art can transform any space, which is why many residential, commercial, and even industrial buildings display pictures, paintings, mirrors, and sculptures.',
+  'window-treatment-installations':
+    'Having a view is a great way to improve productivity, wellbeing, and overall morale. On Point Installations offers professional window treatment installations to keep your building cool, comfortable, and stylish.',
+  'cubicle-wall-and-upholstery-cleaning':
+    'At On Point Installations, we offer commercial specialty deep cleaning services for our installation customers in the Chicago Tristate Area.',
 };
 
 // Who We Serve — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
@@ -154,20 +152,16 @@ export default function HomePage() {
                 Commercial Furniture Installation Services in Chicago
               </h2>
               <p className="text-[#535353] max-w-2xl mx-auto">
-                Our{' '}
-                <Link
-                  href="/services/commercial-furniture-installation-chicago-il/"
-                  className="text-[#800000] underline hover:text-[#5A0000]"
-                >
-                  commercial furniture installation Chicago
-                </Link>{' '}
-                services include{' '}
-                <Link href="/services/cubicle-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">cubicle installation</Link>,{' '}
-                <Link href="/services/office-relocation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">office relocation services</Link>,{' '}
-                <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial space planning</Link>, and more.
+                From{' '}
+                <Link href="/services/commercial-furniture-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial furniture installation Chicago</Link>{' '}
+                businesses rely on, to{' '}
+                <Link href="/services/office-relocation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">office relocation services</Link>{' '}
+                and{' '}
+                <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial space planning</Link>,
+                On Point Installations handles the full scope of commercial furniture services.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {PRIMARY_SERVICES.map((service) => (
                 <Link
                   key={service.slug}

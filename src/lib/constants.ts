@@ -52,22 +52,16 @@ export const SERVICE_CITIES = [
   { name: "Wauconda", state: "IL", slug: "wauconda-il" },
 ];
 
+// Matches the 8 services on onpointinstallations.com — same names, same order, everywhere
 export const PRIMARY_SERVICES = [
-  { name: "Commercial Furniture Installation", slug: "commercial-furniture-installation-chicago-il" },
-  { name: "Cubicle Installation", slug: "cubicle-installation-chicago-il" },
-  { name: "Office Relocation", slug: "office-relocation-chicago-il" },
-  { name: "Systems Furniture Installation", slug: "systems-furniture-installation-chicago-il" },
-  { name: "Office Furniture Delivery & Setup", slug: "office-furniture-delivery-setup-chicago-il" },
-  { name: "Commercial Space Planning", slug: "commercial-space-planning-chicago-il" },
-];
-
-export const ALL_SERVICES = [
-  ...PRIMARY_SERVICES,
-  { name: "Commercial Office Furniture Storage", slug: "commercial-office-furniture-storage-chicago-il" },
+  { name: "Office Installations", slug: "commercial-furniture-installation-chicago-il" },
+  { name: "Relocation", slug: "office-relocation-chicago-il" },
+  { name: "Warehousing", slug: "commercial-office-furniture-storage-chicago-il" },
+  { name: "Space Planning", slug: "commercial-space-planning-chicago-il" },
+  { name: "Electrical & Voice/Data", slug: "electrical-voice-and-data-cabling-for-your-commercial-installation" },
   { name: "Artwork Installation", slug: "artwork-installation" },
   { name: "Window Treatment Installations", slug: "window-treatment-installations" },
-  { name: "Cubicle Wall & Upholstery Cleaning", slug: "cubicle-wall-and-upholstery-cleaning" },
-  { name: "Electrical, Voice & Data Cabling", slug: "electrical-voice-and-data-cabling-for-your-commercial-installation" },
+  { name: "Cubicle Wall and Upholstery Cleaning", slug: "cubicle-wall-and-upholstery-cleaning" },
 ];
 
 export const NAP_SCHEMA = {
