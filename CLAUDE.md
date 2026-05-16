@@ -18,18 +18,29 @@ The project is fully scaffolded from Phase 1. All routes are stubbed, constants 
 
 ## PHASE 2 SCOPE
 
-Build these pages in this order:
+Phase 2 built: Homepage, all 8 canonical service pages, and 3 supporting pages.
 
-1. `/` — Homepage
-2. `/services/commercial-furniture-installation-chicago-il/` — Primary money page
-3. `/services/cubicle-installation-chicago-il/`
-4. `/services/office-relocation-chicago-il/`
-5. `/services/systems-furniture-installation-chicago-il/`
-6. `/services/office-furniture-delivery-setup-chicago-il/`
-7. `/services/commercial-space-planning-chicago-il/`
-8. `/about/`
-9. `/contact/`
-10. `/reviews/`
+**8 service pages (all shipped):**
+- `/services/commercial-furniture-installation-chicago-il/` — umbrella money page
+- `/services/office-relocation-chicago-il/`
+- `/services/commercial-office-furniture-storage-chicago-il/`
+- `/services/commercial-space-planning-chicago-il/`
+- `/services/electrical-voice-data-cabling-chicago-il/`
+- `/services/artwork-installation-chicago-il/`
+- `/services/window-treatment-installation-chicago-il/`
+- `/services/cubicle-wall-upholstery-cleaning-chicago-il/`
+
+**3 supporting pages (not yet built):**
+- `/about/`
+- `/contact/`
+- `/reviews/`
+
+**3 audit URLs absorbed into the money page — not standalone pages:**
+- `/services/cubicle-installation-chicago-il/` → H2 on money page
+- `/services/systems-furniture-installation-chicago-il/` → H2 on money page
+- `/services/office-furniture-delivery-setup-chicago-il/` → H2 on money page
+
+301 redirects from all three are in `next.config.ts`. See `docs/design-decisions.md` — "Service Architecture."
 
 Full metadata, H1s, body content, schema, and internal links for every page are specified in `Phase2_Kickoff_Homepage_ServicePages.md`. Do not deviate from the SEO configuration — it was written against live Google Search Console data.
 
@@ -198,7 +209,7 @@ Rationale: every content image evaluated so far has failed on composition, sourc
 
 When Brian provides real photos (tracked in known-issues.md), inline images can be revisited as a single focused pass across all service pages. Not piecemeal.
 
-This rule applies to Electrical (now), Artwork Installation, Window Treatment, Cubicle Cleaning, About, Contact, and Reviews.
+This rule applies to all service pages and supporting pages (/about/, /contact/, /reviews/) in Phase 2.
 
 ---
 
@@ -270,6 +281,8 @@ The "selfishly don't want to recommend" angle is an audit-identified *theme*, no
 
 ### FAQs
 Every service page needs minimum 5 FAQ Q&As. Same direct voice. Source from live service pages or the Phase 2 spec — do not invent questions or answers.
+
+If the live page has no FAQ section, FAQs are drafted per Voice Rules. All drafted FAQ content must be flagged in `docs/known-issues.md` as pending Brian's review before launch. Drafted FAQ topics should be contractor-voice questions a dealer or facility manager would actually ask, not generic service-page filler.
 
 ---
 
@@ -374,6 +387,8 @@ interface ServiceSchemaProps {
   url: string;           // canonical URL of this page
 }
 ```
+
+Single-city service pages pass a string (e.g., `areaServed="Chicago"`); multi-region pages would pass an array. Both shapes are supported.
 
 ### FAQSchema (all service pages)
 ```typescript
