@@ -5,6 +5,7 @@ import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
 import ServiceSchema from '@/components/schema/ServiceSchema';
+import FAQSchema from '@/components/schema/FAQSchema';
 
 export const metadata = generatePageMetadata({
   title: 'Commercial Space Planning Chicago | On Point Installations',
@@ -45,6 +46,7 @@ export default function CommercialSpacePlanningChicagoPage() {
         url={`${SITE.domain}/services/commercial-space-planning-chicago-il/`}
         areaServed="Chicago"
       />
+      <FAQSchema items={FAQS} />
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
