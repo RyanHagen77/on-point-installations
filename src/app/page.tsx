@@ -5,7 +5,6 @@ import { SITE, PRIMARY_SERVICES, SERVICE_CITIES } from '@/lib/constants';
 import LocalBusinessSchema from '@/components/schema/LocalBusinessSchema';
 import OrganizationSchema from '@/components/schema/OrganizationSchema';
 import WebSiteSchema from '@/components/schema/WebSiteSchema';
-import ReviewCard from '@/components/ui/ReviewCard';
 
 export const metadata = generatePageMetadata({
   title: 'Office Furniture Installer Chicago IL | On Point Installations',
@@ -29,43 +28,35 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
     'Floor plan verification, on-site measurement, and pre-install coordination before the truck arrives.',
 };
 
-const REVIEWS = [
-  {
-    author: 'David M.',
-    text: "I'll be honest — I selfishly don't want to recommend On Point Installations to anyone. They're that good, and I don't want my competitors to find them. Brian's crew shows up on time, works clean, and the job comes in at the quoted price every single time.",
-    rating: 5 as const,
-    company: 'Facilities Director',
-  },
-  {
-    author: 'Jennifer K.',
-    text: "We've used On Point for three office builds now. End-of-day photo updates, 90-degree corners, not a single panel out of level. When a shipment got delayed at the transfer station, Brian personally drove out to retrieve it. That's the kind of crew you fight to keep.",
-    rating: 5 as const,
-    company: 'Office Manager',
-  },
-  {
-    author: 'Tom R.',
-    text: "As a furniture dealer, I need an installation partner I can stake my reputation on. On Point has never let me down. They know every major system — Herman Miller, Steelcase, Haworth, all of them — and they don't need to be babysat.",
-    rating: 5 as const,
-    company: 'Commercial Furniture Dealer',
-  },
-];
+// Reviews placeholder — real Google review text needed from Brian.
+// See docs/known-issues.md — do not populate until sourced from actual GBP reviews.
 
+// Differentiator body copy sourced from live About page (onpointinstallations.com/about/)
+// fetched 2026-05-15. Quotes marked [LIVE SITE] are verbatim or close paraphrase.
+// "No Subcontracting" body is spec-sourced (Phase 2 spec key proof point) — needs Brian confirmation.
 const DIFFERENTIATORS = [
   {
-    headline: 'Non-Union Flexibility',
-    body: 'Our non-union crew means no jurisdictional restrictions, no inflated labor rates, and the same experienced team from start to finish. The same people who quoted your project are the ones installing it.',
+    headline: 'Non-Union Installers',
+    // [LIVE SITE] "On Point Installations, Inc. is a non-union commercial furniture installation company"
+    // [LIVE SITE] "nonunion installers, so we keep your costs low"
+    body: 'On Point Installations is a non-union commercial furniture installation company. That means lower costs for you, no jurisdictional restrictions, and a consistent team from first panel to final punch list.',
   },
   {
-    headline: 'No Subcontracting',
-    body: "When you hire On Point, you get On Point — full stop. We never farm out your project to a sub. Every install is handled by our own 12–15 person crew with 130+ years of combined experience.",
+    headline: 'Accurate Quotes. Rarely Any Change Orders.',
+    // [LIVE SITE] "our initial quote accurately reflects the final cost of a project 98% of the time, rarely requiring unwelcome change-orders"
+    body: 'We know that change-orders can blow budgets out of the water. Our initial quote accurately reflects the final cost of a project 98% of the time, rarely requiring unwelcome change-orders.',
   },
   {
-    headline: 'Quoted Price Is the Final Price',
-    body: "Clients consistently note that 98% of jobs come in at the quoted price. We measure carefully, plan thoroughly, and don't hit you with change orders after the fact.",
+    headline: 'Real-Time Project Communication',
+    // [LIVE SITE] "We send visual email confirmations at the end of each workday."
+    // [LIVE SITE] "We send real-time notifications with the bill of lading the moment materials arrive."
+    body: 'We send real-time notifications when materials arrive, and visual email confirmations at the end of each workday. You always know exactly what is happening on site.',
   },
   {
-    headline: 'Same-Day Communication',
-    body: "End-of-day photo updates. Direct access to Brian. Immediate response when an issue comes up on site. You'll never wonder what's happening with your project.",
+    headline: 'Engineering-Level Precision',
+    // [LIVE SITE] "We have an engineering mindset and prefer that our right angles are 90 degrees—not 89 or 91 degrees."
+    // [LIVE SITE] "We're professionals with an average of 130+ years of combined industry experience."
+    body: 'We have an engineering mindset and prefer that our right angles are 90 degrees — not 89 or 91. Our crew brings 130+ years of combined industry experience to every project.',
   },
 ];
 
@@ -209,15 +200,10 @@ export default function HomePage() {
                     className="w-full h-auto object-cover"
                   />
                 </div>
-                <blockquote className="border-l-4 border-[#800000] pl-5 italic text-[#535353]">
-                  <p className="text-base leading-relaxed">
-                    &ldquo;I&rsquo;ll be honest — I selfishly don&rsquo;t want to recommend On Point Installations.
-                    They&rsquo;re that good, and I don&rsquo;t want my competitors to find them.&rdquo;
-                  </p>
-                  <footer className="mt-2 text-sm font-semibold text-[#800000] not-italic">
-                    — Facilities Director, Chicago
-                  </footer>
-                </blockquote>
+                {/* Review pull quote placeholder — awaiting real verbatim Google review from Brian */}
+                <div className="border border-dashed border-[#B4B3B3] rounded-[3px] p-4 text-sm text-[#898989] italic">
+                  Review pull quote pending — needs verbatim text sourced from real Google reviews. See docs/known-issues.md.
+                </div>
               </div>
               {/* Right: differentiators */}
               <div>
@@ -288,6 +274,7 @@ export default function HomePage() {
                   View all service areas →
                 </Link>
               </div>
+              {/* Exactly 5 spec-approved cities — each has an individual service area page */}
               <div className="lg:col-span-2 grid sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {SERVICE_CITIES.map((city) => (
                   <Link
@@ -296,22 +283,6 @@ export default function HomePage() {
                     className="block border border-[#E9E9E9] px-4 py-3 rounded-[3px] text-sm font-medium text-[#292929] hover:border-[#800000] hover:text-[#800000] transition-colors"
                   >
                     {city.name}, {city.state}
-                  </Link>
-                ))}
-                {[
-                  { name: 'Elgin, IL', href: '/service-area/chicagoland-commercial-furniture-installation/' },
-                  { name: 'Aurora, IL', href: '/service-area/chicagoland-commercial-furniture-installation/' },
-                  { name: 'Joliet, IL', href: '/service-area/chicagoland-commercial-furniture-installation/' },
-                  { name: 'Rockford, IL', href: '/service-area/chicagoland-commercial-furniture-installation/' },
-                  { name: 'Kenosha, WI', href: '/service-area/chicagoland-commercial-furniture-installation/' },
-                  { name: 'Gary, IN', href: '/service-area/chicagoland-commercial-furniture-installation/' },
-                ].map((city) => (
-                  <Link
-                    key={city.name}
-                    href={city.href}
-                    className="block border border-[#E9E9E9] px-4 py-3 rounded-[3px] text-sm font-medium text-[#292929] hover:border-[#800000] hover:text-[#800000] transition-colors"
-                  >
-                    {city.name}
                   </Link>
                 ))}
               </div>
@@ -338,9 +309,14 @@ export default function HomePage() {
                 See what our clients say →
               </Link>
             </div>
+            {/* Review cards placeholder — awaiting real verbatim text from Brian's Google reviews.
+                The live /reviews/ page loads content via a JS widget; static fetch returns no review text.
+                Do not populate with generated or paraphrased quotes. See docs/known-issues.md. */}
             <div className="grid md:grid-cols-3 gap-6">
-              {REVIEWS.map((review) => (
-                <ReviewCard key={review.author} {...review} />
+              {[1, 2, 3].map((n) => (
+                <div key={n} className="bg-white border border-dashed border-[#B4B3B3] rounded-[3px] p-6 text-sm text-[#898989] italic">
+                  Review quote {n} pending — needs verbatim text sourced from real Google reviews.
+                </div>
               ))}
             </div>
           </div>

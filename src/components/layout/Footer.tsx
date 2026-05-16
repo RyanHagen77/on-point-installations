@@ -8,9 +8,10 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t-2 border-[#800000] mt-auto">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* 4-column grid — stacks to single column on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-          {/* Column 1: Logo + NAP */}
+          {/* Col 1: Logo + NAP + Hours + Social */}
           <div>
             <Link href="/" aria-label="On Point Installations home">
               <Image
@@ -23,7 +24,10 @@ export default function Footer() {
             </Link>
             <address className="not-italic text-sm text-[#5A5A5A] space-y-1.5">
               <p>
-                <a href={SITE.phoneHref} className="text-[#292929] font-semibold hover:text-[#800000] transition-colors">
+                <a
+                  href={SITE.phoneHref}
+                  className="text-[#292929] font-semibold hover:text-[#800000] transition-colors"
+                >
                   {SITE.phone}
                 </a>
               </p>
@@ -32,7 +36,6 @@ export default function Footer() {
               <p className="mt-3 text-xs">{SITE.hours.weekdays}</p>
               <p className="text-xs">{SITE.hours.weekend}</p>
             </address>
-            {/* Social icons */}
             <div className="flex gap-4 mt-5">
               {SITE.social.facebook && (
                 <a
@@ -76,7 +79,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Services */}
+          {/* Col 2: Services */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-[#800000] mb-4">Services</h3>
             <ul className="space-y-2">
@@ -93,10 +96,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Contact Us */}
+          {/* Col 3: Service Areas — exactly the 5 spec-approved cities */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider text-[#800000] mb-4">Contact Us</h3>
-            <ul className="space-y-2 mb-6">
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-[#800000] mb-4">Service Areas</h3>
+            <ul className="space-y-2">
               {SERVICE_CITIES.map((city) => (
                 <li key={city.slug}>
                   <Link
@@ -107,11 +110,25 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/service-area/chicagoland-commercial-furniture-installation/"
+                  className="text-sm text-[#292929] hover:text-[#800000] transition-colors"
+                >
+                  All Chicagoland
+                </Link>
+              </li>
             </ul>
+          </div>
+
+          {/* Col 4: Company */}
+          <div>
+            <h3 className="font-semibold text-sm uppercase tracking-wider text-[#800000] mb-4">Company</h3>
             <ul className="space-y-2">
               {[
                 { label: 'About', href: '/about/' },
                 { label: 'Reviews', href: '/reviews/' },
+                { label: 'Project Gallery', href: '/project-gallery/' },
                 { label: 'Blog', href: '/blog/' },
                 { label: 'Contact', href: '/contact/' },
               ].map((link) => (
@@ -123,6 +140,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
         </div>
       </div>
 
@@ -130,7 +148,7 @@ export default function Footer() {
       <div className="border-t border-[#E9E9E9]">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#898989]">
           <p>&copy; {currentYear} On Point Installations, Inc. All rights reserved.</p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/privacy-policy/" className="hover:text-[#800000] transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service/" className="hover:text-[#800000] transition-colors">Terms of Service</Link>
             <Link href="/cookie-policy/" className="hover:text-[#800000] transition-colors">Cookie Policy</Link>
