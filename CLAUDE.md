@@ -191,18 +191,43 @@ These are non-negotiable in every file:
 
 ## VOICE AND CONTENT RULES — ENFORCE THROUGHOUT
 
-These rules apply to every piece of copy written for this site. Read before writing any body copy.
+All user-facing copy is in Brian Vetter's voice. Brian is a contractor, not a consultant or marketer. Content is ported from the existing live site (onpointinstallations.com) unless explicitly flagged as drafted in `docs/content-source-map.md`.
 
 ### Tone
 Direct, plain-spoken, professional but approachable. Speaks to B2B buyers — facilities directors, office managers, furniture dealers. Sounds like someone who has been doing this for 15 years and knows the business cold. Not corporate, not salesy.
 
-### Specific prohibitions
-1. **No em dashes.** Em dashes (—) are not permitted in body copy. Restructure the sentence, use a comma, or split into two sentences.
-2. **No title-case compound adjectives.** Never "World-Class Service," "Best-in-Class Team," "High-Quality Results," or similar.
-3. **No corporate plurals.** Avoid "solutions," "partnerships," "offerings," "capabilities," "deliverables." Say what the thing actually is.
-4. **No consultant verbs.** Avoid "leverage," "optimize," "synergize," "enable," "facilitate," "deliver" (used abstractly). Permitted plain verbs (concrete usage only): install, move, plan, build, coordinate, deliver, set up, finish, handle. These are fine when describing a literal action on a concrete object. Still prohibited when used abstractly: "deliver excellence," "coordinate strategy," "streamline operations."
-5. **No "white-glove."** Flagged as a voice violation. Do not use it.
-6. **Contractions required where natural.** We're, don't, can't, we'll, it's. Stiff formal writing sounds wrong for this brand.
+### Hard bans
+
+1. **No em dashes (—). No en dashes (–) as punctuation.** If a sentence wants a pause, recast it. Common fixes: split into two sentences, use a comma, use parentheses, use a colon. (Numeric ranges like "12–15" are exempt — that is standard typography, not punctuation.)
+
+2. **No AI tells.** These phrases and structures read as machine-generated even when grammatically clean:
+   - "It's worth noting that..."
+   - "In today's fast-paced world..."
+   - "Whether you're X or Y, we've got you covered"
+   - "Look no further"
+   - "Elevate your..."
+   - "Unlock the potential of..."
+   - "Seamlessly integrate..."
+   - "Robust solutions"
+   - "Cutting-edge"
+   - "State-of-the-art"
+   - "Leverage" as a verb
+   - "Streamline" as a verb (Brian says "speed up" or "cut steps")
+   - Tricolons that feel balanced for the sake of balance ("fast, reliable, and affordable")
+   - Hero-section openers that start with a participle ("Bringing decades of experience...")
+
+3. **No consultant verbs.** Optimize, leverage, synergize, streamline, empower, transform, revolutionize, elevate, unlock, drive, deliver (as in "deliver value"). Permitted plain verbs (concrete usage only): install, move, plan, build, coordinate, set up, finish, handle, deliver (literal physical delivery). These are fine when describing a literal action on a concrete object. Still prohibited when used abstractly.
+
+4. **No title-case multi-word adjectives.** Never "Best-In-Class," "Full-Service," "World-Class Service," or similar.
+
+5. **No corporate plurals.** Avoid "solutions," "partnerships," "offerings," "capabilities," "deliverables." Say what the thing actually is.
+
+6. **No "white-glove."** Flagged as a voice violation. Do not use it.
+
+7. **Contractions are required where natural.** "We will" reads as a robot. Brian says "we'll." Same for we're, don't, can't, it's, you're.
+
+### When porting live-site copy
+If you find yourself wanting any of the above while porting, the live site copy probably needs a small rewrite to land in voice. Flag the line, propose the rewrite, get approval before committing.
 
 ### Voice test
 Read the copy aloud. If it sounds like a consultant's slide deck, rewrite it. If it sounds like Brian talking to a furniture dealer he's worked with for five years, it's right.
@@ -223,6 +248,22 @@ The "selfishly don't want to recommend" angle is an audit-identified *theme*, no
 
 ### FAQs
 Every service page needs minimum 5 FAQ Q&As. Same direct voice. Source from live service pages or the Phase 2 spec — do not invent questions or answers.
+
+---
+
+## SEO AUDIT AND VOICE RULES — PRECEDENCE
+
+The Phase 1 SEO audit informs page structure, target keywords, headings, internal linking, and topic coverage. It does not override voice rules.
+
+If audit-recommended copy contains em dashes, AI tells, consultant verbs, or any other banned pattern, the copy gets rewritten to comply with voice rules while preserving the keyword intent and topic. The SEO goal is the underlying intent (what the page should rank for and answer), not the literal wording.
+
+Same applies to live-site copy being ported. Verbatim porting is the default, but verbatim does not include banned patterns. If the live site uses "optimize" or an em dash, the port cleans that line and flags it.
+
+Order of precedence when conflicts arise:
+1. Voice rules (non-negotiable)
+2. Live-site parity
+3. SEO audit recommendations
+4. Drafted copy
 
 ---
 
