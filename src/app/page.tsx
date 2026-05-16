@@ -13,20 +13,20 @@ export const metadata = generatePageMetadata({
   canonical: `${SITE.domain}/`,
 });
 
-// Service card descriptions — contractor voice, no em dashes
+// Service card descriptions — contractor voice, no em dashes, no unverified claims
 const SERVICE_DESCRIPTIONS: Record<string, string> = {
   'commercial-furniture-installation-chicago-il':
     'New office buildouts, reconfigurations, and complete furniture installs for businesses across Chicagoland.',
   'cubicle-installation-chicago-il':
     'Panel systems, cubicle assembly, and workstation configurations for offices of any size.',
   'office-relocation-chicago-il':
-    'Teardown, transport, and reinstallation. On schedule, without surprises.',
+    'Teardown, transport, and reinstallation when your office moves.',
   'systems-furniture-installation-chicago-il':
-    'Certified installers for Herman Miller, Steelcase, Haworth, Knoll, Teknion, and more.',
+    'We install Herman Miller, Steelcase, Haworth, Knoll, Teknion, and more.',
   'office-furniture-delivery-setup-chicago-il':
-    'White-glove delivery, assembly, and placement for commercial furniture orders of any size.',
+    'Delivery, assembly, and placement for commercial furniture orders of any size.',
   'commercial-space-planning-chicago-il':
-    'Floor plan verification, on-site measurement, and pre-install coordination before the truck arrives.',
+    'Floor plan verification and on-site measurement before installation day.',
 };
 
 // Who We Serve — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
@@ -39,7 +39,7 @@ const WHO_WE_SERVE = [
   'Healthcare Facilities, including medical offices and long-term care facilities',
 ];
 
-// Commercial Furniture Services — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
+// Projects We Handle — verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
 const FURNITURE_SERVICES = [
   'Office or facility moves, adds, changes (MAC)',
   'Commercial office relocations',
@@ -71,21 +71,20 @@ export default function HomePage() {
                 <h1 className="text-4xl sm:text-5xl font-bold text-[#800000] leading-tight mb-4">
                   Commercial Office Furniture Installer in Chicago, IL
                 </h1>
-                <p className="text-lg text-[#535353] mb-2 font-medium">
+                <p className="text-lg text-[#535353] mb-4 font-medium">
                   Non-union. Fully insured. 11,000+ projects since 2010.
                 </p>
+                {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
+                <p className="text-[#5A5A5A] mb-3 leading-relaxed">
+                  At On Point Installations, our mission is to provide exceptional, customer-focused
+                  furniture installation services. We are committed to delivering quality workmanship,
+                  ensuring client satisfaction, and fostering long-term relationships with our partners
+                  through professionalism, precision, and integrity.
+                </p>
                 <p className="text-[#5A5A5A] mb-8 leading-relaxed">
-                  When your Chicago office needs furniture installed right, on time, on budget, and without
-                  the need to babysit the crew,{' '}
-                  <strong>On Point Installations</strong> is the team dealers and facility managers call
-                  first. We handle{' '}
-                  <Link
-                    href="/services/commercial-furniture-installation-chicago-il/"
-                    className="text-[#800000] underline hover:text-[#5A0000] font-medium"
-                  >
-                    commercial furniture installation Chicago
-                  </Link>{' '}
-                  businesses trust for complete office buildouts, cubicle systems, and systems furniture.
+                  From our Wauconda, IL, headquarters, On Point Installations provides fully insured,
+                  non-union commercial furniture services throughout Chicagoland and the Tri-State Area,
+                  including the city of Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
@@ -104,7 +103,7 @@ export default function HomePage() {
               </div>
               <div className="relative rounded-sm overflow-hidden shadow-md">
                 <Image
-                  src="/images/hero-home.jpg"
+                  src="/images/chicago-office-furniture-installation.jpg"
                   alt="Commercial office furniture installation project completed by On Point Installations in Chicago, IL"
                   width={1200}
                   height={800}
@@ -116,27 +115,28 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 2. MISSION / INTRO ────────────────────────────────────── */}
-        {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
-        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8 max-w-3xl">
-            <p className="text-[#292929] leading-relaxed mb-5">
-              At On Point Installations, our mission is to provide exceptional, customer-focused furniture
-              installation services. We are committed to delivering quality workmanship, ensuring client
-              satisfaction, and fostering long-term relationships with our partners through professionalism,
-              precision, and integrity.
-            </p>
-            <p className="text-[#292929] leading-relaxed mb-8">
-              From our Wauconda, IL, headquarters, On Point Installations provides fully insured, non-union
-              commercial furniture services throughout Chicagoland and the Tri-State Area, including the city
-              of Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
-            </p>
-            <Link
-              href="/about/"
-              className="inline-block bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors"
-            >
-              Learn More
-            </Link>
+        {/* ── 2. TRUST BAR ──────────────────────────────────────────── */}
+        {/* Source: Phase 2 spec — see docs/spec-additions.md */}
+        <section className="bg-[#800000] py-8 px-4">
+          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white">
+              <div>
+                <div className="text-2xl sm:text-3xl font-bold">5.0★</div>
+                <div className="text-sm text-white/80 mt-1">25 Google Reviews</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-bold">15+</div>
+                <div className="text-sm text-white/80 mt-1">Years in Business</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-bold">11,000+</div>
+                <div className="text-sm text-white/80 mt-1">Projects Completed</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-bold">12–15</div>
+                <div className="text-sm text-white/80 mt-1">Person Crew</div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -148,11 +148,17 @@ export default function HomePage() {
                 Commercial Furniture Installation Services in Chicago
               </h2>
               <p className="text-[#535353] max-w-2xl mx-auto">
-                Whether you need{' '}
+                Our{' '}
+                <Link
+                  href="/services/commercial-furniture-installation-chicago-il/"
+                  className="text-[#800000] underline hover:text-[#5A0000]"
+                >
+                  commercial furniture installation Chicago
+                </Link>{' '}
+                services include{' '}
                 <Link href="/services/cubicle-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">cubicle installation</Link>,{' '}
-                <Link href="/services/office-relocation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">office relocation services</Link>, or{' '}
-                <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial space planning</Link>,
-                we cover it all under one roof.
+                <Link href="/services/office-relocation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">office relocation services</Link>,{' '}
+                <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial space planning</Link>, and more.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -206,10 +212,10 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* ── 5. COMMERCIAL FURNITURE SERVICES (right column) ── */}
+              {/* ── 5. PROJECTS WE HANDLE (right column) ── */}
               {/* Verbatim from onpointinstallations.com, fetched 2026-05-15 */}
               <div>
-                <h2 className="text-3xl font-bold text-[#800000] mb-5">Commercial Furniture Services</h2>
+                <h2 className="text-3xl font-bold text-[#800000] mb-5">Projects We Handle</h2>
                 <ul className="space-y-2">
                   {FURNITURE_SERVICES.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-[#292929]">
