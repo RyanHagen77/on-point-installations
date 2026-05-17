@@ -4,6 +4,15 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
+## Primary SEO Audit Prompts — Now in Repo
+
+**Added:** 2026-05-17
+**Location:** `docs/seo-audit/`
+
+Prompts 10, 11, 12, 16, and 17 from the IntegrePro Software LLC SEO engagement are now committed to the repo as authoritative reference documents. The kickoff docs (`Phase2_Kickoff_*.md`, `Phase3_Kickoff_*.md`, etc.) are routing and orientation documents that summarize and sometimes paraphrase the audit outputs. When they conflict, the audit prompt in `docs/seo-audit/` wins. See `docs/seo-audit/README.md` for the full index and usage notes.
+
+---
+
 ## Office Installations Money Page — Absorbed-URL H2 Sections
 
 **Added:** 2026-05-16

@@ -304,6 +304,8 @@ Order of precedence when conflicts arise:
 3. SEO audit recommendations
 4. Drafted copy
 
+**Audit prompt location:** `docs/seo-audit/` — Prompts 10, 11, 12, 16, and 17 are committed as authoritative `.md` files. Kickoff docs (`Phase2_Kickoff_*.md`, `Phase3_Kickoff_*.md`) are summaries; when they conflict with the audit prompts, the audit prompt wins.
+
 ---
 
 ## SOURCING RULE — ENFORCE THROUGHOUT
