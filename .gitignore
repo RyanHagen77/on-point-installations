@@ -37,3 +37,6 @@ next-env.d.ts
 # sitemap (generated at build time)
 public/sitemap*.xml
 public/robots.txt
+
+# scratch / temp files
+/tmp
