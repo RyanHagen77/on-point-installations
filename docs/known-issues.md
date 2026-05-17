@@ -26,6 +26,16 @@ Items that require action before Phase 5 launch prep or before specific Phase 4/
 
 ---
 
+### City Service Pages — Hero Photos Pending Brian
+
+**Action needed:** Brian to provide city-specific job-site photos for each city service page.
+**Detail:** All four city CFI pages (Schaumburg, Naperville, Waukegan, Wauconda) currently share the same generic installation photo (`on-point-installations-office-installations.jpg`). This photo is not from a Schaumburg, Naperville, Waukegan, or Wauconda job site. Alt text is intentionally generic across all four pages until city-specific photos exist — geographic relevance is carried by H1, title, body copy, and schema, not the hero alt text.
+**Owner:** Brian Vetter
+**Affects:** `/services/commercial-furniture-installation-schaumburg-il/`, `/services/commercial-furniture-installation-naperville-il/`, `/services/commercial-furniture-installation-waukegan-il/`, `/services/commercial-furniture-installation-wauconda-il/`
+**Phase:** Phase 5, after Brian delivers photos
+
+---
+
 ### SVG Logo — Phase 5 Deliverable
 **Action needed:** Brian to commission and provide SVG logo file.
 **Detail:** Current build uses `public/images/logo.png` — a PNG downloaded from the live WordPress site. SVG is needed for crisp rendering at large display sizes and for favicon derivation.
@@ -141,6 +151,16 @@ All FAQ sections on service pages without a live-site FAQ equivalent were drafte
 - Read reviews URL: `https://search.google.com/local/reviews?placeid=ChIJcTIiYGuiD4gRB3LuYKJ-8XY`
 - Write a review URL: `https://search.google.com/local/writereview?placeid=ChIJcTIiYGuiD4gRB3LuYKJ-8XY`
 Both URLs are wired into `/reviews/` page. Brian should verify that the Place ID matches the GBP dashboard.
+
+---
+
+### Schaumburg CFI Page — City-Specific Review Quote Needed
+
+**Action needed:** Brian to provide a real Google review from a Schaumburg, IL customer.
+**Detail:** The Schaumburg CFI page (`/services/commercial-furniture-installation-schaumburg-il/`) ships with a placeholder in the social proof block: `"[REVIEW PLACEHOLDER: replace with real review from a Schaumburg, IL customer when available]"`. Attribution is stored as a Unicode em dash (`—`) so it renders correctly at runtime and passes the pre-commit hook. The placeholder must be replaced before Phase 5 launch.
+**Owner:** Brian Vetter
+**Affects:** `/services/commercial-furniture-installation-schaumburg-il/` — social proof block
+**Phase:** Resolve before Phase 5 launch prep
 
 ---
 

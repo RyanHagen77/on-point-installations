@@ -28,6 +28,36 @@ Note: the anchor text is slightly awkward as inline text in a sentence. Acceptab
 
 ---
 
+## Phase 3 Retrofit Required on /about/
+
+**Page:** `/about/`
+**When:** After Schaumburg CFI is live (it is now live as of this commit).
+**Action:** Add one internal link to the service territory paragraph
+
+**Link to add:**
+- Anchor: `Schaumburg office furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/`
+
+**Anchor text is audit-locked (Prompt 11 INTERNAL LINKING OPPORTUNITIES). Do not paraphrase.**
+
+**Suggested placement:** In the paragraph on /about/ that covers On Point's geographic reach — where the page describes the team's service territory.
+
+---
+
+## Phase 3 Retrofit Required on /project-gallery/
+
+**Page:** `/project-gallery/`
+**When:** After Schaumburg CFI is live (it is now live as of this commit).
+**Action:** Add one internal link to the gallery intro copy
+
+**Link to add:**
+- Anchor: `Schaumburg commercial furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/`
+
+**Anchor text is audit-locked (Prompt 11 INTERNAL LINKING OPPORTUNITIES). Do not paraphrase.**
+
+**Suggested placement:** In the gallery intro copy — note that On Point's project portfolio includes suburban Chicagoland markets including Schaumburg.
+
+---
+
 ## Phase 3 Retrofit Required on Space Planning Page
 
 **Page:** `/services/commercial-space-planning-chicago-il/`
