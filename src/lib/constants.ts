@@ -6,11 +6,11 @@ export const SITE = {
   phoneHref: "tel:+18475504042",
   email: "", // TBD : get from Brian
   address: {
-    street: "1220 Karl Ct",
+    street: "1220 Karl Court",
     city: "Wauconda",
     state: "IL",
     zip: "60084",
-    full: "1220 Karl Ct, Wauconda, IL 60084",
+    full: "1220 Karl Court, Wauconda, IL 60084",
   },
   hours: {
     weekdays: "Monday-Friday: 9:00 AM - 5:00 PM",
@@ -106,7 +106,7 @@ export const PRIMARY_SERVICES = [
 
 export const NAP_SCHEMA = {
   "@type": "PostalAddress",
-  streetAddress: "1220 Karl Ct",
+  streetAddress: "1220 Karl Court",
   addressLocality: "Wauconda",
   addressRegion: "IL",
   postalCode: "60084",
