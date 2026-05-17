@@ -164,3 +164,19 @@ All FAQ sections on service pages without a live-site FAQ equivalent were drafte
 ### Navigation — Logo Display Size
 **Issue:** Logo is currently `h-14` (56px display height). Live site shows the logo at closer to 80–90px. Increase to `h-16` or `h-20` and verify it doesn't crowd nav links on mid-width viewports.
 **Phase:** Phase 5 polish pass
+
+---
+
+## Phase 5 Launch Prep — SEO
+
+### Secondary Service Page Titles — Verify Against GSC Before Launch
+**Issue:** Five service page titles were worker-authored following the correct naming pattern but were not derived from the SEO audit (no explicit spec existed for these pages in BUILD_PLAN.md or the Phase 2 kickoff). The titles follow the pattern correctly and are likely sound, but GSC impression and click data for these service areas may surface keyword opportunities the current titles miss.
+**Pages affected:**
+- `/services/commercial-office-furniture-storage-chicago-il/`
+- `/services/electrical-voice-data-cabling-chicago-il/`
+- `/services/artwork-installation-chicago-il/`
+- `/services/window-treatment-installation-chicago-il/`
+- `/services/cubicle-wall-upholstery-cleaning-chicago-il/`
+**Action:** During Phase 5 launch prep, pull top-impression queries for each of these five service pages from Google Search Console. Compare against the current title tags. Adjust if GSC reveals a high-impression keyword the title is missing.
+**Owner:** IntegrePro Software LLC
+**Phase:** Phase 5 launch prep (before production domain flip)

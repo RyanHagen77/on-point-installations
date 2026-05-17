@@ -50,7 +50,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         name="Commercial Furniture Installation in Chicago, IL"
         description="Professional, fully insured commercial office furniture installation services throughout Chicago and the greater Chicagoland area. Non-union installation crews handle cubicle systems, panel systems, workstations, executive furniture, conference room furniture, and complete office setups."
         url={`${SITE.domain}/services/commercial-furniture-installation-chicago-il/`}
-        areaServed="Chicago"
+        areaServed={["Chicago", "Schaumburg", "Naperville", "Waukegan", "Wauconda"]}
       />
       <FAQSchema items={FAQS} />
       <main>

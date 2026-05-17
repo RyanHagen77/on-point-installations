@@ -7,7 +7,7 @@ Items that cannot be completed in Phase 2 because they depend on Phase 3 pages t
 ## Phase 3 Retrofit Required on Money Page
 
 **Page:** `/services/commercial-furniture-installation-chicago-il/`
-**When:** After Schaumburg and Naperville city pages are built in Phase 3
+**When:** In the same commit that brings the Naperville city page online (last of the four-city Phase 3 priority order). At that point all four cities are live and both audit-locked anchors resolve to real content. Do not add these links before Naperville ships.
 **Action:** Add two internal links to the money page body copy
 
 **Links to add:**

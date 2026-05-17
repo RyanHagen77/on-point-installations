@@ -7,7 +7,7 @@ export function buildLocalBusinessSchema() {
     "@id": `${SITE.domain}/#localbusiness`,
     name: SITE.name,
     url: SITE.domain,
-    telephone: SITE.phone,
+    telephone: SITE.phoneHref.replace('tel:', ''),
     address: NAP_SCHEMA,
     geo: {
       "@type": "GeoCoordinates",
@@ -34,6 +34,7 @@ export function buildLocalBusinessSchema() {
       bestRating: 5,
       worstRating: 1,
     },
+    priceRange: "$$",
     foundingDate: SITE.founded,
     founder: {
       "@type": "Person",
@@ -67,7 +68,7 @@ export function buildOrganizationSchema() {
     ].filter(Boolean),
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: SITE.phone,
+      telephone: SITE.phoneHref.replace('tel:', ''),
       contactType: "customer service",
       areaServed: "US",
       availableLanguage: "English",
@@ -102,8 +103,12 @@ export function buildServiceSchema({
   name: string;
   description: string;
   url: string;
-  areaServed: string;
+  areaServed: string | string[];
 }) {
+  const areaServedSchema = Array.isArray(areaServed)
+    ? areaServed.map((city) => ({ "@type": "City", name: city }))
+    : { "@type": "City", name: areaServed };
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -115,10 +120,7 @@ export function buildServiceSchema({
       "@id": `${SITE.domain}/#localbusiness`,
       name: SITE.name,
     },
-    areaServed: {
-      "@type": "City",
-      name: areaServed,
-    },
+    areaServed: areaServedSchema,
     serviceType: "Commercial Furniture Installation",
   };
 }
