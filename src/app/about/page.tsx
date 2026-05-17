@@ -5,7 +5,8 @@ import { SITE } from '@/lib/constants';
 import ServiceHero from '@/components/ui/ServiceHero';
 import CTABlock from '@/components/ui/CTABlock';
 import PersonSchema from '@/components/schema/PersonSchema';
-import BreadcrumbSchema from '@/components/schema/BreadcrumbSchema';
+// BreadcrumbSchema is rendered by ServiceHero -> Breadcrumb -> BreadcrumbSchema.
+// Do not add a second BreadcrumbSchema here; it would produce duplicate JSON-LD.
 
 export const metadata = generatePageMetadata({
   title: 'About On Point Installations | Commercial Furniture Installers | Wauconda, IL',
@@ -17,7 +18,6 @@ export default function AboutPage() {
   return (
     <>
       <PersonSchema />
-      <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
       <main>
 
         {/* ── HERO ─────────────────────────────────────────────────────── */}
