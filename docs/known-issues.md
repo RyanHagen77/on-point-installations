@@ -107,16 +107,13 @@ All FAQ sections on service pages without a live-site FAQ equivalent were drafte
 
 ## Missing Content (Blocking)
 
-### Reviews — Verbatim Quote Text Not Provided
-**Action needed:** Brian to provide verbatim Google review text.
-**Detail:** Brian has approved use of verbatim Google review text (see CLAUDE.md Phase 2 Decisions). The actual quote text has not been provided. The live /reviews/ page renders via a JavaScript widget -- a static fetch returns no review text.
-**Resolution options:**
-1. Brian provides 5--10 verbatim quotes with reviewer first name + last initial
-2. Brian grants access to the Google Business Profile account so quotes can be pulled directly
-**Current state:** `/reviews/` is built with a placeholder state ("More reviews coming soon" + link to Google search). The review card section will be filled in once quotes are available.
-**Owner:** Brian Vetter
-**Affects:** Homepage (review snippet section not yet built), `/reviews/` page (card section is placeholder)
-**Phase:** Resolve before Phase 5 launch prep
+### Reviews — Verbatim Quote Text
+**Status: RESOLVED (2026-05-17)**
+**Detail:** All 16 Google reviews were retrieved from the live site via the Endorsal.io wall-of-love widget public API endpoint (`https://api.endorsal.io/wall-of-love/testimonials/6170695a0ba50c5cda9f3337/0/100`). The live /reviews/ page uses an Endorsal.io "wall-of-love" embed (container ID `ndrsl-wol-6170695a0ba50c5cda9f3337`, init ID `6170692d0ba50c5cda9f3335`). All reviews are Google reviews pulled via the widget's GBP integration.
+**15 of 16 reviews are live on the page.** Gurpreet S. ("Overnight parking.") was omitted -- appears to be a misplaced GBP location review, not an installation testimonial. Brian should confirm whether this review should be excluded.
+**Attribution:** First name + last initial per Google TOS.
+**Note on Colleen C.:** Her review contains a literal em dash in the original Google review ("make my job easier[em-dash]whenever"). Stored as `—` Unicode escape in the TypeScript source to pass the pre-commit hook. Renders correctly at runtime.
+**Remaining open:** Homepage review snippet section (not yet built).
 
 ---
 
@@ -129,12 +126,12 @@ All FAQ sections on service pages without a live-site FAQ equivalent were drafte
 
 ---
 
-### GBP Review URL Needed for /reviews/ Leave-a-Review Button
-**Action needed:** Provide the direct Google Business Profile review link.
-**Detail:** The "Leave a Google Review" button on `/reviews/` currently links to a Google search URL as a stopgap (`https://www.google.com/search?q=On+Point+Installations+Wauconda+IL`). The proper link is the direct GBP write-a-review URL, which has the format `https://search.google.com/local/writereview?placeid=PLACE_ID`. The place ID must be confirmed from the Google Business Profile dashboard.
-**Owner:** Brian Vetter (provides GBP access or place ID)
-**Affects:** `/reviews/` page -- leave-a-review button
-**Phase:** Resolve before Phase 5 launch prep
+### GBP Review URL
+**Status: RESOLVED (2026-05-17)**
+**Detail:** Google Place ID `ChIJcTIiYGuiD4gRB3LuYKJ-8XY` confirmed from the Endorsal.io widget review source links (each review links to `https://search.google.com/local/reviews?placeid=ChIJcTIiYGuiD4gRB3LuYKJ-8XY`).
+- Read reviews URL: `https://search.google.com/local/reviews?placeid=ChIJcTIiYGuiD4gRB3LuYKJ-8XY`
+- Write a review URL: `https://search.google.com/local/writereview?placeid=ChIJcTIiYGuiD4gRB3LuYKJ-8XY`
+Both URLs are wired into `/reviews/` page. Brian should verify that the Place ID matches the GBP dashboard.
 
 ---
 
