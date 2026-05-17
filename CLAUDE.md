@@ -211,6 +211,8 @@ When Brian provides real photos (tracked in known-issues.md), inline images can 
 
 This rule applies to all service pages and supporting pages (/about/, /contact/, /reviews/) in Phase 2.
 
+**Scoped exception — Brian Vetter portrait on /about/:** The portrait (`public/images/on-point-installations-brian-vetter.jpg`) is rendered inline in the "Our Beginnings" section. Person photos in person-context sections are not what this rule was written to block. The rule guards against composition, source quality, and relevance failures on job-site and installation photos — none of those risks apply to a provided portrait. See `docs/design-decisions.md` — "Phase 2 Content-Image Rule — Brian Vetter Portrait Exception."
+
 ---
 
 ## VOICE AND CONTENT RULES — ENFORCE THROUGHOUT
@@ -223,6 +225,8 @@ Direct, plain-spoken, professional but approachable. Speaks to B2B buyers — fa
 ### Hard bans
 
 1. **No em dashes (—). No en dashes (–) as punctuation.** If a sentence wants a pause, recast it. Common fixes: split into two sentences, use a comma, use parentheses, use a colon. (Numeric ranges like "12–15" are exempt — that is standard typography, not punctuation.)
+
+   **Pre-commit hook scope:** The hook checks the full staged file, including code comments and string literals. If a comment quotes live-site copy that contained an em dash, write `[em-dash]` rather than the character. Example: `{/* live site had "90 degrees[em-dash]not 89 or 91" -- recast per Voice Rules */}`
 
 2. **No AI tells.** These phrases and structures read as machine-generated even when grammatically clean:
    - "It's worth noting that..."

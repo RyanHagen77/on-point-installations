@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
@@ -69,6 +70,19 @@ export default function AboutPage() {
             <p className="text-[#292929] leading-relaxed mb-4">
               After serving as a union installer for many years, Brian Vetter packed up his toolbox and ventured out on his own. That was in 2010. Since then, On Point Installations has grown to include a 15,000+ square foot office complex and commercial furniture storage warehouse. Brian and his team have completed 11,000+ projects.
             </p>
+            {/* Portrait: scoped exception to Phase 2 content-image rule -- person photo in person-context section.
+                See docs/design-decisions.md */}
+            <div className="max-w-sm mx-auto py-8">
+              <Image
+                src="/images/on-point-installations-brian-vetter.jpg"
+                alt="Brian Vetter, founder and owner of On Point Installations, Inc."
+                width={1200}
+                height={1200}
+                className="w-full h-auto rounded-sm shadow-md"
+                sizes="(min-width: 640px) 384px, 100vw"
+                quality={85}
+              />
+            </div>
             <p className="text-[#292929] leading-relaxed mb-4">
               These projects involve an array of{' '}
               <Link href="/services/" className="text-[#800000] underline hover:text-[#5A0000]">

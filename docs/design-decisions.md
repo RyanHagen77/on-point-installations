@@ -99,3 +99,13 @@ Their audit-specified keywords and FAQ content are preserved inside the Office I
 **Implementation:** `src/app/page.tsx` — H1 className: `text-[32px] leading-[1.15] sm:text-[42px] sm:leading-tight lg:text-5xl font-bold text-[#800000] mb-4`
 
 ---
+
+## Phase 2 Content-Image Rule — Brian Vetter Portrait Exception
+
+**Decision (locked 2026-05-16):** Brian Vetter's portrait (`public/images/on-point-installations-brian-vetter.jpg`) is rendered inline in the "Our Beginnings" section of `/about/`, despite the Phase 2 content-image rule that restricts inline images on supporting pages.
+
+**Rationale:** The Phase 2 content-image rule guards against a specific failure mode: job-site and installation photos that fail on composition, source quality, or relevance when real On Point job-site photography is not yet available. That failure mode does not apply to a portrait Brian himself provides. Person photos in person-context sections are not what the rule was written to block.
+
+**Scope of exception:** Brian Vetter portrait on `/about/` only. The rule remains in force for all job-site and installation photos across all service and supporting pages until Brian delivers the vetted photo set.
+
+**Implementation:** `max-w-sm mx-auto py-8`, `sizes="(min-width: 640px) 384px, 100vw"`, no `priority` prop (below the fold), native 1200x1200 dimensions declared, `quality={85}`.
