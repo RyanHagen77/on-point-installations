@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
-import { SITE } from '@/lib/constants';
+import { SITE, NAP_SCHEMA } from '@/lib/constants';
 import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
@@ -53,6 +53,29 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         areaServed={["Chicago", "Schaumburg", "Naperville", "Waukegan", "Wauconda"]}
       />
       <FAQSchema items={FAQS} />
+      {/* LocalBusiness schema for Chicago service focus.
+          @id "#chicago-localbusiness" distinguishes from homepage "#localbusiness" block.
+          Per Prompt 11 mandate (docs/seo-audit/prompt-11-service-city-page-builder.md). */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "ProfessionalService"],
+            "@id": `${SITE.domain}/#chicago-localbusiness`,
+            name: SITE.name,
+            url: `${SITE.domain}/services/commercial-furniture-installation-chicago-il/`,
+            telephone: SITE.phoneHref.replace('tel:', ''),
+            address: NAP_SCHEMA,
+            description: "Commercial furniture installation in Chicago, IL. Non-union crew serving the Chicagoland metro area since 2010.",
+            areaServed: {
+              "@type": "City",
+              name: "Chicago",
+              containedInPlace: { "@type": "State", name: "Illinois" },
+            },
+          }),
+        }}
+      />
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
@@ -68,9 +91,10 @@ export default function CommercialFurnitureInstallationChicagoPage() {
           imageWidth={1920}
           imageHeight={1280}
         >
-          {/* Ported from onpointinstallations.com/services/commercial-office-furniture-installation-chicago-il/, fetched 2026-05-15; rewritten for voice: removed AI tell and trailing tricolon */}
+          {/* Verbatim from Prompt 11 Chicago CFI opening paragraph (docs/seo-audit/prompt-11-service-city-page-builder.md).
+              Voice edits: both em dashes to commas; AI-tell opener replaced with "On a..."; 12-15 hyphen per hook. */}
           <p className="text-[#292929] leading-relaxed mb-4">
-            On Point Installations has been installing commercial office furniture across the Chicago metro since 2010. We assemble and install from leading commercial manufacturers. The crew is fully insured and non-union.
+            When a Chicago business needs commercial furniture installation done right, on deadline, on budget, and without crew problems on the floor, On Point Installations is the team facilities directors and project managers call. We&apos;ve completed approximately 11,000 commercial furniture installation projects since 2010, and Chicago is at the center of our service territory. On a new Loop high-rise buildout, a River North reconfiguration, or a full furniture rollout across a Chicago campus, our 12-15 person crew handles it. We&apos;re on-site when we say we&apos;ll be, and we don&apos;t leave until the job is done right.
           </p>
           <p className="text-[#535353] leading-relaxed mb-6">
             From{' '}
@@ -141,7 +165,24 @@ export default function CommercialFurnitureInstallationChicagoPage() {
           </div>
         </section>
 
-        {/* ── H2 #2: CUBICLE INSTALLATION ─────────────────────────────── */}
+        {/* ── H2 #2: WHAT'S INCLUDED IN EVERY INSTALLATION ─────────────── */}
+        {/* Verbatim from Prompt 11 SERVICE DETAILS block (docs/seo-audit/prompt-11-service-city-page-builder.md).
+            Em-dash substitution on para 2: manufacturers [em-dash] list [em-dash] -> colon + period split. */}
+        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
+              What&apos;s Included in Every Installation
+            </h2>
+            <p className="text-[#292929] leading-relaxed mb-4">
+              On Point Installations provides end-to-end commercial furniture installation for Chicago businesses. Our core service covers the full scope of what a typical office build or reconfiguration requires: systems furniture and panel system installation, cubicle assembly and configuration, workstation and benching setup, private office furniture placement, conference room builds, and punch-list walk-throughs before we call the job complete. We work from dealer-provided installation drawings and coordinate directly with project managers, general contractors, and building management to hit your floor date without surprises.
+            </p>
+            <p className="text-[#292929] leading-relaxed">
+              We&apos;re experienced with all major commercial furniture manufacturers: Knoll, Haworth, Herman Miller, Steelcase, AIS, KI, Allsteel, National Office Furniture, and Teknion. We can work from CAD-generated installation plans or adapt in the field when conditions change. Our team is non-union, which gives Chicago clients the flexibility to schedule installations without the overtime and crew-size constraints that come with union-only jobs. We also provide commercial furniture delivery and setup, asset tracking, and furniture storage if your Chicago project requires staged deliveries or phased installation schedules.
+            </p>
+          </div>
+        </section>
+
+        {/* ── H2 #3: CUBICLE INSTALLATION ─────────────────────────────── */}
         {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section id="cubicle-installation" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">

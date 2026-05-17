@@ -92,7 +92,16 @@ All FAQ sections on service pages without a live-site FAQ equivalent were drafte
 
 ---
 
-### Money Page — 3 Absorbed H2 Sections (Drafted)
+### Money Page — Dual Brand Lists
+
+**Action needed:** Pending Brian review on whether to consolidate.
+**Detail:** Chicago money page has two brand lists: an inline 9-brand list in the "What's Included in Every Installation" section (Knoll, Haworth, Herman Miller, Steelcase, AIS, KI, Allsteel, National Office Furniture, Teknion — sourced from Prompt 11 SERVICE DETAILS) and a comprehensive 15-brand grid in the "Furniture Brands We Install" H2 (verbatim from live site). The inline list reads as contextual prose; the grid is a brand-wall trust signal. They serve different purposes but both lists live on the same page.
+**Owner:** Brian Vetter
+**Phase:** Review before Phase 5 launch prep
+
+---
+
+## Money Page — 3 Absorbed H2 Sections (Drafted)
 **Action needed:** Brian to review and approve or revise three drafted content sections.
 **Detail:** The Office Installations page absorbs three audit-only URLs as H2 sections. No direct live-site equivalent exists for any of the three — the live Office Installations page does not break these out as separate sections. All three were drafted in Brian's contractor voice.
 **Sections:**
