@@ -154,6 +154,16 @@ Both URLs are wired into `/reviews/` page. Brian should verify that the Place ID
 
 ---
 
+### Naperville CFI Page — City-Specific Review Quote Needed
+
+**Action needed:** Brian to provide a real Google review from a Naperville, IL customer.
+**Detail:** The Naperville CFI page (`/services/commercial-furniture-installation-naperville-il/`) ships with a placeholder in the social proof block: `"[REVIEW PLACEHOLDER: replace with real review from a Naperville, IL customer when available]"`. Attribution stored as Unicode em dash escape (`—`), renders correctly at runtime. Placeholder must be replaced before Phase 5 launch.
+**Owner:** Brian Vetter
+**Affects:** `/services/commercial-furniture-installation-naperville-il/` — social proof block
+**Phase:** Resolve before Phase 5 launch prep
+
+---
+
 ### Schaumburg CFI Page — City-Specific Review Quote Needed
 
 **Action needed:** Brian to provide a real Google review from a Schaumburg, IL customer.

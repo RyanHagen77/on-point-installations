@@ -7,7 +7,7 @@ Items that cannot be completed in Phase 2 because they depend on Phase 3 pages t
 ## Phase 3 Retrofit Required on Money Page
 
 **Page:** `/services/commercial-furniture-installation-chicago-il/`
-**When:** In the same commit that brings the Naperville city page online (last of the four-city Phase 3 priority order). At that point all four cities are live and both audit-locked anchors resolve to real content. Do not add these links before Naperville ships.
+**Status: READY TO EXECUTE** — Naperville CFI is now live. Execute in the next commit after Naperville visual pass clears. Both audit-locked anchor destinations are live.
 **Action:** Add two internal links to the money page body copy
 
 **Links to add:**
@@ -31,22 +31,23 @@ Note: the anchor text is slightly awkward as inline text in a sentence. Acceptab
 ## Phase 3 Retrofit Required on /about/
 
 **Page:** `/about/`
-**When:** After Schaumburg CFI is live (it is now live as of this commit).
-**Action:** Add one internal link to the service territory paragraph
+**Status: READY TO EXECUTE** — both Schaumburg and Naperville CFI pages are now live.
+**Action:** Add two internal links to the service territory paragraph
 
-**Link to add:**
-- Anchor: `Schaumburg office furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/`
+**Links to add:**
+- Anchor: `Schaumburg office furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/` (Prompt 11 Schaumburg INTERNAL LINKING)
+- Anchor: `Naperville office furniture installation` → `/services/commercial-furniture-installation-naperville-il/` (Prompt 11 Naperville INTERNAL LINKING)
 
-**Anchor text is audit-locked (Prompt 11 INTERNAL LINKING OPPORTUNITIES). Do not paraphrase.**
+**Anchor text is audit-locked. Do not paraphrase.**
 
-**Suggested placement:** In the paragraph on /about/ that covers On Point's geographic reach — where the page describes the team's service territory.
+**Suggested placement:** In the paragraph on /about/ that covers On Point's geographic reach — where the page describes the team's service territory. Both can land in the same sentence or consecutive sentences.
 
 ---
 
 ## Phase 3 Retrofit Required on /project-gallery/
 
 **Page:** `/project-gallery/`
-**When:** After Schaumburg CFI is live (it is now live as of this commit).
+**Status: READY TO EXECUTE** — Schaumburg CFI is live.
 **Action:** Add one internal link to the gallery intro copy
 
 **Link to add:**
@@ -55,6 +56,21 @@ Note: the anchor text is slightly awkward as inline text in a sentence. Acceptab
 **Anchor text is audit-locked (Prompt 11 INTERNAL LINKING OPPORTUNITIES). Do not paraphrase.**
 
 **Suggested placement:** In the gallery intro copy — note that On Point's project portfolio includes suburban Chicagoland markets including Schaumburg.
+
+---
+
+## Phase 3 Retrofit Required on Schaumburg CFI Page
+
+**Page:** `/services/commercial-furniture-installation-schaumburg-il/`
+**Status: READY TO EXECUTE** — Naperville CFI is now live. Execute after Naperville visual pass clears.
+**Action:** Add one internal link to the service area paragraph
+
+**Link to add:**
+- Anchor: `commercial furniture installation near Naperville` → `/services/commercial-furniture-installation-naperville-il/`
+
+**Anchor text is audit-locked (Prompt 11 Naperville INTERNAL LINKING OPPORTUNITIES). Do not paraphrase.**
+
+**Suggested placement:** In the service details section — where the Schaumburg page mentions serving the broader Chicagoland area, add a sentence noting On Point serves the full I-88/Route 59 corridor and link to the Naperville page.
 
 ---
 
