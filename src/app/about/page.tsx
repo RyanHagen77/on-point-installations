@@ -36,7 +36,7 @@ export default function AboutPage() {
             src="/images/on-point-installations-team-warehouse.jpg"
             alt="On Point Installations non-union crew at the Wauconda, IL warehouse and office facility"
             fill
-            className="object-cover object-center"
+            className="object-cover object-[65%_center] md:object-center"
             priority
             quality={85}
             sizes="100vw"
@@ -89,7 +89,7 @@ export default function AboutPage() {
                   alt="Brian Vetter, founder and owner of On Point Installations, Inc."
                   width={1200}
                   height={1200}
-                  className="w-full max-h-[400px] md:max-h-none object-cover object-center rounded-sm shadow-md"
+                  className="w-full max-h-[400px] md:max-h-none object-cover object-top rounded-sm shadow-md"
                   sizes="(min-width: 768px) 40vw, 100vw"
                   quality={85}
                 />

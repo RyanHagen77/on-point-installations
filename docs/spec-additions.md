@@ -156,6 +156,19 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
+## ContactForm Project Type Dropdown — Supersedes CLAUDE.md Spec
+
+**Added:** 2026-05-16
+**Status:** Approved; CLAUDE.md updated to match.
+**Location:** `src/app/contact/page.tsx` — ContactForm component
+**Present on live site:** Live site has a plain CF7 form with no project type dropdown.
+**Rationale:** ContactForm project type dropdown supersedes the stale list in CLAUDE.md /contact/ spec. Three options from the original spec (Cubicle Installation, Systems Furniture, Delivery & Setup) were absorbed into money page H2s during Phase 2 and no longer exist as standalone services. Dropdown reflects shipped information architecture.
+
+**Correct options (8 services + Other):**
+Commercial Furniture Installation / Office Relocation / Warehousing / Space Planning / Electrical & Voice/Data / Artwork Installation / Window Treatment / Cubicle Cleaning / Other
+
+---
+
 ## About Page — "The On Point Advantage" Heading Simplified
 
 **Added:** 2026-05-16

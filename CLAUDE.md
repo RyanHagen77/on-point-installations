@@ -423,7 +423,7 @@ Build the ContactForm component in Phase 2 for the /contact/ page:
 - Company (required — this is B2B)
 - Phone (required)
 - Email (required)
-- Project type (dropdown: Commercial Furniture Installation / Cubicle Installation / Office Relocation / Systems Furniture / Delivery & Setup / Space Planning / Other)
+- Project type (dropdown: Commercial Furniture Installation / Office Relocation / Warehousing / Space Planning / Electrical & Voice/Data / Artwork Installation / Window Treatment / Cubicle Cleaning / Other)
 - City / Project location (text — important for routing)
 - Project details (textarea)
 - Submit button: "Send Message" or "Request a Free Quote"
