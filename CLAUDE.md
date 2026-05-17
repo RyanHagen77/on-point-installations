@@ -407,6 +407,11 @@ interface FAQSchemaProps {
 
 The FAQAccordion component should accept the same `faqs` array and render the visible accordion UI. The FAQSchema component renders the invisible JSON-LD. Both go on the same page — one for users, one for Google.
 
+**Duplicate JSON-LD traps — enforce on every schema-bearing page:**
+
+- **ServiceHero renders Breadcrumb, which renders BreadcrumbSchema.** Pages using ServiceHero must not also render `<BreadcrumbSchema>` explicitly — doing so produces duplicate BreadcrumbList JSON-LD blocks. Render `<BreadcrumbSchema>` explicitly only on pages that do not use ServiceHero (e.g. /contact/, /reviews/ once built without ServiceHero).
+- **FAQAccordion does not render FAQSchema.** FAQSchema is rendered at the page level. Do not add `<FAQSchema>` inside FAQAccordion or any other UI component; the page-level render is the single source of truth.
+
 ---
 
 ## CONTACT FORM

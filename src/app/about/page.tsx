@@ -217,9 +217,9 @@ export default function AboutPage() {
             </div>
 
             <p className="mt-10 text-[#535353]">
-              Don&apos;t just take our word for it.{' '}
+              Don&apos;t just take our word for it:{' '}
               <Link href="/reviews/" className="text-[#800000] underline hover:text-[#5A0000]">
-                See reviews
+                see reviews
               </Link>{' '}
               from clients we&apos;ve worked with.
             </p>

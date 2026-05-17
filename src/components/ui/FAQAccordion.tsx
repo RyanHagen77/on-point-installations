@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import FAQSchema from '@/components/schema/FAQSchema';
+// FAQSchema is rendered at the page level. Do not render it here; doing so
+// produces duplicate FAQPage JSON-LD blocks alongside the explicit page render.
 
 interface FAQItem {
   question: string;
@@ -18,7 +19,6 @@ export default function FAQAccordion({ items, heading = 'Frequently Asked Questi
 
   return (
     <section>
-      <FAQSchema items={items} />
       <h2 className="text-2xl font-bold text-[#800000] mb-6">{heading}</h2>
       <div className="divide-y divide-gray-200 border border-gray-200 rounded-lg overflow-hidden">
         {items.map((item, index) => (
