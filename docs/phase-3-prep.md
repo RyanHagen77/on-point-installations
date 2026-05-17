@@ -104,3 +104,59 @@ These are internal links specified in the Phase 2 audit that point to blog posts
 | `/services/commercial-space-planning-chicago-il/` | `what to do when office furniture doesn't fit` | `/blog/what-to-do-when-office-furniture-doesnt-fit/` |
 
 **Note on placement for the money page blog links:** The cubicle and systems furniture blog links are specified in the retired audit URLs for those service pages. Their natural home is in the corresponding H2 intro paragraph on the money page — a single sentence like "Learn more about [what is cubicle installation](/blog/what-is-cubicle-installation/)." Add both after the H2 intro copy, before the feature cards.
+
+---
+
+## Deferred / Carryover Queue (Phase 3 Close — 2026-05-17)
+
+Phase 3 closed at commit `93d3712`. Items below were deferred from Phase 3 scope. Carry into Phase 4 or a dedicated later phase.
+
+---
+
+### Waukegan CFI Page — Deferred (Audit Source Gap)
+
+**Page:** `/services/commercial-furniture-installation-waukegan-il/`
+**Why deferred:** Prompt 11 contains no full spec block for Waukegan — only a summary table entry (URL slug, target keyword, volume/competition/timeline). Building without a Prompt 11 source block would require drafting full body copy (opening paragraph, WHY CHOOSE US, SERVICE DETAILS, 3 FAQs) outside the audit, inconsistent with how Schaumburg and Naperville were built.
+**Prompt 11 table data (only what exists):**
+- Slug: `/services/commercial-furniture-installation-waukegan-il/`
+- Target keyword: `commercial furniture installation Waukegan IL`
+- Volume: 70–140, Low competition, 45–60 days to results
+- Priority: 🔴 in table / 🟢 in Prompt 11 narrative (contradiction within Prompt 11)
+**To unblock:** (a) Brian interview yields Lake County / North Shore market context and voice-checked copy; or (b) supplementary audit deliverable from IntegrePro fills in the missing spec block.
+**When ready:** Use `CityServicePage` template + new data file at `src/data/cityPages/waukegan-il.ts`. Same pattern as Schaumburg and Naperville.
+
+---
+
+### Wauconda CFI Page — Deferred (Audit Source Gap + Framing Decision)
+
+**Page:** `/services/commercial-furniture-installation-wauconda-il/`
+**Why deferred:** Same audit source gap as Waukegan (Prompt 11 table entry only, no body copy). Additionally, a framing decision must be made before drafting:
+- **Phase3_Kickoff framing:** Wauconda as HQ city — "Office Furniture Installer Wauconda IL" home-base positioning. Different title, H1, target keyword, and body angle than the standard service-area template.
+- **Prompt 11 framing:** Standard service-area page matching Schaumburg/Naperville pattern.
+These produce different SEO positioning and cannot be reversed cheaply after the page is indexed.
+**To unblock:** Ryan + Brian conversation on framing, then resolve audit source gap via same two paths as Waukegan.
+
+---
+
+### /service-area/[city]-il/ Stubs — Scoping Required
+
+**Pages:** `/service-area/chicago-il/`, `/service-area/schaumburg-il/`, `/service-area/naperville-il/`, `/service-area/waukegan-il/`, `/service-area/wauconda-il/`
+**Why deferred:** These route stubs exist from Phase 1 scaffolding. Every city CFI page links to its service-area hub (e.g., "our Naperville service area" links to `/service-area/naperville-il/`). All five stubs are currently empty. This is the largest remaining structural gap in the site.
+**Note:** The stubs were never in Phase 3 scope and were not built. The city CFI pages link to them correctly — the stubs just need content.
+**To unblock:** Scope into Phase 4 or a dedicated service-area phase. Content for each stub likely overlaps with the city CFI pages; this may be a thin-content pass rather than a full build.
+
+---
+
+### Remaining Phase 3 Retrofit Items — Not Yet Executed
+
+These items from the Phase 3 retrofit queue above were not executed in Phase 3 (either deferred pending blog posts, or pending Phase 4 work):
+
+| Item | Status | Blocking on |
+|---|---|---|
+| /about/ retrofit — Schaumburg + Naperville anchor links | **READY TO EXECUTE** | Nothing. Both city pages live. |
+| /project-gallery/ retrofit — Schaumburg anchor link | **READY TO EXECUTE** | Nothing. Schaumburg page live. |
+| Schaumburg CFI retrofit — Naperville anchor link | **READY TO EXECUTE** | Nothing. Naperville page live. |
+| Space Planning retrofit — `what to do when office furniture doesn't fit` | Blocked | Blog post not yet built |
+| Money page blog links (cubicle + systems furniture) | Blocked | Blog posts not yet built |
+
+The three "READY TO EXECUTE" retrofits above were in scope for Phase 3 but were not included in the Phase 3 close commit. Execute as the first commits of Phase 4, or as a small standalone batch before Phase 4 scoping begins.
