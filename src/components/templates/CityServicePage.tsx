@@ -45,7 +45,7 @@ export default function CityServicePage({
         name={`Commercial Furniture Installation in ${cityState}`}
         description={serviceDescription}
         url={canonicalUrl}
-        areaServed={[city, 'Illinois']}
+        areaServed={city}
       />
       <FAQSchema items={faqs} />
       {/* LocalBusiness schema for city-specific service focus.
