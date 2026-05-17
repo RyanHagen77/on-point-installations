@@ -131,13 +131,13 @@ Items in this file are features or content present in the new build that do NOT 
 
 ---
 
-## About Page — Team Warehouse Hero Removed (Parity Correction)
+## About Page — Team Warehouse Hero (Restored After Initial Removal)
 
 **Added:** 2026-05-16
-**Status:** Correction applied; no action needed from Brian.
+**Status:** Restored; no action needed from Brian.
 **Location:** `src/app/about/page.tsx`
 **Present on live site:** The live /about/ page has no hero photo. The page opens with the stats block and then Our Beginnings with the Brian portrait as a section anchor.
-**What changed:** An earlier build included the team warehouse photo (`on-point-installations-team-warehouse.jpg`) as a ServiceHero on /about/, based on the CLAUDE.md asset list note ("Team / about hero: listed as available"). That was an asset inventory, not a spec instruction. Live-site parity rule takes precedence. The hero was removed; the page now opens with H1 + intro text, then the maroon stats bar, matching the live site's page structure. Asset is retained on disk for future use (Phase 3 service area hub or team page).
+**What changed:** Team warehouse hero on /about/ restored after initial removal. Live site renders no hero on /about/, but team warehouse photo is a vetted Brian-provided asset that does brand work for an About page. Rebuilt as full-bleed hero with H1 overlay (vs. the original constrained 2-column treatment). Stats bar reduced from 4 to 3 stats to avoid duplicating the team-size proof point now shown in the hero photo.
 
 ---
 

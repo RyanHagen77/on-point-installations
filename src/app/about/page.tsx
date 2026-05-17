@@ -5,7 +5,7 @@ import { SITE } from '@/lib/constants';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
 import PersonSchema from '@/components/schema/PersonSchema';
-// BreadcrumbSchema is rendered by Breadcrumb -> BreadcrumbSchema.
+// BreadcrumbSchema is rendered by the Breadcrumb component above the hero.
 // Do not add a second BreadcrumbSchema here; it would produce duplicate JSON-LD.
 
 export const metadata = generatePageMetadata({
@@ -20,41 +20,55 @@ export default function AboutPage() {
       <PersonSchema />
       <main>
 
-        {/* ── PAGE HEADER ──────────────────────────────────────────────── */}
-        {/* Live site: no hero photo on /about/. Page opens with stats + biographical content.
-            Team warehouse asset retained on disk for future use (Phase 3 hub or team page). */}
-        {/* Verbatim intro from onpointinstallations.com/about/, fetched 2026-05-16 */}
-        <div className="bg-white border-b border-[#E9E9E9] py-8 px-4">
+        {/* ── BREADCRUMB (above hero, standard white strip) ─────────────── */}
+        <div className="bg-white border-b border-[#E9E9E9] py-3 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <Breadcrumb items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
-            <h1 className="text-[28px] sm:text-[36px] lg:text-[42px] font-bold text-[#800000] mt-4 mb-3">
-              About On Point Installations
-            </h1>
-            <p className="text-[#292929] leading-relaxed">
-              On Point Installations, Inc. is a non-union commercial furniture installation company serving the Chicagoland Area.
-            </p>
           </div>
         </div>
 
-        {/* ── STATS BAR ────────────────────────────────────────────────── */}
+        {/* ── FULL-BLEED HERO ──────────────────────────────────────────── */}
+        {/* Team warehouse photo restored after initial removal -- see docs/spec-additions.md.
+            Live site has no hero, but this is a vetted Brian-provided asset that does brand
+            work a text-only header cannot. Rebuilt as full-bleed with H1 overlay. */}
+        <section className="relative w-full h-[50vh] md:h-[55vh] lg:h-[520px] overflow-hidden">
+          <Image
+            src="/images/on-point-installations-team-warehouse.jpg"
+            alt="On Point Installations non-union crew at the Wauconda, IL warehouse and office facility"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={85}
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+          <div className="absolute inset-0 flex flex-col justify-end px-4 pb-8 sm:pb-12">
+            <div className="max-w-[1320px] mx-auto w-full sm:px-6 lg:px-8">
+              <h1 className="text-white text-[28px] sm:text-[38px] lg:text-[48px] font-bold leading-tight drop-shadow-md">
+                About On Point Installations
+              </h1>
+              <p className="text-white/85 text-sm sm:text-base mt-2 max-w-xl drop-shadow">
+                On Point Installations, Inc. is a non-union commercial furniture installation company serving the Chicagoland Area.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── STATS BAR (3 stats [em-dash] crew size shown in hero photo) ── */}
         <section className="bg-[#800000] py-10 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <dl className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center text-white">
+            <dl className="grid grid-cols-3 gap-4 text-center text-white">
               <div>
-                <dt className="text-3xl sm:text-4xl font-bold">{SITE.stats.projectsCompleted}</dt>
-                <dd className="mt-1 text-sm sm:text-base text-white/80">Completed Projects</dd>
+                <dt className="text-2xl sm:text-3xl lg:text-4xl font-bold">{SITE.stats.projectsCompleted}</dt>
+                <dd className="mt-1 text-xs sm:text-sm text-white/80">Completed Projects</dd>
               </div>
               <div>
-                <dt className="text-3xl sm:text-4xl font-bold">130+</dt>
-                <dd className="mt-1 text-sm sm:text-base text-white/80">Years Combined Experience</dd>
+                <dt className="text-2xl sm:text-3xl lg:text-4xl font-bold">15+</dt>
+                <dd className="mt-1 text-xs sm:text-sm text-white/80">Years in Business</dd>
               </div>
               <div>
-                <dt className="text-3xl sm:text-4xl font-bold">{SITE.stats.employees}</dt>
-                <dd className="mt-1 text-sm sm:text-base text-white/80">Person Crew</dd>
-              </div>
-              <div>
-                <dt className="text-3xl sm:text-4xl font-bold">{SITE.reviews.rating.toFixed(1)}&#9733;</dt>
-                <dd className="mt-1 text-sm sm:text-base text-white/80">{SITE.reviews.count} Google Reviews</dd>
+                <dt className="text-2xl sm:text-3xl lg:text-4xl font-bold">{SITE.reviews.rating.toFixed(1)}&#9733;</dt>
+                <dd className="mt-1 text-xs sm:text-sm text-white/80">{SITE.reviews.count} Google Reviews</dd>
               </div>
             </dl>
           </div>
