@@ -7,24 +7,14 @@ Items that cannot be completed in Phase 2 because they depend on Phase 3 pages t
 ## Phase 3 Retrofit Required on Money Page
 
 **Page:** `/services/commercial-furniture-installation-chicago-il/`
-**Status: READY TO EXECUTE** — Naperville CFI is now live. Execute in the next commit after Naperville visual pass clears. Both audit-locked anchor destinations are live.
-**Action:** Add two internal links to the money page body copy
+**Status: COMPLETE (2026-05-17)**
+**Action:** Added two internal links to the "What's Included in Every Installation" section as a closing paragraph.
 
-**Links to add:**
-- Anchor: `Schaumburg furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/`
-- Anchor: `Naperville furniture installation` → `/services/commercial-furniture-installation-naperville-il/`
+**Links added:**
+- Anchor: `commercial furniture installation in Schaumburg` → `/services/commercial-furniture-installation-schaumburg-il/`
+- Anchor: `commercial furniture installation in Naperville` → `/services/commercial-furniture-installation-naperville-il/`
 
-**Anchor text is audit-locked. Do not paraphrase.**
-
-**Suggested placement:** In the existing paragraph that mentions serving the greater Chicagoland area, or in the FAQ answer for "What areas of Chicago and the suburbs do you serve?" (the last FAQ item). Either location is appropriate; the FAQ answer is the lower-risk edit since it doesn't require restructuring body copy.
-
-**Example placement in FAQ answer (current text to modify):**
-> "We work regularly in Schaumburg, Naperville, Waukegan, and Wauconda..."
-
-Can become:
-> "We work regularly in [Schaumburg furniture installation](/services/commercial-furniture-installation-schaumburg-il/), [Naperville furniture installation](/services/commercial-furniture-installation-naperville-il/), Waukegan, and Wauconda..."
-
-Note: the anchor text is slightly awkward as inline text in a sentence. Acceptable per audit spec; do not change the anchor text to make it flow better.
+**Anchor text correction note:** Earlier entries in this file (and the Phase 3 kickoff doc it derived from) recorded the anchor texts as `Schaumburg furniture installation` and `Naperville furniture installation`. Corrected to Prompt 11 verbatim per precedence rule. See `docs/spec-additions.md`.
 
 ---
 

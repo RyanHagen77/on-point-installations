@@ -179,6 +179,18 @@ export default function CommercialFurnitureInstallationChicagoPage() {
             <p className="text-[#292929] leading-relaxed">
               We&apos;re experienced with all major commercial furniture manufacturers: Knoll, Haworth, Herman Miller, Steelcase, AIS, KI, Allsteel, National Office Furniture, and Teknion. We can work from CAD-generated installation plans or adapt in the field when conditions change. Our team is non-union, which gives Chicago clients the flexibility to schedule installations without the overtime and crew-size constraints that come with union-only jobs. We also provide commercial furniture delivery and setup, asset tracking, and furniture storage if your Chicago project requires staged deliveries or phased installation schedules.
             </p>
+            {/* Audit-locked anchor links per Prompt 11 Internal Linking Opportunities */}
+            <p className="text-[#292929] leading-relaxed mt-4">
+              On Point serves the I-90 corridor through Schaumburg and the DuPage County market in Naperville. We handle{' '}
+              <Link href="/services/commercial-furniture-installation-schaumburg-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+                commercial furniture installation in Schaumburg
+              </Link>{' '}
+              and{' '}
+              <Link href="/services/commercial-furniture-installation-naperville-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+                commercial furniture installation in Naperville
+              </Link>{' '}
+              regularly, with same-day quotes and crews on-site within the week.
+            </p>
           </div>
         </section>
 

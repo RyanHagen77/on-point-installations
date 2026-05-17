@@ -186,3 +186,22 @@ Commercial Furniture Installation / Office Relocation / Warehousing / Space Plan
 **Present on live site:** The live site uses "The On Point A++++++ Advantage" as the heading.
 **Rationale:** The "A++++++++" suffix is a WordPress-era marketing affectation that renders poorly in a clean typographic context. The six A-principles and their descriptions are ported verbatim; only the heading string changed.
 **Source authorization:** Approved in outline review session 2026-05-16.
+
+---
+
+## Money Page Retrofit — Anchor Text Corrected to Prompt 11 Verbatim
+
+**Added:** 2026-05-17
+Money page retrofit anchor text corrected to Prompt 11 verbatim (`commercial furniture installation in Schaumburg` / `commercial furniture installation in Naperville`) from earlier `phase-3-prep.md` draft values (`Schaumburg furniture installation` / `Naperville furniture installation`). The draft values originated in the Phase 3 kickoff doc, which was a non-authoritative derivative of the audit prompts. Prompt 11 wins per precedence rule.
+
+---
+
+## Naperville CFI Page — Opening Paragraph Word Order Smoothing
+
+**Added:** 2026-05-17
+**Status:** Shipped; one-off smoothing, not a general permission.
+**Location:** `src/data/cityPages/naperville-il.ts` — `openingParagraph` field
+**Source:** Prompt 11, "PAGE: COMMERCIAL FURNITURE INSTALLATION + NAPERVILLE" opening paragraph
+**Change:** Prompt 11 reads "downtown Naperville's office market." The data file reads "Naperville's downtown office market." Semantically equivalent; the data file phrasing reads more naturally.
+**Rationale:** Minor word-order smoothing that doesn't alter meaning or keyword coverage. The substitution was flagged in session review and approved.
+**Constraint — going forward:** This substitution does not authorize general voice-preference departures from Prompt 11 verbatim copy on Waukegan, Wauconda, or future city pages. Prompt 11 is verbatim source for city page copy. Substitutions on future pages require an explicit hook violation or voice-rule violation (em dash, banned phrase, etc.) as justification — not smoothing preference. Any non-rule-required departure must be flagged for review before the outline is approved.
