@@ -2,10 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import ServiceHero from '@/components/ui/ServiceHero';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
 import PersonSchema from '@/components/schema/PersonSchema';
-// BreadcrumbSchema is rendered by ServiceHero -> Breadcrumb -> BreadcrumbSchema.
+// BreadcrumbSchema is rendered by Breadcrumb -> BreadcrumbSchema.
 // Do not add a second BreadcrumbSchema here; it would produce duplicate JSON-LD.
 
 export const metadata = generatePageMetadata({
@@ -20,23 +20,21 @@ export default function AboutPage() {
       <PersonSchema />
       <main>
 
-        {/* ── HERO ─────────────────────────────────────────────────────── */}
+        {/* ── PAGE HEADER ──────────────────────────────────────────────── */}
+        {/* Live site: no hero photo on /about/. Page opens with stats + biographical content.
+            Team warehouse asset retained on disk for future use (Phase 3 hub or team page). */}
         {/* Verbatim intro from onpointinstallations.com/about/, fetched 2026-05-16 */}
-        <ServiceHero
-          breadcrumbItems={[
-            { name: 'Home', url: '/' },
-            { name: 'About', url: '/about/' },
-          ]}
-          h1="About On Point Installations"
-          imageSrc="/images/on-point-installations-team-warehouse.jpg"
-          imageAlt="On Point Installations non-union crew at the Wauconda, IL warehouse and office facility"
-          imageWidth={2338}
-          imageHeight={1122}
-        >
-          <p className="text-[#292929] leading-relaxed mb-6">
-            On Point Installations, Inc. is a non-union commercial furniture installation company serving the Chicagoland Area.
-          </p>
-        </ServiceHero>
+        <div className="bg-white border-b border-[#E9E9E9] py-8 px-4">
+          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+            <Breadcrumb items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
+            <h1 className="text-[28px] sm:text-[36px] lg:text-[42px] font-bold text-[#800000] mt-4 mb-3">
+              About On Point Installations
+            </h1>
+            <p className="text-[#292929] leading-relaxed">
+              On Point Installations, Inc. is a non-union commercial furniture installation company serving the Chicagoland Area.
+            </p>
+          </div>
+        </div>
 
         {/* ── STATS BAR ────────────────────────────────────────────────── */}
         <section className="bg-[#800000] py-10 px-4">
@@ -55,7 +53,7 @@ export default function AboutPage() {
                 <dd className="mt-1 text-sm sm:text-base text-white/80">Person Crew</dd>
               </div>
               <div>
-                <dt className="text-3xl sm:text-4xl font-bold">{SITE.reviews.rating}&#9733;</dt>
+                <dt className="text-3xl sm:text-4xl font-bold">{SITE.reviews.rating.toFixed(1)}&#9733;</dt>
                 <dd className="mt-1 text-sm sm:text-base text-white/80">{SITE.reviews.count} Google Reviews</dd>
               </div>
             </dl>
@@ -77,7 +75,7 @@ export default function AboutPage() {
                   alt="Brian Vetter, founder and owner of On Point Installations, Inc."
                   width={1200}
                   height={1200}
-                  className="w-full h-auto rounded-sm shadow-md"
+                  className="w-full max-h-[400px] md:max-h-none object-cover object-center rounded-sm shadow-md"
                   sizes="(min-width: 768px) 40vw, 100vw"
                   quality={85}
                 />
