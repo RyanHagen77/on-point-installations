@@ -36,7 +36,7 @@ export default function AboutPage() {
             src="/images/on-point-installations-team-warehouse.jpg"
             alt="On Point Installations non-union crew at the Wauconda, IL warehouse and office facility"
             fill
-            className="object-cover object-[65%_center] md:object-center"
+            className="object-cover object-[35%_center] md:object-center"
             priority
             quality={85}
             sizes="100vw"
