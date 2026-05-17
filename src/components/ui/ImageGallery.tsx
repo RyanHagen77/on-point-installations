@@ -40,7 +40,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
                 src={images[lightboxIndex].src}
                 alt={images[lightboxIndex].alt}
                 fill
-                quality={90}
+                quality={85}
                 sizes="(min-width: 896px) 896px, 100vw"
                 className="object-contain"
               />
