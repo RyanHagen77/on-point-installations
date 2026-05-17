@@ -108,4 +108,4 @@ Their audit-specified keywords and FAQ content are preserved inside the Office I
 
 **Scope of exception:** Brian Vetter portrait on `/about/` only. The rule remains in force for all job-site and installation photos across all service and supporting pages until Brian delivers the vetted photo set.
 
-**Implementation:** `max-w-sm mx-auto py-8`, `sizes="(min-width: 640px) 384px, 100vw"`, no `priority` prop (below the fold), native 1200x1200 dimensions declared, `quality={85}`.
+**Implementation:** 2-column responsive grid (`grid md:grid-cols-[2fr_3fr] gap-8 md:gap-12 items-start`) matching the live-site layout. Portrait fills the left column; "Our Beginnings" heading + body + list occupy the right column. Columns stack on mobile (image above text). `sizes="(min-width: 768px) 40vw, 100vw"`, no `priority` prop (below the fold), native 1200x1200 dimensions declared, `quality={85}`. Note: an initial implementation used `max-w-sm mx-auto` centered-inline placement (the inline content-image pattern), which was incorrect for this use case. Corrected to 2-column section-anchor layout to match the live site.

@@ -64,40 +64,49 @@ export default function AboutPage() {
 
         {/* ── OUR BEGINNINGS ───────────────────────────────────────────── */}
         {/* Verbatim from onpointinstallations.com/about/, fetched 2026-05-16; "nearly 11,000" updated to "11,000+" per CLAUDE.md */}
+        {/* Portrait: scoped exception to Phase 2 content-image rule -- 2-col section-anchor layout matching live site.
+            See docs/design-decisions.md */}
         <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">Our Beginnings</h2>
-            <p className="text-[#292929] leading-relaxed mb-4">
-              After serving as a union installer for many years, Brian Vetter packed up his toolbox and ventured out on his own. That was in 2010. Since then, On Point Installations has grown to include a 15,000+ square foot office complex and commercial furniture storage warehouse. Brian and his team have completed 11,000+ projects.
-            </p>
-            {/* Portrait: scoped exception to Phase 2 content-image rule -- person photo in person-context section.
-                See docs/design-decisions.md */}
-            <div className="max-w-sm mx-auto py-8">
-              <Image
-                src="/images/on-point-installations-brian-vetter.jpg"
-                alt="Brian Vetter, founder and owner of On Point Installations, Inc."
-                width={1200}
-                height={1200}
-                className="w-full h-auto rounded-sm shadow-md"
-                sizes="(min-width: 640px) 384px, 100vw"
-                quality={85}
-              />
+            <div className="grid md:grid-cols-[2fr_3fr] gap-8 md:gap-12 items-start">
+
+              {/* Left column: portrait */}
+              <div>
+                <Image
+                  src="/images/on-point-installations-brian-vetter.jpg"
+                  alt="Brian Vetter, founder and owner of On Point Installations, Inc."
+                  width={1200}
+                  height={1200}
+                  className="w-full h-auto rounded-sm shadow-md"
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  quality={85}
+                />
+              </div>
+
+              {/* Right column: heading + body + list */}
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">Our Beginnings</h2>
+                <p className="text-[#292929] leading-relaxed mb-4">
+                  After serving as a union installer for many years, Brian Vetter packed up his toolbox and ventured out on his own. That was in 2010. Since then, On Point Installations has grown to include a 15,000+ square foot office complex and commercial furniture storage warehouse. Brian and his team have completed 11,000+ projects.
+                </p>
+                <p className="text-[#292929] leading-relaxed mb-4">
+                  These projects involve an array of{' '}
+                  <Link href="/services/" className="text-[#800000] underline hover:text-[#5A0000]">
+                    our services
+                  </Link>
+                  {' '}centering around the installation of commercial office furniture. The company also installs furniture in other locations, including:
+                </p>
+                <ul className="list-disc list-inside text-[#292929] space-y-1 ml-2">
+                  <li>Corporate common areas</li>
+                  <li>Office complexes</li>
+                  <li>Restaurants, bars, and the hospitality industry</li>
+                  <li>Senior living facilities</li>
+                  <li>School offices and classrooms</li>
+                  <li>Hospitals and healthcare facilities</li>
+                </ul>
+              </div>
+
             </div>
-            <p className="text-[#292929] leading-relaxed mb-4">
-              These projects involve an array of{' '}
-              <Link href="/services/" className="text-[#800000] underline hover:text-[#5A0000]">
-                our services
-              </Link>
-              {' '}centering around the installation of commercial office furniture. The company also installs furniture in other locations, including:
-            </p>
-            <ul className="list-disc list-inside text-[#292929] space-y-1 ml-2">
-              <li>Corporate common areas</li>
-              <li>Office complexes</li>
-              <li>Restaurants, bars, and the hospitality industry</li>
-              <li>Senior living facilities</li>
-              <li>School offices and classrooms</li>
-              <li>Hospitals and healthcare facilities</li>
-            </ul>
           </div>
         </section>
 
