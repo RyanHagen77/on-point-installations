@@ -112,7 +112,14 @@ export default function CityServicePage({
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Why {city} Businesses Choose On Point Installations
             </h2>
-            <p className="text-[#292929] leading-relaxed">{whyChooseUs}</p>
+            <p className="text-[#292929] leading-relaxed mb-4">{whyChooseUs}</p>
+            <p className="text-[#292929] leading-relaxed">
+              Call {SITE.phone} or{' '}
+              <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
+                get a free quote for your {city} project
+              </Link>{' '}
+              online.
+            </p>
           </div>
         </section>
 
