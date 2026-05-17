@@ -34,7 +34,7 @@ export function generatePageMetadata({
   ogImage?: string;
 }): Metadata {
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical },
     openGraph: {
