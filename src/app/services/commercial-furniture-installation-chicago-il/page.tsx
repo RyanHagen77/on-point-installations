@@ -184,7 +184,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
 
         {/* ── H2 #3: CUBICLE INSTALLATION ─────────────────────────────── */}
         {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
-        <section id="cubicle-installation" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+        <section id="cubicle-installation" className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Cubicle Installation in Chicago
@@ -210,7 +210,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
 
         {/* ── H2 #3: SYSTEMS FURNITURE ────────────────────────────────── */}
         {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
-        <section id="systems-furniture" className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+        <section id="systems-furniture" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Systems Furniture Installation
@@ -233,7 +233,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
 
         {/* ── H2 #4: DELIVERY AND SETUP ───────────────────────────────── */}
         {/* Ported from live site RDI section; framing drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
-        <section id="office-furniture-delivery-setup" className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+        <section id="office-furniture-delivery-setup" className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Office Furniture Delivery and Setup
@@ -265,7 +265,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
 
         {/* ── H2 #5: WHY CHOOSE ON POINT ──────────────────────────────── */}
         {/* Ported from onpointinstallations.com/about/ "Why Our Clients Choose Us", fetched 2026-05-15. Some differentiator framing drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
-        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-8">
               Why Chicago Businesses Choose On Point Installations
@@ -308,7 +308,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
 
         {/* ── H2 #6: FURNITURE BRANDS ─────────────────────────────────── */}
         {/* Verbatim from onpointinstallations.com homepage, fetched 2026-05-15 */}
-        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-4">
               Furniture Brands We Install
@@ -330,7 +330,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── H2 #7: FAQ ──────────────────────────────────────────────── */}
-        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-3xl mx-auto">
             <FAQAccordion items={FAQS} />
           </div>
