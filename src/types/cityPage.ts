@@ -1,3 +1,4 @@
+import type React from 'react';
 import type { FAQ } from './service';
 
 export interface CityServicePageProps {
@@ -16,6 +17,7 @@ export interface CityServicePageProps {
   whyChooseUs: string;
   serviceDetailsPara1: string;
   serviceDetailsPara2: string;
+  serviceDetailsPara3?: React.ReactNode;
   socialProof: {
     quote: string;
     attribution: string; // use [em-dash] for em dash (e.g. "[em-dash] First Name, City, IL")

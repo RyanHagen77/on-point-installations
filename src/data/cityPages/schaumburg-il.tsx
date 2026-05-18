@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { CityServicePageProps } from '@/types/cityPage';
 
 // Source: Prompt 11 (docs/seo-audit/prompt-11-service-city-page-builder.md)
@@ -32,6 +33,22 @@ const schaumburgPage: CityServicePageProps = {
   // Sub 6: "office market [em-dash] including" -> "office market, including" (comma)
   serviceDetailsPara2:
     "We're experienced with all major commercial furniture platforms used in Schaumburg's office market, including Knoll, Haworth, Herman Miller, Steelcase, AIS, KI, and Allsteel. For Schaumburg projects that involve phased installation schedules or staged delivery timelines, we also offer commercial furniture warehousing and storage at our Wauconda facility, which is a short drive from most Schaumburg office locations. Our proximity to Schaumburg means we're not billing you for extended travel time, and we can respond quickly when a project timeline changes.",
+
+  // Phase 4 retrofit per docs/phase-3-prep.md.
+  // Anchor text verbatim from Prompt 11 Naperville INTERNAL LINKING OPPORTUNITIES.
+  // Surrounding prose drafted per CLAUDE.md Voice Rules; tricolon removed from original proposal.
+  serviceDetailsPara3: (
+    <>
+      On Point also handles{' '}
+      <Link
+        href="/services/commercial-furniture-installation-naperville-il/"
+        className="text-[#800000] underline hover:text-[#5A0000]"
+      >
+        commercial furniture installation near Naperville
+      </Link>
+      {' '}for clients with projects across the I-88/Route 59 corridor.
+    </>
+  ),
 
   // Verbatim placeholder structure from Prompt 11.
   // Attribution uses [em-dash] (Unicode escape) so the em dash renders in the DOM

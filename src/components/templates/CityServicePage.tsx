@@ -23,6 +23,7 @@ export default function CityServicePage({
   whyChooseUs,
   serviceDetailsPara1,
   serviceDetailsPara2,
+  serviceDetailsPara3,
   socialProof,
   faqs,
   localBusinessId,
@@ -131,6 +132,9 @@ export default function CityServicePage({
             </h2>
             <p className="text-[#292929] leading-relaxed mb-4">{serviceDetailsPara1}</p>
             <p className="text-[#292929] leading-relaxed">{serviceDetailsPara2}</p>
+            {serviceDetailsPara3 && (
+              <p className="text-[#292929] leading-relaxed mt-4">{serviceDetailsPara3}</p>
+            )}
           </div>
         </section>
 
