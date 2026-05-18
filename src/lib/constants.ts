@@ -106,9 +106,28 @@ export const PRIMARY_SERVICES = [
 
 export const NAP_SCHEMA = {
   "@type": "PostalAddress",
-  streetAddress: "1220 Karl Court",
+  streetAddress: "1220 Karl Ct",
   addressLocality: "Wauconda",
   addressRegion: "IL",
   postalCode: "60084",
   addressCountry: "US",
 };
+
+// 12-URL sameAs array. Used by LocalBusiness and Organization schemas.
+// Ordered: social profiles first, then directory citations.
+// Wikidata Q-URL omitted until entity is created (see docs/known-issues.md).
+// YouTube and Twitter/X omitted until accounts are corrected/created (see known-issues.md).
+export const SAME_AS_URLS = [
+  "https://www.facebook.com/onpointinstallationsinc",
+  "https://www.instagram.com/onpointinstallations/",
+  "https://www.linkedin.com/company/on-point-installations-inc/",
+  "https://www.yelp.com/biz/on-point-installations-wauconda",
+  "https://birdeye.com/on-point-installations-inc-149068928481786",
+  "https://business.waucondachamber.org/list/member/on-point-installations-inc",
+  "https://www.manta.com/c/mh10kpr/on-point-installations-inc",
+  "https://www.yellowpages.com/wauconda-il/mip/on-point-installations-inc",
+  "https://www.merchantcircle.com/on-point-installations-inc-wauconda-il",
+  "https://www.superpages.com/wauconda-il/bpp/on-point-installations-inc",
+  "https://www.industrynet.com/co/on-point-installations",
+  "https://www.zoominfo.com/c/on-point-installations-inc",
+];

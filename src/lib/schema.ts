@@ -1,13 +1,15 @@
-import { SITE, NAP_SCHEMA } from './constants';
+import { SITE, NAP_SCHEMA, SAME_AS_URLS } from './constants';
 
 export function buildLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
-    "@id": `${SITE.domain}/#localbusiness`,
+    "@type": "ProfessionalService",
+    "@id": `${SITE.domain}/#business`,
     name: SITE.name,
+    alternateName: ["On Point Installations", "OPI"],
     url: SITE.domain,
     telephone: SITE.phoneHref.replace('tel:', ''),
+    priceRange: "$$",
     address: NAP_SCHEMA,
     geo: {
       "@type": "GeoCoordinates",
@@ -22,11 +24,30 @@ export function buildLocalBusinessSchema() {
         closes: "17:00",
       },
     ],
-    sameAs: [
-      SITE.social.facebook,
-      SITE.social.instagram,
-      SITE.social.linkedin,
-    ].filter(Boolean),
+    description: "On Point Installations, Inc. is a fully insured, non-union commercial furniture installation company headquartered in Wauconda, IL. Since 2010, we have delivered expert commercial furniture installation, cubicle installation, systems furniture installation, office furniture delivery and setup, and office relocation support throughout the Chicagoland metropolitan area and the Tri-State region of Illinois, Wisconsin, and Indiana.",
+    image: `${SITE.domain}/images/on-point-installations-logo.png`,
+    logo: `${SITE.domain}/images/on-point-installations-logo.png`,
+    founder: {
+      "@type": "Person",
+      name: SITE.owner,
+    },
+    foundingDate: SITE.founded,
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      minValue: 10,
+      maxValue: 49,
+    },
+    areaServed: [
+      { "@type": "City", name: "Chicago", sameAs: "https://www.wikidata.org/wiki/Q1297" },
+      { "@type": "City", name: "Schaumburg", sameAs: "https://www.wikidata.org/wiki/Q1007793" },
+      { "@type": "City", name: "Naperville", sameAs: "https://www.wikidata.org/wiki/Q979697" },
+      { "@type": "City", name: "Waukegan", sameAs: "https://www.wikidata.org/wiki/Q980471" },
+      { "@type": "City", name: "Wauconda", sameAs: "https://www.wikidata.org/wiki/Q2629741" },
+      { "@type": "State", name: "Illinois" },
+      { "@type": "State", name: "Wisconsin" },
+      { "@type": "State", name: "Indiana" },
+    ],
+    sameAs: SAME_AS_URLS,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: SITE.reviews.rating,
@@ -34,19 +55,18 @@ export function buildLocalBusinessSchema() {
       bestRating: 5,
       worstRating: 1,
     },
-    priceRange: "$$",
-    foundingDate: SITE.founded,
-    founder: {
-      "@type": "Person",
-      name: SITE.owner,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Commercial Furniture Installation Services",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Commercial Furniture Installation" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cubicle Installation" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Systems Furniture Installation" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Furniture Delivery and Setup" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Relocation Support" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Commercial Space Planning" } },
+      ],
     },
-    areaServed: [
-      { "@type": "City", name: "Chicago", containedInPlace: { "@type": "State", name: "Illinois" } },
-      { "@type": "City", name: "Schaumburg", containedInPlace: { "@type": "State", name: "Illinois" } },
-      { "@type": "City", name: "Naperville", containedInPlace: { "@type": "State", name: "Illinois" } },
-      { "@type": "City", name: "Waukegan", containedInPlace: { "@type": "State", name: "Illinois" } },
-      { "@type": "City", name: "Wauconda", containedInPlace: { "@type": "State", name: "Illinois" } },
-    ],
   };
 }
 
@@ -116,8 +136,8 @@ export function buildServiceSchema({
     description,
     url,
     provider: {
-      "@type": "LocalBusiness",
-      "@id": `${SITE.domain}/#localbusiness`,
+      "@type": "ProfessionalService",
+      "@id": `${SITE.domain}/#business`,
       name: SITE.name,
     },
     areaServed: areaServedSchema,

@@ -54,7 +54,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
       />
       <FAQSchema items={FAQS} />
       {/* LocalBusiness schema for Chicago service focus.
-          @id "#chicago-localbusiness" distinguishes from homepage "#localbusiness" block.
+          @id "#chicago-localbusiness" distinguishes from homepage "#business" canonical entity.
           Per Prompt 11 mandate (docs/seo-audit/prompt-11-service-city-page-builder.md). */}
       <script
         type="application/ld+json"

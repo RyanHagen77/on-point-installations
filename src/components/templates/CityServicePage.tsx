@@ -50,7 +50,7 @@ export default function CityServicePage({
       />
       <FAQSchema items={faqs} />
       {/* LocalBusiness schema for city-specific service focus.
-          @id "#${localBusinessId}" distinguishes from homepage "#localbusiness"
+          @id "#${localBusinessId}" distinguishes from homepage "#business" canonical entity
           and Chicago "#chicago-localbusiness". Dual @type per Prompt 11 mandate. */}
       <script
         type="application/ld+json"
