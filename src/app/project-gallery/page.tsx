@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -15,7 +16,14 @@ export default function ProjectGalleryPage() {
       <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mt-6 mb-4">
         Project Gallery
       </h1>
-      <p className="text-gray-600">Full project gallery coming in Phase 2.</p>
+      <p className="text-[#292929] leading-relaxed max-w-2xl">
+        Browse completed commercial furniture installation projects from On Point Installations across
+        the Chicago metro area. The portfolio covers the city and major suburban markets, including{' '}
+        <Link href="/services/commercial-furniture-installation-schaumburg-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+          Schaumburg commercial furniture installation
+        </Link>
+        {' '}and surrounding areas. Photos are added as new projects complete.
+      </p>
     </main>
   );
 }
