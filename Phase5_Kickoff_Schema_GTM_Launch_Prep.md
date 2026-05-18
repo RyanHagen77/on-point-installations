@@ -10,7 +10,7 @@ Phases 1–4 are complete. All pages are built, blog infrastructure is live on S
 
 **Refer to:** Prompt 17 (Entity Optimization) — complete JSON-LD schema blocks for all 7 schema types. BUILD_PLAN.md Section 7 (Schema Implementation Plan) and Section 5 (Redirect Map).
 
-**Phase 4 completed (2026-05-18):** Blog infrastructure built, Sanity schema defined, migration pipeline proven in the IntegrePro SEO Lab sandbox (`integrepro-seo-lab` repo). Three Wave 1 retrofits shipped (commits 065bee5, 6a88731, dda741f, 52b4630). Phase 4 housekeeping closed with this kickoff update.
+**Phase 4 completed (2026-05-18):** Blog infrastructure built, Sanity schema defined, migration pipeline proven in the IntegrePro SEO Lab sandbox. Three Wave 1 retrofits shipped (commits 065bee5, 6a88731, dda741f, 52b4630). Phase 4 housekeeping closed with this kickoff update. Sandbox details: repo `https://github.com/RyanHagen77/integrepro-seo-lab`, deployed at `https://project-wdufc.vercel.app`, Sanity project `hwyx6cco`. See `docs/phase-4-close.md` for full Phase 4 commit list, 25-post inventory, and substitution table.
 
 ---
 
@@ -52,10 +52,6 @@ The pre-commit hook in this repo checks staged files for em dashes, banned phras
 
 **9. Brian Sanity account spinup**
 Brian needs his own Sanity account to author and publish blog posts without dev involvement. Steps: invite Brian's email to the `hwyx6cco` Sanity project with Editor role. Walk him through Studio UI at the `/studio` route on the staging URL before DNS cutover.
-
----
-
-## PHASE 5 OBJECTIVES
 
 ---
 
@@ -494,6 +490,17 @@ All items below require Brian's input before Phase 5 or Phase 6 launch prep. Non
 | Confirm GBP full ownership transfer | Phase 6 DNS cutover |
 | Create GTM container (or confirm if one exists) | Phase 5 GA4 migration |
 | Confirm Brian's Sanity Studio access (invite to project) | Blog migration |
+| Confirm Wauconda CFI page framing — HQ-city angle vs. standard service-area template | Wauconda CFI build |
+
+---
+
+## DEFERRED FROM PHASE 3 — NO PHASE HOME
+
+These items were deferred in Phase 3, Phase 4 closed without addressing them, and they have no current phase assignment. Scoping required before any can move forward. See `docs/phase-3-prep.md` (Deferred/Carryover Queue section) and `docs/known-issues.md` (Phase 3 Close Note section) for full detail.
+
+- **Waukegan CFI page** (`/services/commercial-furniture-installation-waukegan-il/`) — blocked on audit source gap. Prompt 11 has no body copy spec for Waukegan — table entry only (slug, keyword, volume). Needs Brian interview or supplementary audit deliverable to unblock.
+- **Wauconda CFI page** (`/services/commercial-furniture-installation-wauconda-il/`) — blocked on audit source gap AND framing decision (HQ-city home-base positioning vs. standard service-area template). Needs Ryan + Brian conversation before drafting. The framing choice affects title tag, H1, and body angle and cannot be reversed cheaply after indexing.
+- **`/service-area/[city]-il/` stubs** — five stubs (chicago-il, schaumburg-il, naperville-il, waukegan-il, wauconda-il) exist from Phase 1 scaffolding with no content. Every city CFI page links to its corresponding stub. Largest remaining structural gap in the site. Needs a scoping conversation to determine phase assignment.
 
 ---
 
