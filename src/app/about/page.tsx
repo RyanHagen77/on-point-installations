@@ -116,6 +116,17 @@ export default function AboutPage() {
                   <li>School offices and classrooms</li>
                   <li>Hospitals and healthcare facilities</li>
                 </ul>
+                <p className="text-[#292929] leading-relaxed mt-4">
+                  On Point takes on commercial projects across the full Chicago metro area, including{' '}
+                  <Link href="/services/commercial-furniture-installation-schaumburg-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+                    Schaumburg office furniture installation
+                  </Link>
+                  {' '}and{' '}
+                  <Link href="/services/commercial-furniture-installation-naperville-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+                    Naperville office furniture installation
+                  </Link>
+                  {' '}in the western suburbs.
+                </p>
               </div>
 
             </div>
