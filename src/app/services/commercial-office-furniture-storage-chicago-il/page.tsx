@@ -45,6 +45,7 @@ export default function CommercialOfficeFurnitureStorageChicagoPage() {
         description="Commercial office furniture warehousing and storage near Chicago, IL. On Point Installations receives, inspects, stores, and redelivers commercial furniture at two climate-controlled facilities: 15,000 sq ft primary in Wauconda and 40,000 sq ft secondary near O'Hare."
         url={`${SITE.domain}/services/commercial-office-furniture-storage-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Commercial Furniture Storage"
       />
       <FAQSchema items={FAQS} />
       <main>

@@ -51,6 +51,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         description="Professional, fully insured commercial office furniture installation services throughout Chicago and the greater Chicagoland area. Non-union installation crews handle cubicle systems, panel systems, workstations, executive furniture, conference room furniture, and complete office setups."
         url={`${SITE.domain}/services/commercial-furniture-installation-chicago-il/`}
         areaServed={["Chicago", "Schaumburg", "Naperville", "Waukegan", "Wauconda"]}
+        serviceType="Commercial Furniture Installation"
       />
       <FAQSchema items={FAQS} />
       {/* LocalBusiness schema for Chicago service focus.

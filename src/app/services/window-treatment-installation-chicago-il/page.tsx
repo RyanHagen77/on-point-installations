@@ -45,6 +45,7 @@ export default function WindowTreatmentInstallationPage() {
         description="Professional window treatment installation for commercial buildings, offices, and hospitality environments throughout the Chicago metro. On Point Installations handles blinds, shades, drapery, curtains, and automated shades, with door-to-door receiving, delivery, and installation."
         url={`${SITE.domain}/services/window-treatment-installation-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Window Treatment Installation"
       />
       <FAQSchema items={FAQS} />
       <main>

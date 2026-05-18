@@ -45,6 +45,7 @@ export default function ElectricalVoiceDataCablingPage() {
         description="Commercial electrical, voice, and data cabling installation in Chicago and the greater Chicagoland area. On Point Installations handles high voltage electrical for cubicle and panel systems, Cat 6, Cat 7, and fiber optic cabling, overhead paging, and conference room AV for offices of any size."
         url={`${SITE.domain}/services/electrical-voice-data-cabling-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Electrical and Voice/Data Cabling"
       />
       <FAQSchema items={FAQS} />
       <main>

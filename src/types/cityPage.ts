@@ -27,6 +27,7 @@ export interface CityServicePageProps {
   // Schema
   localBusinessId: string;    // e.g. "schaumburg-localbusiness"
   serviceDescription: string; // used in ServiceSchema and LocalBusiness schema
+  serviceType: string;        // e.g. "Commercial Furniture Installation"
 
   // Outbound links
   chicagoAnchor: string;     // anchor text -> /services/commercial-furniture-installation-chicago-il/

@@ -63,6 +63,7 @@ const napervillePage: CityServicePageProps = {
 
   localBusinessId: 'naperville-localbusiness',
   serviceDescription: 'Commercial furniture installation in Naperville, IL. Non-union crew serving Naperville and DuPage County from our Wauconda base since 2010.',
+  serviceType: 'Commercial Furniture Installation',
 
   chicagoAnchor: 'Chicago office furniture installation',
   serviceAreaAnchor: 'our Naperville service area',

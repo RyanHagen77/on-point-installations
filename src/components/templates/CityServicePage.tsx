@@ -28,6 +28,7 @@ export default function CityServicePage({
   faqs,
   localBusinessId,
   serviceDescription,
+  serviceType,
   chicagoAnchor,
   serviceAreaAnchor,
   heroImageSrc = DEFAULT_HERO_SRC,
@@ -47,6 +48,7 @@ export default function CityServicePage({
         description={serviceDescription}
         url={canonicalUrl}
         areaServed={city}
+        serviceType={serviceType}
       />
       <FAQSchema items={faqs} />
       {/* LocalBusiness schema for city-specific service focus.

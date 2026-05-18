@@ -128,11 +128,13 @@ export function buildServiceSchema({
   description,
   url,
   areaServed,
+  serviceType,
 }: {
   name: string;
   description: string;
   url: string;
   areaServed: string | string[];
+  serviceType: string;
 }) {
   const areaServedSchema = Array.isArray(areaServed)
     ? areaServed.map((city) => ({ "@type": "City", name: city }))
@@ -150,7 +152,13 @@ export function buildServiceSchema({
       name: SITE.name,
     },
     areaServed: areaServedSchema,
-    serviceType: "Commercial Furniture Installation",
+    serviceType,
+    offers: {
+      "@type": "Offer",
+      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD" },
+      availability: "https://schema.org/InStock",
+      url,
+    },
   };
 }
 

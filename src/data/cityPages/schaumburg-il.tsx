@@ -82,6 +82,7 @@ const schaumburgPage: CityServicePageProps = {
 
   localBusinessId: 'schaumburg-localbusiness',
   serviceDescription: 'Commercial furniture installation in Schaumburg, IL. Non-union crew serving Schaumburg and the I-90 corridor from our Wauconda base since 2010.',
+  serviceType: 'Commercial Furniture Installation',
 
   chicagoAnchor: 'Chicago office furniture installation',
   serviceAreaAnchor: 'our Schaumburg service area',

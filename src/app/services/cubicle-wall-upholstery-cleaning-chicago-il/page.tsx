@@ -45,6 +45,7 @@ export default function CubicleWallUpholsteryCleaningPage() {
         description="Professional cubicle wall and upholstery cleaning for commercial offices throughout the Chicago metro. On Point Installations cleans fabric panel systems, office furniture upholstery, and remanufactured panels as part of furniture installations, relocations, and standalone projects."
         url={`${SITE.domain}/services/cubicle-wall-upholstery-cleaning-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Cubicle Wall and Upholstery Cleaning"
       />
       <FAQSchema items={FAQS} />
       <main>

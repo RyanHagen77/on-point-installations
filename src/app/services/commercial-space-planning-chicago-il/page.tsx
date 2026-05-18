@@ -45,6 +45,7 @@ export default function CommercialSpacePlanningChicagoPage() {
         description="Commercial space planning services in Chicago and the greater Chicagoland area. On Point Installations provides on-site space measurement, floor plan verification, floor core chalking, and code compliance guidance to ensure furniture installations stay on schedule and on budget."
         url={`${SITE.domain}/services/commercial-space-planning-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Commercial Space Planning"
       />
       <FAQSchema items={FAQS} />
       <main>

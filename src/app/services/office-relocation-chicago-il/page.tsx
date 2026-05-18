@@ -45,6 +45,7 @@ export default function OfficeRelocationChicagoPage() {
         description="Commercial office relocation services throughout Chicago and the greater Chicagoland area. Non-union crews handle electrical disconnect, furniture teardown, transport, reinstallation, and electrical reconnect for office moves of any size."
         url={`${SITE.domain}/services/office-relocation-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Office Relocation"
       />
       <FAQSchema items={FAQS} />
       <main>

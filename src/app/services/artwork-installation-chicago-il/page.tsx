@@ -45,6 +45,7 @@ export default function ArtworkInstallationPage() {
         description="Professional artwork installation for commercial and residential spaces throughout the Chicago metro. On Point Installations handles large prints, framed pieces, mirrors, wall-mounted and ceiling-suspended sculptures, and pieces requiring on-site construction."
         url={`${SITE.domain}/services/artwork-installation-chicago-il/`}
         areaServed="Chicago"
+        serviceType="Artwork Installation"
       />
       <FAQSchema items={FAQS} />
       <main>

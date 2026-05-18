@@ -5,6 +5,7 @@ interface ServiceSchemaProps {
   description: string;
   url: string;
   areaServed: string | string[];
+  serviceType: string;
 }
 
 export default function ServiceSchema(props: ServiceSchemaProps) {
