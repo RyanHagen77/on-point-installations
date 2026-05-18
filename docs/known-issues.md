@@ -316,3 +316,39 @@ Schaumburg and Naperville both ship with `[REVIEW PLACEHOLDER]` in the social pr
 **Action:** During Phase 5 launch prep, pull top-impression queries for each of these five service pages from Google Search Console. Compare against the current title tags. Adjust if GSC reveals a high-impression keyword the title is missing.
 **Owner:** IntegrePro Software LLC
 **Phase:** Phase 5 launch prep (before production domain flip)
+
+---
+
+## Phase 5 Session 1 Close Note (2026-05-18)
+
+**Phase 5 Session 1 closed at commit `1252c9f`.** Schema implementation across the build per Prompt 17. Five code commits, two verification-only passes covering all 7 schema types. Session 2 picks up redirect verification, Postmark wiring, and GA4 to GTM migration.
+
+### Schema Work -- Delivered
+
+- LocalBusiness `@id` standardized to `/#business` (was `/#localbusiness`). This cascades to ServiceSchema provider, PersonSchema worksFor, and the eventual ArticleSchema publisher chain.
+- `SAME_AS_URLS` constant added to `lib/constants.ts` with 12 URLs (Facebook, Instagram, LinkedIn, Yelp, Birdeye, Wauconda Chamber, Manta, YellowPages, MerchantCircle, SuperPages, IndustryNet, ZoomInfo). Centralized so future citation adds happen in one file.
+- NAP `streetAddress` corrected from "Karl Court" to "Karl Ct" in `constants.ts` to match the GBP listing and Prompt 17 audit. Entity reconciliation prefers exact-match across signals.
+- ServiceSchema `serviceType` changed from hardcoded "Commercial Furniture Installation" to a required prop. Six of eight Chicago service pages and both city page templates were emitting incorrect serviceType values; this fix corrects schema across the build.
+- All 7 schema types now match Prompt 17 spec except ArticleSchema (deferred -- see below).
+
+### Brand Name Typo -- Verified Clean
+
+Prompt 17 Section 1 flagged "On Point Installation, Inc." (missing 's') as the dominant issue on the legacy WordPress site. The new Next.js build is clean from day one -- zero occurrences across source, schema, title tags, or `<head>` content.
+
+### Inline City LocalBusiness Blocks -- Kept As-Is
+
+The money page and CityServicePage template emit additional inline LocalBusiness blocks with city-scoped `@id`s (`/#chicago-localbusiness`, `/#{city}-localbusiness`). These are deliberate per Prompt 11 (city pages audit) and coexist with the canonical `/#business` block. No collision with the Session 1 `@id` rename. Both Prompt 11 and Prompt 17 are audit-sourced; neither overrides the other.
+
+### Deferred to the Brian Blog Wave
+
+The following items are confirmed-deferred to the wave that runs once Brian's Sanity production project exists. They are not Session 2 work:
+
+- **ArticleSchema publisher fix.** Component exists but currently references `/#organization`; should reference `/#business` (ProfessionalService entity). Not split out as a one-liner because the blog template doesn't yet consume it -- fix lands with the template build for proper render testing.
+- **Blog template build.** `src/app/blog/[slug]/page.tsx` is a placeholder that derives a title from the slug and shows "coming in Phase 4" text. `src/lib/sanity.ts` is an empty config stub. Both need real build-out (Sanity client, GROQ query, ArticleSchema render with Brian Vetter as author and OPI as publisher, conditional FAQPage render based on Sanity `faqs` field length).
+- **25-post WordPress production migration.** Including script hardening: publishedAt extraction via WP REST API, category selector fix to `.entry-header .cat-links a`, dead-link substitution per `phase-4-close.md` table.
+- **Sanity webhook + on-demand revalidation route.** Replaces time-based ISR with publish-event-driven cache invalidation.
+- **Asset audit.** Read sandbox `logs/*.err` files to inventory which posts have images worth restoring to Sanity.
+
+### Phase5_Kickoff Doc Placement -- Fixed
+
+`Phase5_Kickoff_Schema_GTM_Launch_Prep.md` was discovered at repo root rather than `docs/` during the Session 1 recon. Moved to `docs/` in the Session 1 close-out housekeeping pass for consistency with every other phase doc.
