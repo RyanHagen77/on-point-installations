@@ -257,6 +257,52 @@ Schaumburg and Naperville both ship with `[REVIEW PLACEHOLDER]` in the social pr
 
 ---
 
+## Phase 4 Close Note (2026-05-18)
+
+**Phase 4 closed after Wave 5 housekeeping.** Blog infrastructure is live on Sanity with ISR. Migration pipeline proven in sandbox (integrepro-seo-lab). Three Wave 1 retrofits shipped (commits 065bee5, 6a88731, dda741f, 52b4630). Items below are Phase 5 technical carry-forwards from Phase 4 work.
+
+---
+
+### Blog — On-Demand Sanity Revalidation via Webhook (Phase 5 Required)
+
+**Action needed:** Configure Sanity webhook to trigger Next.js on-demand revalidation when blog posts are created or updated.
+**Detail:** The sandbox used time-based ISR (blog index: `revalidate = 3600`, detail pages: `revalidate = 86400`). During Wave 3 migration verification, the time-based window caused a real delay between Sanity writes and the deployed page reflecting new content. Production blog should not rely on time-based ISR for content that Brian will actively publish. Sanity's webhook integration can call a Next.js `revalidatePath` or `revalidateTag` API route on publish events, giving near-instant cache invalidation.
+**Owner:** Developer
+**Affects:** `/blog/` index, `/blog/[slug]/` detail pages
+**Phase:** Phase 5 — before production blog migration begins
+
+---
+
+### Blog Migration — publishedAt Extraction (Phase 5 Blocker)
+
+**Action needed:** Solve publishedAt extraction before running the 25-post production migration.
+**Detail:** The WordPress theme at onpointinstallations.com does not emit `article:published_time` meta or `<time datetime>` in rendered HTML. All sandbox-migrated posts have `publishedAt: null`. This breaks Article schema `datePublished` in Google Rich Results and sorts posts incorrectly once the GROQ `coalesce(publishedAt, _createdAt)` fallback is no longer sufficient. Proposed fix: use WP REST API (`/wp-json/wp/v2/posts`) to fetch `date_gmt` field for each post before migration. The migration script (`scripts/migrate-wp-post.ts`) needs a `--published-at` flag or a REST pre-fetch step added before the 25-post run.
+**Owner:** Developer
+**Affects:** All 25 migrated blog posts — Article schema datePublished
+**Phase:** Phase 5 — resolve before production migration
+
+---
+
+### Blog Migration — Category Extraction Selector (Phase 5 Fix)
+
+**Action needed:** Update category extraction before the 25-post production migration.
+**Detail:** The sandbox migration script uses `.cat-links a` to extract category. This selector returns null because the category links live outside `.entry-content` — likely in `.entry-header .cat-links`. Test on a live WP post HTML to confirm correct selector, then update `extractPost()` in the migration script.
+**Owner:** Developer
+**Affects:** All 25 migrated blog posts — `category` field
+**Phase:** Phase 5 — resolve before production migration
+
+---
+
+### Blog Migration — WordPress Image Resize Variants (Phase 5 Asset Audit)
+
+**Action needed:** Audit all image references in migrated post bodies before production migration.
+**Detail:** The sandbox migration script strips `<img>` tags from post bodies (by design). When post images are eventually added to Sanity, the source URLs should be WordPress originals or `-scaled.jpg` variants — never `-1200x800`, `-600x400`, or other WordPress resize suffixes. The sandbox migration logged all skipped image `src` values in per-post `.err` files under `logs/`. Review these before the production migration to identify which posts have images worth restoring to Sanity as native assets.
+**Owner:** Developer
+**Affects:** Migrated blog posts — image assets
+**Phase:** Phase 5 — asset audit before or during production migration
+
+---
+
 ## Phase 5 Launch Prep — SEO
 
 ### Secondary Service Page Titles — Verify Against GSC Before Launch
