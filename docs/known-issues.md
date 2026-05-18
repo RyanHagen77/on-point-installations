@@ -239,21 +239,21 @@ Schaumburg and Naperville both ship with `[REVIEW PLACEHOLDER]` in the social pr
 **Action needed:** Resolve the audit source gap before building these pages.
 **Detail:** Prompt 11 (the authoritative source for all Phase 3 city page body copy) does not include full spec blocks for Waukegan or Wauconda — only summary table entries (URL slug, target keyword, volume). Building from the table entry only would require drafting full body copy outside the Prompt 11 source, which sets a precedent inconsistent with how Schaumburg and Naperville were built. Two paths to unblock: (a) Brian interview yields Lake County / Wauconda market context, project examples, and voice-checked copy; (b) supplementary audit deliverable from IntegrePro fills in the missing city spec blocks.
 **Owner:** IntegrePro Software LLC (path selection); Brian Vetter (if path a)
-**Phase:** Phase 4 or later, after source gap is resolved
+**Phase:** Phase 5 or later, after source gap is resolved
 
 ### Wauconda Framing Decision — Deferred
 
 **Action needed:** Ryan + Brian conversation before Wauconda CFI is drafted.
 **Detail:** Phase3_Kickoff frames Wauconda as the HQ city ("Office Furniture Installer Wauconda IL" — home base angle). Prompt 11 treats it as a standard service-area page like Schaumburg and Naperville. These framings produce different title tags, H1s, target keywords, and body copy angles. The decision affects the page's SEO positioning and cannot be reversed cheaply after the page is indexed.
 **Owner:** Ryan Hagen + Brian Vetter
-**Phase:** Phase 4 or later, before Wauconda CFI is drafted
+**Phase:** Phase 5 or later, before Wauconda CFI is drafted
 
 ### /service-area/ Stubs — Scoping Required
 
 **Action needed:** Scope into a specific phase.
 **Detail:** All `/service-area/[city]-il/` routes exist as stubs from Phase 1 scaffolding. They are the largest remaining structural gap in the site — every city page links to its service-area hub page, but those pages contain no content. This was never in Phase 3 scope. Needs a scoping conversation to determine whether it belongs in Phase 4 or a dedicated later phase.
 **Owner:** IntegrePro Software LLC
-**Phase:** Phase 4 scoping required
+**Phase:** Phase 5 or later, scoping required
 
 ---
 
