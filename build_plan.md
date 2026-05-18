@@ -13,7 +13,7 @@
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
-| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | — | — |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | `1252c9f` (Session 1) | 2026-05-18 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -41,6 +41,22 @@
 **Phase 4 deferred (no phase home — scoping required):**
 - Waukegan and Wauconda CFI pages — remain blocked on audit source gap
 - /service-area/[city]-il/ stubs — no content built; scoping required before Phase 5 or later
+
+**Phase 5 Session 1 delivered (5 code commits + 2 verification passes, 2026-05-18):**
+- `1d6c612` — LocalBusiness schema: @id rename to /#business, SAME_AS_URLS constant (12 URLs), description/image/logo/alternateName/numberOfEmployees/hasOfferCatalog added, NAP streetAddress to "Karl Ct"
+- `e9065c5` — Organization schema: alternateName/foundingDate/founder/description/address added, logo dimensions, sameAs expanded to 12 URLs, contactPoint.areaServed fixed
+- `85dd4db` — WebSite schema: description/alternateName/publisher reference added
+- BreadcrumbList — verification only, all non-homepage pages confirmed clean (including /contact/ via ContactPageClient.tsx)
+- `f235a2f` — Service schema: serviceType as required prop, provider @type to ProfessionalService, offers block, all 8 Chicago pages + city template + Schaumburg/Naperville data files updated
+- FAQPage — verification only, all 8 service pages + CityServicePage render FAQSchema at page level
+- `1252c9f` — Person schema: @id, givenName, familyName, sameAs, worksFor to ProfessionalService with /#business @id
+
+**Phase 5 Session 1 deferred (gated on Brian's Sanity production project):**
+- ArticleSchema fix (publisher @id to /#business)
+- Blog template build (Sanity client, GROQ fetch, ArticleSchema render, conditional FAQPage)
+- 25-post WordPress migration (with publishedAt/category/dead-link script hardening in same wave)
+- Sanity webhook + on-demand revalidation route
+- Asset audit of sandbox image references
 
 ---
 
