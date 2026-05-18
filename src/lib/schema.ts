@@ -194,14 +194,19 @@ export function buildPersonSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${SITE.domain}/about/#brianvetter`,
     name: SITE.owner,
+    givenName: "Brian",
+    familyName: "Vetter",
     jobTitle: "Founder and Owner",
-    description: "Brian Vetter founded On Point Installations, Inc. in 2010 and has built it into a leading commercial furniture installation company serving the Chicagoland metropolitan area and Tri-State region.",
+    description: "Brian Vetter founded On Point Installations, Inc. in 2010 and has built it into a leading commercial furniture installation company serving the Chicagoland metropolitan area and Tri-State region. With over 15 years of experience in commercial interior services, Brian leads a team specializing in commercial furniture installation, cubicle systems, office relocation, and space planning.",
     worksFor: {
-      "@type": "Organization",
+      "@type": "ProfessionalService",
+      "@id": `${SITE.domain}/#business`,
       name: SITE.name,
     },
     url: `${SITE.domain}/about/`,
+    sameAs: [SITE.social.linkedin],
   };
 }
 
