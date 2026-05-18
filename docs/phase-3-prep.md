@@ -159,4 +159,4 @@ These items from the Phase 3 retrofit queue above were not executed in Phase 3 (
 | Space Planning retrofit — `what to do when office furniture doesn't fit` | Blocked | Blog post not yet built |
 | Money page blog links (cubicle + systems furniture) | Blocked | Blog posts not yet built |
 
-The three "READY TO EXECUTE" retrofits above were in scope for Phase 3 but were not included in the Phase 3 close commit. Execute as the first commits of Phase 4, or as a small standalone batch before Phase 4 scoping begins.
+These three retrofits were executed as Phase 4 Wave 1 (see commit hashes above).
