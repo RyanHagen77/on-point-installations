@@ -12,8 +12,8 @@
 | Phase 1 | Project scaffold, routing stubs, constants, redirects, Vercel deploy | **COMPLETE** | — | 2026-05-14 |
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
-| Phase 4 | TBD — /service-area/ hub, remaining city pages, blog stubs | Pending scoping | — | — |
-| Phase 5 | Launch prep — GSC verification, GTM wiring, DNS cutover, post-launch monitoring | Pending Phase 4 | — | — |
+| Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | — | — |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -26,6 +26,21 @@
 **Phase 3 deferred (carry to Phase 4 or later):**
 - Waukegan and Wauconda CFI pages — Prompt 11 has no body copy spec for these cities (table entries only). Deferred pending audit gap resolution. See `docs/phase-3-prep.md`.
 - /service-area/[city]-il/ stubs — never in Phase 3 scope; largest remaining structural gap. Scoping required.
+
+**Phase 4 delivered (9 commits, 2026-05-18):**
+- `065bee5` — /about/ retrofit: Schaumburg + Naperville city page anchor links
+- `6a88731` — /project-gallery/ retrofit: Schaumburg anchor link in gallery intro
+- `dda741f` — Schaumburg CFI retrofit: Naperville anchor link in service details
+- `52b4630` — Schaumburg CFI retrofit: closing paragraph voice-rules revision
+- `10da426` — Docs/Fix: replace Resend with Postmark (CLAUDE.md + contact route)
+- `1b6c773` — Docs: BUILD_PLAN.md contact form provider question closed
+- `35dbe1c` — Docs: phase-3-prep.md Wave 1 retrofits marked shipped
+- `def22d2` — Docs: known-issues.md Phase 4 close note + blog migration carry-forwards
+- `8657f88` — Docs: Phase5_Kickoff Phase 4 handoff, blog migration, Postmark scope
+
+**Phase 4 deferred (no phase home — scoping required):**
+- Waukegan and Wauconda CFI pages — remain blocked on audit source gap
+- /service-area/[city]-il/ stubs — no content built; scoping required before Phase 5 or later
 
 ---
 
@@ -101,7 +116,7 @@
 | `/project/modular-installation-services-park-ridge-il/` | Modular Installation Services - Park Ridge, IL | ~577 | KEEP-AS-IS |
 | `/project/the-benefits-of-a-professional-restaurant-furniture-installation/` | Professional Restaurant Furniture Installation - Chicago Suburbs | ~881 | KEEP-AS-IS |
 
-### Existing Blog Posts (26 total)
+### Existing Blog Posts (25 total)
 
 Migrate all at existing slugs. Apply FAQPage + Article schema to each. Add internal links to relevant service pages on each post.
 
