@@ -76,23 +76,29 @@ export function buildOrganizationSchema() {
     "@type": "Organization",
     "@id": `${SITE.domain}/#organization`,
     name: SITE.name,
+    alternateName: "On Point Installations",
     url: SITE.domain,
     logo: {
       "@type": "ImageObject",
       url: `${SITE.domain}/images/on-point-installations-logo.png`,
+      width: 300,
+      height: 100,
     },
-    sameAs: [
-      SITE.social.facebook,
-      SITE.social.instagram,
-      SITE.social.linkedin,
-    ].filter(Boolean),
+    foundingDate: SITE.founded,
+    founder: {
+      "@type": "Person",
+      name: SITE.owner,
+    },
+    description: "On Point Installations, Inc. provides fully insured, non-union commercial furniture installation services throughout the Chicagoland metropolitan area and Tri-State region (Illinois, Wisconsin, Indiana). Founded in 2010 by Brian Vetter.",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: SITE.phoneHref.replace('tel:', ''),
       contactType: "customer service",
-      areaServed: "US",
+      areaServed: ["IL", "WI", "IN"],
       availableLanguage: "English",
     },
+    address: NAP_SCHEMA,
+    sameAs: SAME_AS_URLS,
   };
 }
 
