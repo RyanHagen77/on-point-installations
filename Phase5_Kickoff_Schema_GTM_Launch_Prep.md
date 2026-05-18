@@ -6,11 +6,56 @@
 
 ## CONTEXT
 
-Phases 1–4 are complete. All pages are built, blog is live on Sanity with ISR, and the full content structure is in place. Phase 5 hardens the technical SEO layer — verifying and completing schema across every page type, confirming all redirects are working correctly, and migrating GA4 from a direct gtag install to Google Tag Manager with proper conversion tracking.
+Phases 1–4 are complete. All pages are built, blog infrastructure is live on Sanity with ISR, and the full content structure is in place. Phase 5 completes the technical SEO layer, wires the contact form email handler, runs the full 25-post WordPress-to-Sanity blog migration, and migrates GA4 from a direct gtag install to Google Tag Manager with proper conversion tracking.
 
 **Refer to:** Prompt 17 (Entity Optimization) — complete JSON-LD schema blocks for all 7 schema types. BUILD_PLAN.md Section 7 (Schema Implementation Plan) and Section 5 (Redirect Map).
 
-**This phase has no visible user-facing changes** — it's all technical infrastructure. The result is a site that validates cleanly in the Rich Results Test, has proper analytics configured, and has every redirect working correctly.
+**Phase 4 completed (2026-05-18):** Blog infrastructure built, Sanity schema defined, migration pipeline proven in the IntegrePro SEO Lab sandbox (`integrepro-seo-lab` repo). Three Wave 1 retrofits shipped (commits 065bee5, 6a88731, dda741f, 52b4630). Phase 4 housekeeping closed with this kickoff update.
+
+---
+
+## PHASE 4 HANDOFF — CARRY-FORWARD ITEMS
+
+These items surfaced during Phase 4 and must be resolved before or during Phase 5 execution. Full detail in `docs/known-issues.md` — Phase 4 Close Note section.
+
+### Critical Blockers for Blog Migration (resolve before running 25-post production import)
+
+**1. publishedAt extraction**
+The WordPress theme at onpointinstallations.com does not emit `article:published_time` meta or `<time datetime>` in rendered HTML. All sandbox posts imported with `publishedAt: null`, which breaks Article schema `datePublished`. Fix: add a `--published-at` flag to the migration script, or prefetch dates via WP REST API (`/wp-json/wp/v2/posts?slug=[slug]` → `date_gmt` field) before each post run.
+
+**2. Category extraction selector**
+Current selector `.cat-links a` returns null — category links are outside `.entry-content`. Likely correct selector: `.entry-header .cat-links a`. Verify on a live WP post HTML before the production run, then update `extractPost()` in `scripts/migrate-wp-post.ts`.
+
+**3. WordPress image resize variants**
+The migration script strips `<img>` tags from post bodies (by design). When images are added to Sanity, always pull from `-scaled.jpg` or the unsuffixed original — never from WordPress thumbnail variants (`-1200x800`, `-600x400`, etc.). Sandbox migration logs (`logs/*.err`) list all skipped image `src` values for audit.
+
+### Non-Blocking Carry-Forwards
+
+**4. On-demand Sanity revalidation (production requirement)**
+Time-based ISR (`revalidate = 3600` / `86400`) worked for the sandbox but is insufficient for a production publishing workflow. Configure a Sanity webhook to call a Next.js `revalidatePath` or `revalidateTag` API route on blog post publish/update events. This gives near-instant cache invalidation instead of waiting up to 24 hours.
+
+**5. 25-post scope confirmed**
+The production WordPress blog has 25 posts (not 26 — an earlier estimate was overcounted). The sandbox migration script is the proven pattern; the 25-post production run uses the same script against the On Point Sanity project.
+
+**6. Dead-link substitution for /project/ and /category/ URLs**
+Migrated blog post bodies contain internal links to `/project/[slug]/` and `/category/[name]/` WordPress paths. These have no equivalent in the new build. During production migration, apply the substitution table:
+- `/project/[slug]/` → no equivalent; replace link with plain text or strip entirely
+- `/category/[name]/` → no equivalent; strip link
+- All other on-point service page links → apply the 8-slug substitution table (old WP slugs → new build slugs) from the migration planning notes.
+The sandbox migration intentionally left these as external `onpointinstallations.com` URLs. Production must resolve them.
+
+**7. Author schema / byline**
+The migration script strips bylines (`By Brian Vetter`) from post bodies. If the On Point build eventually renders author bylines on blog posts, a Sanity `author` reference field needs to be added to the `blogPost` schema and populated during migration. Not currently in scope — flag if Brian wants bylines.
+
+**8. Voice review gap for Sanity-authored content**
+The pre-commit hook in this repo checks staged files for em dashes, banned phrases, and other voice violations. It cannot inspect content flowing through Sanity at render time. Blog posts authored directly in Sanity Studio bypass the hook. For the 25-post migration from WordPress, the migration script dry-run output should be checked against voice rules before each production import. For future Brian-authored posts, this review happens manually before publishing.
+
+**9. Brian Sanity account spinup**
+Brian needs his own Sanity account to author and publish blog posts without dev involvement. Steps: invite Brian's email to the `hwyx6cco` Sanity project with Editor role. Walk him through Studio UI at the `/studio` route on the staging URL before DNS cutover.
+
+---
+
+## PHASE 5 OBJECTIVES
 
 ---
 
@@ -22,6 +67,10 @@ Phases 1–4 are complete. All pages are built, blog is live on Sanity with ISR,
 4. Configure GA4 conversion events (form submit, phone click, CTA click)
 5. Add Wikidata Q-URL to sameAs arrays once entity is created
 6. Validate Core Web Vitals on staging
+7. Wire Postmark for contact form email (after confirming destination address with Brian)
+8. Run full 25-post WordPress-to-Sanity blog migration (resolve carry-forward blockers first)
+9. Configure Sanity webhook for on-demand blog cache revalidation
+10. Set up Brian's Sanity Studio account
 
 ---
 
@@ -348,15 +397,137 @@ Run Lighthouse on the staging URL for these pages:
 
 ---
 
+## BLOG MIGRATION — 25-POST WORDPRESS-TO-SANITY
+
+The full blog migration runs in Phase 5 using the pattern proven in the `integrepro-seo-lab` sandbox. Three posts were imported and verified in Phase 4. The remaining 22 follow the same script.
+
+### Pre-migration checklist (resolve carry-forward items 1–3 above first)
+
+- [ ] `publishedAt` extraction solved — WP REST API prefetch or `--published-at` flag added to script
+- [ ] Category selector corrected in `extractPost()` — confirmed against live WP HTML
+- [ ] Dead-link substitution table finalized — all `/project/`, `/category/`, and old-slug service URLs mapped
+
+### Migration script location
+
+`integrepro-seo-lab/scripts/migrate-wp-post.ts`
+
+The script targets the On Point Sanity project when `NEXT_PUBLIC_SANITY_PROJECT_ID` and `SANITY_API_WRITE_TOKEN` are set to the On Point project values (not the sandbox). Use `--dry-run` first on each post before writing.
+
+### Post-migration verification (per post)
+
+1. Document appears in Sanity Studio with correct title, slug, category, publishedAt, excerpt, and body
+2. `/blog/[slug]/` renders on staging — full body, correct H1, no byline in excerpt
+3. Article JSON-LD present with populated `datePublished` (not undefined/null)
+4. FAQPage JSON-LD present if post has FAQs in Sanity
+5. BreadcrumbList JSON-LD present
+6. `/blog/` index shows post card
+
+### Post-migration: configure Sanity webhook
+
+After all 25 posts are in, configure on-demand revalidation (carry-forward item 4):
+1. In Sanity Management → API → Webhooks — create a webhook for `blogPost` create/update events
+2. Webhook target: `https://onpointinstallations.com/api/revalidate` (POST with secret header)
+3. Create `src/app/api/revalidate/route.ts` — validates secret, calls `revalidateTag('blog')` and `revalidatePath('/blog/')`
+4. Tag the blog GROQ fetches with `{ next: { tags: ['blog'] } }` in the Sanity client calls
+
+---
+
+## CONTACT FORM — POSTMARK INTEGRATION
+
+The contact API route stub (`src/app/api/contact/route.ts`) validates fields and returns `{ ok: true }` but does not send email. Wire Postmark in Phase 5.
+
+### Steps
+
+**Step 1 — Verify destination email**
+Before any code: confirm `info@onpointinstall.com` vs. `info@onpointinstallations.com` with Brian. Wrong address = silently dropped leads. See `docs/known-issues.md` — "Contact Form Email — Address Needs Verification."
+
+**Step 2 — Install Postmark SDK**
+```bash
+npm install postmark
+```
+Add `POSTMARK_API_TOKEN` to `.env.local` and to Vercel environment variables.
+
+**Step 3 — Wire the send in route.ts**
+```typescript
+import { ServerClient } from 'postmark';
+
+const postmarkClient = new ServerClient(process.env.POSTMARK_API_TOKEN!);
+
+// In the POST handler, after validation passes:
+await postmarkClient.sendEmail({
+  From: 'noreply@onpointinstallations.com',   // verified sender in Postmark
+  To: process.env.CONTACT_FORM_TO_EMAIL!,      // info@onpointinstall[ations].com
+  Subject: `New quote request from ${body.name} — ${body.company}`,
+  TextBody: [
+    `Name: ${body.name}`,
+    `Company: ${body.company}`,
+    `Phone: ${body.phone}`,
+    `Email: ${body.email}`,
+    `Project Type: ${body.projectType}`,
+    `City: ${body.city}`,
+    `Details: ${body.projectDetails || '(none)'}`,
+  ].join('\n'),
+});
+```
+
+**Step 4 — Verify in Postmark Activity**
+Submit the contact form on staging. Confirm delivery in the Postmark Activity feed before DNS cutover.
+
+---
+
+## BRIAN-PENDING QUEUE (unchanged from Phase 3 close)
+
+All items below require Brian's input before Phase 5 or Phase 6 launch prep. None are blocked by developer work — they are waiting on Brian.
+
+| Item | Blocks |
+|---|---|
+| Verify `info@onpointinstall.com` vs. `info@onpointinstallations.com` | Contact form Postmark wiring |
+| Review + approve drafted FAQ sections (6 service pages) | Phase 5 content freeze |
+| Confirm "no subcontracting" claim — money page differentiator section | Phase 5 content freeze |
+| Review 3 drafted H2 sections on money page (cubicle, systems, delivery) | Phase 5 content freeze |
+| Provide city-specific review quotes for Schaumburg + Naperville | Phase 6 launch |
+| Provide real job-site photos for inline content images (service pages) | Phase 6 launch |
+| Provide city-specific hero photos (all 4 city CFI pages) | Phase 6 launch |
+| Confirm Depositphotos license for electrical/voice/data hero image | Phase 6 launch |
+| Confirm Gurpreet S. review exclusion on /reviews/ | Phase 5 polish |
+| Commission SVG logo file | Phase 5 polish |
+| Confirm GBP full ownership transfer | Phase 6 DNS cutover |
+| Create GTM container (or confirm if one exists) | Phase 5 GA4 migration |
+| Confirm Brian's Sanity Studio access (invite to project) | Blog migration |
+
+---
+
 ## PHASE 5 COMPLETION CRITERIA
 
+**Schema and redirects:**
 - [ ] All schema types validated via Rich Results Test — zero errors on homepage, one service page, one blog post, /about/
 - [ ] All 15 redirects returning HTTP 301 — verified with curl
 - [ ] No redirect chains — each old URL goes directly to new URL in a single hop
+
+**Analytics:**
 - [ ] GTM container created and installed in Next.js layout
 - [ ] GA4 G-1GSQDRFR9D firing through GTM — confirmed in DebugView
 - [ ] form_submit conversion event firing on contact form success
 - [ ] phone_click event firing on phone number tap/click
+
+**Contact form:**
+- [ ] Destination email confirmed with Brian (`info@onpointinstall.com` vs. `info@onpointinstallations.com`)
+- [ ] Postmark account set up, sender domain verified
+- [ ] Contact form POST sends email — verified in Postmark Activity feed on staging
+
+**Blog migration:**
+- [ ] publishedAt carry-forward resolved (WP REST API or --published-at flag)
+- [ ] Category selector fix confirmed and deployed to migration script
+- [ ] Dead-link substitution table finalized for production run
+- [ ] All 25 posts migrated to On Point Sanity project with correct data
+- [ ] Each post verified: slug renders, Article JSON-LD datePublished populated, FAQPage conditional correct
+- [ ] Sanity webhook configured → on-demand revalidation working on staging
+
+**Sanity / Brian:**
+- [ ] Brian invited to On Point Sanity project with Editor role
+- [ ] Brian can publish a test post in Studio without dev involvement
+
+**Technical:**
 - [ ] Sitemap generated at /sitemap.xml — all pages included with correct priorities
 - [ ] robots.txt generated correctly — no important pages blocked
 - [ ] Wikidata Q-URL added to sameAs arrays if entity has been created
