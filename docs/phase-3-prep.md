@@ -21,8 +21,8 @@ Items that cannot be completed in Phase 2 because they depend on Phase 3 pages t
 ## Phase 3 Retrofit Required on /about/
 
 **Page:** `/about/`
-**Status: READY TO EXECUTE** — both Schaumburg and Naperville CFI pages are now live.
-**Action:** Add two internal links to the service territory paragraph
+**Status: COMPLETE (Phase 4 Wave 1, 2026-05-18) — commit `065bee5`**
+**Action:** Added two internal links to the service territory paragraph
 
 **Links to add:**
 - Anchor: `Schaumburg office furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/` (Prompt 11 Schaumburg INTERNAL LINKING)
@@ -37,8 +37,8 @@ Items that cannot be completed in Phase 2 because they depend on Phase 3 pages t
 ## Phase 3 Retrofit Required on /project-gallery/
 
 **Page:** `/project-gallery/`
-**Status: READY TO EXECUTE** — Schaumburg CFI is live.
-**Action:** Add one internal link to the gallery intro copy
+**Status: COMPLETE (Phase 4 Wave 1, 2026-05-18) — commit `6a88731`**
+**Action:** Added one internal link to the gallery intro copy
 
 **Link to add:**
 - Anchor: `Schaumburg commercial furniture installation` → `/services/commercial-furniture-installation-schaumburg-il/`
@@ -52,8 +52,8 @@ Items that cannot be completed in Phase 2 because they depend on Phase 3 pages t
 ## Phase 3 Retrofit Required on Schaumburg CFI Page
 
 **Page:** `/services/commercial-furniture-installation-schaumburg-il/`
-**Status: READY TO EXECUTE** — Naperville CFI is now live. Execute after Naperville visual pass clears.
-**Action:** Add one internal link to the service area paragraph
+**Status: COMPLETE (Phase 4 Wave 1, 2026-05-18) — commits `dda741f` (initial), `52b4630` (voice-rules revision)**
+**Action:** Added one internal link to the service area paragraph; closing paragraph revised to resolve tricolon voice violation
 
 **Link to add:**
 - Anchor: `commercial furniture installation near Naperville` → `/services/commercial-furniture-installation-naperville-il/`
@@ -153,9 +153,9 @@ These items from the Phase 3 retrofit queue above were not executed in Phase 3 (
 
 | Item | Status | Blocking on |
 |---|---|---|
-| /about/ retrofit — Schaumburg + Naperville anchor links | **READY TO EXECUTE** | Nothing. Both city pages live. |
-| /project-gallery/ retrofit — Schaumburg anchor link | **READY TO EXECUTE** | Nothing. Schaumburg page live. |
-| Schaumburg CFI retrofit — Naperville anchor link | **READY TO EXECUTE** | Nothing. Naperville page live. |
+| /about/ retrofit — Schaumburg + Naperville anchor links | **SHIPPED** `065bee5` | — |
+| /project-gallery/ retrofit — Schaumburg anchor link | **SHIPPED** `6a88731` | — |
+| Schaumburg CFI retrofit — Naperville anchor link | **SHIPPED** `dda741f`, `52b4630` | — |
 | Space Planning retrofit — `what to do when office furniture doesn't fit` | Blocked | Blog post not yet built |
 | Money page blog links (cubicle + systems furniture) | Blocked | Blog posts not yet built |
 
