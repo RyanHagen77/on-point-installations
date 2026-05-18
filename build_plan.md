@@ -5,6 +5,30 @@
 
 ---
 
+## PHASE STATUS
+
+| Phase | Description | Status | Final Commit | Date |
+|-------|-------------|--------|--------------|------|
+| Phase 1 | Project scaffold, routing stubs, constants, redirects, Vercel deploy | **COMPLETE** | — | 2026-05-14 |
+| Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
+| Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
+| Phase 4 | TBD — /service-area/ hub, remaining city pages, blog stubs | Pending scoping | — | — |
+| Phase 5 | Launch prep — GSC verification, GTM wiring, DNS cutover, post-launch monitoring | Pending Phase 4 | — | — |
+
+**Phase 3 delivered (6 commits, 2026-05-17):**
+- `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
+- `88eac8c` — Schaumburg CFI page: CityServicePage template scaffold + Schaumburg data file
+- `80055cb` — Schaumburg ServiceSchema fix: `areaServed` typed as City not State
+- `8197d65` — Template fix: inline `/contact/` anchor added to Why Choose Us section (spec anchor for all city pages)
+- `fc4d575` — Naperville CFI page: data file + page route (template reuse validated)
+- `93d3712` — Money page retrofit: Schaumburg + Naperville audit-locked anchor links in "What's Included" section
+
+**Phase 3 deferred (carry to Phase 4 or later):**
+- Waukegan and Wauconda CFI pages — Prompt 11 has no body copy spec for these cities (table entries only). Deferred pending audit gap resolution. See `docs/phase-3-prep.md`.
+- /service-area/[city]-il/ stubs — never in Phase 3 scope; largest remaining structural gap. Scoping required.
+
+---
+
 ## CRAWL TECHNICAL SUMMARY (Site-Wide Signals)
 
 | Signal | Finding |
@@ -433,7 +457,7 @@ The new site architecture enables the following AI-assisted workflows:
 - [ ] Is there a brand style guide (exact hex colors, typography, logo files in SVG/PNG)?
 - [ ] The CyberOptik site credits link — confirmed to redirect to /about/ (no barter agreement in place)?
 - [ ] Are there any pages or services not listed here that he wants to add?
-- [ ] Preferred contact form handler — email notification only, or connect to a CRM (HubSpot, etc.)?
+- [x] Preferred contact form handler — **Postmark** (confirmed Phase 4). Email-only for now; CRM integration deferred to a later phase if Brian decides to pursue it.
 - [ ] Does he want a Gravatar profile created for Brian Vetter for WordPress authorship? (Can port to Sanity author profile in new build)
 - [ ] Confirm: the electrical/voice/data cabling service page — keep or remove from new site?
 - [ ] Does Brian own the GBP or is it still under another account? (Confirm full ownership transfer before DNS cutover)
