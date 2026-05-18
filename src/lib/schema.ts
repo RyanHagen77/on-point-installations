@@ -107,8 +107,11 @@ export function buildWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE.domain}/#website`,
-    url: SITE.domain,
     name: SITE.name,
+    alternateName: "On Point Installations",
+    url: SITE.domain,
+    description: "Commercial furniture installation services in Chicagoland and the Tri-State region. Serving Chicago, Schaumburg, Naperville, Waukegan, and Wauconda, IL.",
+    publisher: { "@id": `${SITE.domain}/#organization` },
     potentialAction: {
       "@type": "SearchAction",
       target: {
