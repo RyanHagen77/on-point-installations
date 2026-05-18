@@ -211,7 +211,7 @@ Money page retrofit anchor text corrected to Prompt 11 verbatim (`commercial fur
 ## Schaumburg CFI — Service Details Closing Paragraph (Phase 4 Wave 1 Hot-Fix)
 
 **Added:** 2026-05-18
-**Status:** Shipped.
+**Status:** Shipped — initial draft `dda741f`, final shipped commit `52b4630`.
 **Location:** `src/data/cityPages/schaumburg-il.tsx` — `serviceDetailsPara3` field
 **Source:** `docs/phase-3-prep.md` — Schaumburg CFI retrofit spec; anchor text from Prompt 11 Naperville INTERNAL LINKING OPPORTUNITIES
 
