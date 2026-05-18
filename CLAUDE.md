@@ -446,7 +446,7 @@ const handleSuccess = () => {
 };
 ```
 
-**Handler:** For now, use a simple API route that sends an email via nodemailer or a service like Resend. We will connect a CRM later if Brian decides to use one.
+**Handler:** For now, use a simple API route that sends an email via Postmark. We will connect a CRM later if Brian decides to use one.
 
 ---
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// TODO Phase 5: Wire Resend send here after verifying info@onpointinstall.com vs.
-// info@onpointinstallations.com with Brian. Do not import or initialize Resend until
+// TODO Phase 5: Wire Postmark send here after verifying info@onpointinstall.com vs.
+// info@onpointinstallations.com with Brian. Do not import or initialize Postmark until
 // the correct inbox is confirmed to avoid silently dropped leads.
 
 // Required fields on the contact form submission
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 
     // projectDetails is optional -- no validation needed
 
-    // Phase 5: send email via Resend here
+    // Phase 5: send email via Postmark here
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch {
