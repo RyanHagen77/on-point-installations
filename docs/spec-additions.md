@@ -205,3 +205,20 @@ Money page retrofit anchor text corrected to Prompt 11 verbatim (`commercial fur
 **Change:** Prompt 11 reads "downtown Naperville's office market." The data file reads "Naperville's downtown office market." Semantically equivalent; the data file phrasing reads more naturally.
 **Rationale:** Minor word-order smoothing that doesn't alter meaning or keyword coverage. The substitution was flagged in session review and approved.
 **Constraint — going forward:** This substitution does not authorize general voice-preference departures from Prompt 11 verbatim copy on Waukegan, Wauconda, or future city pages. Prompt 11 is verbatim source for city page copy. Substitutions on future pages require an explicit hook violation or voice-rule violation (em dash, banned phrase, etc.) as justification — not smoothing preference. Any non-rule-required departure must be flagged for review before the outline is approved.
+
+---
+
+## Schaumburg CFI — Service Details Closing Paragraph (Phase 4 Wave 1 Hot-Fix)
+
+**Added:** 2026-05-18
+**Status:** Shipped.
+**Location:** `src/data/cityPages/schaumburg-il.tsx` — `serviceDetailsPara3` field
+**Source:** `docs/phase-3-prep.md` — Schaumburg CFI retrofit spec; anchor text from Prompt 11 Naperville INTERNAL LINKING OPPORTUNITIES
+
+**Change:** The initial Wave 1 retrofit draft (commit `dda741f`) used a single sentence: "On Point also handles [commercial furniture installation near Naperville] for clients with projects across the I-88/Route 59 corridor." Supervisor review expanded this to a two-sentence closing paragraph. The second sentence in the proposed two-sentence version contained a rhetorical tricolon ("one crew, one contact, one standard of work") that conflicts with CLAUDE.md voice rules. Resolved to a parallel couplet: "the same crew and the same standard of work."
+
+**Final shipped copy:** "On Point also covers the I-88/Route 59 corridor to the south, including [commercial furniture installation near Naperville]. Clients with projects across both markets work with the same crew and the same standard of work."
+
+**Anchor text:** `commercial furniture installation near Naperville` — verbatim per Prompt 11, unchanged through both revisions.
+
+**Precedence:** Voice rules outrank SEO audit per CLAUDE.md precedence order (voice > live-site parity > audit > drafted copy). The tricolon deviation was a voice-rule violation, not a semantic or keyword deviation.

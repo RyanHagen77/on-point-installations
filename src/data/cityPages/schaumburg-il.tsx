@@ -36,17 +36,18 @@ const schaumburgPage: CityServicePageProps = {
 
   // Phase 4 retrofit per docs/phase-3-prep.md.
   // Anchor text verbatim from Prompt 11 Naperville INTERNAL LINKING OPPORTUNITIES.
-  // Surrounding prose drafted per CLAUDE.md Voice Rules; tricolon removed from original proposal.
+  // Hot-fix: initial second sentence contained a rhetorical tricolon; replaced with parallel couplet.
+  // Deviation logged in docs/spec-additions.md per CLAUDE.md precedence order (voice > audit).
   serviceDetailsPara3: (
     <>
-      On Point also handles{' '}
+      On Point also covers the I-88/Route 59 corridor to the south, including{' '}
       <Link
         href="/services/commercial-furniture-installation-naperville-il/"
         className="text-[#800000] underline hover:text-[#5A0000]"
       >
         commercial furniture installation near Naperville
       </Link>
-      {' '}for clients with projects across the I-88/Route 59 corridor.
+      {'. '}Clients with projects across both markets work with the same crew and the same standard of work.
     </>
   ),
 
