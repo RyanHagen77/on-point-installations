@@ -1,0 +1,22 @@
+[LOG     ] Writing to logs/modular-furniture-designs.log and logs/modular-furniture-designs.err
+[EXTRACT ] title: "Top 10 Modular Office Furniture Design Trends"
+[EXTRACT ] metaDescription: 157 chars
+[EXTRACT ] publishedAt: not found
+[EXTRACT ] category: not found
+[EXTRACT ] body selector: .entry-content found
+[EXTRACT ] internal links in body: 7
+[EXTRACT ] Byline stripped from body HTML
+[EXTRACT ] body: 10894 chars
+[META    ] --meta-description override: 139 chars
+[CONVERT ] htmlToBlocks complete -- 67 blocks
+[LINKS   ] 7 internal links:
+[LINKS   ]   [OK      ] "artwork installations" -> /services/artwork-installation/
+[LINKS   ]   [OK      ] "office furniture space planning" -> /services/space-planning/
+[LINKS   ]   [NO EQUIV] "modular installation case study" -> /project/modular-installation-services-park-ridge-il/
+[LINKS   ]   [NO EQUIV] "stored" -> /category/furniture-storage-and-warehousing/
+[LINKS   ]   [NO EQUIV] "complete office system installation" -> /project/complete-office-system-installationdowners-grove-il
+[LINKS   ]   [OK      ] "commercial office furniture installer" -> /services/commercial-office-furniture-installation-chicago-il/
+[LINKS   ]   [OK      ] "get a free quote" -> /contact/
+[WRITE   ] createOrReplace _id: blog-modular-furniture-designs
+[WRITE   ] dataset: production, projectId: hwyx6cco
+[DONE    ] checkmark blog-modular-furniture-designs written to Sanity

@@ -1,0 +1,23 @@
+[LOG     ] Writing to logs/how-to-find-a-chicago-corporate-installation-expert.log and logs/how-to-find-a-chicago-corporate-installation-expert.err
+[EXTRACT ] title: "How to Find a Chicago Corporate Installation Expert"
+[EXTRACT ] metaDescription: 150 chars
+[EXTRACT ] publishedAt: not found
+[EXTRACT ] category: not found
+[EXTRACT ] body selector: .entry-content found
+[EXTRACT ] internal links in body: 10
+[EXTRACT ] body: 6502 chars
+[CONVERT ] htmlToBlocks complete -- 20 blocks
+[LINKS   ] 10 internal links:
+[LINKS   ]   [OK      ] "relocate an office" -> /services/commercial-office-furniture-installation-chicago-il/
+[LINKS   ]   [OK      ] "Chicago-area installation experts" -> /services/commercial-office-furniture-installation-chicago-il/
+[LINKS   ]   [OK      ] "the experience you want and need" -> /about/
+[LINKS   ]   [OK      ] "previous work" -> /project-gallery/
+[LINKS   ]   [OK      ] "restructuring office furniture during a downsize" -> /blog/how-to-survive-office-downsizing/
+[LINKS   ]   [OK      ] "upgrading to more modular options" -> /blog/modular-furniture-designs/
+[LINKS   ]   [OK      ] "personal storage crating" -> /services/commercial-office-furniture-storage-chicago-il/
+[LINKS   ]   [OK      ] "furniture relocation" -> /services/company-office-relocation-chicago-il/
+[LINKS   ]   [OK      ] "electrical reconnect" -> /services/electrical-voice-and-data-cabling-for-your-commercial-installation/
+[LINKS   ]   [OK      ] "contact us" -> /contact/
+[WRITE   ] createOrReplace _id: blog-how-to-find-a-chicago-corporate-installation-expert
+[WRITE   ] dataset: production, projectId: hwyx6cco
+[DONE    ] checkmark blog-how-to-find-a-chicago-corporate-installation-expert written to Sanity
