@@ -414,6 +414,90 @@ Asset audit doc header was previously labeled "Session 5, Lane 2" -- corrected t
 
 ---
 
+## Phase 5 Session 5 Close Note (2026-05-20)
+
+Commits: 15c7c17 (schema), d0fff53 (script -- image pipeline), 0844178 (script -- quality gate), 330c426 (template). Final HEAD: 330c426 on origin/main.
+
+Session 5 delivered the featured image migration pipeline end to end.
+
+**Lane 1:** featuredImage.alt sub-field added to blogPost Sanity schema (warning validation, non-blocking during the migration window). Studio shows yellow warnings on all posts until Lane 3 populates them.
+
+**Lane 3 (script extension):** fetchFeaturedImageMeta fetches source_url and alt_text from WP REST API (posts + media endpoints, separate from the hardened fetchPublishedAt). deriveOriginalUrl strips _NNN display-width and -NNNxNNN/-rotated WP thumbnail suffixes from image URLs before download. isQualityAlt gates tier-1 WP alt_text, rejecting Pexels attribution strings, 5+ digit ID runs, trailing pixel-size numbers, dimension strings, denylist stems, camera-default patterns, and normalized-filename matches. deriveAlt runs three-tier fallback: WP alt (quality gate) -> filename derivation (with Pexels prefix strip and 4+ digit token removal) -> post title. uploadFeaturedImage downloads image bytes and uploads to Sanity CDN; Sanity deduplicates by SHA-1 hash so re-runs are idempotent. Dry-run mode skips both upload and write, logs intent.
+
+**Template:** GROQ projection updated to featuredImage { asset, alt }. BlogPost TypeScript interface typed with _type: 'reference' literal (not arbitrary string). Image alt prop uses featuredImage.alt with post.title fallback for any document missing the field.
+
+**25-post re-migration:** 25 passed, 0 failed. All posts have featuredImage and alt set in Sanity.
+
+Alt-tier distribution:
+- tier=wp (WP alt_text accepted): 5 posts
+- tier=filename (wp rejected, filename derivation used): 9 posts
+- tier=title (wp rejected, post title used): 11 posts
+
+**Two filter gaps:** isQualityAlt did not reject "img 5074 resized" (the-differences-between-high-and-low-voltage-electricity) -- the trailing word "resized" prevented the pixel-size-at-end check from firing. Did not reject "onpointinstallations1" (how-to-move-or-downsize-an-office) -- single concatenated token with no word boundaries to match denylist patterns. Both are WP filename-derived alt text that passed tier 1 incorrectly. Both listed in the Brian review queue below.
+
+**FAQ strategy confirmed closed:** FAQPage schema infrastructure dormant. Conditional render on faqs.length > 0 is in place. Brian authors FAQs in Studio post-launch. No Session 5 FAQ work.
+
+**Outstanding from Session 4 now resolved:**
+- Article image warnings in Rich Results Test -- featured image migration landed in Session 5; warnings should clear on next Google re-index.
+
+---
+
+## Blog Posts -- Featured Image Alt Text Review
+
+**Action needed:** Brian to open each post in Sanity Studio (On Point Installations > Blog Post > [post title]) and rewrite the alt text in the Featured Image field. Current values are either filename cruft, Pexels photographer names, or a random image hash. Each entry below states the current value and what the image actually shows so Brian can write an accurate description.
+
+**Owner:** Brian Vetter
+**How:** Sanity Studio > Blog Post > [title] > scroll to Featured Image > click image > edit Alt Text field
+**Phase:** Before Phase 5 launch prep (accessibility + SEO requirement)
+
+---
+
+### Must Replace (alt text is wrong or meaningless)
+
+**how-to-find-the-right-team-for-your-office-furniture-installation-project**
+- Current alt: `Ir5i0ejc` (random 8-char filename hash -- meaningless)
+- Image: The WP featured image has a hash filename; visually inspect the image in Studio and describe what's in the photo.
+
+**the-differences-between-high-and-low-voltage-electricity**
+- Current alt: `img 5074 resized` (WP filename cruft -- slipped through quality filter)
+- Image: An On Point job photo showing electrical or cabling installation work. Write a description of what the photo shows.
+
+**how-to-move-or-downsize-an-office**
+- Current alt: `onpointinstallations1` (filename without extension -- slipped through quality filter)
+- Image: An On Point job photo (`onpointinstallations1-2.jpg`). Write a description of what the photo shows.
+
+**different-types-of-window-treatments**
+- Current alt: `Scott Webb` (Pexels photographer name -- not image content)
+- Image: A Pexels stock photo of window treatments in a room. Describe what's in the photo (e.g., "Roller shades installed in a modern office" or similar based on what the photo shows).
+
+**5-reasons-you-need-a-professional-art-installation-team**
+- Current alt: `Photo 1` (Pexels filename reduced to 7-char stub -- meaningless)
+- Image: A Pexels stock photo related to artwork or gallery installation. Describe what's in the photo.
+
+**how-to-ensure-safe-warehousing-for-your-product**
+- Current alt: `Tiger Lily` (Pexels photographer name -- not image content)
+- Image: A Pexels stock photo of a warehouse or storage environment. Describe what's in the photo.
+
+**benefits-of-using-professional-office-furniture-installers**
+- Current alt: `Opi Dec` (derived from `opi_dec-0022-scaled-1.jpg` -- 7-char stub, not descriptive)
+- Image: An On Point job photo from a December shoot (OPI Dec series). Describe what the installation work in the photo shows.
+
+---
+
+### Review Recommended (alt text is populated but could be better)
+
+These passed the quality gate or landed on the post title. The alt text is not wrong but could be more descriptive if Brian knows what the images show.
+
+| Post | Current alt | Notes |
+|---|---|---|
+| `benefits-of-using-warehousing-services-during-downsizing-and-beyond` | `a warehouse` | Generic but valid. Fine to leave as-is. |
+| `is-the-concept-of-a-physical-office-dying` | `man using his laptop` | Describes the stock photo accurately. Fine to leave. |
+| `this-years-biggest-modular-furniture-trends` | `Colaboration Space` | Typo in source filename ("Colaboration" not "Collaboration"). Low priority but worth fixing. |
+| `5-essential-tips-from-office-installers-in-chicago` | `Opi Payroc Progress1` | Identifies the job site (Payroc) but not the work shown. Better: describe what's in the photo. |
+| `the-importance-of-strong-relationships-between-office-furniture-dealerships-and-installation-providers` | `Opi Group Shot` | Identifies it as a crew group shot. Acceptable. |
+
+---
+
 ## Phase 5 Session 2 Close Note (2026-05-19)
 
 **Phase 5 Session 2 closed at commit `01795e8`.** Repo consolidation shipped, migration script hardened, dry-run verified on all 3 existing posts.

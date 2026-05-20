@@ -138,6 +138,31 @@ Verification: after deploy, edit a post title in Studio, publish, wait ~10s, ref
 - Add alt field to blogPost Sanity schema (confirmed missing -- featuredImage has only hotspot configured)
 - FAQ content strategy: 24 of 25 migrated posts have no FAQs in WP source; 3 Studio-authored FAQs were cleared during re-migration of how-to-find-a-chicago-corporate-installation-expert; schema works but renders nothing -- content decision deferred to Session 5
 
+**Phase 5 Session 5 -- 2026-05-20 -- Final commit 330c426**
+
+**Lanes completed:**
+- Lane 1: Added featuredImage.alt sub-field to blogPost Sanity schema; .warning() validation (non-blocking during migration window) (commit 15c7c17)
+- Lane 2: Skipped -- content-only; Ryan handles in Sanity Studio directly
+- Lane 3: Extended migration script with featured image pipeline -- fetchFeaturedImageMeta (two WP REST calls), deriveOriginalUrl (resize variant parser), isQualityAlt (tier-1 quality gate), deriveAlt (three-tier fallback with tier-2 cleanup pass), uploadFeaturedImage (Sanity CDN asset upload, idempotent via SHA-1 dedup) (commits d0fff53, 0844178)
+- Template: Blog post template updated -- GROQ projects featuredImage { asset, alt }, interface typed with _type: 'reference' literal, Image alt prop consumes featuredImage.alt with post.title fallback (commit 330c426)
+
+**Full 25-post re-migration:** 25 passed, 0 failed. All posts have featuredImage and alt set in Sanity.
+
+**Alt-tier distribution:**
+- tier=wp (WP alt_text accepted by quality gate): 5 posts
+- tier=filename (wp rejected, filename derivation used): 9 posts
+- tier=title (wp rejected, post title used): 11 posts
+
+**Validations completed:**
+- Dry-run on 2 posts before full run (modular-furniture-designs, different-types-of-window-treatments)
+- Quality gate verified: tier-1 rejected on both test posts; tier-2 used
+- Full 25-post run: 25 passed, 0 failed
+
+**Carry-forward:**
+- FAQ strategy unchanged: FAQPage schema infrastructure dormant; Brian authors in Studio post-launch
+- Alt text Brian review: 7 posts have meaningless alt values (filter gaps + Pexels photographer names + hash filenames); listed in known-issues.md
+- Two isQualityAlt filter gaps identified: "img 5074 resized" and "onpointinstallations1" passed tier 1 incorrectly; both listed in known-issues.md for Brian's manual Studio fix
+
 ---
 
 ## CRAWL TECHNICAL SUMMARY (Site-Wide Signals)
