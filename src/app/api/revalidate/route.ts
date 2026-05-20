@@ -74,9 +74,11 @@ export async function POST(request: NextRequest) {
   try {
     revalidateTag('blog', 'default');
     revalidatePath('/blog/');
+    revalidatePath('/blog/[slug]', 'page');
     const slug = body.slug?.current;
     if (slug) {
-      revalidatePath(`/blog/${slug}/`);
+      revalidatePath(`/blog/${slug}`);
+      console.log(`[revalidate] blog post: ${slug}`);
     }
   } catch (err) {
     console.error('revalidate: cache invalidation failed', err);
