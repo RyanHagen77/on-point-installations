@@ -166,15 +166,56 @@ function deriveOriginalUrl(url: string): string {
 const DEGENERATE_STEMS = /^(image|img|pic|photo|logo|untitled|default|placeholder|dsc|dscn)$/i;
 const CAMERA_DEFAULT_STEM = /^(img_?\d+|dsc_?\d+|dscn\d+|p\d+|20\d{6}[_-]\d{6})/i;
 
+function isQualityAlt(alt: string, imageUrl: string): boolean {
+  const trimmed = alt.trim();
+
+  // Reject: starts with "pexels" (filename attribution or WP Pexels alt text)
+  if (/^pexels[\s-]/i.test(trimmed)) return false;
+
+  // Reject: contains 5+ consecutive digits (Pexels IDs, filename IDs)
+  if (/\d{5,}/.test(trimmed)) return false;
+
+  // Reject: ends with pixel-size number (1200, 1920, etc.)
+  if (/\b\d{3,4}\b$/.test(trimmed)) return false;
+
+  // Reject: contains dimension string like 1920x1080
+  if (/\b\d{3,4}x\d{3,4}\b/.test(trimmed)) return false;
+
+  const normalized = trimmed.toLowerCase().replace(/[-_\s]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+  // Reject: matches alt text denylist
+  if (/^(pic|image|img|photo|logo|untitled|default|placeholder|screenshot|unnamed)$/.test(normalized)) return false;
+
+  // Reject: matches camera-default pattern
+  if (/^(img|dsc|dscn|p)\s?\d+$/.test(normalized)) return false;
+
+  // Reject: normalized alt matches normalized image filename (auto-populated by WP)
+  const filename = imageUrl.split('/').pop() ?? '';
+  const normalizedFilename = filename
+    .replace(/\.[^.]+$/, '')
+    .toLowerCase()
+    .replace(/[-_\s]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (normalized === normalizedFilename) return false;
+
+  return true;
+}
+
 function deriveAlt(
   wpAlt: string | null,
   imageUrl: string,
   postTitle: string
-): { alt: string; tier: 'wp' | 'filename' | 'title' } {
+): { alt: string; tier: 'wp' | 'filename' | 'title'; note?: string } {
+  // Tier 1: WP alt_text, only if it passes quality gate
   if (wpAlt && wpAlt.trim()) {
-    return { alt: wpAlt.trim(), tier: 'wp' };
+    if (isQualityAlt(wpAlt, imageUrl)) {
+      return { alt: wpAlt.trim(), tier: 'wp' };
+    }
   }
+  const wpRejected = !!(wpAlt && wpAlt.trim());
 
+  // Tier 2: filename derivation with cleanup pass
   const filename = imageUrl.split('/').pop() ?? '';
   const withoutExt = filename.replace(/\.[^.]+$/, '');
   const stemCleaned = withoutExt
@@ -190,13 +231,20 @@ function deriveAlt(
     CAMERA_DEFAULT_STEM.test(stemCleaned);
 
   if (!isDegenerate) {
-    const readable = stemCleaned
-      .replace(/[-_]+/g, ' ')
-      .replace(/\b\w/g, (c) => c.toUpperCase());
-    return { alt: readable, tier: 'filename' };
+    const rawReadable = stemCleaned.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+    // Strip Pexels attribution prefix and bare 4+ digit numeric tokens
+    const cleanedReadable = rawReadable
+      .replace(/^pexels\s+/i, '')
+      .replace(/\b\d{4,}\b/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (cleanedReadable.length > 6) {
+      const readable = cleanedReadable.replace(/\b\w/g, (c) => c.toUpperCase());
+      return { alt: readable, tier: 'filename', note: wpRejected ? 'wp rejected' : undefined };
+    }
   }
 
-  return { alt: postTitle, tier: 'title' };
+  return { alt: postTitle, tier: 'title', note: wpRejected ? 'wp rejected' : undefined };
 }
 
 // ── slugFromUrl ───────────────────────────────────────────────────────────────
@@ -570,7 +618,7 @@ async function run(): Promise<void> {
   if (imageMeta) {
     const derived = deriveAlt(imageMeta.wpAlt, imageMeta.url, extracted.title);
     altText = derived.alt;
-    log('ALT-TIER', `tier=${derived.tier} alt="${derived.alt}"`);
+    log('ALT-TIER', `tier=${derived.tier}${derived.note ? ` (${derived.note})` : ''} alt="${derived.alt}"`);
     assetId = await uploadFeaturedImage(imageMeta.url, imageMeta.url.split('/').pop() ?? slug);
   } else {
     log('IMG', 'no featured image found -- featuredImage omitted from document');
