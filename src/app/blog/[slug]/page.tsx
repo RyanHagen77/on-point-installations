@@ -11,6 +11,8 @@ import { urlFor } from '@/lib/sanity-image';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
+import ArticleSchema from '@/components/schema/ArticleSchema';
+import FAQSchema from '@/components/schema/FAQSchema';
 
 interface FAQ {
   question: string;
@@ -114,11 +116,23 @@ export default async function BlogPostPage({
   const heroImageUrl = post.featuredImage
     ? urlFor(post.featuredImage).width(1200).height(630).url()
     : null;
+  const postUrl = `${SITE.domain}/blog/${slug}/`;
+  const articleDescription =
+    post.metaDescription ?? post.excerpt ?? 'Commercial furniture installation insights from On Point Installations.';
 
   return (
     <main>
-      {/* ArticleSchema - wired in Lane 2 */}
-      {/* FAQSchema (conditional on post.faqs?.length > 0) - wired in Lane 2 */}
+      <ArticleSchema
+        title={post.title}
+        description={articleDescription}
+        url={postUrl}
+        datePublished={displayDate}
+        dateModified={post._updatedAt}
+        {...(heroImageUrl && { image: heroImageUrl })}
+      />
+      {post.faqs && post.faqs.length > 0 && (
+        <FAQSchema items={post.faqs} />
+      )}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Breadcrumb
           items={[

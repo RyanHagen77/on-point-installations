@@ -238,8 +238,8 @@ export function buildArticleSchema({
       name: SITE.owner,
     },
     publisher: {
-      "@type": "Organization",
-      "@id": `${SITE.domain}/#organization`,
+      "@type": "ProfessionalService",
+      "@id": `${SITE.domain}/#business`,
       name: SITE.name,
     },
     ...(image && { image: { "@type": "ImageObject", url: image, width: 1200, height: 630 } }),
