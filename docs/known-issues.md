@@ -319,6 +319,39 @@ Schaumburg and Naperville both ship with `[REVIEW PLACEHOLDER]` in the social pr
 
 ---
 
+## Phase 5 Session 2 Close Note (2026-05-19)
+
+**Phase 5 Session 2 closed at commit `01795e8`.** Repo consolidation shipped, migration script hardened, dry-run verified on all 3 existing posts.
+
+### Architecture Correction -- Single Repo
+
+Two-repo setup (integrepro-seo-lab + on-point-installations) decommissioned. Both repos pointed at the same Sanity project (hwyx6cco, dataset production). The lab was a sandbox, not a separate environment. All Sanity Studio configuration, schemas, and migration tooling now live in on-point-installations. The lab repo is archivable. Ryan-side steps: add staging URL to CORS at sanity.io/manage, archive integrepro-seo-lab, deactivate project-wdufc.vercel.app.
+
+### Studio Port -- Delivered
+
+Embedded NextStudio route at /studio/[[...tool]] now live in on-point-installations. sanity.config.ts updated: name and title changed from "IntegrePro SEO Lab" to "On Point Installations". Project ID and dataset remain env-var-driven (hwyx6cco / production). src/lib/sanity.ts placeholder stub replaced with real createClient config (useCdn: true). Studio header will read "On Point Installations" once Ryan logs in and CORS is configured for the staging URL.
+
+### Script Hardening -- Delivered
+
+All three Phase 4 carry-forwards fixed in scripts/migrate-wp-post.ts:
+
+1. **publishedAt**: WP REST API pre-fetch via fetchPublishedAt() reads date_gmt from /wp-json/wp/v2/posts?slug={slug}. HTML extraction still returns null (theme emits no article:published_time or time[datetime]) but REST override populates the field. Verified: modular-furniture-designs gets 2024-08-25T15:12:47Z.
+
+2. **Category**: Selector changed from .cat-links a (element doesn't exist in this theme) to meta[property="article:section"] (Yoast OG meta, present on all posts). Verified: returns "Commercial Furniture Dealers" on modular-furniture-designs.
+
+3. **Dead-link substitution**: applyLinkSubstitutions() runs after image removal and byline strip, before Portable Text conversion. SERVICE_SUBSTITUTIONS (14 entries), AUDIT_SUBSTITUTIONS (3 entries), DEAD_LINK_PREFIXES (strips /project/ and /category/ links preserving text). internalLinks inventory moved to after substitution so logged links reflect final state. Dry-run verified on all 3 existing posts: no old-slug, /project/, or /category/ URLs in post-substitution output.
+
+Also noted during recon: @sanity/block-tools package has been renamed to @portabletext/block-tools (deprecation warning at install). Migration script continues to work on the current version (3.70.0). This rename is a future maintenance item -- not blocking.
+
+### Session 3 Scope
+
+Session 3 picks up:
+- Blog template build (src/app/blog/[slug]/page.tsx real implementation: Sanity client, GROQ query, ArticleSchema with Brian Vetter as author and On Point as publisher, conditional FAQPage, ISR tags)
+- ArticleSchema fix (publisher @id from /#organization to /#business -- lands with template for proper render testing)
+- 22-post production migration run (3 already in Sanity from Phase 4; script is hardened and ready)
+- Sanity webhook + on-demand revalidation route (replaces time-based ISR with publish-event cache invalidation)
+- Asset audit of Phase 4 sandbox log files (logs/*.err -- image src inventory before migration run)
+
 ## Phase 5 Session 1 Close Note (2026-05-18)
 
 **Phase 5 Session 1 closed at commit `1252c9f`.** Schema implementation across the build per Prompt 17. Five code commits, two verification-only passes covering all 7 schema types. Session 2 picks up redirect verification, Postmark wiring, and GA4 to GTM migration.
