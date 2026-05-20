@@ -229,8 +229,8 @@ function extractPost(html: string): ExtractedPost {
     null;
   log('EXTRACT', publishedAt ? `publishedAt: ${publishedAt}` : 'publishedAt: not found');
 
-  // Category
-  const category = doc.querySelector('.cat-links a')?.textContent?.trim() ?? null;
+  // Category: theme renders categories via <select> not <a>; use OG article:section meta
+  const category = doc.querySelector('meta[property="article:section"]')?.getAttribute('content')?.trim() ?? null;
   log('EXTRACT', category ? `category: "${category}"` : 'category: not found');
 
   // Body content
