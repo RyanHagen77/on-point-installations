@@ -137,6 +137,68 @@ interface ExtractedPost {
   skippedImages: string[];
 }
 
+interface FeaturedImageMeta {
+  url: string;
+  wpAlt: string | null;
+}
+
+// ── Image URL and alt utilities ───────────────────────────────────────────────
+
+function deriveOriginalUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    const original = parsed.pathname;
+    let cleaned = original;
+    // Strip _NNN display-width suffix: hero_1200.jpg -> hero.jpg
+    cleaned = cleaned.replace(/(_\d+)(\.[^.]+)$/, '$2');
+    // Strip -NNNxNNN[-N] and -rotated[-N] WP thumbnail suffixes
+    cleaned = cleaned.replace(/(-\d+x\d+|-rotated)(-\d+)?(\.[^.]+)$/, '$3');
+    if (cleaned !== original) {
+      log('RESIZE', `derived original URL pathname: "${original}" -> "${cleaned}"`);
+      parsed.pathname = cleaned;
+    }
+    return parsed.href;
+  } catch {
+    return url;
+  }
+}
+
+const DEGENERATE_STEMS = /^(image|img|pic|photo|logo|untitled|default|placeholder|dsc|dscn)$/i;
+const CAMERA_DEFAULT_STEM = /^(img_?\d+|dsc_?\d+|dscn\d+|p\d+|20\d{6}[_-]\d{6})/i;
+
+function deriveAlt(
+  wpAlt: string | null,
+  imageUrl: string,
+  postTitle: string
+): { alt: string; tier: 'wp' | 'filename' | 'title' } {
+  if (wpAlt && wpAlt.trim()) {
+    return { alt: wpAlt.trim(), tier: 'wp' };
+  }
+
+  const filename = imageUrl.split('/').pop() ?? '';
+  const withoutExt = filename.replace(/\.[^.]+$/, '');
+  const stemCleaned = withoutExt
+    .replace(/(_\d+)$/, '')                          // _1200 display-width suffix
+    .replace(/(-scaled-?\d*)$/, '')                  // -scaled-1 WP max-size marker
+    .replace(/(-resized)(-e\d+)?$/, '')              // -resized-eNNNNNN WP edit timestamp
+    .replace(/(-\d+x\d+|-rotated)(-\d+)?$/, '')     // -300x225-2, -rotated-2
+    .replace(/-(\d+)$/, '');                          // -1 duplicate upload trailer
+
+  const isDegenerate =
+    stemCleaned.length <= 6 ||
+    DEGENERATE_STEMS.test(stemCleaned) ||
+    CAMERA_DEFAULT_STEM.test(stemCleaned);
+
+  if (!isDegenerate) {
+    const readable = stemCleaned
+      .replace(/[-_]+/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+    return { alt: readable, tier: 'filename' };
+  }
+
+  return { alt: postTitle, tier: 'title' };
+}
+
 // ── slugFromUrl ───────────────────────────────────────────────────────────────
 
 function slugFromUrl(url: string): string {
@@ -173,6 +235,65 @@ async function fetchPublishedAt(slug: string): Promise<string | null> {
     return iso;
   } catch (err) {
     warn(`WP REST API fetch failed for slug "${slug}": ${String(err)} -- publishedAt will be null`);
+    return null;
+  }
+}
+
+// ── fetchFeaturedImageMeta ────────────────────────────────────────────────────
+// Two REST calls: posts endpoint for featured_media ID, then media endpoint for
+// source_url and alt_text. Separate from fetchPublishedAt to avoid modifying
+// hardened Session 4 logic. Soft failure on any error: warns and returns null.
+//
+// Sanity deduplicates uploaded assets by SHA-1 hash, so re-running on an
+// already-migrated post uploads the same bytes and returns the same asset _id.
+// createOrReplace replaces the entire document, so re-migration is idempotent.
+
+async function fetchFeaturedImageMeta(slug: string): Promise<FeaturedImageMeta | null> {
+  const postsUrl = `https://onpointinstallations.com/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}`;
+  log('IMG', `GET posts API for featured_media: ${postsUrl}`);
+  let featuredMediaId: number;
+  try {
+    const res = await fetch(postsUrl, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) {
+      warn(`WP REST posts API returned HTTP ${res.status} -- featuredImage skipped`);
+      return null;
+    }
+    const posts = await res.json() as Array<{ featured_media?: number }>;
+    if (!Array.isArray(posts) || posts.length === 0) {
+      warn(`WP REST posts API: no post found for slug "${slug}" -- featuredImage skipped`);
+      return null;
+    }
+    featuredMediaId = posts[0].featured_media ?? 0;
+    if (featuredMediaId === 0) {
+      log('IMG', 'featured_media is 0 -- no featured image set in WP');
+      return null;
+    }
+  } catch (err) {
+    warn(`WP REST posts API fetch failed: ${String(err)} -- featuredImage skipped`);
+    return null;
+  }
+
+  const mediaUrl = `https://onpointinstallations.com/wp-json/wp/v2/media/${featuredMediaId}`;
+  log('IMG', `GET media API: ${mediaUrl}`);
+  try {
+    const res = await fetch(mediaUrl, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) {
+      warn(`WP REST media API returned HTTP ${res.status} for media ID ${featuredMediaId} -- featuredImage skipped`);
+      return null;
+    }
+    const media = await res.json() as { source_url?: string; alt_text?: string };
+    if (!media.source_url) {
+      warn(`WP REST media API: source_url missing for media ID ${featuredMediaId} -- featuredImage skipped`);
+      return null;
+    }
+    const rawUrl = media.source_url;
+    const url = deriveOriginalUrl(rawUrl);
+    const wpAlt = media.alt_text?.trim() || null;
+    log('IMG', `featured image source: ${rawUrl}${url !== rawUrl ? ` -> derived: ${url}` : ''}`);
+    if (wpAlt) log('IMG', `WP alt_text: "${wpAlt}"`);
+    return { url, wpAlt };
+  } catch (err) {
+    warn(`WP REST media API fetch failed: ${String(err)} -- featuredImage skipped`);
     return null;
   }
 }
@@ -354,13 +475,54 @@ function convertBody(bodyHtml: string): unknown[] {
   return blocks;
 }
 
+// ── uploadFeaturedImage ───────────────────────────────────────────────────────
+
+async function uploadFeaturedImage(
+  imageUrl: string,
+  filename: string
+): Promise<string | null> {
+  if (dryRun) {
+    log('DRY-RUN', `would upload featured image: ${imageUrl} as "${filename}"`);
+    return 'dry-run-asset-id';
+  }
+  log('IMG', `fetching image bytes: ${imageUrl}`);
+  let imageRes: Response;
+  try {
+    imageRes = await fetch(imageUrl, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OnPointMigrator/1.0)' },
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!imageRes.ok) {
+      warn(`Image fetch returned HTTP ${imageRes.status} for ${imageUrl} -- featuredImage skipped`);
+      return null;
+    }
+  } catch (err) {
+    warn(`Image fetch failed: ${String(err)} -- featuredImage skipped`);
+    return null;
+  }
+  const contentType = imageRes.headers.get('content-type') ?? 'image/jpeg';
+  const buffer = Buffer.from(await imageRes.arrayBuffer());
+  log('IMG', `uploading to Sanity CDN: ${buffer.length} bytes, contentType: ${contentType}`);
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const asset = await (writeClient as any).assets.upload('image', buffer, { filename, contentType });
+    log('IMG', `asset uploaded: ${asset._id}`);
+    return asset._id as string;
+  } catch (err) {
+    warn(`Sanity asset upload failed: ${String(err)} -- featuredImage skipped`);
+    return null;
+  }
+}
+
 // ── buildDocument ─────────────────────────────────────────────────────────────
 
 function buildDocument(
   extracted: ExtractedPost,
   slug: string,
   blocks: unknown[],
-  metaDescriptionOverride?: string
+  metaDescriptionOverride?: string,
+  assetId?: string | null,
+  altText?: string
 ): Record<string, unknown> {
   const metaDescription = metaDescriptionOverride ?? extracted.metaDescription;
   return {
@@ -375,6 +537,13 @@ function buildDocument(
     ...(extracted.publishedAt != null && { publishedAt: extracted.publishedAt }),
     ...(extracted.category != null && { category: extracted.category }),
     status: 'published',
+    ...(assetId != null && {
+      featuredImage: {
+        _type: 'image',
+        asset: { _type: 'reference', _ref: assetId },
+        alt: altText ?? '',
+      },
+    }),
   };
 }
 
@@ -385,6 +554,7 @@ async function run(): Promise<void> {
   initLogFiles(slug);
 
   const restDate = await fetchPublishedAt(slug);
+  const imageMeta = await fetchFeaturedImageMeta(slug);
   const extracted = extractPost(html);
   if (!extracted.publishedAt && restDate) {
     log('REST', `using WP REST date (HTML had none): ${restDate}`);
@@ -394,7 +564,19 @@ async function run(): Promise<void> {
     log('META', `--meta-description override: ${metaOverride.length} chars`);
   }
   const blocks = convertBody(extracted.bodyHtml);
-  const document = buildDocument(extracted, slug, blocks, metaOverride);
+
+  let assetId: string | null = null;
+  let altText = extracted.title;
+  if (imageMeta) {
+    const derived = deriveAlt(imageMeta.wpAlt, imageMeta.url, extracted.title);
+    altText = derived.alt;
+    log('ALT-TIER', `tier=${derived.tier} alt="${derived.alt}"`);
+    assetId = await uploadFeaturedImage(imageMeta.url, imageMeta.url.split('/').pop() ?? slug);
+  } else {
+    log('IMG', 'no featured image found -- featuredImage omitted from document');
+  }
+
+  const document = buildDocument(extracted, slug, blocks, metaOverride, assetId, altText);
 
   // Internal links report (dead links and substitutions already applied in extractPost)
   if (extracted.internalLinks.length > 0) {
