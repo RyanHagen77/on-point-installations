@@ -143,6 +143,15 @@ export default defineType({
       title: 'Featured Image',
       type: 'image',
       options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: "Describe what's in the image. Helps screen readers and shows in search results.",
+          validation: (Rule) => Rule.required().warning('Alt text is required for accessibility and SEO.'),
+        }),
+      ],
     }),
     defineField({
       name: 'wordCountTarget',
