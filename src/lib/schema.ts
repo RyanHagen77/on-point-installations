@@ -236,6 +236,7 @@ export function buildArticleSchema({
     author: {
       "@type": "Person",
       name: SITE.owner,
+      url: `${SITE.domain}/about/`,
     },
     publisher: {
       "@type": "ProfessionalService",

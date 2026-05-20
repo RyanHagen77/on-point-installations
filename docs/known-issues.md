@@ -388,6 +388,30 @@ Pending Ryan-side validations:
 
 Asset audit doc header was previously labeled "Session 5, Lane 2" -- corrected to Session 4 in the commit preceding this note.
 
+### Phase 5 Session 4 Validation Record (2026-05-20)
+
+**Lighthouse** (mobile, incognito, /blog/ and post page): 100 Performance / 96 Accessibility / 100 Best Practices / 100 SEO.
+
+**Rich Results Test** -- homepage (https://on-point-installations.vercel.app/):
+- LocalBusiness: 1 valid item, 0 warnings
+- Organization: 2 valid items, 0 warnings
+- Review Snippets: 1 valid item, 0 warnings
+- WebSite (SearchAction): detected via Organization parse
+
+**Rich Results Test** -- blog post (https://on-point-installations.vercel.app/blog/modular-furniture-designs/):
+- Article: 1 valid item, 2 non-critical warnings
+  - Missing field "image" (optional) -- resolves with Session 5 featured image migration
+  - Missing field "url" on Person author (optional) -- fixed in this commit
+- BreadcrumbList: 1 valid item, 0 warnings
+- LocalBusiness: 1 valid item, 4 non-critical warnings (telephone, priceRange, address, image)
+  - This is the @id reference chain working as designed. Full LocalBusiness entity lives on homepage; post pages reference it via @id: /#business. Rich Results Test does not follow cross-page @id references when validating a single URL, so the stub is flagged as missing properties. Homepage validation (above) confirms the full entity is intact. No fix needed.
+- Organization: 1 valid item, 0 warnings
+
+**Outstanding (deferred):**
+- Article image warnings across all post pages -- resolves when featured image migration lands in Session 5
+- LocalBusiness priceRange field -- B2B project-based pricing does not map to $/$$/$$$; field remains absent by design unless future schema guidance changes
+- LocalBusiness image (homepage entity) -- pending Brian's SVG logo from the pending queue
+
 ---
 
 ## Phase 5 Session 2 Close Note (2026-05-19)
