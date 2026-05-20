@@ -32,8 +32,10 @@ interface BlogPost {
   _updatedAt: string;
   category: string | null;
   faqs: FAQ[] | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  featuredImage: any | null;
+  featuredImage: {
+    asset: { _ref: string; _type: 'reference' };
+    alt: string | null;
+  } | null;
 }
 
 const postQuery = `*[_type == "blogPost" && slug.current == $slug && status == "published"][0] {
@@ -48,7 +50,7 @@ const postQuery = `*[_type == "blogPost" && slug.current == $slug && status == "
   _updatedAt,
   category,
   faqs,
-  featuredImage
+  featuredImage { asset, alt }
 }`;
 
 const allSlugsQuery = `*[_type == "blogPost" && status == "published"]{ "slug": slug.current }`;
@@ -155,7 +157,7 @@ export default async function BlogPostPage({
           <div className="mb-8">
             <Image
               src={heroImageUrl}
-              alt={post.title}
+              alt={post.featuredImage.alt || post.title}
               width={1200}
               height={630}
               priority
