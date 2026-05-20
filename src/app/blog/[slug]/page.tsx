@@ -33,6 +33,7 @@ interface BlogPost {
   category: string | null;
   faqs: FAQ[] | null;
   featuredImage: {
+    _type: 'image';
     asset: { _ref: string; _type: 'reference' };
     alt: string | null;
   } | null;
@@ -50,7 +51,7 @@ const postQuery = `*[_type == "blogPost" && slug.current == $slug && status == "
   _updatedAt,
   category,
   faqs,
-  featuredImage { asset, alt }
+  featuredImage { _type, asset, alt }
 }`;
 
 const allSlugsQuery = `*[_type == "blogPost" && status == "published"]{ "slug": slug.current }`;
