@@ -13,7 +13,7 @@
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
-| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | `5639984` (Session 3) | 2026-05-19 |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | `c3a5270` (Session 4) | 2026-05-20 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -113,6 +113,30 @@ Verification: after deploy, edit a post title in Studio, publish, wait ~10s, ref
 - Core Web Vitals pass (Lighthouse on homepage and primary money page)
 - Redirect verification pass (key old WordPress URLs -> new routes)
 - featuredImage alt text schema gap: blogPost schema needs an alt field when Brian's photo set ships; all posts get alt text retrofitted at that time (flagged in known-issues.md)
+
+**Phase 5 Session 4 -- 2026-05-20 -- Final commit c3a5270**
+
+**Lanes completed:**
+- Lane 1: Removed visible dates from blog UI per live-site parity (commit 952aafd)
+- Lane 2: Blog asset audit -- 25 posts inventoried, 9 Pexels CC0, 2 with resize variants, 0 fetch errors (commit 0737491)
+- Lane 3: 22-post migration completed (initial 22 beyond Phase 4's 3); 3 Phase 4 posts re-migrated for consistency; 25 posts total in Sanity with publishedAt, category, and internal links substituted
+- Lane 4: Migration script hardening -- User-Agent header on WP fetch resolved 403 bot protection (commit bfe632c); /review/ -> /reviews/ substitution added (commit c3a5270)
+
+**Validations completed:**
+- Lighthouse on /blog/ and post page (mobile, incognito): 100 Performance / 96 Accessibility / 100 Best Practices / 100 SEO
+- Redirect verification: 24 entries in next.config.ts, all rendering as 308 (Next.js `permanent: true` default; functionally equivalent to 301 for SEO; spec said 301, on-wire is 308, no spec-additions entry needed)
+- Webhook revalidation: confirmed in Session 3, no Session 4 regression
+
+**Validations pending (Ryan-side):**
+- Rich Results Test on FAQ post and non-FAQ post
+- Vercel env var: SANITY_API_WRITE_TOKEN sync from local
+
+**Carry-forward to Session 5:**
+- metaDescription overruns: 6 posts exceed 155 chars (manual Studio edits)
+- Featured image migration: 9 Pexels posts pending; alt field schema addition is a prerequisite; resize variant parser extension needed for 2 posts
+- Alt text retrofit per CLAUDE.md image rules
+- Add alt field to blogPost Sanity schema (confirmed missing -- featuredImage has only hotspot configured)
+- FAQ content strategy: 24 of 25 migrated posts have no FAQs in WP source; 3 Studio-authored FAQs were cleared during re-migration of how-to-find-a-chicago-corporate-installation-expert; schema works but renders nothing -- content decision deferred to Session 5
 
 ---
 

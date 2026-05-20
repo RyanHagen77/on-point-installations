@@ -1,6 +1,6 @@
 # Blog Asset Audit -- 2026-05-20
 
-Generated: Session 5, Lane 2. All data fetched live from WP REST API + HTML scrape of onpointinstallations.com.
+Generated: Session 4, Lane 2. All data fetched live from WP REST API + HTML scrape of onpointinstallations.com.
 
 ---
 
