@@ -46,24 +46,16 @@ export default async function BlogIndexPage() {
       ) : (
         <ul className="space-y-8">
           {posts.map((post) => {
-            const displayDate = post.publishedAt ?? post._createdAt;
             return (
               <li key={post.slug} className="border-b border-gray-200 pb-8 last:border-b-0 last:pb-0">
                 <Link href={`/blog/${post.slug}/`} className="group block">
-                  <div className="flex items-center gap-3 mb-2">
-                    {post.category && (
+                  {post.category && (
+                    <div className="flex items-center gap-3 mb-2">
                       <span className="text-xs font-semibold uppercase tracking-wide text-[#800000] bg-red-50 px-2 py-0.5 rounded">
                         {post.category}
                       </span>
-                    )}
-                    <time dateTime={displayDate} className="text-sm text-gray-500">
-                      {new Date(displayDate).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                  </div>
+                    </div>
+                  )}
                   <h2 className="text-xl font-bold text-gray-900 group-hover:text-[#800000] transition-colors mb-2">
                     {post.title}
                   </h2>

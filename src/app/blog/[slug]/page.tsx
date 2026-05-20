@@ -141,20 +141,13 @@ export default async function BlogPostPage({
             { name: pageHeading, url: `/blog/${slug}/` },
           ]}
         />
-        <div className="flex flex-wrap items-center gap-3 mt-6 mb-4">
-          {post.category && (
+        {post.category && (
+          <div className="flex flex-wrap items-center gap-3 mt-6 mb-4">
             <span className="text-xs font-semibold uppercase tracking-wide text-[#800000] bg-red-50 px-2 py-0.5 rounded">
               {post.category}
             </span>
-          )}
-          <time dateTime={displayDate} className="text-sm text-gray-500">
-            {new Date(displayDate).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-        </div>
+          </div>
+        )}
         <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mb-6">
           {pageHeading}
         </h1>
