@@ -187,7 +187,9 @@ async function loadHtml(): Promise<{ html: string; slug: string }> {
   }
 
   log('FETCH', `GET ${urlArg}`);
-  const res = await fetch(urlArg!);
+  const res = await fetch(urlArg!, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OnPointMigrator/1.0)' },
+  });
   if (!res.ok) die(`HTTP ${res.status}: ${urlArg}`);
   const html = await res.text();
   const finalUrl = res.url;
