@@ -319,6 +319,57 @@ Schaumburg and Naperville both ship with `[REVIEW PLACEHOLDER]` in the social pr
 
 ---
 
+## Phase 5 Session 3 Close Note (2026-05-19)
+
+**Phase 5 Session 3 closed at commits `200991b`, `dca728c`, `5639984` (2026-05-19).** Blog rendering is live for 3 Phase 4 posts. Full schema chain is wired. On-demand revalidation route is built and deployed. Webhook configuration is pending Ryan-side.
+
+### Blog Template -- Delivered
+
+/blog/ and /blog/[slug]/ are fully implemented with real Sanity GROQ fetches. All three Phase 4 posts render: index cards on /blog/, full post content on /blog/[slug]/. ISR cache tags wired ('blog') for on-demand invalidation.
+
+Confirmed before deploy:
+- All 3 posts have status: "published" -- GROQ filter works correctly
+- publishedAt is null on all 3 posts (pre-hardening migration; template falls back to _createdAt for display and schema datePublished)
+- featuredImage is null on all 3 posts; hero section renders conditionally, no layout gap
+
+PortableText renders body blocks with custom link handler (relative URLs use Next.js Link; external get rel="noopener noreferrer"). FAQAccordion renders on the Chicago expert post (3 FAQs); absent on the other two.
+
+### ArticleSchema Fix -- Delivered
+
+buildArticleSchema in src/lib/schema.ts corrected: publisher @type changed from Organization to ProfessionalService, @id changed from /#organization to /#business. This matches the canonical LocalBusiness entity established in Session 1. ArticleSchema and conditional FAQSchema now render on every blog post page. BreadcrumbSchema is handled by the Breadcrumb UI component (embeds it internally) -- no duplicate render.
+
+### On-Demand Revalidation Route -- Delivered (webhook config pending)
+
+POST /api/revalidate validates Sanity's HMAC-SHA256 webhook signature using Node's built-in crypto module. On valid blogPost events: revalidateTag('blog', 'default') invalidates all tagged fetches, revalidatePath invalidates /blog/ and the specific post slug. Non-blogPost document types return 200 with revalidated: false -- safe for future content types.
+
+Next.js 16 API note: revalidateTag requires a second profile argument ('default' used). This differs from Next.js 14/15 single-arg signature.
+
+Webhook is not yet active -- Ryan-side configuration required at sanity.io/manage. Until configured, ISR time-based fallback (1h index, 24h posts) is the active cache strategy.
+
+### SANITY_REVALIDATE_SECRET Rotation
+
+Prior value was visible in chat history (from openssl rand run during pre-work). New value generated and written to .env.local without echoing to conversation. Ryan needs to update Vercel env var with the new value before the webhook can be configured.
+
+### featuredImage Alt Text Gap (schema issue, no code action in Session 3)
+
+The blogPost Sanity schema has no alt field on the featuredImage image type. Hero image alt text currently uses post.title as a fallback. This satisfies "not empty" but does not satisfy CLAUDE.md's "describe what's in the photo" rule.
+
+**Planned fix:** When Brian's photo set ships and is added to posts via Studio, add an alt field to the blogPost schema in sanity/schemas/blogPost.ts and retrofit alt text on all posts with images. Not a Session 4 blocker -- no posts have images yet.
+
+### Session 4 Scope
+
+Session 4 owns the production migration run. Prerequisites now met: template renders, schemas wire, revalidation route is deployed, webhook config is documented.
+
+1. Asset audit of logs/*.err files -- image src inventory before migration run
+2. 22-post production migration run (3 already in Sanity; script hardened in Session 2)
+3. Lightweight post-migration audit (spot-check 5-6 posts in Studio and on /blog/)
+4. Rich Results Test: /blog/how-to-find-a-chicago-corporate-installation-expert (Article + FAQPage + BreadcrumbList), homepage, primary service page, /about/
+5. Core Web Vitals pass (Lighthouse on homepage and primary money page)
+6. Redirect verification pass
+7. Confirm Sanity webhook is active and end-to-end revalidation works
+
+---
+
 ## Phase 5 Session 2 Close Note (2026-05-19)
 
 **Phase 5 Session 2 closed at commit `01795e8`.** Repo consolidation shipped, migration script hardened, dry-run verified on all 3 existing posts.

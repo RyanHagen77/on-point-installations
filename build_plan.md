@@ -13,7 +13,7 @@
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
-| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | `1252c9f` (Session 1) | 2026-05-18 |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | `5639984` (Session 3) | 2026-05-19 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -57,6 +57,62 @@
 - 25-post WordPress migration (with publishedAt/category/dead-link script hardening in same wave)
 - Sanity webhook + on-demand revalidation route
 - Asset audit of sandbox image references
+
+**Phase 5 Session 2 delivered (4 commits, 2026-05-19):**
+- `ebb7605` — Feat: consolidate Sanity Studio and migration tooling from lab repo (sanity.config.ts, schemas/, /studio route, src/lib/sanity.ts stub replaced, scripts/migrate-wp-post.ts, logs/, package.json deps, .env.example)
+- `df7f906` — Fix: publishedAt extraction via WP REST API (fetchPublishedAt() pre-fetches /wp-json/wp/v2/posts?slug={slug}, reads date_gmt; verified 2024-08-25T15:12:47Z on modular-furniture-designs)
+- `02b4413` — Fix: category extraction selector (article:section OG meta; .cat-links a absent from this WP theme)
+- `01795e8` — Fix: dead-link substitution per phase-4-close table (SERVICE_SUBSTITUTIONS 14 entries, AUDIT_SUBSTITUTIONS 3 entries, dead-link strip for /project/ and /category/)
+
+**Phase 5 Session 2 Ryan-side steps (after Session 2 ships):**
+- Add production Vercel staging URL to Sanity CORS at sanity.io/manage -> Project hwyx6cco -> API -> CORS Origins
+- Log in to Studio at [staging-url]/studio; confirm header reads "On Point Installations", 3 existing posts visible, no console errors
+- Archive integrepro-seo-lab repo on GitHub (repo is now source-of-truth-free)
+- Delete or deactivate sandbox Vercel project (project-wdufc.vercel.app)
+
+**Phase 5 Session 2 deferred (Session 3):**
+- Blog template build (Sanity client, GROQ fetch, ArticleSchema render, conditional FAQPage render) -- migration script is hardened and ready; template must exist before 22-post run
+- 25-post production migration run (22 remaining after 3 Phase 4 samples; hardened script ready)
+- Sanity webhook + on-demand revalidation route (replaces time-based ISR)
+- Asset audit of sandbox image references (logs/*.err files)
+- ArticleSchema fix (publisher @id to /#business; lands with template build for proper render testing)
+
+**Phase 5 Session 3 delivered (3 code commits + 1 secret rotation, 2026-05-19):**
+- `200991b` -- Feat: blog index and post template with Sanity GROQ fetch (src/lib/sanity-image.ts helper; /blog/ index with 1h ISR; /blog/[slug]/ with generateStaticParams, generateMetadata, PortableText body, conditional FAQAccordion, 24h ISR; all tagged 'blog' for on-demand invalidation; all 3 Phase 4 slugs pre-rendered)
+- `dca728c` -- Feat: ArticleSchema author/publisher chain and blog post schema wiring (buildArticleSchema publisher @type Organization->ProfessionalService, @id /#organization->/#business; ArticleSchema + conditional FAQSchema wired into blog post template)
+- `5639984` -- Feat: on-demand revalidation API route for Sanity webhook (POST /api/revalidate; HMAC-SHA256 signature validation via Node crypto; revalidateTag('blog','default') + revalidatePath on blogPost events; 401/400/500 error handling)
+- SANITY_REVALIDATE_SECRET rotated (prior value was visible in chat history; new value in .env.local; Vercel env var update is Ryan-side step)
+
+**Phase 5 Session 3 findings:**
+- All 3 Phase 4 posts confirmed status:published before template build
+- publishedAt is null on all 3 existing posts (pre-hardening migration; not re-migrated). Template falls back to _createdAt for display date and schema datePublished. Session 4 migration run will populate publishedAt on new posts
+- featuredImage is null on all 3 existing posts. Hero image section renders conditionally; no gap. Images populate when Brian adds them via Studio or Session 4 migration supplies them
+- Next.js 16 changed revalidateTag to require a second profile argument; using 'default'
+- Breadcrumb UI component already embeds BreadcrumbSchema -- blog post template does not separately render BreadcrumbSchema
+
+**Phase 5 Session 3 Ryan-side steps (before Session 4):**
+- Update Vercel env var SANITY_REVALIDATE_SECRET with new value from .env.local (old value rotated)
+- Configure Sanity webhook at sanity.io/manage -> project hwyx6cco -> API -> Webhooks (details below)
+- Verify Vercel deploy of Session 3 commits before Session 4 migration run
+
+**Sanity webhook configuration (Ryan-side, post-deploy):**
+1. sanity.io/manage -> project hwyx6cco -> API -> Webhooks -> Create webhook
+2. URL: https://on-point-installations.vercel.app/api/revalidate
+3. Trigger on: Create, Update, Delete
+4. Filter: _type == "blogPost"
+5. Secret: value of SANITY_REVALIDATE_SECRET from .env.local (same value you added to Vercel)
+6. HTTP method: POST
+7. Save
+Verification: after deploy, edit a post title in Studio, publish, wait ~10s, refresh /blog/ -- new title should appear immediately.
+
+**Phase 5 Session 3 deferred (Session 4):**
+- 22-post production migration run (hardened script ready; template and revalidation route now in place; asset audit of logs/*.err before run)
+- Asset audit of Phase 4 sandbox log files (logs/*.err -- image src inventory before migration)
+- Lightweight post-migration audit (spot-check 5-6 posts in Studio and on /blog/)
+- Rich Results Test validation: run on /blog/how-to-find-a-chicago-corporate-installation-expert (3 FAQs -- tests Article + FAQPage + BreadcrumbList); run on homepage, primary service page, /about/
+- Core Web Vitals pass (Lighthouse on homepage and primary money page)
+- Redirect verification pass (key old WordPress URLs -> new routes)
+- featuredImage alt text schema gap: blogPost schema needs an alt field when Brian's photo set ships; all posts get alt text retrofitted at that time (flagged in known-issues.md)
 
 ---
 
