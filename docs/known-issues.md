@@ -370,6 +370,26 @@ Session 4 owns the production migration run. Prerequisites now met: template ren
 
 ---
 
+## Phase 5 Session 4 Close Note (2026-05-20)
+
+Commits: 952aafd, 0737491, bfe632c, c3a5270. Final HEAD: c3a5270 on origin/main.
+
+Session 4 delivered date removal, asset audit, 22-post migration plus 3-post re-migration, and migration script hardening. All four lanes complete.
+
+Lighthouse passed cleanly on /blog/ and a post page (mobile, incognito): 100 Performance, 96 Accessibility, 100 Best Practices, 100 SEO.
+
+Redirects: 24 entries verified in next.config.ts, all rendering as 308 due to Next.js `permanent: true` default. Spec said 301; 308 is the Next.js permanent redirect mechanism and is functionally equivalent for SEO. Documented here; no spec-additions entry.
+
+Re-migration of how-to-find-a-chicago-corporate-installation-expert cleared 3 Studio-authored FAQs. 24 of 25 migrated posts have no FAQs in WP source. Schema infrastructure (FAQPage conditional on faqs.length > 0) works but renders nothing across the blog. FAQ content strategy deferred to Session 5.
+
+Pending Ryan-side validations:
+- Rich Results Test (not yet run; will show Article + BreadcrumbList on all posts; FAQPage absent until FAQ decision)
+- Vercel env var update: SANITY_API_WRITE_TOKEN sync from local
+
+Asset audit doc header was previously labeled "Session 5, Lane 2" -- corrected to Session 4 in the commit preceding this note.
+
+---
+
 ## Phase 5 Session 2 Close Note (2026-05-19)
 
 **Phase 5 Session 2 closed at commit `01795e8`.** Repo consolidation shipped, migration script hardened, dry-run verified on all 3 existing posts.
