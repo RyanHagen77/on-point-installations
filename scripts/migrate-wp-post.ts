@@ -146,6 +146,37 @@ function slugFromUrl(url: string): string {
   return last;
 }
 
+// ── fetchPublishedAt ──────────────────────────────────────────────────────────
+// WP theme emits no article:published_time meta or <time datetime>; use REST API.
+
+async function fetchPublishedAt(slug: string): Promise<string | null> {
+  const apiUrl = `https://onpointinstallations.com/wp-json/wp/v2/posts?slug=${encodeURIComponent(slug)}`;
+  log('REST', `GET ${apiUrl}`);
+  try {
+    const res = await fetch(apiUrl, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) {
+      warn(`WP REST API returned HTTP ${res.status} for slug "${slug}" -- publishedAt will be null`);
+      return null;
+    }
+    const posts = await res.json() as Array<{ date_gmt?: string }>;
+    if (!Array.isArray(posts) || posts.length === 0) {
+      warn(`WP REST API: no post found for slug "${slug}" -- publishedAt will be null`);
+      return null;
+    }
+    const dateGmt = posts[0].date_gmt;
+    if (!dateGmt) {
+      warn(`WP REST API: date_gmt missing for slug "${slug}" -- publishedAt will be null`);
+      return null;
+    }
+    const iso = dateGmt.endsWith('Z') ? dateGmt : `${dateGmt}Z`;
+    log('REST', `publishedAt from WP API: ${iso}`);
+    return iso;
+  } catch (err) {
+    warn(`WP REST API fetch failed for slug "${slug}": ${String(err)} -- publishedAt will be null`);
+    return null;
+  }
+}
+
 // ── loadHtml ──────────────────────────────────────────────────────────────────
 
 async function loadHtml(): Promise<{ html: string; slug: string }> {
@@ -282,7 +313,12 @@ async function run(): Promise<void> {
   const { html, slug } = await loadHtml();
   initLogFiles(slug);
 
+  const restDate = await fetchPublishedAt(slug);
   const extracted = extractPost(html);
+  if (!extracted.publishedAt && restDate) {
+    log('REST', `using WP REST date (HTML had none): ${restDate}`);
+    extracted.publishedAt = restDate;
+  }
   if (metaOverride) {
     log('META', `--meta-description override: ${metaOverride.length} chars`);
   }
