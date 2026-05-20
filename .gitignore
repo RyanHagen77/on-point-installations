@@ -40,3 +40,6 @@ public/robots.txt
 
 # scratch / temp files
 /tmp
+
+# migration script output
+/logs
