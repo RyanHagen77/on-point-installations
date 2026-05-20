@@ -216,6 +216,7 @@ const SERVICE_SUBSTITUTIONS: Record<string, string> = {
   '/services/electrical-voice-and-data-cabling-for-your-commercial-installation/': '/services/electrical-voice-data-cabling-chicago-il/',
   '/about-us-chicago-il/': '/about/',
   '/contact-us/': '/contact/',
+  '/review/': '/reviews/',
 };
 
 const AUDIT_SUBSTITUTIONS: Record<string, string> = {
