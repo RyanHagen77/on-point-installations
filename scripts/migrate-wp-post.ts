@@ -197,6 +197,71 @@ async function loadHtml(): Promise<{ html: string; slug: string }> {
   return { html, slug };
 }
 
+// ── Link substitution tables (per docs/phase-4-close.md) ─────────────────────
+
+const SERVICE_SUBSTITUTIONS: Record<string, string> = {
+  '/commercial-office-furniture-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/',
+  '/services/commercial-office-furniture-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/',
+  '/company-office-relocation-chicago-il/': '/services/office-relocation-chicago-il/',
+  '/services/company-office-relocation-chicago-il/': '/services/office-relocation-chicago-il/',
+  '/commercial-office-furniture-storage-chicago-il/': '/services/commercial-office-furniture-storage-chicago-il/',
+  '/space-planning/': '/services/commercial-space-planning-chicago-il/',
+  '/services/space-planning/': '/services/commercial-space-planning-chicago-il/',
+  '/artwork-installation/': '/services/artwork-installation-chicago-il/',
+  '/services/artwork-installation/': '/services/artwork-installation-chicago-il/',
+  '/window-treatment-installations/': '/services/window-treatment-installation-chicago-il/',
+  '/services/window-treatment-installations/': '/services/window-treatment-installation-chicago-il/',
+  '/services/electrical-voice-and-data-cabling-for-your-commercial-installation/': '/services/electrical-voice-data-cabling-chicago-il/',
+  '/about-us-chicago-il/': '/about/',
+  '/contact-us/': '/contact/',
+};
+
+const AUDIT_SUBSTITUTIONS: Record<string, string> = {
+  '/services/cubicle-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#cubicle-installation',
+  '/services/systems-furniture-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#systems-furniture',
+  '/services/office-furniture-delivery-setup-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#office-furniture-delivery-setup',
+};
+
+const DEAD_LINK_PREFIXES = ['/project/', '/category/'];
+
+function applyLinkSubstitutions(
+  doc: Document,
+  contentEl: Element
+): { substituted: number; stripped: number } {
+  const links = Array.from(contentEl.querySelectorAll('a[href]'));
+  let substituted = 0;
+  let stripped = 0;
+
+  for (const a of links) {
+    const rawHref = a.getAttribute('href') ?? '';
+    const href = rawHref.replace(/^https?:\/\/(?:www\.)?onpointinstallations\.com/, '');
+
+    if (SERVICE_SUBSTITUTIONS[href]) {
+      const newHref = SERVICE_SUBSTITUTIONS[href];
+      a.setAttribute('href', newHref);
+      log('SUBST', `service URL: "${href}" -> "${newHref}"`);
+      substituted++;
+    } else if (AUDIT_SUBSTITUTIONS[href]) {
+      const newHref = AUDIT_SUBSTITUTIONS[href];
+      a.setAttribute('href', newHref);
+      log('SUBST', `audit slug: "${href}" -> "${newHref}"`);
+      substituted++;
+    } else if (DEAD_LINK_PREFIXES.some((p) => href.startsWith(p))) {
+      const text = doc.createTextNode(a.textContent ?? '');
+      a.parentNode?.replaceChild(text, a);
+      log('SUBST', `dead link stripped: "${href}" (text preserved: "${text.textContent}")`);
+      stripped++;
+    }
+  }
+
+  if (substituted + stripped > 0) {
+    log('SUBST', `total: ${substituted} substituted, ${stripped} dead links stripped`);
+  } else {
+    log('SUBST', 'no link substitutions needed');
+  }
+  return { substituted, stripped };
+}
+
 // ── extractPost ───────────────────────────────────────────────────────────────
 
 function extractPost(html: string): ExtractedPost {
@@ -238,12 +303,6 @@ function extractPost(html: string): ExtractedPost {
   if (!contentEl) die('Body selector .entry-content not found -- check HTML structure');
   log('EXTRACT', 'body selector: .entry-content found');
 
-  // Internal links inventory (before any DOM mutations)
-  const internalLinks: InternalLink[] = Array.from(contentEl.querySelectorAll('a[href]'))
-    .map((a) => ({ href: a.getAttribute('href') ?? '', text: a.textContent?.trim() ?? '' }))
-    .filter((l) => l.href && (l.href.startsWith('/') || l.href.includes('onpointinstallations.com')));
-  log('EXTRACT', `internal links in body: ${internalLinks.length}`);
-
   // Remove and log images
   const imgEls = Array.from(contentEl.querySelectorAll('img'));
   const skippedImages = imgEls.map((img) => img.getAttribute('src') ?? '').filter(Boolean);
@@ -260,6 +319,15 @@ function extractPost(html: string): ExtractedPost {
     firstPEl.parentNode?.removeChild(firstPEl);
     log('EXTRACT', 'Byline stripped from body HTML');
   }
+
+  // Apply link substitutions per phase-4-close.md table (before links inventory)
+  applyLinkSubstitutions(doc, contentEl);
+
+  // Internal links inventory (after all DOM mutations including substitutions)
+  const internalLinks: InternalLink[] = Array.from(contentEl.querySelectorAll('a[href]'))
+    .map((a) => ({ href: a.getAttribute('href') ?? '', text: a.textContent?.trim() ?? '' }))
+    .filter((l) => l.href && (l.href.startsWith('/') || l.href.includes('onpointinstallations.com')));
+  log('EXTRACT', `internal links in body (post-substitution): ${internalLinks.length}`);
 
   // Excerpt: first remaining paragraph text, max 300 chars
   const excerpt = contentEl.querySelector('p')?.textContent?.trim().slice(0, 300) ?? null;
@@ -325,14 +393,11 @@ async function run(): Promise<void> {
   const blocks = convertBody(extracted.bodyHtml);
   const document = buildDocument(extracted, slug, blocks, metaOverride);
 
-  // Internal links report with dead-link warnings
+  // Internal links report (dead links and substitutions already applied in extractPost)
   if (extracted.internalLinks.length > 0) {
-    const DEAD_PREFIXES = ['/project/', '/category/'];
-    log('LINKS', `${extracted.internalLinks.length} internal links:`);
+    log('LINKS', `${extracted.internalLinks.length} internal links (post-substitution):`);
     for (const l of extracted.internalLinks) {
-      const isDead = DEAD_PREFIXES.some((p) => l.href.includes(p));
-      if (isDead) warn(`link target has no equivalent in new build: ${l.href}`);
-      log('LINKS', `  ${isDead ? '[NO EQUIV]' : '[OK      ]'} "${l.text}" -> ${l.href}`);
+      log('LINKS', `  [OK      ] "${l.text}" -> ${l.href}`);
     }
   }
 
