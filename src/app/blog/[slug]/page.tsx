@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import Image, { type ImageLoader } from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextReactComponents } from '@portabletext/react';
@@ -89,9 +89,6 @@ export async function generateMetadata({
   });
 }
 
-const sanityLoader: ImageLoader = ({ src, width, quality }) =>
-  `${src}?w=${width}&q=${quality ?? 75}&auto=format&fit=max`;
-
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
     image: ({ value }) => {
@@ -100,8 +97,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
       return (
         <div className="not-prose my-8">
           <Image
-            loader={sanityLoader}
-            src={urlFor(value).url()}
+            src={urlFor(value).width(1536).url()}
             alt={value.alt ?? ''}
             width={nativeW}
             height={nativeH}
