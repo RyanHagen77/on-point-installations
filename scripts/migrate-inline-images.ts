@@ -698,6 +698,7 @@ async function main(): Promise<void> {
   log('system', 'INFO', `processing ${slugsToProcess.length} slug(s)`);
 
   const manifest: ManifestEntry[] = [];
+  const manifestPath = '/tmp/phase5-migration-manifest.json';
 
   for (const slug of slugsToProcess) {
     const wxrPost = wxrPosts.get(slug)!;
@@ -730,11 +731,11 @@ async function main(): Promise<void> {
     }
 
     manifest.push({ slug, pass1: pass1Result, pass2: pass2Result, errors });
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
     log(slug, 'DONE', `pass1=${pass1Result.status} pass2=${pass2Result.status} inline=${pass2Result.inlineImagesUploaded}/${pass2Result.inlineImagesFound}`);
   }
 
-  // Write manifest
-  const manifestPath = '/tmp/phase5-migration-manifest.json';
+  // Write manifest (final flush -- incremental writes already happened inside the loop)
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   log('system', 'INFO', `manifest written to ${manifestPath}`);
 
