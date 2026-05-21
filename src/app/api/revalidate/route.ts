@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    revalidateTag('blog');
+    revalidateTag('blog', 'default');
     revalidatePath('/blog/');
     revalidatePath('/blog/[slug]', 'page');
     const slug = body.slug?.current;
