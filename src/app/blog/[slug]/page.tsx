@@ -89,6 +89,32 @@ export async function generateMetadata({
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function groupImageBlocks(blocks: any[]): any[] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result: any[] = [];
+  let i = 0;
+  while (i < blocks.length) {
+    if (blocks[i]._type === 'image') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const group: any[] = [];
+      while (i < blocks.length && blocks[i]._type === 'image') {
+        group.push(blocks[i]);
+        i++;
+      }
+      if (group.length === 1) {
+        result.push(group[0]);
+      } else {
+        result.push({ _type: 'imageGroup', _key: `group-${group[0]._key}`, images: group });
+      }
+    } else {
+      result.push(blocks[i]);
+      i++;
+    }
+  }
+  return result;
+}
+
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
     image: ({ value }) => {
@@ -105,6 +131,29 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
             priority={false}
             className="w-full h-auto rounded-lg"
           />
+        </div>
+      );
+    },
+    imageGroup: ({ value }) => {
+      const count: number = value.images.length;
+      const cols =
+        count === 2 ? 'md:grid-cols-2' :
+        count === 3 ? 'md:grid-cols-3' :
+                      'md:grid-cols-2';
+      return (
+        <div className={`not-prose my-8 grid grid-cols-1 ${cols} gap-4`}>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {value.images.map((img: any) => (
+            <Image
+              key={img._key}
+              src={urlFor(img).width(1024).url()}
+              alt={img.alt ?? ''}
+              width={img.assetDimensions?.width ?? 1200}
+              height={img.assetDimensions?.height ?? 800}
+              sizes="(min-width: 768px) 384px, 100vw"
+              className="rounded-lg w-full h-auto"
+            />
+          ))}
         </div>
       );
     },
@@ -193,7 +242,7 @@ export default async function BlogPostPage({
         )}
         {post.body && post.body.length > 0 && (
           <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
-            <PortableText value={post.body} components={portableTextComponents} />
+            <PortableText value={groupImageBlocks(post.body)} components={portableTextComponents} />
           </div>
         )}
         {post.faqs && post.faqs.length > 0 && (
