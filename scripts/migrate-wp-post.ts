@@ -138,7 +138,7 @@ interface ExtractedPost {
 }
 
 interface FeaturedImageMeta {
-  url: string;
+  sourceUrl: string;
   wpAlt: string | null;
 }
 
@@ -334,12 +334,11 @@ async function fetchFeaturedImageMeta(slug: string): Promise<FeaturedImageMeta |
       warn(`WP REST media API: source_url missing for media ID ${featuredMediaId} -- featuredImage skipped`);
       return null;
     }
-    const rawUrl = media.source_url;
-    const url = deriveOriginalUrl(rawUrl);
+    const sourceUrl = media.source_url;
     const wpAlt = media.alt_text?.trim() || null;
-    log('IMG', `featured image source: ${rawUrl}${url !== rawUrl ? ` -> derived: ${url}` : ''}`);
+    log('IMG', `WP source_url: ${sourceUrl}`);
     if (wpAlt) log('IMG', `WP alt_text: "${wpAlt}"`);
-    return { url, wpAlt };
+    return { sourceUrl, wpAlt };
   } catch (err) {
     warn(`WP REST media API fetch failed: ${String(err)} -- featuredImage skipped`);
     return null;
@@ -526,28 +525,51 @@ function convertBody(bodyHtml: string): unknown[] {
 // ── uploadFeaturedImage ───────────────────────────────────────────────────────
 
 async function uploadFeaturedImage(
-  imageUrl: string,
+  sourceUrl: string,
   filename: string
 ): Promise<string | null> {
   if (dryRun) {
-    log('DRY-RUN', `would upload featured image: ${imageUrl} as "${filename}"`);
+    log('DRY-RUN', `would upload featured image: ${sourceUrl} as "${filename}"`);
     return 'dry-run-asset-id';
   }
-  log('IMG', `fetching image bytes: ${imageUrl}`);
+
+  // Try source_url verbatim first
+  log('IMG', `fetching image bytes: ${sourceUrl}`);
   let imageRes: Response;
   try {
-    imageRes = await fetch(imageUrl, {
+    imageRes = await fetch(sourceUrl, {
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OnPointMigrator/1.0)' },
       signal: AbortSignal.timeout(30000),
     });
-    if (!imageRes.ok) {
-      warn(`Image fetch returned HTTP ${imageRes.status} for ${imageUrl} -- featuredImage skipped`);
-      return null;
-    }
   } catch (err) {
     warn(`Image fetch failed: ${String(err)} -- featuredImage skipped`);
     return null;
   }
+
+  // On 404, fall back to resize-stripped original URL
+  if (!imageRes.ok) {
+    const derivedUrl = deriveOriginalUrl(sourceUrl);
+    if (derivedUrl !== sourceUrl) {
+      log('IMG', `fetching image bytes: ${derivedUrl}`);
+      try {
+        imageRes = await fetch(derivedUrl, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OnPointMigrator/1.0)' },
+          signal: AbortSignal.timeout(30000),
+        });
+      } catch (err) {
+        warn(`Image fetch failed: ${String(err)} -- featuredImage skipped`);
+        return null;
+      }
+      if (!imageRes.ok) {
+        warn(`Image fetch returned HTTP ${imageRes.status} for source_url and derived original -- featuredImage skipped`);
+        return null;
+      }
+    } else {
+      warn(`Image fetch returned HTTP ${imageRes.status} for ${sourceUrl} -- featuredImage skipped`);
+      return null;
+    }
+  }
+
   const contentType = imageRes.headers.get('content-type') ?? 'image/jpeg';
   const buffer = Buffer.from(await imageRes.arrayBuffer());
   log('IMG', `uploading to Sanity CDN: ${buffer.length} bytes, contentType: ${contentType}`);
@@ -570,7 +592,8 @@ function buildDocument(
   blocks: unknown[],
   metaDescriptionOverride?: string,
   assetId?: string | null,
-  altText?: string
+  altText?: string,
+  existingFeaturedImage?: unknown
 ): Record<string, unknown> {
   const metaDescription = metaDescriptionOverride ?? extracted.metaDescription;
   return {
@@ -585,13 +608,17 @@ function buildDocument(
     ...(extracted.publishedAt != null && { publishedAt: extracted.publishedAt }),
     ...(extracted.category != null && { category: extracted.category }),
     status: 'published',
-    ...(assetId != null && {
-      featuredImage: {
-        _type: 'image',
-        asset: { _type: 'reference', _ref: assetId },
-        alt: altText ?? '',
-      },
-    }),
+    ...(assetId != null
+      ? {
+          featuredImage: {
+            _type: 'image',
+            asset: { _type: 'reference', _ref: assetId },
+            alt: altText ?? '',
+          },
+        }
+      : existingFeaturedImage != null
+      ? { featuredImage: existingFeaturedImage }
+      : {}),
   };
 }
 
@@ -616,15 +643,31 @@ async function run(): Promise<void> {
   let assetId: string | null = null;
   let altText = extracted.title;
   if (imageMeta) {
-    const derived = deriveAlt(imageMeta.wpAlt, imageMeta.url, extracted.title);
+    const derived = deriveAlt(imageMeta.wpAlt, imageMeta.sourceUrl, extracted.title);
     altText = derived.alt;
     log('ALT-TIER', `tier=${derived.tier}${derived.note ? ` (${derived.note})` : ''} alt="${derived.alt}"`);
-    assetId = await uploadFeaturedImage(imageMeta.url, imageMeta.url.split('/').pop() ?? slug);
+    assetId = await uploadFeaturedImage(imageMeta.sourceUrl, imageMeta.sourceUrl.split('/').pop() ?? slug);
   } else {
     log('IMG', 'no featured image found -- featuredImage omitted from document');
   }
 
-  const document = buildDocument(extracted, slug, blocks, metaOverride, assetId, altText);
+  let existingFeaturedImage: unknown = null;
+  if (!dryRun && assetId === null && imageMeta !== null) {
+    try {
+      const existing = await writeClient!.fetch<{ featuredImage?: unknown }>(
+        `*[_id == $id][0]{ featuredImage }`,
+        { id: `blog-${slug}` }
+      );
+      existingFeaturedImage = existing?.featuredImage ?? null;
+      if (existingFeaturedImage) {
+        log('IMG', `upload failed -- preserving existing featuredImage from Sanity`);
+      }
+    } catch {
+      log('IMG', 'could not read existing Sanity document -- featuredImage will be omitted');
+    }
+  }
+
+  const document = buildDocument(extracted, slug, blocks, metaOverride, assetId, altText, existingFeaturedImage);
 
   // Internal links report (dead links and substitutions already applied in extractPost)
   if (extracted.internalLinks.length > 0) {
