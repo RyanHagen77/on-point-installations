@@ -30,6 +30,14 @@ Body content in several blog posts contains links to third-party sites (e.g., co
 
 The migration preserved external links exactly as authored. Editorial review is recommended: for each external link, decide whether to keep (real citation, useful to user), remove (former partner, dead site, competitor, or weak destination), or replace (link to internal page instead). Sanity Studio edits the link annotation on the relevant text span.
 
+### Blog content audit across all 25 migrated posts
+
+After the Phase 5 image migration completed, the 25 blog posts ship with their original WordPress body content preserved (with byline strip, retired-URL link substitutions, dead-link removal, and internal cross-link insertion where text patterns matched). The body copy itself was not re-edited for current voice rules, factual currency, brand-name consistency, or topical relevance to the present service set.
+
+Recommended: review each migrated post against current site positioning and Voice Rules. Items to surface during review include outdated phrasing, claims that no longer apply, internal references to retired services, and any copy that reads as inconsistent with the rest of the rebuilt site. Edits happen in Sanity Studio on the Portable Text body field. Sanity webhook will automatically revalidate ISR on save.
+
+Scope: 25 posts. Estimated effort: roughly four to six hours for someone familiar with the business and the site's positioning.
+
 ### Meta description overruns on 6 posts
 
 Six blog posts have meta descriptions exceeding 155 characters. Sanity Studio surfaces this as a warning on the field. Search engines truncate descriptions at roughly this length, so the trailing portion is invisible. Recommended: rewrite to fit, leading with the key message in the first 120 characters.
@@ -77,12 +85,13 @@ If an external SEO audit flags content-hashed image URLs as a deficiency, the re
 1. SEO consultant: 22 featured image alts (highest visibility — appears in blog index cards, social shares, search results)
 2. SEO consultant: external link editorial audit (defensive — avoid leaking authority to inappropriate destinations)
 3. SEO consultant: 30 inline image alts
-4. SEO consultant: internal link insertion across the 25 blog posts
-5. Brian: SVG logo (resolves Google Rich Results Test warning)
-6. Brian: modular-furniture-designs replacement image
-7. SEO consultant: meta description rewrites on 6 posts
-8. Brian and SEO consultant: FAQ section planning and authoring
-9. Brian: phone-photo featured image replacements where available
+4. SEO consultant: blog content audit across all 25 migrated posts
+5. SEO consultant: internal link insertion across the 25 blog posts
+6. Brian: SVG logo (resolves Google Rich Results Test warning)
+7. Brian: modular-furniture-designs replacement image
+8. SEO consultant: meta description rewrites on 6 posts
+9. Brian and SEO consultant: FAQ section planning and authoring
+10. Brian: phone-photo featured image replacements where available
 
 ---
 

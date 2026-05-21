@@ -577,13 +577,13 @@ Required before any remaining migration runs in Phase 5. Without it, supervisor 
 
 ---
 
-## modular-furniture-designs Featured Image — WP Source Deleted
+## modular-furniture-designs Featured Image — Below Quality Threshold
 
-The original featured image file (`mid-century-modern-modular-office-furniture-hero.jpg` and its `_1200` variant) is permanently deleted from the WP server. Fetches return 403 from any IP. Confirmed during Phase 5 pre-flight WAF testing.
+The prior diagnosis of this image as "permanently deleted" was incorrect. The 403 observed during Phase 5 pre-flight WAF testing was a false positive specific to that testing context (User-Agent or IP). Step B-live confirmed the image is accessible: `mid-century-modern-modular-office-furniture-hero_1200.jpg` fetched at HTTP 200, 55,842 bytes, and uploaded to Sanity successfully.
 
-Current rebuild state: the post retains its existing Sanity featured image reference from Session 5's fallback path. The Phase 5 migration script's 403 handler is designed to skip the featured re-upload and leave the existing reference untouched (preserving alt and asset reference). When Step B-live runs on this slug, the manifest will flag it as `featured_status: source_deleted_replacement_needed`.
+The issue is source quality. The uploaded image is 1200×800 px — below the 1600 px minimum on the longest edge required by IMAGE SEO RULE 12. It renders acceptably on screen but lacks resolution for retina displays and high-quality social sharing.
 
-Resolution requires Brian to provide a replacement image relevant to modular furniture content. Tracked in `docs/post-launch-recommendations.md`.
+Resolution requires Brian to provide a replacement image relevant to modular furniture content at 1600 px or higher on the longest edge. Tracked in `docs/post-launch-recommendations.md`.
 
 ---
 

@@ -1,97 +1,110 @@
-# Phase 5 Image SEO Pass — Supervisor Handoff
+# Phase 5 Image SEO Pass — Session 8 Supervisor Handoff
 
-You're taking over a Phase 5 image SEO pass mid-arc. The previous supervisor closed the session after Step A-live executed cleanly on one post and after the documentation arc updated the project's existing docs with diagnostic lessons. This document gives you operational state and immediate next steps. The institutional knowledge lives in the existing doc ecosystem — read it before touching anything.
+Session 7 closed the migration arc. All 25 posts are migrated. This document is the onboarding for the session that closes out Phase 5 and delivers the client report.
+
+## State at handoff (Session 7 end)
+
+**Migration arc: complete.**
+
+- Full batch run processed all 25 posts in a single invocation
+- 76 total inline images confirmed via GROQ dereferencing across all 25 posts
+- 0 upload failures in the batch run
+- imageGroup 4:3 crop committed and deployed (commit: `blog: apply 4:3 crop to imageGroup gallery rendering`)
+- Sanity webhook configured and active (configured mid-session before full batch run)
+- All 25 posts verified via source-of-truth GROQ queries dereferencing asset references
+
+**Pass 1 (featured images):**
+- 23 posts: `ok` — featured image re-uploaded with slug-derived `originalFilename`
+- 2 posts: `skipped_existing_asset` — already had slug-derived asset from prior migration pass
+- `modular-furniture-designs`: uploaded successfully at 1200×800 (below 1600 px threshold — quality issue, not migration failure; tracked in known-issues.md and post-launch-recommendations.md)
+
+**Pass 2 (inline body images):**
+- 23 posts: `ok` — inline images uploaded, body patched
+- 2 posts: `skipped_collision` — `how-to-survive-office-downsizing` (6 images, Step A) and `modular-furniture-designs` (5 images, Step B) already migrated; collision guard correctly preserved them
+- 65 inline images uploaded in batch run; 6 + 5 from earlier runs = 76 total
+
+**Head on origin/main:** Session 7 mid-session wrap commit. Confirm hash on arrival.
+
+**Vercel:** deploy was green after the imageGroup crop commit. Confirm ● Ready on arrival before any new commits.
 
 ## Required reading before any action
 
-1. `CLAUDE.md` — IMAGE SEO RULES (rules 7-10 added this session) and BODY CONTENT MIGRATION RULES (new section added this session). These are enforced project rules, not advice. Eight migration rules cover failure modes that have already shipped regressions twice.
+1. `CLAUDE.md` — IMAGE SEO RULES and BODY CONTENT MIGRATION RULES. Both sections are live and enforced.
 
-2. `docs/spec-gaps.md` — diagnostic chain for seven Phase 5 gaps. Each entry explains the symptom, the wrong assumption that produced it, the actual mechanism, and the fix. The patterns are transferable — recognize them before they recur.
+2. `docs/known-issues.md` — review for any items that Session 7 resolved and have not yet been closed out. The modular-furniture-designs "WP Source Deleted" entry was corrected in the Session 7 wrap commit.
 
-3. `docs/known-issues.md` — six open Phase 5 items. Some block remaining migration runs (webhook configuration, crop decision); others are deferred to post-launch (alt text worksheet, external link audit).
+3. `docs/post-launch-recommendations.md` — the 10-item priority list for SEO consultant and Brian. Blog content audit added as item 4 in Session 7 wrap.
 
-4. `docs/design-decisions.md` — four decisions made this session: filename strategy as platform constraint, blog inline image width (Option B, exception to CLAUDE.md rule 11), gallery layout via render-layer adjacency detection, WXR-driven migration source.
+## Outstanding Phase 5 work
 
-## State at handoff (2026-05-21)
+All items below are required before Phase 5 is declared complete and before the client report ships.
 
-HEAD on origin/main: latest commit is the documentation arc closeout. Confirm hash on arrival.
+### Small commits (code)
 
-Step A-live executed on one post:
-- `how-to-survive-office-downsizing` migrated successfully
-- 1 featured image re-uploaded (originalFilename slug-derived, public URL still content-hashed per platform constraint)
-- 6 inline images uploaded as Portable Text image blocks
-- Body rewritten with byline strip, link substitutions, image block insertion
-- Rendering verified on Vercel preview with gallery grouping applied
-- Page-level `export const revalidate = 86400` added in `src/app/blog/[slug]/page.tsx`
+**1. Blog index thumbnail `sizes` prop.**
+The blog index page (`src/app/blog/page.tsx` or equivalent) renders featured image thumbnails. The `sizes` attribute likely does not match the actual rendered width of the card grid. Fix to reflect actual breakpoint widths. Small commit, one file.
 
-Step B-live and full migration not executed. Remaining slugs: 24.
+**2. `ImageObject` schema enrichment.**
+`src/lib/schema.ts` `buildArticleSchema` function currently emits a minimal `image` field (URL only). Enrich to full `ImageObject` with `url`, `width`, `height`, and `caption` where available. Requires reading the current `buildArticleSchema` implementation and the Sanity `postQuery` in `src/app/blog/[slug]/page.tsx` to confirm which dimension data is already available at render time. Small commit, targeted to `src/lib/schema.ts` and possibly `src/app/blog/[slug]/page.tsx`.
 
-Operational gaps blocking remaining runs:
-- Sanity webhook not configured (manual revalidation required after each Sanity write until configured)
-- Inline image crop decision pending (4:3 / 3:2 / 16:9 — affects `imageGroup` handler)
+### Alt text worksheet
 
-## Immediate next steps
+`tmp/alt-text-worksheet.xlsx` is gitignored and was lost between sessions. It must be regenerated before the client report ships — Brian's SEO consultant needs it. The worksheet has two sections: Section A (30 inline images with empty or placeholder alts) and Section B (22 featured images with filename-derived alts). Regeneration requires a GROQ query across all 25 posts pulling body image alt values and featured image alt values, then formatting into a spreadsheet. Coordinate with Ryan on tooling for the xlsx generation.
 
-1. Verify state. Confirm HEAD commit hash, confirm `how-to-survive-office-downsizing` renders correctly on Vercel preview, confirm `tmp/alt-text-worksheet.xlsx` has been retrieved by Ryan and saved durably (the file is gitignored).
+### Phase 5 closeout docs
 
-2. Ryan configures Sanity webhook. Setup steps:
-   - sanity.io/manage → On Point Installations project (hwyx6cco) → API → Webhooks → Create webhook
-   - URL: https://on-point-installations.vercel.app/api/revalidate (update to production domain post-Phase-6)
-   - Filter: `_type == "blogPost"`
-   - Triggers: Create + Update + Delete
-   - Secret: matches SANITY_REVALIDATE_SECRET in Vercel env
-   - Test with a trivial Studio edit; confirm webhook log shows 200 from Vercel
-   - Required before remaining migration runs proceed
+**`BUILD_PLAN.md`** — add Session 7 status block documenting migration arc completion. Match the format of prior session blocks.
 
-3. Ryan and supervisor agree on inline image crop aspect ratio. Default recommendation: 4:3 (closest to typical phone-photo orientation, mild crop on landscape sources). Other options: 3:2 (DSLR-standard, modest crop on phone sources) or 16:9 (wide cinematic, aggressive crop). One-line change to `imageGroup` handler in `src/app/blog/[slug]/page.tsx` — modify `urlFor()` call to include `.fit('crop')` with target dimensions.
+**`docs/content-source-map.md`** — add entries for the 25 migrated blog posts noting that body content was preserved from WXR source with byline strip, retired-URL link substitutions, and internal cross-link insertions where text patterns matched. Note image migration pass completed Session 7.
 
-4. Step B-live. Run `pnpm tsx scripts/migrate-inline-images.ts --slug=modular-furniture-designs`. Expected behavior: featured image fetch returns 403 (source deleted from WP), handler logs and skips with manifest flag `featured_status: source_deleted_replacement_needed`, leaves existing Sanity featuredImage reference untouched. 5 inline images fetch successfully via WXR attachment lookup.
+**`docs/known-issues.md`** — close out items that Session 7 resolved:
+- Sanity webhook (configured mid-Session 7, verify it is marked resolved)
+- Inline image crop decision (resolved: 4:3, committed)
+- Blog inline image aspect ratio entry (same)
+- Review all remaining open items for accuracy against current state
 
-5. Source-of-truth verification on Step B. GROQ query confirms body image count, dereferences asset URLs, confirms featured reference intact. Visual verification on Vercel preview.
+### IntegrePro client report for Brian
 
-6. Full run on remaining 23 slugs. Single batch invocation (no --slug filter) or per-slug iteration — supervisor judgment. Manifest emits incrementally per post. Source-of-truth GROQ verification across all 25 after run.
+Deliver a plain-English summary covering:
+- What Phase 5 delivered: 76 inline images migrated, 25 featured images migrated with slug-derived filenames, gallery rendering, 4:3 crop, schema enrichment
+- What Brian needs to do before launch (Phase 6 cutover): SVG logo, modular-furniture-designs replacement image, Sanity webhook URL update after cutover
+- What Brian's SEO consultant should do post-launch: the 10-item priority list from `docs/post-launch-recommendations.md`, verbatim or summarized
+- What is handled automatically: ISR revalidation via Sanity webhook, ImageObject schema, alt fallbacks
 
-7. Remaining eight-signal items (small commits each):
-   - Blog index thumbnail `sizes` prop
-   - `ImageObject` schema enrichment in `src/lib/schema.ts` `buildArticleSchema`
+Tone: plain-spoken, contractor voice. Not a technical report — a handoff memo Brian can read in five minutes.
 
-8. Closeout updates. Update `docs/build_plan.md` with Phase 5 status. Update `docs/content-source-map.md` to include the 25 blog posts and their content source notes. Produce IntegrePro client report for Brian capturing Phase 5 delivery, remaining Brian-side actions, and post-launch handoffs to SEO consultant.
+## Opening move for Session 8
+
+1. Pre-flight recon (read-only):
+   - Confirm HEAD commit hash and Vercel ● Ready
+   - Confirm all 25 posts render on production (spot-check 3: `how-to-survive-office-downsizing`, `modular-furniture-designs`, one third slug)
+   - Confirm Sanity webhook active: check sanity.io/manage → project hwyx6cco → API → Webhooks → verify webhook URL and last delivery status
+   - Read `docs/known-issues.md` current state
+
+2. Proceed to small commits in order: blog index `sizes` prop, then `ImageObject` schema enrichment.
+
+3. After both small commits are green on Vercel, proceed to alt text worksheet regeneration and closeout docs.
+
+4. Client report last — after all docs are accurate.
 
 ## Working principles (carry forward unchanged)
 
 - Audit prompts in `docs/seo-audit/` authoritative
 - Voice rules > live-site parity > SEO audit > drafted copy
-- Outline-before-draft on structural decisions
 - One commit at a time, pre-commit hook mandatory
 - Worker can't read `.env.local`
 - Don't paste secret values to chat
-- Plain-English summaries on technical routing
 - Vercel-deploy-green gate on source-touching commits
-- Dry-run protocol mandatory before full migration: happy-path slug + expected-fail slug, output to `/tmp` first, supervisor reviews before live writes
-- Source-of-truth Sanity query after every migration run, dereferencing asset references — not top-level only
+- Source-of-truth Sanity GROQ query after every migration run, dereferencing asset references
 - Scope-enumerate before declaring a session done
 
-## Operating posture
+## Post-launch posture
 
-Brian's previous SEO consultant Nancy still has access to him and will audit the rebuild post-launch for findings to flag back. The defensive posture is real but informed by the diagnostic lessons this session captured. Specifically:
+Brian's previous SEO consultant Nancy will audit the rebuild post-launch. The defensive posture is documented. Specifically:
 
-- Filename hashing is not the audit-defense lever the original onboarding framed it as. The stronger user-visible signals are alt text, schema, dimensions, format, gallery layout, link integrity, and visible content.
-- If Nancy raises content-hashed URLs as a finding, the response is documented in `docs/post-launch-recommendations.md` under "Platform characteristics" — Sanity is content-addressed storage, this is consistent across headless CMS stacks, not a missed optimization.
-- Post-launch content tasks (44 alt text strings, external link audit, internal link insertion, meta description rewrites) are tracked in `docs/post-launch-recommendations.md` and are Brian's SEO consultant's scope, not migration scope. The rebuild closes Nancy's billing surface on technical work; remaining items are correctly content/editorial.
-
-## Documentation arc completed in this session
-
-The following docs were updated or created in the documentation arc that closed this session:
-- `CLAUDE.md` — IMAGE SEO RULES 7-10 added, BODY CONTENT MIGRATION RULES section added
-- `docs/spec-gaps.md` — 7 diagnostic entries from Phase 5 image SEO arc
-- `docs/known-issues.md` — 6 Phase 5 open items
-- `docs/design-decisions.md` — 4 Phase 5 design decisions
-- `docs/seo-audit/phase-5-supervisor-handoff.md` — this file
-- `docs/post-launch-recommendations.md` — post-launch content and configuration tasks (forthcoming in this arc)
-- `docs/build_plan.md` — Phase 5 status update (forthcoming in this arc)
-- `docs/content-source-map.md` — blog post source notes (forthcoming in this arc)
-
-Read each before assuming any prior framing of Phase 5 scope or methodology still applies.
+- Content-hashed image URLs are not a deficiency. The response is in `docs/post-launch-recommendations.md` under "Platform characteristics." Use it verbatim if Nancy flags it.
+- The 44 alt text items are the highest-value post-launch task. The worksheet gets her there — regenerating it is not optional.
+- Post-launch content tasks are Brian's SEO consultant's scope, not migration scope. The rebuild closes the technical surface.
 
 ---
 
