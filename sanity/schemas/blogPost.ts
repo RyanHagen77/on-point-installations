@@ -74,6 +74,18 @@ export default defineType({
             ],
           },
         },
+        {
+          type: 'image',
+          options: { hotspot: false },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              description: "Describe what's in the image for screen readers and search engines.",
+            }),
+          ],
+        },
       ],
     }),
     defineField({
