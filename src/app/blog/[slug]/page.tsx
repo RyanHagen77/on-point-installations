@@ -59,6 +59,8 @@ const postQuery = `*[_type == "blogPost" && slug.current == $slug && status == "
 
 const allSlugsQuery = `*[_type == "blogPost" && status == "published"]{ "slug": slug.current }`;
 
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
   const posts = await client.fetch<Array<{ slug: string }>>(allSlugsQuery);
   return posts.map((post) => ({ slug: post.slug }));
