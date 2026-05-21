@@ -146,10 +146,10 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
           {value.images.map((img: any) => (
             <Image
               key={img._key}
-              src={urlFor(img).width(1024).url()}
+              src={urlFor(img).width(1024).height(768).fit('crop').url()}
               alt={img.alt ?? ''}
-              width={img.assetDimensions?.width ?? 1200}
-              height={img.assetDimensions?.height ?? 800}
+              width={1024}
+              height={768}
               sizes="(min-width: 768px) 384px, 100vw"
               className="rounded-lg w-full h-auto"
             />
