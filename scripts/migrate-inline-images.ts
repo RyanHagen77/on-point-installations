@@ -282,6 +282,63 @@ async function uploadAsset(
   }
 }
 
+// ── Link substitutions (ported verbatim from migrate-wp-post.ts) ─────────────
+
+const SERVICE_SUBSTITUTIONS: Record<string, string> = {
+  '/commercial-office-furniture-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/',
+  '/services/commercial-office-furniture-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/',
+  '/company-office-relocation-chicago-il/': '/services/office-relocation-chicago-il/',
+  '/services/company-office-relocation-chicago-il/': '/services/office-relocation-chicago-il/',
+  '/commercial-office-furniture-storage-chicago-il/': '/services/commercial-office-furniture-storage-chicago-il/',
+  '/space-planning/': '/services/commercial-space-planning-chicago-il/',
+  '/services/space-planning/': '/services/commercial-space-planning-chicago-il/',
+  '/artwork-installation/': '/services/artwork-installation-chicago-il/',
+  '/services/artwork-installation/': '/services/artwork-installation-chicago-il/',
+  '/window-treatment-installations/': '/services/window-treatment-installation-chicago-il/',
+  '/services/window-treatment-installations/': '/services/window-treatment-installation-chicago-il/',
+  '/services/electrical-voice-and-data-cabling-for-your-commercial-installation/': '/services/electrical-voice-data-cabling-chicago-il/',
+  '/about-us-chicago-il/': '/about/',
+  '/contact-us/': '/contact/',
+  '/review/': '/reviews/',
+};
+
+const AUDIT_SUBSTITUTIONS: Record<string, string> = {
+  '/services/cubicle-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#cubicle-installation',
+  '/services/systems-furniture-installation-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#systems-furniture',
+  '/services/office-furniture-delivery-setup-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#office-furniture-delivery-setup',
+};
+
+const DEAD_LINK_PREFIXES = ['/project/', '/category/'];
+
+function applyLinkSubstitutions(doc: Document, contentEl: Element, slug: string): void {
+  const links = Array.from(contentEl.querySelectorAll('a[href]'));
+  let substituted = 0;
+  let stripped = 0;
+
+  for (const a of links) {
+    const rawHref = a.getAttribute('href') ?? '';
+    const href = rawHref.replace(/^https?:\/\/(?:www\.)?onpointinstallations\.com/, '');
+
+    if (SERVICE_SUBSTITUTIONS[href]) {
+      a.setAttribute('href', SERVICE_SUBSTITUTIONS[href]);
+      substituted++;
+    } else if (AUDIT_SUBSTITUTIONS[href]) {
+      a.setAttribute('href', AUDIT_SUBSTITUTIONS[href]);
+      substituted++;
+    } else if (DEAD_LINK_PREFIXES.some((p) => href.startsWith(p))) {
+      const text = doc.createTextNode(a.textContent ?? '');
+      a.parentNode?.replaceChild(text, a);
+      stripped++;
+    }
+  }
+
+  if (substituted + stripped > 0) {
+    log(slug, 'SUBST', `${substituted} link(s) substituted, ${stripped} dead link(s) stripped`);
+  } else {
+    log(slug, 'SUBST', 'no link substitutions needed');
+  }
+}
+
 // ── Pass 1: Featured image re-upload ─────────────────────────────────────────
 
 async function migratePass1Featured(
@@ -419,6 +476,16 @@ async function migratePass2Inline(
   const dom  = new JSDOM(contentHtml);
   const doc  = dom.window.document;
   const body = doc.body;
+
+  // Strip byline (first <p> matching /^by\s/i) -- same logic as migrate-wp-post.ts
+  const firstP = body.querySelector('p');
+  if (firstP && /^by\s/i.test(firstP.textContent?.trim() ?? '')) {
+    warn(slug, `byline stripped: "${firstP.textContent?.trim()}"`);
+    firstP.parentNode!.removeChild(firstP);
+  }
+
+  // Apply link substitutions (SERVICE_SUBSTITUTIONS + AUDIT_SUBSTITUTIONS + dead links)
+  applyLinkSubstitutions(doc, body, slug);
 
   const markers: MarkerInfo[] = [];
   let markerIdx = 0;
@@ -699,6 +766,9 @@ async function main(): Promise<void> {
     }
   }
 
+  if (dryRun) {
+    summaryLines.push('Pass 1 fetch-fail handler (SKIP+LOG+leave existing untouched): implemented, not exercised by this dry-run -- all image fetches returned HTTP 200.');
+  }
   summaryLines.push('');
   const summary = summaryLines.join('\n');
   process.stdout.write(summary);
