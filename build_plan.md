@@ -13,7 +13,7 @@
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
-| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, launch prep | In progress | `c3a5270` (Session 4) | 2026-05-20 |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, image SEO pass, launch prep | In progress | `c0b2527` (Session 6 docs arc) | 2026-05-21 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -162,6 +162,45 @@ Verification: after deploy, edit a post title in Studio, publish, wait ~10s, ref
 - FAQ strategy unchanged: FAQPage schema infrastructure dormant; Brian authors in Studio post-launch
 - Alt text Brian review: 7 posts have meaningless alt values (filter gaps + Pexels photographer names + hash filenames); listed in known-issues.md
 - Two isQualityAlt filter gaps identified: "img 5074 resized" and "onpointinstallations1" passed tier 1 incorrectly; both listed in known-issues.md for Brian's manual Studio fix
+
+**Phase 5 Session 6 -- 2026-05-21 -- Image SEO pass + supervisor handoff**
+
+*Scope expanded mid-session from the eight-signal image SEO recon to include Session 5 rendering bug remediation, full inline image migration architecture, and a documentation arc capturing diagnostic lessons for the next supervisor. Phase 5 remains In progress — Step B-live and full migration on the remaining 23 posts are deferred to Session 7.*
+
+**Lanes completed:**
+- Phase 5 image SEO recon — full audit of 25 blog posts via WXR export (76 inline images across 25 posts confirmed; 22 inline empty-alt + 22 featured needing better alts; 30 inline images discovered beyond initial 22-row Section A scope; all images have wp-image attachment IDs enabling lookup-based migration)
+- Session 5 rendering bug remediation — root-caused two bugs (resize-strip inversion, createOrReplace field wipe) and inverted the URL resolution strategy to use WXR `wp:attachment_url` lookup, eliminating filename derivation
+- Inline image migration architecture — new `scripts/migrate-inline-images.ts` with Pass 1 (featured image re-upload with slug-derived `originalFilename`) and Pass 2 (inline image migration as Portable Text image blocks with byline strip, link substitutions, and image insertion into body)
+- Schema and template updates for inline image rendering — image block type added to `body.of[]` in Sanity schema, PortableText `types.image` and `types.imageGroup` handlers added to blog post template, `groupImageBlocks()` preprocessor for adjacent-image gallery detection
+- ISR architectural fix — `export const revalidate = 86400` added to `src/app/blog/[slug]/page.tsx`, resolving the Vercel edge-cache static HTML issue that prevented Sanity webhook revalidation from updating rendered pages
+- Step A-live migration completed on `how-to-survive-office-downsizing` — 1 featured + 6 inline images migrated, body rewritten with gallery grouping, rendering verified on Vercel preview
+- Documentation arc — 8 documentation commits updating CLAUDE.md (IMAGE SEO RULES 7-10, new BODY CONTENT MIGRATION RULES section), spec-gaps.md (7 diagnostic entries), known-issues.md (6 Phase 5 open items), design-decisions.md (4 Phase 5 decisions), plus new files at docs/seo-audit/phase-5-supervisor-handoff.md and docs/post-launch-recommendations.md
+
+**Validations completed:**
+- Step A-live source-of-truth GROQ verified all 6 inline image asset references resolve with valid CDN URLs, originalFilenames slug-derived, dimensions populated
+- Rendered page on Vercel preview shows 6 inline images with Option B styling (max-w-3xl) and 2-column gallery grouping for adjacent image pairs
+- Build passing on origin/main HEAD after function-prop boundary fix in image handler
+- Documentation arc — 8 commits all docs-only, all Vercel-green
+
+**Validations pending (Ryan-side / Session 7):**
+- Sanity webhook configuration in sanity.io/manage (required before remaining migration runs to avoid manual revalidation between each)
+- Inline image crop aspect ratio decision (4:3 / 3:2 / 16:9) — pending Ryan's call before Step B-live
+
+**Carry-forward to Session 7:**
+- Step B-live on modular-furniture-designs (expected-fail case for featured-image 403 handler, 5 inline images via WXR attachment lookup)
+- Full migration on remaining 23 blog posts
+- Source-of-truth GROQ verification across all 25 posts after full run
+- Blog index thumbnail `sizes` prop (eight-signal item 6, remaining)
+- `ImageObject` schema enrichment in `src/lib/schema.ts` `buildArticleSchema` (eight-signal item 7)
+- Closeout updates to BUILD_PLAN.md (phase status COMPLETE) and content-source-map.md (blog post entries — this commit's pair file update)
+- IntegrePro client report for Brian capturing Phase 5 delivery, post-launch handoffs to SEO consultant, remaining Brian-side actions
+
+**Key learnings captured in repo docs (read before Session 7):**
+- `CLAUDE.md` — IMAGE SEO RULES 7-10 (CDN URL behavior, RSC boundary, ISR config, rendered-page parity in recon) and BODY CONTENT MIGRATION RULES section (8 enforced rules for body-rebuild migrations)
+- `docs/spec-gaps.md` — 7 diagnostic entries documenting root causes and resolutions
+- `docs/design-decisions.md` — 4 decisions made this session (filename strategy, blog inline image width, gallery layout, WXR migration source)
+- `docs/known-issues.md` — 6 Phase 5 open items
+- `docs/seo-audit/phase-5-supervisor-handoff.md` — operational state and immediate next steps for Session 7
 
 ---
 
