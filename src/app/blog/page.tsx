@@ -1,7 +1,9 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
 import { client } from '@/lib/sanity';
+import { urlFor } from '@/lib/sanity-image';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 
 export const metadata = generatePageMetadata({
@@ -17,6 +19,11 @@ interface BlogPostCard {
   publishedAt: string | null;
   _createdAt: string;
   category: string | null;
+  featuredImage: {
+    _type: 'image';
+    asset: { _ref: string; _type: 'reference' };
+    alt: string | null;
+  } | null;
 }
 
 const indexQuery = `*[_type == "blogPost" && status == "published"] | order(coalesce(publishedAt, _createdAt) desc) {
@@ -25,7 +32,8 @@ const indexQuery = `*[_type == "blogPost" && status == "published"] | order(coal
   excerpt,
   publishedAt,
   _createdAt,
-  category
+  category,
+  featuredImage { _type, asset, alt }
 }`;
 
 export default async function BlogIndexPage() {
@@ -46,9 +54,23 @@ export default async function BlogIndexPage() {
       ) : (
         <ul className="space-y-8">
           {posts.map((post) => {
+            const thumbnailUrl = post.featuredImage
+              ? urlFor(post.featuredImage).width(800).height(450).url()
+              : null;
             return (
               <li key={post.slug} className="border-b border-gray-200 pb-8 last:border-b-0 last:pb-0">
                 <Link href={`/blog/${post.slug}/`} className="group block">
+                  {thumbnailUrl && (
+                    <div className="mb-4 overflow-hidden rounded-lg">
+                      <Image
+                        src={thumbnailUrl}
+                        alt={post.featuredImage?.alt || post.title}
+                        width={800}
+                        height={450}
+                        className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
+                      />
+                    </div>
+                  )}
                   {post.category && (
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-xs font-semibold uppercase tracking-wide text-[#800000] bg-red-50 px-2 py-0.5 rounded">
