@@ -199,3 +199,44 @@ Permanent 301 redirects from all three slugs are in `next.config.ts`.
 
 **Voice changes applied during port:**
 - Bullet label-to-detail separators: em dashes in live site → colons in new build
+
+---
+
+## Blog Posts (25 total)
+
+**Status:** 1 of 25 migrated with inline images (Session 6, 2026-05-21). 24 remaining for Session 7. All 25 have featured images and text body content from the original Session 4/5 migration.
+
+**Migration methodology (applies to all 25):**
+
+- **Source:** WXR export from WP admin (file at `tmp/onpointinstallationsinc.WordPress.2026-05-21.xml`, gitignored). All content authored in Gutenberg block editor. Live HTTP fetch of HTML pages was blocked by CyberOptik WAF from the migration IP, but static asset fetches from `/wp-content/uploads/` returned 200; WXR-driven migration bypasses the WAF entirely.
+- **Featured images:** Migrated via WXR `_thumbnail_id` post-meta lookup → `<wp:item>` attachment → `wp:attachment_url`. Uploaded to Sanity with slug-derived `originalFilename` (e.g., `<slug>-featured.jpg`) at metadata layer; rendered `<img src>` URLs remain content-hashed per Sanity platform architecture (see `docs/design-decisions.md` → "Image Filename Strategy"). Existing alt values preserved on re-upload; degenerate alts (filename-derived or title-derived from Session 5 fallback path) flagged for SEO consultant rewrite in `docs/post-launch-recommendations.md`.
+- **Inline images:** Migrated via `<img>` `wp-image-NNNN` class → attachment ID lookup in WXR → `wp:attachment_url`. Uploaded to Sanity with slug-derived filenames (`<slug>-1.ext` through `<slug>-N.ext`). Inserted as Portable Text image blocks in body content at reading-order positions matching the WXR source. Gallery layout (Gutenberg `wp:gallery` blocks) preserved via render-layer adjacency detection (see `docs/design-decisions.md` → "Gallery Layout").
+- **Body content:** Rebuilt from WXR `<content:encoded>` via `htmlToBlocks`. Three transforms applied before conversion: image strip (replaced by image block insertion above), byline strip (first `<p>` matching `/^by\s/i` removed), and link substitutions via `applyLinkSubstitutions()` — note this includes link insertion logic that adds internal cross-links to service pages where source phrases match the substitution table, not just URL rewriting (see `docs/spec-gaps.md` → "Body Content Transform Pipeline").
+- **Alt text:** WXR-authored alt values preserved verbatim where present and quality-passing. 22 inline images with empty or placeholder alts and 22 featured images with filename- or title-tier fallbacks are flagged in the alt text worksheet (`tmp/alt-text-worksheet.xlsx`, gitignored, delivered separately) for SEO consultant rewrite post-launch.
+- **Title, meta description, excerpt, category, FAQs:** Migrated from WP source verbatim in Session 5; not modified during Session 6 image SEO arc.
+
+**Voice rule application:** Blog content was authored in WP by Brian or prior contractors and was not voice-rule-corrected during migration. Voice issues (em dashes, consultant verbs, AI tells in author-written paragraphs) are out of scope for image SEO migration. Tracked as content-editorial concern, not migration concern.
+
+**Structural departures from live WP rendering:**
+- Gallery layout: live WP renders Gutenberg `wp:gallery` blocks as grid thumbnails with WP-default crops. Rebuild renders as 2-column flexbox with native aspect ratios preserved (crop decision pending Session 7).
+- Inline image width: live WP uses ~1200px column width. Rebuild uses `max-w-3xl` (768px) per design decision (see `docs/design-decisions.md` → "Blog Inline Image Width"). This is a deliberate divergence from CLAUDE.md content-image rule 11 (which applies to service pages).
+- Filenames in page source: live WP shows WordPress-uploaded filenames in `<img src>`. Rebuild shows Sanity content-hashed CDN URLs. Documented as platform characteristic, not a deficiency (see `docs/post-launch-recommendations.md` → "Platform characteristics").
+
+**Per-post notes where divergence exists:**
+
+| Slug | Notes |
+|---|---|
+| how-to-survive-office-downsizing | Session 6 Step A-live target. 6 inline images, 3 gallery pairs at body indices [3,4], [7,8], [13,14]. All alts wp-degenerate (camera timestamps from phone uploads) — flagged in worksheet. No internal links in WP source; rebuild has none (substitution table found no matching phrases). |
+| modular-furniture-designs | Session 7 Step B-live target. Featured image source file deleted from WP server (cannot be recovered); migration script's 403 handler will skip the featured re-upload and leave existing Sanity reference intact, manifest will flag `featured_status: source_deleted_replacement_needed`. 5 inline images at `_1200.jpg` source filenames (canonical originals, not WP-resize variants). Replacement featured image tracked in `docs/post-launch-recommendations.md`. |
+| qualities-to-look-for-in-warehousing-services | Same attachment ID (2816) referenced twice in WP source — script will upload as 2 distinct assets with different slug-derived filenames (`-1.jpg` and `-3.jpg`), preserving the duplicate-use intent of the original post. |
+| 5-essential-tips-from-office-installers-in-chicago | All 3 inline images have WP-auto-populated alt set to the page title — wp-degenerate, flagged in worksheet. |
+| how-to-survive-office-downsizing, how-to-find-a-chicago-corporate-installation-expert | Posts with compound `-scaled-N-NNNxNNN` filename pattern in WP source. Resolved via WXR attachment lookup (no filename derivation needed); not a blocker. |
+
+The 20 remaining posts not listed above follow the migration methodology with no per-post divergence. All 25 are listed in BUILD_PLAN.md → SITE INVENTORY → Existing Blog Posts.
+
+**Audit defense surfaces:**
+- Alt text: 44 strings need authoring (22 inline + 22 featured). Worksheet handed to SEO consultant via Brian.
+- Internal linking: posts without service-page cross-links are correctly migrated (no links to substitute); link insertion is content-aware editorial work, not migration.
+- External links: preserved verbatim from WP source; editorial audit recommended post-launch.
+- ImageObject schema enrichment: pending Session 7 (eight-signal item 7).
+- Blog index thumbnail `sizes` prop: pending Session 7 (eight-signal item 6, remaining gap).
