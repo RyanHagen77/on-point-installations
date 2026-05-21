@@ -14,8 +14,11 @@ loadDotenv({ path: '.env.local' });
 const argv = process.argv.slice(2);
 const hasFlag = (flag: string): boolean => argv.includes(flag);
 const getArg  = (flag: string): string | undefined => {
-  const i = argv.indexOf(flag);
-  return i !== -1 ? argv[i + 1] : undefined;
+  for (const arg of argv) {
+    if (arg === flag) return argv[argv.indexOf(flag) + 1];
+    if (arg.startsWith(`${flag}=`)) return arg.slice(flag.length + 1);
+  }
+  return undefined;
 };
 
 const dryRun  = hasFlag('--dry-run');
@@ -420,27 +423,37 @@ async function migratePass2Inline(
   const markers: MarkerInfo[] = [];
   let markerIdx = 0;
 
-  // Gutenberg places wp:image blocks as direct children of body
+  // Gutenberg places wp:image and wp:gallery blocks as direct children of body.
+  // A wp:gallery contains multiple nested figures; handle all images per block.
   for (const child of Array.from(body.children)) {
     const tag = child.tagName.toUpperCase();
-    if (tag === 'FIGURE' || (tag === 'DIV' && child.classList.contains('wp-block-image'))) {
-      const img = child.querySelector('img');
-      if (!img) continue;
+    if (tag !== 'FIGURE' && !(tag === 'DIV' && child.classList.contains('wp-block-image'))) {
+      continue;
+    }
 
-      const alt        = img.getAttribute('alt') ?? '';
-      const classes    = img.getAttribute('class') ?? '';
-      const srcHint    = img.getAttribute('src') ?? '';
-      const wpIdMatch  = /wp-image-(\d+)/.exec(classes);
-      const wpImageId  = wpIdMatch ? wpIdMatch[1] : null;
-      const markerKey  = `__IMGMARKER_${markerIdx}__`;
+    const imgs = Array.from(child.querySelectorAll('img'));
+    if (imgs.length === 0) continue;
 
+    const blockMarkers: string[] = [];
+    for (const img of imgs) {
+      const alt       = img.getAttribute('alt') ?? '';
+      const classes   = img.getAttribute('class') ?? '';
+      const srcHint   = img.getAttribute('src') ?? '';
+      const wpIdMatch = /wp-image-(\d+)/.exec(classes);
+      const wpImageId = wpIdMatch ? wpIdMatch[1] : null;
+      const markerKey = `__IMGMARKER_${markerIdx}__`;
       markers.push({ markerKey, alt, wpImageId, srcHint });
       markerIdx++;
-
-      const markerP      = doc.createElement('p');
-      markerP.textContent = markerKey;
-      child.parentNode!.replaceChild(markerP, child);
+      blockMarkers.push(markerKey);
     }
+
+    // Insert one marker paragraph per image (preserves reading order), then remove block
+    for (const mk of blockMarkers) {
+      const p = doc.createElement('p');
+      p.textContent = mk;
+      child.parentNode!.insertBefore(p, child);
+    }
+    child.parentNode!.removeChild(child);
   }
 
   log(slug, 'PASS2', `found ${markers.length} inline image(s)`);
