@@ -74,3 +74,101 @@ This file documents constraints that emerged during Phase 2 build that were not 
 - `next.config.ts` — redirects added for all old slugs
 - Homepage SERVICE_DESCRIPTIONS keys updated
 - See `docs/content-source-map.md` for the canonical source reference for all 8 pages
+
+---
+
+## Image Migration Strategy — WXR Attachment Lookup Required
+
+**Gap discovered:** 2026-05-20 (Session 5 failure), root-caused 2026-05-21.
+
+**Gap:** The original `migrate-wp-post.ts` script derived image URLs by stripping WordPress resize suffixes (`-NNNxNNN`, `_NNN`, `-scaled-N`) from rendered HTML `<img src>` attributes. This approach assumed WP always stores a full-resolution original at the unsuffixed filename. The assumption is false: WP only generates resize variants when an original is larger than the variant size. Uploads that arrive at exactly the variant size (typical phone photos at 1200px wide named like `img_1200.jpg`) have no unsuffixed parent -- strip-and-fetch returns 404. Compound patterns (`-scaled-N-NNNxNNN`) and trailing variants (`-NNNxNNN-N`) added further edge cases.
+
+**Symptom:** Session 5 silently produced 4 posts with null `featuredImage` references despite the script reporting 25/25 success. The error path: derive URL -> 404 -> script logged failure but still called `createOrReplace` with featuredImage omitted, which combined with the `createOrReplace` field-wipe gap below nulled any pre-existing reference. Diagnosis took multiple sessions because the top-level GROQ query showed documents existed and did not surface the null assets.
+
+**Rule established:** The canonical source for image URLs is the WXR `wp:attachment_url` field on the corresponding `<wp:item>` block where `<wp:post_type>attachment</wp:post_type>`. Look up by attachment ID, not by filename pattern derivation. The attachment ID is in the `wp-image-NNNN` class on the rendered `<img>` tag and in the `_thumbnail_id` post-meta for featured images.
+
+**Lives in:** `CLAUDE.md` -> BODY CONTENT MIGRATION RULES rule 1. `scripts/migrate-inline-images.ts` implements this pattern. Future migrations follow it.
+
+---
+
+## Migration Idempotency — Read-First on Asset Operations
+
+**Gap discovered:** 2026-05-20 (Session 5 failure), root-caused 2026-05-21.
+
+**Gap:** Sanity's `createOrReplace` operation replaces the entire document. When a migration payload omits fields (e.g., `featuredImage` omitted because the fetch failed and the script correctly did not substitute a placeholder), `createOrReplace` nulls those fields on the existing document. Combined with the resize-strip bug, retry runs wiped good data -- each retry that hit a 404 nulled the previous run's successful uploads.
+
+**Symptom:** Posts that had working featured images after early migration runs were observed to have null `featuredImage` references after subsequent runs. The fix was not obvious because each run reported success on the posts it did not break.
+
+**Rule established:** Migrations that update existing documents must either (a) read the existing document first and merge omitted fields back into the payload before `createOrReplace`, or (b) use `client.patch()` for targeted field-level updates rather than whole-document replacement. The current `scripts/migrate-inline-images.ts` uses both patterns: read-first for featured image updates to preserve existing alt on fetch failure, and patch operations for body content.
+
+**Lives in:** `CLAUDE.md` -> BODY CONTENT MIGRATION RULES rule 2. Reference: `scripts/migrate-wp-post.ts` Pass 1 fetch-failure handler, `scripts/migrate-inline-images.ts` Pass 1 and Pass 2.
+
+---
+
+## Body Content Transform Pipeline — Insertion, Not Just Rewriting
+
+**Gap discovered:** 2026-05-21.
+
+**Gap:** `migrate-wp-post.ts` applies three body content transforms before `htmlToBlocks` runs: image strip, byline strip, link substitutions. The naming of "link substitutions" implied a pure rewrite operation (find `href="OLD"`, replace with `href="NEW"`). It is not. `applyLinkSubstitutions()` also performs link insertion -- adding `<a href="/services/...">` wrappers around phrases that match patterns in `SERVICE_SUBSTITUTIONS` and `AUDIT_SUBSTITUTIONS`. The result: posts that had zero internal links in WP source emerged from migration with multiple internal cross-links to service pages.
+
+**Symptom:** During this session's body rebuild from WXR (Pass 2 of `migrate-inline-images.ts`), one post emerged with no internal links while other previously-migrated posts had several. Investigation showed the script's Pass 2 had ported the substitution logic but the specific post's WXR content had no phrases matching the insertion patterns -- the post genuinely had no surface for the substitution table to act on. Other posts with matching phrases got cross-links inserted both in Session 5 and in any Pass 2 re-migration.
+
+**Rule established:** Any new migration script that rebuilds body from source must port the full transform pipeline from `migrate-wp-post.ts`, not just the explicitly-named transforms. Audit the transform code end-to-end before authorizing a body rebuild. Specifically: confirm whether link substitution includes insertion logic and whether other named transforms include hidden behavior beyond their names.
+
+**Lives in:** `CLAUDE.md` -> BODY CONTENT MIGRATION RULES rule 3. Reference: `scripts/migrate-wp-post.ts` `applyLinkSubstitutions()` function, `SERVICE_SUBSTITUTIONS` and `AUDIT_SUBSTITUTIONS` tables.
+
+---
+
+## Sanity Asset URL Architecture — Content-Hashed, Not Filename-Derived
+
+**Gap discovered:** 2026-05-21.
+
+**Gap:** The Phase 5 supervisor onboarding doc framed featured image filename rename as an audit-defense lever -- re-uploading images with slug-derived filenames was intended to put descriptive strings in page source where competitors auditing the rebuild could see them. The premise was incorrect. Sanity's CDN URL format is `cdn.sanity.io/images/{projectId}/{dataset}/{assetId}-{dimensions}.{ext}`, where `assetId` is content-addressed (a hash of the image binary). Renaming the asset document's `originalFilename` field updates metadata but does not change the URL -- the URL is derived from the content hash, which does not change because the binary does not change.
+
+**Symptom:** Pass 1 of `migrate-inline-images.ts` ran successfully on one post, updated `originalFilename` to slug-derived names, and the GROQ query confirmed the rename. The rendered page's `<img src>` URL was unchanged -- still the content hash from the original Session 5 upload. Hours of supervisor and worker time were spent on a premise that was unachievable as framed.
+
+**Decision:** Accepted as platform constraint rather than building a proxy layer. Sanity is content-addressed asset storage and this is consistent across headless CMS stacks. Filename-based SEO signals operate at the metadata layer through `originalFilename` in `ImageObject` schema, alt text, surrounding content. The rendered URL signal is not available without significant architectural work, and the SEO impact of filenames is small per Google's published guidance.
+
+**Rule established:** Do not scope work around the assumption that renaming `originalFilename` changes anything in page source. Image-related SEO work targets the metadata layer (alt text, schema, dimensions) and visible-content signals (surrounding text, rendered layout), not the URL.
+
+**Lives in:** `CLAUDE.md` -> IMAGE SEO RULES rule 7. `design-decisions.md` -> "Image Filename Strategy" (forthcoming).
+
+---
+
+## Vercel ISR — `export const revalidate` Required at Page Level
+
+**Gap discovered:** 2026-05-21.
+
+**Gap:** Pages using Next.js App Router's `generateStaticParams()` are pre-rendered to static HTML at build time. Vercel serves this HTML directly from the CDN edge. Without `export const revalidate = N` at the page level, Vercel treats the static HTML as immutable until the next deployment. `revalidateTag` and `revalidatePath` calls (e.g., from a Sanity webhook hitting `/api/revalidate`) invalidate Next.js's server-side data cache, but Vercel's edge serving never consults that cache -- the server-side render never runs.
+
+**Symptom:** Sanity write operations completed. GROQ confirmed data in Sanity. `/api/revalidate` returned 200 with `{revalidated: true}`. The rendered page showed no changes -- old data persisted in static HTML on the edge. Three revalidation calls confirmed no effect.
+
+**Rule established:** Any page using `generateStaticParams()` that needs to update post-deployment via Sanity webhook or other revalidation triggers must export a page-level `revalidate` value. The fetch-level `{ next: { tags, revalidate } }` configures the data cache, not the Full Route Cache (the rendered HTML). Both are needed: page-level `export const revalidate = N` enables ISR for the route, fetch-level tags enable targeted revalidation of specific data fetches.
+
+**Lives in:** `CLAUDE.md` -> IMAGE SEO RULES rule 9. `src/app/blog/[slug]/page.tsx` exports `revalidate = 86400`. Sanity webhook configuration required for automatic revalidation (operational gap, tracked in `known-issues.md`).
+
+---
+
+## RSC Function-Prop Boundary — PortableText Image Handlers
+
+**Gap discovered:** 2026-05-21.
+
+**Gap:** The Portable Text image handler in `src/app/blog/[slug]/page.tsx` originally passed a custom `loader` function to `<Image>`. The page is a React Server Component; image blocks are rendered through PortableText from server-side data. Functions cannot be serialized across the RSC boundary into Client Components. During prerender of any post containing image blocks, the build fails with "Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with 'use server'."
+
+**Symptom:** Build succeeded on all commits until the first post with image blocks went live in Sanity. The next deploy attempted prerender on that post, the image handler fired for the first time in build context, and the function-prop error surfaced. The pattern: a code path that compiles cleanly but does not execute until real data triggers it.
+
+**Rule established:** When rendering images inside Portable Text from a server component, do not pass function props. Either construct the URL inline using `urlFor()` with explicit width arguments (current approach), or move the image rendering into a `"use client"` component that receives serializable data as props. The current implementation uses `urlFor(value).width(1536).url()` for inline images and accepts the small double-optimization cost as a trade against the architectural complexity of a client component boundary.
+
+**Lives in:** `CLAUDE.md` -> IMAGE SEO RULES rule 8. Reference: `src/app/blog/[slug]/page.tsx` `portableTextComponents.types.image` handler.
+
+---
+
+## Recon Scope — Rendered-Page Parity Required
+
+**Gap discovered:** 2026-05-21.
+
+**Gap:** The Step 1 / Step 1B inline image audit captured source-level data (WXR `<img>` tags, alt attributes, attachment IDs, filename patterns) across all 25 blog posts. The audit did not capture rendered-page layout: how images were grouped (gallery rows vs single inline), how the live WP site visually composed them, what link patterns existed in rendered HTML. The supervisor accepted source-level recon as complete and authorized migration. The migration successfully wrote image blocks to Sanity, but the rendered rebuild showed images stacked vertically while the live WP rendered them as horizontal pairs (Gutenberg `wp:gallery` blocks). The layout regression was caught only at visual verification after live writes.
+
+**Rule established:** Any recon involving body content must explicitly compare the rendered live page against the rendered rebuild. The supervisor running recon must open the live page in a browser and document what they see -- image grouping, link placement, layout structure, visual rhythm -- not just what the source contains. Source-level audits are necessary but insufficient. This applies to all future migration work, not just images.
+
+**Lives in:** `CLAUDE.md` -> IMAGE SEO RULES rule 10. Future audit prompts in `docs/seo-audit/` must include rendered-page parity as an explicit recon task.
