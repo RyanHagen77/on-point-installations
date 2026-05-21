@@ -52,16 +52,16 @@ export default async function BlogIndexPage() {
       {posts.length === 0 ? (
         <p className="text-gray-600">No posts published yet. Check back soon.</p>
       ) : (
-        <ul className="space-y-8">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => {
             const thumbnailUrl = post.featuredImage
               ? urlFor(post.featuredImage).width(800).height(450).url()
               : null;
             return (
-              <li key={post.slug} className="border-b border-gray-200 pb-8 last:border-b-0 last:pb-0">
-                <Link href={`/blog/${post.slug}/`} className="group block">
+              <li key={post.slug} className="border border-gray-200 rounded-lg overflow-hidden">
+                <Link href={`/blog/${post.slug}/`} className="group flex flex-col h-full">
                   {thumbnailUrl && (
-                    <div className="mb-4 overflow-hidden rounded-lg">
+                    <div className="overflow-hidden">
                       <Image
                         src={thumbnailUrl}
                         alt={post.featuredImage?.alt || post.title}
@@ -71,22 +71,24 @@ export default async function BlogIndexPage() {
                       />
                     </div>
                   )}
-                  {post.category && (
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-semibold uppercase tracking-wide text-[#800000] bg-red-50 px-2 py-0.5 rounded">
-                        {post.category}
-                      </span>
-                    </div>
-                  )}
-                  <h2 className="text-xl font-bold text-gray-900 group-hover:text-[#800000] transition-colors mb-2">
-                    {post.title}
-                  </h2>
-                  {post.excerpt && (
-                    <p className="text-gray-600 leading-relaxed line-clamp-3">{post.excerpt}</p>
-                  )}
-                  <span className="mt-3 inline-block text-sm font-semibold text-[#800000] group-hover:underline">
-                    Read more
-                  </span>
+                  <div className="flex flex-col flex-1 p-5">
+                    {post.category && (
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-xs font-semibold uppercase tracking-wide text-[#800000] bg-red-50 px-2 py-0.5 rounded">
+                          {post.category}
+                        </span>
+                      </div>
+                    )}
+                    <h2 className="text-xl font-bold text-gray-900 group-hover:text-[#800000] transition-colors mb-2">
+                      {post.title}
+                    </h2>
+                    {post.excerpt && (
+                      <p className="text-gray-600 leading-relaxed line-clamp-3">{post.excerpt}</p>
+                    )}
+                    <span className="mt-auto pt-3 inline-block text-sm font-semibold text-[#800000] group-hover:underline">
+                      Read more
+                    </span>
+                  </div>
                 </Link>
               </li>
             );
