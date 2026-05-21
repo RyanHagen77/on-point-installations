@@ -564,3 +564,67 @@ The following items are confirmed-deferred to the wave that runs once Brian's Sa
 ### Phase5_Kickoff Doc Placement -- Fixed
 
 `Phase5_Kickoff_Schema_GTM_Launch_Prep.md` was discovered at repo root rather than `docs/` during the Session 1 recon. Moved to `docs/` in the Session 1 close-out housekeeping pass for consistency with every other phase doc.
+
+---
+
+## Sanity Webhook for ISR Revalidation — Not Configured
+
+The `/api/revalidate` route exists, `SANITY_REVALIDATE_SECRET` is set in Vercel env, and the blog post page now exports `revalidate = 86400` (per CLAUDE.md IMAGE SEO RULE 9). The Sanity webhook that would POST to `/api/revalidate` on blogPost mutations has not been configured in sanity.io/manage. Without it, every Sanity write requires either a manual curl to the revalidate endpoint or a Vercel redeploy before changes appear on the rendered site.
+
+Setup steps documented in the supervisor handoff doc. Requires 5 minutes in sanity.io/manage -> project hwyx6cco -> API -> Webhooks -> Create webhook. URL is `https://on-point-installations.vercel.app/api/revalidate` during Phase 5; update to `https://onpointinstallations.com/api/revalidate` after Phase 6 cutover. Filter: `_type == "blogPost"`. Triggers: create + update + delete. Secret matches `SANITY_REVALIDATE_SECRET` env var.
+
+Required before any remaining migration runs in Phase 5. Without it, supervisor must manually revalidate after each post's migration.
+
+---
+
+## modular-furniture-designs Featured Image — WP Source Deleted
+
+The original featured image file (`mid-century-modern-modular-office-furniture-hero.jpg` and its `_1200` variant) is permanently deleted from the WP server. Fetches return 403 from any IP. Confirmed during Phase 5 pre-flight WAF testing.
+
+Current rebuild state: the post retains its existing Sanity featured image reference from Session 5's fallback path. The Phase 5 migration script's 403 handler is designed to skip the featured re-upload and leave the existing reference untouched (preserving alt and asset reference). When Step B-live runs on this slug, the manifest will flag it as `featured_status: source_deleted_replacement_needed`.
+
+Resolution requires Brian to provide a replacement image relevant to modular furniture content. Tracked in `docs/post-launch-recommendations.md`.
+
+---
+
+## Blog Inline Image Aspect Ratio — Crop Decision Pending
+
+Inline body images currently render in 2-column gallery rows (per the `imageGroup` handler in `src/app/blog/[slug]/page.tsx`). Source images have varying native aspect ratios, which produces visually irregular heights when displayed side-by-side at equal column widths. Decision needed on uniform crop: 4:3, 3:2, or 16:9 via Sanity `urlFor()` `.fit('crop')` parameter.
+
+Currently affects one post (`how-to-survive-office-downsizing`). Will affect any post in the remaining 24 that has Gutenberg `wp:gallery` blocks in WXR source. Default recommendation pending Ryan's call: 4:3 (closest to typical phone-photo orientation, mild crop on landscape sources).
+
+Resolution: small commit to the `imageGroup` handler before Step B-live runs.
+
+---
+
+## External Links in Blog Content — Editorial Audit Pending
+
+Migration preserves external links in body content exactly as authored in WP source. Some links point to third-party sites (e.g., commercialcafe.com) that may be legitimate citations or may be holdover from prior link-building strategies that no longer fit the current site's positioning.
+
+Migration does not make editorial decisions about external links. Audit-and-remove is content work, not migration work. Tracked in `docs/post-launch-recommendations.md` as a task for Brian's SEO consultant or content editor working in Sanity Studio after Phase 6 cutover.
+
+---
+
+## 44 Image Alt Text Strings — Pending SEO Consultant
+
+22 inline images have empty or wp-degenerate alt attributes from WP source. 22 featured images have filename-tier or title-tier fallback alts from Session 5's migration that are identifiable but not descriptive. Combined: 44 alt strings need authoring.
+
+Worksheet generated at `/tmp/alt-text-worksheet.xlsx` during Phase 5 documentation arc. Worksheet must be retrieved from `/tmp` before session close and saved durably. Contains slug, image position, attachment ID, source URL (for visual reference), surrounding paragraph context, and Sanity Studio location for each row.
+
+Migration script preserves the existing degenerate alts (`""`, `"5"`, `"pexels"`, camera timestamps) rather than blanking them -- they are identifiable as placeholders for the SEO consultant to replace. Featured image alts in Sanity remain as Session 5's fallback values until replaced.
+
+Resolution: hand worksheet to Brian or his SEO consultant. Tracked in `docs/post-launch-recommendations.md`.
+
+---
+
+## Phase 5 Migration — Step B-live and Full Run Outstanding
+
+State at documentation arc start (2026-05-21):
+
+- Step A-live completed on `how-to-survive-office-downsizing`. 1 featured + 6 inline images migrated. Rendering verified on Vercel preview with gallery grouping fix applied.
+- Step B-live (`modular-furniture-designs`) not executed. Confirmed dry-run target with featured-image 403 handler exercise and 5 inline images via WXR attachment lookup.
+- Full migration on remaining 23 posts not executed.
+- Sanity webhook not configured (separate known issue above).
+- Inline image crop decision pending (separate known issue above).
+
+The next supervisor resumes from this state. Sequence: configure Sanity webhook -> commit crop decision -> Step B-live -> full run on remaining 23 -> source-of-truth verification across all 25.
