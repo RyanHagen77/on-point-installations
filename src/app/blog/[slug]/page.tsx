@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import Image from 'next/image';
+import Image, { type ImageLoader } from 'next/image';
 import Link from 'next/link';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextReactComponents } from '@portabletext/react';
@@ -45,7 +45,10 @@ const postQuery = `*[_type == "blogPost" && slug.current == $slug && status == "
   "slug": slug.current,
   metaDescription,
   excerpt,
-  body,
+  body[]{
+    ...,
+    "assetDimensions": asset->metadata.dimensions
+  },
   publishedAt,
   _createdAt,
   _updatedAt,
@@ -84,7 +87,30 @@ export async function generateMetadata({
   });
 }
 
+const sanityLoader: ImageLoader = ({ src, width, quality }) =>
+  `${src}?w=${width}&q=${quality ?? 75}&auto=format&fit=max`;
+
 const portableTextComponents: Partial<PortableTextReactComponents> = {
+  types: {
+    image: ({ value }) => {
+      const nativeW: number = value.assetDimensions?.width  ?? 1200;
+      const nativeH: number = value.assetDimensions?.height ?? 800;
+      return (
+        <div className="not-prose my-8">
+          <Image
+            loader={sanityLoader}
+            src={urlFor(value).url()}
+            alt={value.alt ?? ''}
+            width={nativeW}
+            height={nativeH}
+            sizes="(min-width: 768px) 768px, 100vw"
+            priority={false}
+            className="w-full h-auto rounded-lg"
+          />
+        </div>
+      );
+    },
+  },
   marks: {
     link: ({ children, value }) => {
       const href: string = value?.href ?? '';
