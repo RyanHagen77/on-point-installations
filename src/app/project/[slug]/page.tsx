@@ -1,11 +1,9 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
 import { client } from '@/lib/sanity';
-import { urlFor } from '@/lib/sanity-image';
 import { groupImageBlocks, portableTextComponents } from '@/lib/portable-text';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
@@ -122,13 +120,10 @@ export default async function ProjectPage({
   if (!post) notFound();
 
   const pageHeading = post.h1 ?? post.title;
-  const heroImageUrl = post.featuredImage
-    ? urlFor(post.featuredImage).width(1200).height(630).url()
-    : null;
 
   return (
     <main>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Breadcrumb
           items={[
             { name: 'Home', url: '/' },
@@ -150,36 +145,21 @@ export default async function ProjectPage({
               })}
           </p>
         )}
-        {heroImageUrl && (
-          <div className="mb-8">
-            <Image
-              src={heroImageUrl}
-              alt={post.featuredImage?.alt ?? post.title}
-              width={1200}
-              height={630}
-              priority
-              sizes="(min-width: 768px) 768px, 100vw"
-              className="rounded-lg w-full h-auto"
+        {post.body && post.body.length > 0 && (
+          <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
+            <PortableText
+              value={groupImageBlocks(post.body)}
+              components={portableTextComponents}
             />
           </div>
         )}
-        <div className="max-w-3xl mx-auto">
-          {post.body && post.body.length > 0 && (
-            <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
-              <PortableText
-                value={groupImageBlocks(post.body)}
-                components={portableTextComponents}
-              />
-            </div>
-          )}
-          {post.imageGallery && post.imageGallery.length > 0 && (
-            <section className="mt-12">
-              <h2 className="text-2xl font-bold text-[#800000] mb-4">Project Photos</h2>
-              {/* TODO Lane 2B: implement gallery grid render when Studio data is populated */}
-            </section>
-          )}
-          {/* relatedBlogPosts render deferred to Phase 6. Data projected and available above. */}
-        </div>
+        {post.imageGallery && post.imageGallery.length > 0 && (
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold text-[#800000] mb-4">Project Photos</h2>
+            {/* TODO Lane 2B: implement gallery grid render when Studio data is populated */}
+          </section>
+        )}
+        {/* relatedBlogPosts render deferred to Phase 6. Data projected and available above. */}
       </div>
       <CTABlock variant="banner" heading="Have a Similar Project?" />
     </main>
