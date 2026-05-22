@@ -67,18 +67,33 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
 
-  if (body._type !== 'blogPost') {
-    return NextResponse.json({ revalidated: false, reason: 'not a blogPost' });
+  const TAG_BY_TYPE: Record<string, string> = {
+    blogPost: 'blog',
+    project: 'project',
+  };
+  const tag = TAG_BY_TYPE[body._type ?? ''];
+  if (!tag) {
+    return NextResponse.json({ revalidated: false, reason: `unhandled _type: ${body._type}` });
   }
 
   try {
-    revalidateTag('blog', 'default');
-    revalidatePath('/blog/');
-    revalidatePath('/blog/[slug]', 'page');
-    const slug = body.slug?.current;
-    if (slug) {
-      revalidatePath(`/blog/${slug}`);
-      console.log(`[revalidate] blog post: ${slug}`);
+    revalidateTag(tag, 'default');
+    if (body._type === 'blogPost') {
+      revalidatePath('/blog/');
+      revalidatePath('/blog/[slug]', 'page');
+      const slug = body.slug?.current;
+      if (slug) {
+        revalidatePath(`/blog/${slug}`);
+        console.log(`[revalidate] blog post: ${slug}`);
+      }
+    } else if (body._type === 'project') {
+      revalidatePath('/project-gallery/');
+      revalidatePath('/project/[slug]', 'page');
+      const slug = body.slug?.current;
+      if (slug) {
+        revalidatePath(`/project/${slug}`);
+        console.log(`[revalidate] project: ${slug}`);
+      }
     }
   } catch (err) {
     console.error('revalidate: cache invalidation failed', err);
