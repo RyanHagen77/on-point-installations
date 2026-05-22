@@ -35,7 +35,7 @@ export const portableTextComponents: Partial<PortableTextReactComponents> = {
       const nativeW: number = value.assetDimensions?.width  ?? 1200;
       const nativeH: number = value.assetDimensions?.height ?? 800;
       return (
-        <div className="not-prose my-8">
+        <div className="not-prose my-8 max-w-3xl mx-auto">
           <Image
             src={urlFor(value).width(1536).url()}
             alt={value.alt ?? ''}
@@ -55,7 +55,7 @@ export const portableTextComponents: Partial<PortableTextReactComponents> = {
         count === 3 ? 'md:grid-cols-3' :
                       'md:grid-cols-2';
       return (
-        <div className={`not-prose my-8 grid grid-cols-1 ${cols} gap-4`}>
+        <div className={`not-prose my-8 max-w-3xl mx-auto grid grid-cols-1 ${cols} gap-4`}>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {value.images.map((img: any) => (
             <Image
