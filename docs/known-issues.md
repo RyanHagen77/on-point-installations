@@ -569,31 +569,23 @@ The following items are confirmed-deferred to the wave that runs once Brian's Sa
 
 ## Sanity Webhook for ISR Revalidation — Not Configured
 
-The `/api/revalidate` route exists, `SANITY_REVALIDATE_SECRET` is set in Vercel env, and the blog post page now exports `revalidate = 86400` (per CLAUDE.md IMAGE SEO RULE 9). The Sanity webhook that would POST to `/api/revalidate` on blogPost mutations has not been configured in sanity.io/manage. Without it, every Sanity write requires either a manual curl to the revalidate endpoint or a Vercel redeploy before changes appear on the rendered site.
-
-Setup steps documented in the supervisor handoff doc. Requires 5 minutes in sanity.io/manage -> project hwyx6cco -> API -> Webhooks -> Create webhook. URL is `https://on-point-installations.vercel.app/api/revalidate` during Phase 5; update to `https://onpointinstallations.com/api/revalidate` after Phase 6 cutover. Filter: `_type == "blogPost"`. Triggers: create + update + delete. Secret matches `SANITY_REVALIDATE_SECRET` env var.
-
-Required before any remaining migration runs in Phase 5. Without it, supervisor must manually revalidate after each post's migration.
+**RESOLVED 2026-05-21 (Session 7).** Webhook configured and tested in sanity.io/manage. Delivery log shows 200 from /api/revalidate on document mutations. URL update to onpointinstallations.com still required at Phase 6 cutover (tracked in post-launch-recommendations.md).
 
 ---
 
 ## modular-furniture-designs Featured Image — Below Quality Threshold
 
-The prior diagnosis of this image as "permanently deleted" was incorrect. The 403 observed during Phase 5 pre-flight WAF testing was a false positive specific to that testing context (User-Agent or IP). Step B-live confirmed the image is accessible: `mid-century-modern-modular-office-furniture-hero_1200.jpg` fetched at HTTP 200, 55,842 bytes, and uploaded to Sanity successfully.
+The original WordPress featured image at the WXR-canonical URL (`mid-century-modern-modular-office-furniture-hero_1200.jpg`) was confirmed accessible during the Phase 5 Session 7 Step B-live migration on 2026-05-21. Earlier Phase 5 pre-flight testing recorded a 403 response, which appears to have been WAF-related to that specific testing context rather than a permanent deletion. The image fetches cleanly with the migration script's User-Agent.
 
-The issue is source quality. The uploaded image is 1200×800 px — below the 1600 px minimum on the longest edge required by IMAGE SEO RULE 12. It renders acceptably on screen but lacks resolution for retina displays and high-quality social sharing.
+The image is now uploaded to Sanity at its native 1200×800 dimensions, which is below the 1600px-longest-edge threshold in IMAGE SEO RULE 12 for hero and featured images. This is consistent with nine other migrated posts whose featured images are also WP-native originals below the threshold (see "Phone-photo featured images on 10 posts" in `docs/post-launch-recommendations.md`).
 
-Resolution requires Brian to provide a replacement image relevant to modular furniture content at 1600 px or higher on the longest edge. Tracked in `docs/post-launch-recommendations.md`.
+Resolution: Brian provides a replacement image relevant to the modular furniture content at 1600px or higher on the longest edge. Tracked in `docs/post-launch-recommendations.md` as part of the phone-photo replacement task set.
 
 ---
 
 ## Blog Inline Image Aspect Ratio — Crop Decision Pending
 
-Inline body images currently render in 2-column gallery rows (per the `imageGroup` handler in `src/app/blog/[slug]/page.tsx`). Source images have varying native aspect ratios, which produces visually irregular heights when displayed side-by-side at equal column widths. Decision needed on uniform crop: 4:3, 3:2, or 16:9 via Sanity `urlFor()` `.fit('crop')` parameter.
-
-Currently affects one post (`how-to-survive-office-downsizing`). Will affect any post in the remaining 24 that has Gutenberg `wp:gallery` blocks in WXR source. Default recommendation pending Ryan's call: 4:3 (closest to typical phone-photo orientation, mild crop on landscape sources).
-
-Resolution: small commit to the `imageGroup` handler before Step B-live runs.
+**RESOLVED 2026-05-21 (Session 7).** Locked at 4:3 per Ryan/supervisor decision. Shipped in commit 30b1607 to the imageGroup handler in src/app/blog/[slug]/page.tsx. urlFor() chain applies .width(1024).height(768).fit('crop'). Visually verified on how-to-survive-office-downsizing.
 
 ---
 
@@ -619,12 +611,4 @@ Resolution: hand worksheet to Brian or his SEO consultant. Tracked in `docs/post
 
 ## Phase 5 Migration — Step B-live and Full Run Outstanding
 
-State at documentation arc start (2026-05-21):
-
-- Step A-live completed on `how-to-survive-office-downsizing`. 1 featured + 6 inline images migrated. Rendering verified on Vercel preview with gallery grouping fix applied.
-- Step B-live (`modular-furniture-designs`) not executed. Confirmed dry-run target with featured-image 403 handler exercise and 5 inline images via WXR attachment lookup.
-- Full migration on remaining 23 posts not executed.
-- Sanity webhook not configured (separate known issue above).
-- Inline image crop decision pending (separate known issue above).
-
-The next supervisor resumes from this state. Sequence: configure Sanity webhook -> commit crop decision -> Step B-live -> full run on remaining 23 -> source-of-truth verification across all 25.
+**RESOLVED 2026-05-21 (Session 7).** Step A-live, Step B-live (with --force recovery from transient Sanity 502), and full 23-post batch run all completed. Source-of-truth GROQ across all 25 posts reconciles to audit v2 expected total of 76 inline images. Zero null assets, zero missing dimensions, zero unrecovered failures. Manifest at /tmp/phase5-migration-manifest.json.

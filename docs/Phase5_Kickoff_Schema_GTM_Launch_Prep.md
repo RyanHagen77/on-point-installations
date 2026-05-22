@@ -471,6 +471,27 @@ Submit the contact form on staging. Confirm delivery in the Postmark Activity fe
 
 ---
 
+### AMENDMENT — Postmark replaced with Nodemailer (2026-05-21, Session 7)
+
+**Decision:** Phase 5 contact form email delivery uses Nodemailer with SMTP transport, not Postmark.
+
+**Rationale:** Contact form volume is low (handful per week for a B2B installation business). Postmark's transactional infrastructure is overkill at this volume and introduces an unnecessary account and billing dependency. Nodemailer via SMTP through Brian's existing email host covers the volume cleanly with infrastructure he already has.
+
+**Destination address (locked):** `info@onpointinstall.com`
+
+**Session 8 implementation work:**
+1. Add `nodemailer` and `@types/nodemailer` to package.json
+2. Confirm SMTP credentials for `info@onpointinstall.com` — host, port, secure flag, auth user, auth password. Brian provides these or confirms whether Gmail/Workspace app password is needed
+3. Add SMTP env vars to Vercel: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` (probably the same as SMTP_USER)
+4. Wire `src/app/api/contact/route.ts` to construct the transporter and send a formatted email with the form fields
+5. Verification: submit a test message on the staging URL; confirm delivery to info@onpointinstall.com
+
+**Brian-side prerequisites:**
+- Confirm SMTP host details for info@onpointinstall.com
+- Provide or generate app password if the host requires one (Gmail/Workspace does)
+
+---
+
 ## BRIAN-PENDING QUEUE (unchanged from Phase 3 close)
 
 All items below require Brian's input before Phase 5 or Phase 6 launch prep. None are blocked by developer work — they are waiting on Brian.
