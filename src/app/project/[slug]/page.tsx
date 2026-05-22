@@ -10,6 +10,50 @@ import { groupImageBlocks, portableTextComponents } from '@/lib/portable-text';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
 
+interface BodyPair {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  textBlocks: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  imageBlocks: any[];
+  pairIndex: number;
+  isTrailingText: boolean;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function groupBodyIntoPairs(blocks: any[]): BodyPair[] {
+  const result: BodyPair[] = [];
+  let pairIndex = 0;
+  let i = 0;
+
+  while (i < blocks.length) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const textBlocks: any[] = [];
+    while (i < blocks.length && blocks[i]._type !== 'image') {
+      textBlocks.push(blocks[i]);
+      i++;
+    }
+
+    if (i >= blocks.length) {
+      if (textBlocks.length > 0) {
+        result.push({ textBlocks, imageBlocks: [], pairIndex, isTrailingText: true });
+      }
+      break;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const imageBlocks: any[] = [];
+    while (i < blocks.length && blocks[i]._type === 'image') {
+      imageBlocks.push(blocks[i]);
+      i++;
+    }
+
+    result.push({ textBlocks, imageBlocks, pairIndex, isTrailingText: false });
+    pairIndex++;
+  }
+
+  return result;
+}
+
 interface Project {
   title: string;
   h1: string | null;
@@ -164,11 +208,61 @@ export default async function ProjectPage({
           </div>
         )}
         {post.body && post.body.length > 0 && (
-          <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
-            <PortableText
-              value={groupImageBlocks(post.body)}
-              components={portableTextComponents}
-            />
+          <div className="mt-8 space-y-12">
+            {groupBodyIntoPairs(post.body).map((pair, idx) => {
+              if (pair.isTrailingText) {
+                return (
+                  <div
+                    key={`pair-${idx}`}
+                    className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline"
+                  >
+                    <PortableText value={pair.textBlocks} components={portableTextComponents} />
+                  </div>
+                );
+              }
+
+              if (pair.textBlocks.length === 0) {
+                return (
+                  <div key={`pair-${idx}`} className="max-w-2xl mx-auto">
+                    <PortableText
+                      value={groupImageBlocks(pair.imageBlocks)}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                );
+              }
+
+              const isEven = pair.pairIndex % 2 === 0;
+
+              const imageCol = (
+                <PortableText
+                  value={groupImageBlocks(pair.imageBlocks)}
+                  components={portableTextComponents}
+                />
+              );
+
+              const textCol = (
+                <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline">
+                  <PortableText value={pair.textBlocks} components={portableTextComponents} />
+                </div>
+              );
+
+              return (
+                <div key={`pair-${idx}`} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  {isEven ? (
+                    <>
+                      <div className="order-2 md:order-1">{imageCol}</div>
+                      <div className="order-1 md:order-2">{textCol}</div>
+                    </>
+                  ) : (
+                    <>
+                      <div>{textCol}</div>
+                      <div>{imageCol}</div>
+                    </>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
         {post.imageGallery && post.imageGallery.length > 0 && (
