@@ -205,6 +205,7 @@ export default async function BlogPostPage({
         datePublished={displayDate}
         dateModified={post._updatedAt}
         {...(heroImageUrl && { image: heroImageUrl })}
+        {...(post.featuredImage?.alt && { imageAlt: post.featuredImage.alt })}
       />
       {post.faqs && post.faqs.length > 0 && (
         <FAQSchema items={post.faqs} />

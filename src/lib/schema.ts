@@ -217,6 +217,7 @@ export function buildArticleSchema({
   datePublished,
   dateModified,
   image,
+  imageAlt,
 }: {
   title: string;
   description: string;
@@ -224,6 +225,7 @@ export function buildArticleSchema({
   datePublished: string;
   dateModified: string;
   image?: string;
+  imageAlt?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -243,6 +245,17 @@ export function buildArticleSchema({
       "@id": `${SITE.domain}/#business`,
       name: SITE.name,
     },
-    ...(image && { image: { "@type": "ImageObject", url: image, width: 1200, height: 630 } }),
+    // ImageObject dimensions intentionally match the urlFor transform at call sites
+    // (width 1200, height 630). If call sites change image dimensions, update here.
+    ...(image && {
+      image: {
+        "@type": "ImageObject",
+        url: image,
+        contentUrl: image,
+        width: 1200,
+        height: 630,
+        ...(imageAlt && { caption: imageAlt }),
+      },
+    }),
   };
 }

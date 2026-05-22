@@ -7,6 +7,7 @@ interface ArticleSchemaProps {
   datePublished: string;
   dateModified: string;
   image?: string;
+  imageAlt?: string;
 }
 
 export default function ArticleSchema(props: ArticleSchemaProps) {
