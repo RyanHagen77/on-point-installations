@@ -204,7 +204,7 @@ Permanent 301 redirects from all three slugs are in `next.config.ts`.
 
 ## Blog Posts (25 total)
 
-**Status:** 1 of 25 migrated with inline images (Session 6, 2026-05-21). 24 remaining for Session 7. All 25 have featured images and text body content from the original Session 4/5 migration.
+**Status:** 25 of 25 migrated with inline images (Session 7, 2026-05-21). Full inline migration complete. All 25 posts have featured images, text body content, and inline images in Sanity. 76 inline images across 25 posts; 0 null assets, 0 missing dimensions, 0 unrecovered failures. Manifest at /tmp/phase5-migration-manifest.json (gitignored).
 
 **Migration methodology (applies to all 25):**
 
@@ -218,7 +218,7 @@ Permanent 301 redirects from all three slugs are in `next.config.ts`.
 **Voice rule application:** Blog content was authored in WP by Brian or prior contractors and was not voice-rule-corrected during migration. Voice issues (em dashes, consultant verbs, AI tells in author-written paragraphs) are out of scope for image SEO migration. Tracked as content-editorial concern, not migration concern.
 
 **Structural departures from live WP rendering:**
-- Gallery layout: live WP renders Gutenberg `wp:gallery` blocks as grid thumbnails with WP-default crops. Rebuild renders as 2-column flexbox with native aspect ratios preserved (crop decision pending Session 7).
+- Gallery layout: live WP renders Gutenberg `wp:gallery` blocks as grid thumbnails with WP-default crops. Rebuild renders as 2-column flexbox with 4:3 crop applied (commit `30b1607`; crop decision made Session 7).
 - Inline image width: live WP uses ~1200px column width. Rebuild uses `max-w-3xl` (768px) per design decision (see `docs/design-decisions.md` → "Blog Inline Image Width"). This is a deliberate divergence from CLAUDE.md content-image rule 11 (which applies to service pages).
 - Filenames in page source: live WP shows WordPress-uploaded filenames in `<img src>`. Rebuild shows Sanity content-hashed CDN URLs. Documented as platform characteristic, not a deficiency (see `docs/post-launch-recommendations.md` → "Platform characteristics").
 
@@ -227,7 +227,7 @@ Permanent 301 redirects from all three slugs are in `next.config.ts`.
 | Slug | Notes |
 |---|---|
 | how-to-survive-office-downsizing | Session 6 Step A-live target. 6 inline images, 3 gallery pairs at body indices [3,4], [7,8], [13,14]. All alts wp-degenerate (camera timestamps from phone uploads) — flagged in worksheet. No internal links in WP source; rebuild has none (substitution table found no matching phrases). |
-| modular-furniture-designs | Session 7 Step B-live target. Featured image source file deleted from WP server (cannot be recovered); migration script's 403 handler will skip the featured re-upload and leave existing Sanity reference intact, manifest will flag `featured_status: source_deleted_replacement_needed`. 5 inline images at `_1200.jpg` source filenames (canonical originals, not WP-resize variants). Replacement featured image tracked in `docs/post-launch-recommendations.md`. |
+| modular-furniture-designs | Session 7 Step B-live target. Featured image source at `_1200.jpg` URL was accessible (earlier 403 was transient WAF, not a permanent deletion). Uploaded to Sanity at 1200x800 native dimensions -- below 1600px threshold for hero images; replacement tracked in `docs/post-launch-recommendations.md`. 5 inline images migrated via WXR attachment lookup. |
 | qualities-to-look-for-in-warehousing-services | Same attachment ID (2816) referenced twice in WP source — script will upload as 2 distinct assets with different slug-derived filenames (`-1.jpg` and `-3.jpg`), preserving the duplicate-use intent of the original post. |
 | 5-essential-tips-from-office-installers-in-chicago | All 3 inline images have WP-auto-populated alt set to the page title — wp-degenerate, flagged in worksheet. |
 | how-to-survive-office-downsizing, how-to-find-a-chicago-corporate-installation-expert | Posts with compound `-scaled-N-NNNxNNN` filename pattern in WP source. Resolved via WXR attachment lookup (no filename derivation needed); not a blocker. |
@@ -238,5 +238,5 @@ The 20 remaining posts not listed above follow the migration methodology with no
 - Alt text: 44 strings need authoring (22 inline + 22 featured). Worksheet handed to SEO consultant via Brian.
 - Internal linking: posts without service-page cross-links are correctly migrated (no links to substitute); link insertion is content-aware editorial work, not migration.
 - External links: preserved verbatim from WP source; editorial audit recommended post-launch.
-- ImageObject schema enrichment: pending Session 7 (eight-signal item 7).
-- Blog index thumbnail `sizes` prop: pending Session 7 (eight-signal item 6, remaining gap).
+- ImageObject schema enrichment: shipped Session 8 (commit `a515bfc`; `contentUrl` + `caption` added to buildArticleSchema).
+- Blog index thumbnail `sizes` prop: shipped Session 8 (commit `464bab0`; LCP priority on first card: `f42b4ba`).

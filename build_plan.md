@@ -13,7 +13,7 @@
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
-| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, image SEO pass, launch prep | In progress | `c0b2527` (Session 6 docs arc) | 2026-05-21 |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, image SEO pass, launch prep | In progress | `3ee1a05` (Session 8 GTM scaffold) | 2026-05-22 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -163,6 +163,30 @@ Verification: after deploy, edit a post title in Studio, publish, wait ~10s, ref
 - Alt text Brian review: 7 posts have meaningless alt values (filter gaps + Pexels photographer names + hash filenames); listed in known-issues.md
 - Two isQualityAlt filter gaps identified: "img 5074 resized" and "onpointinstallations1" passed tier 1 incorrectly; both listed in known-issues.md for Brian's manual Studio fix
 
+**Phase 5 Session 7 -- 2026-05-21 -- Full inline image migration + webhook verification**
+
+**Lanes completed:**
+- Sanity webhook confirmed active (sanity.io/manage; delivery log shows 200 from /api/revalidate on mutations)
+- 4:3 crop decision locked; shipped in commit `30b1607` (imageGroup handler in src/app/blog/[slug]/page.tsx)
+- Step B-live on modular-furniture-designs -- featured image at `_1200.jpg` source accessible (earlier 403 was transient WAF; resolved with migration script User-Agent); 5 inline images migrated via WXR attachment lookup
+- Full 23-post batch run -- all 23 remaining posts migrated; combined with Step A-live and Step B-live: 25 posts total, 76 inline images, 0 null assets, 0 missing dimensions, 0 unrecovered failures
+- Manifest written to /tmp/phase5-migration-manifest.json (gitignored)
+- content-source-map.md updated with per-post blog entries (commit `f2581c7`)
+- Session 7 wrap doc commits: `b423225`, `ad85c44`
+
+**Validations completed:**
+- Source-of-truth GROQ across all 25 posts: 76 inline image asset references dereference to valid CDN URLs; all dimensions populated
+- Webhook delivery log confirmed 200 on blogPost mutation events
+
+**Carry-forward to Session 8:**
+- Blog index thumbnail `sizes` prop (eight-signal item 1)
+- LCP priority on first index card (item 1b)
+- ImageObject schema enrichment: `contentUrl` + `caption` (eight-signal item 7)
+- Sitemap regeneration + trailing slash alignment
+- GTM placeholder scaffolding
+- Phase 5 closeout doc updates
+- Group B items gated on Brian: Nodemailer credentials, GTM container ID, Sanity Studio access confirmation, Wikidata entity
+
 **Phase 5 Session 6 -- 2026-05-21 -- Image SEO pass + supervisor handoff**
 
 *Scope expanded mid-session from the eight-signal image SEO recon to include Session 5 rendering bug remediation, full inline image migration architecture, and a documentation arc capturing diagnostic lessons for the next supervisor. Phase 5 remains In progress — Step B-live and full migration on the remaining 23 posts are deferred to Session 7.*
@@ -201,6 +225,29 @@ Verification: after deploy, edit a post title in Studio, publish, wait ~10s, ref
 - `docs/design-decisions.md` — 4 decisions made this session (filename strategy, blog inline image width, gallery layout, WXR migration source)
 - `docs/known-issues.md` — 6 Phase 5 open items
 - `docs/seo-audit/phase-5-supervisor-handoff.md` — operational state and immediate next steps for Session 7
+
+**Phase 5 Session 8 -- 2026-05-22 -- Image SEO commits, sitemap, GTM, closeout docs**
+
+**Lanes completed (Group A items 1, 2, 4, 5, 6):**
+- `464bab0` -- blog: add `sizes` prop to index thumbnail Image (prevents oversized variants on mobile; fixes eight-signal item 6)
+- `f42b4ba` -- blog: preload first index card as LCP candidate (`priority` on index 0 only)
+- `a515bfc` -- schema: enrich ArticleSchema ImageObject with `contentUrl` + `caption` (fulfills eight-signal item 7; `contentUrl` enables Google Discover eligibility; `caption` from featuredImage.alt)
+- `b6d13b9` -- sitemap: add `trailingSlash: true` to next-sitemap.config.js; resolves canonical/sitemap mismatch; all 25 blog posts now included in generated sitemap (22 were missing after Session 5 generation)
+- `3ee1a05` -- gtm: scaffold conditional GTM snippet in layout.tsx (gates on SITE.gtmId non-empty; initializes window.dataLayer; ready for Brian's container ID)
+- Closeout doc updates: build_plan.md Session 7+8 blocks, content-source-map.md migration status, known-issues.md Session 8 close note
+
+**Validations completed:**
+- Deployed sitemap verified: 54 URLs, all 25 blog posts present, all trailing-slash-aligned
+- GTM deploy confirmed Ready (deploy bw8rhzs6y, 58s build)
+
+**Pending (not yet shipped):**
+- Group A item 3: alt-text worksheet regeneration (requires GROQ -- deferred to post-Session-8 or Brian-side Studio session)
+- Group B items 7-10: Nodemailer wiring, GTM container ID, Sanity Studio confirmation, Wikidata entity -- all gated on Brian
+- Group C items 11-13: Rich Results Test re-run, Lighthouse re-run, OG tag verification
+- Group D item 14: IntegrePro client report for Brian
+
+**"Eight-signal audit" documentation gap:**
+The Session 7 handoff and content-source-map.md reference an "eight-signal audit" document. No such document was ever committed to the repo -- it exists only as forward references in handoff docs and content-source-map.md. The two actionable items it described (item 6: sizes prop; item 7: ImageObject enrichment) are now shipped. The document itself was a planning artifact that was summarized in the handoff rather than committed. No recovery action needed; the items are closed.
 
 ---
 

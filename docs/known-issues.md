@@ -612,3 +612,35 @@ Resolution: hand worksheet to Brian or his SEO consultant. Tracked in `docs/post
 ## Phase 5 Migration — Step B-live and Full Run Outstanding
 
 **RESOLVED 2026-05-21 (Session 7).** Step A-live, Step B-live (with --force recovery from transient Sanity 502), and full 23-post batch run all completed. Source-of-truth GROQ across all 25 posts reconciles to audit v2 expected total of 76 inline images. Zero null assets, zero missing dimensions, zero unrecovered failures. Manifest at /tmp/phase5-migration-manifest.json.
+
+---
+
+## Phase 5 Session 8 Close Note (2026-05-22)
+
+**Group A items shipped:** 5 of 6 complete. Group B gated on Brian. Group C and D pending.
+
+### Shipped commits
+
+- `464bab0` -- blog: add `sizes` prop to index thumbnail Image
+- `f42b4ba` -- blog: preload first index card as LCP candidate
+- `a515bfc` -- schema: enrich ArticleSchema ImageObject with `contentUrl` + `caption`
+- `b6d13b9` -- sitemap: add `trailingSlash: true`; all 25 blog slugs now in generated sitemap
+- `3ee1a05` -- gtm: conditional GTM scaffold in layout.tsx
+
+### ESLint debt (pre-existing, carry-forward)
+
+66 pre-existing ESLint errors exist across unrelated files: unescaped entities in service pages and a setState-in-render-effect in Navigation.tsx. Zero errors in any file touched during Session 8. These did not block the Session 8 commits (supervisor-authorized to proceed without running lint). Tracked here for the next lint-fix session.
+
+### "Eight-signal audit" document gap
+
+Content-source-map.md and the Session 7 handoff reference an "eight-signal audit" document. No such committed file exists. The two actionable items it described (sizes prop and ImageObject enrichment) are now shipped. The document was a planning artifact summarized in the handoff, not a standalone committed file. This gap is documented here and in build_plan.md Session 8 block; no recovery action needed.
+
+### Alt-text worksheet (Group A item 3)
+
+The Session 7 handoff calls for regenerating the alt-text worksheet from current Sanity state (GROQ across all 25 posts). This requires a GROQ read against Sanity, which is outside the Session 8 constraint set (no Sanity reads or writes per session rules). Deferred to a standalone worksheet session or to Brian's SEO consultant directly in Sanity Studio.
+
+### Remaining before Phase 5 COMPLETE
+
+- Group B items 7-10: Brian-gated (Nodemailer SMTP credentials, GTM container ID, Sanity Studio access confirmation, Wikidata entity)
+- Group C items 11-13: Rich Results Test re-run, Lighthouse re-run, OG tag verification
+- Group D item 14: IntegrePro client report for Brian
