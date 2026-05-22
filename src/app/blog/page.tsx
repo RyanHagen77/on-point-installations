@@ -53,7 +53,7 @@ export default async function BlogIndexPage() {
         <p className="text-gray-600">No posts published yet. Check back soon.</p>
       ) : (
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => {
+          {posts.map((post, index) => {
             const thumbnailUrl = post.featuredImage
               ? urlFor(post.featuredImage).width(800).height(450).url()
               : null;
@@ -68,6 +68,7 @@ export default async function BlogIndexPage() {
                         width={800}
                         height={450}
                         sizes="(min-width: 1024px) 300px, (min-width: 768px) 50vw, 100vw"
+                        priority={index === 0}
                         className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
                       />
                     </div>
