@@ -639,8 +639,37 @@ Content-source-map.md and the Session 7 handoff reference an "eight-signal audit
 
 The Session 7 handoff calls for regenerating the alt-text worksheet from current Sanity state (GROQ across all 25 posts). This requires a GROQ read against Sanity, which is outside the Session 8 constraint set (no Sanity reads or writes per session rules). Deferred to a standalone worksheet session or to Brian's SEO consultant directly in Sanity Studio.
 
+### Group C verification results (Lighthouse, OG -- 2026-05-22)
+
+**Lighthouse scores (deploy cofkq3v05):**
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+|------|------------|---------------|----------------|-----|
+| Homepage | 97 | 100 | 100 | 69* |
+| Blog index | 98 | 96** | 100 | 69* |
+| Blog post | 100 | 96** | 100 | 69* |
+| Service page | 98 | 96** | 100 | 69* |
+
+*SEO 69 on all preview URLs = Vercel `x-robots-tag: noindex` header on non-production domains. Will score correctly on onpointinstallations.com.
+**Accessibility 96 on blog/service = footer contrast fix deployed after those runs; next run should show 100 across all pages.
+
+**Footer color-contrast fix shipped:** `f54ba78` -- `#898989` -> `#717171` in footer bottom bar (3.49:1 -> 4.73:1). Confirmed Accessibility 100 on homepage after fix.
+
+**OG tags verified (homepage):**
+- og:title, og:description, og:url, og:image (1200x630), og:image:alt -- all present
+- twitter:card=summary_large_image, twitter:image -- present
+- og:image URL points to generated opengraph-image route -- correct
+
+**Schema blocks verified (curl + JSON parse):**
+- Homepage: ProfessionalService + Organization + WebSite -- 3 blocks
+- Blog post: Article (with contentUrl + caption in ImageObject) + BreadcrumbList -- 2 blocks
+- Article ImageObject: contentUrl and caption fields confirmed present on deployed page
+
+**Rich Results Test (item 11):** Requires browser UI. Not automatable. Ryan-side task before Phase 5 close.
+
 ### Remaining before Phase 5 COMPLETE
 
+- Group A item 3: alt-text worksheet regeneration (GROQ -- deferred to Brian's Studio session)
 - Group B items 7-10: Brian-gated (Nodemailer SMTP credentials, GTM container ID, Sanity Studio access confirmation, Wikidata entity)
-- Group C items 11-13: Rich Results Test re-run, Lighthouse re-run, OG tag verification
+- Group C item 11: Rich Results Test re-run (browser UI -- Ryan-side)
 - Group D item 14: IntegrePro client report for Brian
