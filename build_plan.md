@@ -14,6 +14,7 @@
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
 | Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, image SEO pass, launch prep | In progress | `3ee1a05` (Session 8 GTM scaffold) | 2026-05-22 |
+| Phase 5.5 | Project gallery migration, Nodemailer contact wiring, alt-text worksheet, closeout reconciliation, CLAUDE.md size pass | In progress | — | 2026-05-22 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
