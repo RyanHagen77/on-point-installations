@@ -43,3 +43,6 @@ public/robots.txt
 
 # migration script output
 /logs
+
+# WordPress XML exports (migration source, do not commit)
+*.WordPress.*.xml
