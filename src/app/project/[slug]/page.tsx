@@ -163,21 +163,23 @@ export default async function ProjectPage({
             />
           </div>
         )}
-        {post.body && post.body.length > 0 && (
-          <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
-            <PortableText
-              value={groupImageBlocks(post.body)}
-              components={portableTextComponents}
-            />
-          </div>
-        )}
-        {post.imageGallery && post.imageGallery.length > 0 && (
-          <section className="mt-12">
-            <h2 className="text-2xl font-bold text-[#800000] mb-4">Project Photos</h2>
-            {/* TODO Lane 2B: implement gallery grid render when Studio data is populated */}
-          </section>
-        )}
-        {/* relatedBlogPosts render deferred to Phase 6. Data projected and available above. */}
+        <div className="max-w-3xl mx-auto">
+          {post.body && post.body.length > 0 && (
+            <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
+              <PortableText
+                value={groupImageBlocks(post.body)}
+                components={portableTextComponents}
+              />
+            </div>
+          )}
+          {post.imageGallery && post.imageGallery.length > 0 && (
+            <section className="mt-12">
+              <h2 className="text-2xl font-bold text-[#800000] mb-4">Project Photos</h2>
+              {/* TODO Lane 2B: implement gallery grid render when Studio data is populated */}
+            </section>
+          )}
+          {/* relatedBlogPosts render deferred to Phase 6. Data projected and available above. */}
+        </div>
       </div>
       <CTABlock variant="banner" heading="Have a Similar Project?" />
     </main>
