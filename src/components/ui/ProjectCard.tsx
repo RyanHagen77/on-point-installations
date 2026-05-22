@@ -7,10 +7,11 @@ interface ProjectCardProps {
   slug: string;
   location?: string;
   serviceType?: string;
+  excerpt?: string;
   thumbnail?: ProjectImage;
 }
 
-export default function ProjectCard({ title, slug, location, serviceType, thumbnail }: ProjectCardProps) {
+export default function ProjectCard({ title, slug, location, serviceType, excerpt, thumbnail }: ProjectCardProps) {
   return (
     <Link
       href={`/project/${slug}/`}
@@ -36,6 +37,9 @@ export default function ProjectCard({ title, slug, location, serviceType, thumbn
         <h3 className="font-semibold text-[#800000] group-hover:underline text-sm leading-snug">{title}</h3>
         {(location || serviceType) && (
           <p className="text-xs text-gray-500 mt-1">{[serviceType, location].filter(Boolean).join(' · ')}</p>
+        )}
+        {excerpt && (
+          <p className="text-gray-600 leading-relaxed line-clamp-3">{excerpt}</p>
         )}
       </div>
     </Link>
