@@ -2,6 +2,7 @@
 module.exports = {
   siteUrl: 'https://onpointinstallations.com',
   generateRobotsTxt: true,
+  trailingSlash: true,
   changefreq: 'weekly',
   priority: 0.7,
   exclude: ['/api/*', '/studio/*'],
