@@ -146,7 +146,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-[#E9E9E9]">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#898989]">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#717171]">
           <p>&copy; {currentYear} On Point Installations, Inc. All rights reserved.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/privacy-policy/" className="hover:text-[#800000] transition-colors">Privacy Policy</Link>
