@@ -67,6 +67,7 @@ export default async function BlogIndexPage() {
                         alt={post.featuredImage?.alt || post.title}
                         width={800}
                         height={450}
+                        sizes="(min-width: 1024px) 300px, (min-width: 768px) 50vw, 100vw"
                         className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
                       />
                     </div>
