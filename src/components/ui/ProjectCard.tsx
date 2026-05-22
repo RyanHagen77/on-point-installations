@@ -5,12 +5,12 @@ import { ProjectImage } from '@/types/project';
 interface ProjectCardProps {
   title: string;
   slug: string;
-  city?: string;
+  location?: string;
   serviceType?: string;
   thumbnail?: ProjectImage;
 }
 
-export default function ProjectCard({ title, slug, city, serviceType, thumbnail }: ProjectCardProps) {
+export default function ProjectCard({ title, slug, location, serviceType, thumbnail }: ProjectCardProps) {
   return (
     <Link
       href={`/project/${slug}/`}
@@ -34,8 +34,8 @@ export default function ProjectCard({ title, slug, city, serviceType, thumbnail 
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-[#800000] group-hover:underline text-sm leading-snug">{title}</h3>
-        {(city || serviceType) && (
-          <p className="text-xs text-gray-500 mt-1">{[serviceType, city].filter(Boolean).join(' · ')}</p>
+        {(location || serviceType) && (
+          <p className="text-xs text-gray-500 mt-1">{[serviceType, location].filter(Boolean).join(' · ')}</p>
         )}
       </div>
     </Link>
