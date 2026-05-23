@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
@@ -86,6 +85,7 @@ export default async function ProjectGalleryPage() {
                   serviceType={project.serviceType ?? undefined}
                   excerpt={project.excerpt ?? undefined}
                   thumbnail={thumbnail}
+                  priority={index === 0}
                 />
               </li>
             );

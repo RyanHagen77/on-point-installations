@@ -9,9 +9,10 @@ interface ProjectCardProps {
   serviceType?: string;
   excerpt?: string;
   thumbnail?: ProjectImage;
+  priority?: boolean;
 }
 
-export default function ProjectCard({ title, slug, location, serviceType, excerpt, thumbnail }: ProjectCardProps) {
+export default function ProjectCard({ title, slug, location, serviceType, excerpt, thumbnail, priority }: ProjectCardProps) {
   return (
     <Link
       href={`/project/${slug}/`}
@@ -25,6 +26,7 @@ export default function ProjectCard({ title, slug, location, serviceType, excerp
             fill
             quality={85}
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            priority={priority}
             className="object-cover"
           />
         ) : (
