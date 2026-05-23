@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
@@ -29,6 +30,7 @@ interface Project {
   imageGallery: Array<{
     _key: string;
     alt: string | null;
+    caption: string | null;
     assetDimensions: { width: number; height: number } | null;
     asset: { _id: string; url: string } | null;
   }> | null;
@@ -63,6 +65,7 @@ const projectQuery = `*[_type == "project" && slug.current == $slug && status ==
   imageGallery[]{
     _key,
     alt,
+    caption,
     "assetDimensions": asset->metadata.dimensions,
     asset->{_id, url}
   },
@@ -181,7 +184,23 @@ export default async function ProjectPage({
         {post.imageGallery && post.imageGallery.length > 0 && (
           <section className="mt-12">
             <h2 className="text-2xl font-bold text-[#800000] mb-4">Project Photos</h2>
-            {/* TODO Lane 2B: implement gallery grid render when Studio data is populated */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {post.imageGallery.filter((item) => item.asset).map((item) => (
+                <figure key={item._key}>
+                  <Image
+                    src={urlFor(item).width(1024).height(768).fit('crop').url()}
+                    alt={item.alt ?? ''}
+                    width={1024}
+                    height={768}
+                    sizes="(min-width: 768px) 384px, 100vw"
+                    className="rounded-lg w-full h-auto"
+                  />
+                  {item.caption && (
+                    <figcaption className="text-sm text-gray-600 mt-2">{item.caption}</figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
           </section>
         )}
         {/* relatedBlogPosts render deferred to Phase 6. Data projected and available above. */}
