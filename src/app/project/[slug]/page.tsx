@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
 import { client } from '@/lib/sanity';
+import { urlFor } from '@/lib/sanity-image';
 import { groupImageBlocks, portableTextComponents } from '@/lib/portable-text';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
@@ -121,8 +122,32 @@ export default async function ProjectPage({
 
   const pageHeading = post.h1 ?? post.title;
 
+  const imageUrl = post.featuredImage
+    ? urlFor(post.featuredImage).width(1200).height(630).url()
+    : null;
+  const schemaDescription = post.metaDescription ?? post.excerpt ?? null;
+
+  const creativeWorkSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: post.title,
+    creator: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.domain,
+    },
+    ...(schemaDescription && { description: schemaDescription }),
+    ...(imageUrl && { image: imageUrl }),
+    ...(post.completedDate && { dateCreated: post.completedDate }),
+    ...(post.location && { contentLocation: post.location }),
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }}
+      />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Breadcrumb
           items={[
