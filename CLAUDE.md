@@ -472,7 +472,7 @@ const handleSuccess = () => {
 };
 ```
 
-**Handler:** For now, use a simple API route that sends an email via Postmark. We will connect a CRM later if Brian decides to use one.
+**Handler:** `src/app/api/contact/route.ts` sends plaintext email via Nodemailer over Microsoft 365 SMTP (smtp.office365.com:587, STARTTLS). Destination is `info@onpointinstall.com` via the `CONTACT_FORM_TO_EMAIL` env var; reply-to is set to the submitter's email so Brian can reply directly. Includes a `website` honeypot field that silently succeeds for bots without sending. Rate limiting is deferred. CRM integration is a later decision.
 
 ---
 

@@ -29,6 +29,7 @@ interface FormFields {
   projectType: string;
   city: string;
   projectDetails: string;
+  website: string; // honeypot: never shown to real users
 }
 
 type FormErrors = Partial<Record<keyof FormFields, string>>;
@@ -41,6 +42,7 @@ const EMPTY_FORM: FormFields = {
   projectType: '',
   city: '',
   projectDetails: '',
+  website: '',
 };
 
 // ── Shared input styles ──────────────────────────────────────────────────────
@@ -136,6 +138,17 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      {/* Honeypot: hidden from real users; bots that fill it get a silent no-op */}
+      <input
+        type="text"
+        name="website"
+        value={fields.website}
+        onChange={set('website')}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="sr-only"
+      />
 
       {/* Row 1: Name + Company */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
