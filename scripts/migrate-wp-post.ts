@@ -393,7 +393,7 @@ const AUDIT_SUBSTITUTIONS: Record<string, string> = {
   '/services/office-furniture-delivery-setup-chicago-il/': '/services/commercial-furniture-installation-chicago-il/#office-furniture-delivery-setup',
 };
 
-const DEAD_LINK_PREFIXES = ['/project/', '/category/'];
+const DEAD_LINK_PREFIXES = ['/category/'];
 
 function applyLinkSubstitutions(
   doc: Document,
