@@ -172,3 +172,75 @@ This file documents constraints that emerged during Phase 2 build that were not 
 **Rule established:** Any recon involving body content must explicitly compare the rendered live page against the rendered rebuild. The supervisor running recon must open the live page in a browser and document what they see -- image grouping, link placement, layout structure, visual rhythm -- not just what the source contains. Source-level audits are necessary but insufficient. This applies to all future migration work, not just images.
 
 **Lives in:** `CLAUDE.md` -> IMAGE SEO RULES rule 10. Future audit prompts in `docs/seo-audit/` must include rendered-page parity as an explicit recon task.
+
+---
+
+## Alt Derivation -- isQualityAlt Filename-Match Rejection Produces Tier-2 Fallback
+
+**Gap discovered:** 2026-05-21.
+
+**Gap:** The `deriveAlt` function in the blog migration script implements a tiered quality gate. Tier 1 accepts alt text that meets keyword and length criteria. Tier 2 is a fallback that derives alt from the image filename. The `isQualityAlt` check can reject a candidate alt because it appears to be filename-derived (matching a pattern like "word word word" from a hyphen-delimited filename), then fall back to tier 2, which reconstructs effectively the same text. The result is a cosmetically different tier label with no difference in the rendered alt. Observed on the acoustic-ceiling featured image in Pass 1 and a percentage of Pass 2 body images.
+
+**Rule established:** This is an implementation detail, not a defect. The rendered alt text is correct in all known cases. Future maintainers extending the migration script should be aware that a tier-2 label does not guarantee a lower-quality result. If the derivation logic is revisited, the `isQualityAlt` filename-match rejection heuristic and the tier-2 derivation path should be reviewed together.
+
+**Lives in:** `scripts/migrate-wp-post.ts` -- `deriveAlt` function and `isQualityAlt` helper.
+
+---
+
+## Schema Field Naming -- "summary" in Kickoff Doc vs "excerpt" in Schema
+
+**Gap discovered:** 2026-05-22.
+
+**Gap:** The Phase 5.5 kickoff doc (`docs/Phase5.5_Kickoff_Project_Gallery.md`) describes a "summary" field on the project document type. The Sanity schema as shipped uses "excerpt" (matching the blogPost schema for parity) plus a separate "metaDescription" field for the SEO meta tag. The kickoff doc's "summary" reference is legacy naming from an earlier planning pass.
+
+**Rule established:** The committed Sanity schema (`sanity/schemas/project.ts` and `sanity/schemas/blogPost.ts`) is the canonical field reference. When kickoff docs, planning notes, or this file's own language conflict with the schema file, the schema wins. Future session workers writing GROQ queries or migration scripts must verify field names against the schema before writing, not against planning documents.
+
+**Lives in:** `sanity/schemas/project.ts` and `sanity/schemas/blogPost.ts` -- the `excerpt` and `metaDescription` fields.
+
+---
+
+## Audit Script Regex -- wp:image Pattern Stops at First Dash in Block Attributes
+
+**Gap discovered:** 2026-05-22.
+
+**Gap:** `scripts/audit-projects-wxr.ts` (a throwaway recon script, never committed) used the regex pattern `wp:image[^-]*` to detect Gutenberg image blocks in WXR content. WordPress Gutenberg block attribute JSON contains dash-delimited CSS class names such as "img-style". The `[^-]*` character class stops matching at the first dash in such strings, causing the regex to miss image block boundaries. The audit undercounted by 11 images across 5 projects. The DOM-walk approach used by the migration script (`querySelectorAll('img')` on parsed HTML) has no such limitation and produced correct counts.
+
+**Rule established:** When parsing WordPress Gutenberg block comment syntax in raw WXR content, regex on the block attribute JSON is unreliable. Use a DOM-walk on the post HTML content (`<content:encoded>` after unescaping) rather than block-comment pattern matching. The existing migration scripts implement this correctly. Future audit scripts should follow the same approach.
+
+**Lives in:** Process note. `scripts/audit-projects-wxr.ts` was removed from the working tree in Session 5 and was never committed. The migration scripts (`scripts/migrate-projects-body.ts`, `scripts/migrate-inline-images.ts`) use the correct DOM-walk approach.
+
+---
+
+## Working Tree Anomaly -- Unexplained File Modification During Session 3
+
+**Gap discovered:** 2026-05-22.
+
+**Gap:** During Session 3 Commit 2, round 2b recon, `docs/content-source-map.md` showed a working tree modification: the literal string "npm " had been prepended to the first line of the file. The source of the modification was not identified. No hook, script, or command in the session sequence was known to write to that file. The worker caught it via `git status` before staging, restored the file via `git restore docs/content-source-map.md`, and continued. No commit was affected.
+
+**Rule established:** Any `git status` that shows an unexpected modification to a file the session did not touch is a stop-and-surface event before staging. Restore the file and document the anomaly here. If the pattern recurs, investigate whether a hook or a mis-routed stdout/stderr write is the cause.
+
+**Lives in:** Process note. If this recurs, check `.claude/settings.json` hooks and any `postinstall` or `prepare` npm scripts that might write to the working tree.
+
+---
+
+## Layout Work -- Visual Verification Must Precede Commit on Layout-Heavy Changes
+
+**Gap discovered:** 2026-05-22.
+
+**Gap:** Session 4 Lane 2A (project detail page body layout) required four iterations before reaching a clean result: an initial alternating two-column attempt, a revert, and three incremental width-cap commits. The two-column approach was structurally wrong for the WXR content shape (image blocks are not paired -- each is a discrete block). Diff review and type-check passed on all commits; the structural mismatch was visible only at visual verification on Vercel preview. The result was 4 commits and 1 revert in the git log where 1 commit would have been sufficient.
+
+**Rule established:** For commits that materially change how a page renders (layout components, new block types, image sizing), run a Vercel preview deployment and visually verify the rendered output before authorizing the commit. Type-check and code review alone are insufficient for layout correctness. Consider a preview-branch-with-visual-verification pattern: push to a preview branch, verify on Vercel, then bring the change to main.
+
+**Lives in:** Process note for supervisor. Add to session kickoff checklists for layout-heavy work.
+
+---
+
+## Credentials in Throwaway Scripts -- Worker Session 5 Recon
+
+**Gap discovered:** 2026-05-22.
+
+**Gap:** During Session 5 Sanity schema recon, the worker hardcoded a live `SANITY_API_READ_TOKEN` value directly into `/tmp/groq-probe.mjs` and `/tmp/groq-probe.ts` as a quick prototyping shortcut, before switching to `process.env.SANITY_API_READ_TOKEN` on the third attempt. The files were outside the repo and not committed. The token was detected and rotated immediately. The token had read-only scope to the production dataset. No write access was exposed.
+
+**Rule established:** Even throwaway and prototype scripts must read credentials from environment variables. The correct prototyping pattern is `set -a && source .env.local && set +a` in the shell before running `npx tsx`, or `npx tsx --env-file=.env.local`. Literal token strings are never written to any file, including files outside the repo. This applies to all session workers in this project.
+
+**Lives in:** Process note. `docs/spec-gaps.md` is the recurrence guard -- if this recurs in a future session, it escalates from process note to a review of session worker prompt construction.

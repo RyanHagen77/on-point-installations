@@ -95,4 +95,54 @@ If an external SEO audit flags content-hashed image URLs as a deficiency, the re
 
 ---
 
+## Project gallery content tasks
+
+These items emerged from the Phase 5.5 project gallery migration and apply to the 9 migrated project pages. Most are editorial work in Sanity Studio; a few require Brian to provide replacement assets.
+
+### Restaurant project -- featured image replacement
+
+The current featured image is a stock photo (`pexels-photo-374016.jpeg`, alt "Person Using Laptop Computer") that is unrelated to restaurant furniture installation. Recommended: replace in Sanity Studio with a real restaurant interior or furniture installation photo. Update `featuredImage.alt` to describe the replacement image. The featured image is visible on the gallery index card and as body content block 0 on the detail page.
+
+### Restaurant project -- body voice violations
+
+Two phrases in the restaurant project body copy do not meet voice rules. The H3 heading "Streamlined Installation" uses a banned consultant verb. The phrase "seamlessly help advance your project needs" in the CTA paragraph uses a second banned term. Recommended: rewrite both in Sanity Studio to plain-spoken language per the voice guidelines in CLAUDE.md.
+
+### Restaurant project -- 7 body images with identical alt text
+
+Seven body images on the restaurant project page share the alt text "Professional Restaurant Furniture Installation - Chicago Suburbs". Each image needs a distinct alt that describes its specific content. Recommended: SEO consultant reviews each image using the Sanity Studio deep link in the alt-text worksheet and writes a unique descriptive alt for each.
+
+### Restaurant project -- low-resolution body image thumbnails
+
+Four body images are WordPress 300x225px crop variants at 10-14KB each (`img_1076-300x225-2.jpeg`, `img_1075-300x225-2.jpeg`, `img_1079-300x225-2.jpeg`, `img_1084-300x225-2.jpeg`). No higher-resolution originals were available in the WXR export. Recommended: Brian provides higher-resolution originals from job-site storage if available and replaces them in Sanity Studio.
+
+### Complete-Office-System-Downers-Grove -- featured image alt error
+
+The featured image alt reads "Complete Office System Installation Downers - Grove, IL". The space-hyphen-space between "Downers" and "Grove" is a formatting error carried from migration. The correct place name is "Downers Grove". Recommended: fix in Sanity Studio to "Complete Office System Installation in Downers Grove, IL" or a fully descriptive alt.
+
+### Senior-Living-Oak-Brook -- featured image source quality
+
+The featured image was sourced from a WordPress camera-default filename crop (`img_7998-1024x768-1.jpg`). If Brian has a higher-resolution original from job-site storage, replace in Sanity Studio with an asset at 1600px or larger on the longest edge. Update alt text to describe the replacement.
+
+### Senior-Living-Oak-Brook -- featured and body image reuse
+
+The same image (`img_7998-1024x768-1.jpg`) appears as both the featured image and as a body content image on this project page. Review whether the duplication is intentional. If the body instance is redundant, remove it in Sanity Studio using the body Portable Text editor.
+
+### Modular-Installation-Park-Ridge -- duplicate-asset body blocks
+
+Two body image blocks on this page reference the same Sanity asset. `modular-installation-services-27-workstations-1.jpg` (WP ID 18189) and `modular-installation-services-27-workstations-1-1.jpg` (WP ID 18205) were two distinct WordPress attachments at identical file sizes (58,006 bytes). Sanity content-hash deduplication merged them to one asset referenced from two body blocks. Both blocks render the same image. Recommended: review in Sanity Studio and remove the redundant body block if it does not contribute distinct visual information.
+
+### All 9 projects -- excerpt editorial review before publishing
+
+Current excerpts were derived from the first body paragraph during migration and read variably in quality. The restaurant project excerpt in particular reads as a generic preamble rather than a project summary. Recommended: review and rewrite all 9 excerpts in Sanity Studio before flipping project status from "draft" to "published". Excerpts appear on the gallery index card and in search result snippets.
+
+### All 9 projects -- post-launch content and visual review
+
+After the gallery goes live, a full review pass is recommended covering: image quality and visual relevance on each page, alt text quality (the alt-text worksheet covers this), and whether the detail page visual opening meets Brian's expectations. The current implementation has no hero image on project detail pages (removed in Session 4 per supervisor decision). If Brian wants a visual opening, this is Phase 6 enhancement work -- options are documented in `docs/design-decisions.md`.
+
+### Project and blog H1 styling parity check
+
+Project detail pages use `text-3xl sm:text-4xl font-bold text-[#800000]` for the H1. Confirm this matches the blog post H1 styling. If a delta exists, resolve in a single CSS pass across both templates. Consistent heading sizing across content types reads as a more cohesive site.
+
+---
+
 End of file.
