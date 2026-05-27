@@ -472,7 +472,7 @@ const handleSuccess = () => {
 };
 ```
 
-**Handler:** `src/app/api/contact/route.ts` sends plaintext email via Nodemailer over Microsoft 365 SMTP (smtp.office365.com:587, STARTTLS). Destination is `info@onpointinstall.com` via the `CONTACT_FORM_TO_EMAIL` env var; reply-to is set to the submitter's email so Brian can reply directly. Includes a `website` honeypot field that silently succeeds for bots without sending. Rate limiting is deferred. CRM integration is a later decision.
+**Handler:** `src/app/api/contact/route.ts` sends plaintext email via the Microsoft Graph API, authenticated through OAuth 2.0 client credentials flow using `@azure/msal-node`. The send-as identity and destination are both `info@onpointinstall.com` (the destination is set via `CONTACT_FORM_TO_EMAIL`; the send-as is set via `GRAPH_SEND_AS_USER`). Reply-to is the submitter's email so Brian can reply directly. Includes a `website` honeypot field that silently succeeds for bots without sending. Sent messages are not saved to the sender's Sent Items folder (`saveToSentItems: false`). The Azure App Registration grants `Mail.Send` application permission with admin consent; an Application Access Policy restricts the app to the `info@onpointinstall.com` mailbox specifically. Rate limiting is deferred. CRM integration is a later decision.
 
 ---
 
