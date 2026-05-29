@@ -10,7 +10,6 @@ const schaumburgPage: CityServicePageProps = {
   slug: 'commercial-furniture-installation-schaumburg-il',
   city: 'Schaumburg',
   cityState: 'Schaumburg, IL',
-  citySlug: 'schaumburg-il',
 
   // Verbatim from Prompt 11 opening paragraph.
   // Sub 1: "suburbs [em-dash] and when" -> "suburbs. When" (sentence split)
@@ -80,7 +79,6 @@ const schaumburgPage: CityServicePageProps = {
   serviceType: 'Commercial Furniture Installation',
 
   chicagoAnchor: 'Chicago office furniture installation',
-  serviceAreaAnchor: 'our Schaumburg service area',
 };
 
 export default schaumburgPage;

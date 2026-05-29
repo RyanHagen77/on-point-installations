@@ -10,7 +10,6 @@ const napervillePage: CityServicePageProps = {
   slug: 'commercial-furniture-installation-naperville-il',
   city: 'Naperville',
   cityState: 'Naperville, IL',
-  citySlug: 'naperville-il',
 
   // Verbatim from Prompt 11 opening paragraph.
   // Sub 1: "12[en-dash]15" -> "12-15" (en dash to hyphen)
@@ -77,7 +76,6 @@ const napervillePage: CityServicePageProps = {
   serviceType: 'Commercial Furniture Installation',
 
   chicagoAnchor: 'Chicago office furniture installation',
-  serviceAreaAnchor: 'our Naperville service area',
 };
 
 export default napervillePage;

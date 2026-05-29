@@ -17,7 +17,6 @@ const DEFAULT_HERO_HEIGHT = 1280;
 export default function CityServicePage({
   city,
   cityState,
-  citySlug,
   slug,
   openingParagraph,
   whyChooseUs,
@@ -30,7 +29,6 @@ export default function CityServicePage({
   serviceDescription,
   serviceType,
   chicagoAnchor,
-  serviceAreaAnchor,
   heroImageSrc = DEFAULT_HERO_SRC,
   heroImageAlt = DEFAULT_HERO_ALT,
   heroImageWidth = DEFAULT_HERO_WIDTH,
@@ -98,14 +96,7 @@ export default function CityServicePage({
             >
               {chicagoAnchor}
             </Link>{' '}
-            is our primary service page. See{' '}
-            <Link
-              href={`/service-area/${citySlug}/`}
-              className="text-[#800000] underline hover:text-[#5A0000]"
-            >
-              {serviceAreaAnchor}
-            </Link>{' '}
-            for full coverage details in your area.
+            is our primary service page.
           </p>
         </ServiceHero>
 

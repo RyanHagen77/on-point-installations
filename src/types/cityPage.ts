@@ -14,7 +14,6 @@ export interface CityServicePageProps {
   // Location
   city: string;      // e.g. "Schaumburg"
   cityState: string; // e.g. "Schaumburg, IL"
-  citySlug: string;  // e.g. "schaumburg-il"; used for /service-area/ link
 
   // Content
   openingParagraph: string;
@@ -32,7 +31,6 @@ export interface CityServicePageProps {
 
   // Outbound links
   chicagoAnchor: string;     // anchor text -> /services/commercial-furniture-installation-chicago-il/
-  serviceAreaAnchor: string; // anchor text -> /service-area/{citySlug}/
 
   // Optional hero override; defaults to shared installation photo
   heroImageSrc?: string;

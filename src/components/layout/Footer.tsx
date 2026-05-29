@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { SITE, PRIMARY_SERVICES, SERVICE_CITIES } from '@/lib/constants';
+import { SITE, PRIMARY_SERVICES } from '@/lib/constants';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -96,28 +96,26 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Service Areas : exactly the 5 spec-approved cities */}
+          {/* Col 3: Service Areas */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider text-[#800000] mb-4">Service Areas</h3>
             <ul className="space-y-2">
-              {SERVICE_CITIES.map((city) => (
-                <li key={city.slug}>
+              {[
+                { label: 'All Chicagoland', href: '/services/commercial-furniture-installation-chicago-il/' },
+                { label: 'Chicago, IL', href: '/services/commercial-furniture-installation-chicago-il/' },
+                { label: 'Schaumburg, IL', href: '/services/commercial-furniture-installation-schaumburg-il/' },
+                { label: 'Naperville, IL', href: '/services/commercial-furniture-installation-naperville-il/' },
+                { label: 'Wauconda, IL', href: '/services/commercial-furniture-installation-wauconda-il/' },
+              ].map((item) => (
+                <li key={item.label}>
                   <Link
-                    href={`/service-area/${city.slug}/`}
+                    href={item.href}
                     className="text-sm text-[#292929] hover:text-[#800000] transition-colors"
                   >
-                    {city.name}, {city.state}
+                    {item.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/service-area/chicagoland-commercial-furniture-installation/"
-                  className="text-sm text-[#292929] hover:text-[#800000] transition-colors"
-                >
-                  All Chicagoland
-                </Link>
-              </li>
             </ul>
           </div>
 
