@@ -1,6 +1,10 @@
 import type React from 'react';
 import type { FAQ } from './service';
 
+export type CitySocialProof =
+  | { kind: 'review'; quote: string; attribution: string }
+  | { kind: 'stats' };
+
 export interface CityServicePageProps {
   // Metadata
   title: string;
@@ -18,10 +22,7 @@ export interface CityServicePageProps {
   serviceDetailsPara1: string;
   serviceDetailsPara2: string;
   serviceDetailsPara3?: React.ReactNode;
-  socialProof: {
-    quote: string;
-    attribution: string; // use [em-dash] for em dash (e.g. "[em-dash] First Name, City, IL")
-  };
+  socialProof: CitySocialProof;
   faqs: FAQ[];
 
   // Schema

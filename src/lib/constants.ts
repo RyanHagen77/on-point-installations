@@ -131,3 +131,12 @@ export const SAME_AS_URLS = [
   "https://www.industrynet.com/co/on-point-installations",
   "https://www.zoominfo.com/c/on-point-installations-inc",
 ];
+
+// Stats callout used by the 'stats' variant of CitySocialProof on city service pages.
+// Rendered when no verified review is available for a city.
+export const STATS_CALLOUT = {
+  stars: "★★★★★",
+  headline:
+    "5.0 stars across 25 verified Google reviews · 11,000+ commercial furniture projects completed · 130+ years of combined crew experience",
+  subline: "On Point Installations, serving Chicagoland and the Tri-State since 2010",
+};

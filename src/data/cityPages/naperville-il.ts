@@ -38,7 +38,10 @@ const napervillePage: CityServicePageProps = {
   // Sub 7: attribution uses [em-dash] (Unicode escape); renders as em dash in DOM,
   //        does not appear as literal character in source; passes pre-commit hook.
   //        Same pattern as Schaumburg data file. See known-issues.md.
+  // kind: 'review' added in Session 7 Lane 4; placeholder guard in CityServicePage
+  // suppresses render until real quote/attribution are provided.
   socialProof: {
+    kind: 'review',
     quote: '[REVIEW PLACEHOLDER: replace with real review from a Naperville, IL customer when available]',
     attribution: '\u2014 [Customer First Name], Naperville, IL',
   },

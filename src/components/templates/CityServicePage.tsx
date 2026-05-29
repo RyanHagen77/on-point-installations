@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE, NAP_SCHEMA } from '@/lib/constants';
+import { SITE, NAP_SCHEMA, STATS_CALLOUT } from '@/lib/constants';
 import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
@@ -141,19 +141,38 @@ export default function CityServicePage({
         </section>
 
         {/* ── SOCIAL PROOF ──────────────────────────────────────────────── */}
-        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="text-2xl mb-3 text-[#F5A623]" aria-label="5 stars">
-                &#9733;&#9733;&#9733;&#9733;&#9733;
-              </p>
-              <blockquote className="text-[#292929] text-lg leading-relaxed italic mb-3">
-                &ldquo;{socialProof.quote}&rdquo;
-              </blockquote>
-              <p className="text-[#535353] font-medium">{socialProof.attribution}</p>
+        {socialProof.kind === 'review' &&
+          !socialProof.quote.startsWith('[REVIEW PLACEHOLDER') &&
+          !socialProof.attribution.includes('[Customer First Name]') && (
+            <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+              <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+                <div className="max-w-2xl">
+                  <p className="text-2xl mb-3 text-[#F5A623]" aria-label="5 stars">
+                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                  </p>
+                  <blockquote className="text-[#292929] text-lg leading-relaxed italic mb-3">
+                    &ldquo;{socialProof.quote}&rdquo;
+                  </blockquote>
+                  <p className="text-[#535353] font-medium">{socialProof.attribution}</p>
+                </div>
+              </div>
+            </section>
+          )}
+        {socialProof.kind === 'stats' && (
+          <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+            <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+              <div className="max-w-2xl">
+                <p className="text-2xl mb-3 text-[#F5A623]" aria-label="5 stars">
+                  {STATS_CALLOUT.stars}
+                </p>
+                <p className="text-[#292929] text-lg leading-relaxed font-bold mb-2">
+                  {STATS_CALLOUT.headline}
+                </p>
+                <p className="text-[#535353]">{STATS_CALLOUT.subline}</p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ── FAQ ───────────────────────────────────────────────────────── */}
         <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">

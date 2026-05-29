@@ -55,7 +55,10 @@ const schaumburgPage: CityServicePageProps = {
   // Attribution uses [em-dash] (Unicode escape) so the em dash renders in the DOM
   // but does not appear as a literal character in source; passes pre-commit hook.
   // Same pattern as Colleen C. review on /reviews/. See known-issues.md.
+  // kind: 'review' added in Session 7 Lane 4; placeholder guard in CityServicePage
+  // suppresses render until real quote/attribution are provided.
   socialProof: {
+    kind: 'review',
     quote: '[REVIEW PLACEHOLDER: replace with real review from a Schaumburg, IL customer when available]',
     attribution: '\u2014 [Customer First Name], Schaumburg, IL',
   },
