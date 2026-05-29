@@ -196,27 +196,17 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── H2 #3: CUBICLE INSTALLATION ─────────────────────────────── */}
-        {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
         <section id="cubicle-installation" className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Cubicle Installation in Chicago
             </h2>
-            <p className="text-[#292929] leading-relaxed mb-4">
-              If your office runs on panel systems, the installation matters more than most people realize. A cubicle that's not properly leveled or aligned throws off every panel in the run. Connections don't seat. Power doesn't reach. The whole cluster comes apart at punch list.
-            </p>
-            <p className="text-[#292929] leading-relaxed mb-4">
-              We install and reconfigure cubicle systems from Herman Miller, Steelcase, Haworth, Knoll, Teknion, HON, Allsteel, and most other major manufacturers. New installs, partial reconfigurations, teardowns, and height extender add-ons. We track every component so nothing ends up missing at close-out.
-            </p>
             <p className="text-[#292929] leading-relaxed">
-              If you're doing a MAC (moves, adds, changes) project or a full floor reconfiguration, call us before ordering the furniture. We can tell you what's realistic for your timeline.{' '}
-              <Link href="/contact/" className="text-[#800000] underline hover:text-[#5A0000]">
-                Get a free quote
+              Dedicated cubicle installation work in Chicago is handled on its own service page, with full details on the panel systems and manufacturers we install. See{' '}
+              <Link href="/services/cubicle-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
+                our cubicle installation page
               </Link>{' '}
-              or call us at{' '}
-              <a href={SITE.phoneHref} className="text-[#800000] underline hover:text-[#5A0000]">
-                {SITE.phone}
-              </a>.
+              for project specs, FAQs, and scheduling.
             </p>
           </div>
         </section>

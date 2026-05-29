@@ -28,7 +28,6 @@ const nextConfig: NextConfig = {
       { source: '/services/cubicle-wall-and-upholstery-cleaning/', destination: '/services/cubicle-wall-upholstery-cleaning-chicago-il/', permanent: true },
 
       // ── Audit-only URLs absorbed into Office Installations money page ─────────
-      { source: '/services/cubicle-installation-chicago-il/', destination: '/services/commercial-furniture-installation-chicago-il/', permanent: true },
       { source: '/services/cubicle-installation-schaumburg-il/', destination: '/services/commercial-furniture-installation-chicago-il/', permanent: true },
       { source: '/services/systems-furniture-installation-chicago-il/', destination: '/services/commercial-furniture-installation-chicago-il/', permanent: true },
       { source: '/services/office-furniture-delivery-setup-chicago-il/', destination: '/services/commercial-furniture-installation-chicago-il/', permanent: true },
