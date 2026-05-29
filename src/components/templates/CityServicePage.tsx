@@ -43,7 +43,7 @@ export default function CityServicePage({
           BreadcrumbList is emitted by ServiceHero > Breadcrumb. No explicit BreadcrumbSchema
           here; that would produce a duplicate BreadcrumbList block. */}
       <ServiceSchema
-        name={`Commercial Furniture Installation in ${cityState}`}
+        name={`${serviceType} in ${cityState}`}
         description={serviceDescription}
         url={canonicalUrl}
         areaServed={city}
@@ -80,7 +80,7 @@ export default function CityServicePage({
           breadcrumbItems={[
             { name: 'Home', url: '/' },
             { name: 'Services', url: '/services/' },
-            { name: `Commercial Furniture Installation ${city}`, url: `/services/${slug}/` },
+            { name: `${serviceType} ${city}`, url: `/services/${slug}/` },
           ]}
           h1={h1}
           imageSrc={heroImageSrc}
@@ -176,7 +176,7 @@ export default function CityServicePage({
         {/* ── CTA ───────────────────────────────────────────────────────── */}
         <CTABlock
           variant="banner"
-          heading={`Get a Quote for Your ${city} Commercial Furniture Installation`}
+          heading={`Get a Quote for Your ${city} ${serviceType}`}
         />
       </main>
     </>
