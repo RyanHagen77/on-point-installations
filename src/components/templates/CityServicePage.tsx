@@ -17,6 +17,7 @@ const DEFAULT_HERO_HEIGHT = 1280;
 export default function CityServicePage({
   city,
   cityState,
+  h1,
   slug,
   openingParagraph,
   whyChooseUs,
@@ -81,7 +82,7 @@ export default function CityServicePage({
             { name: 'Services', url: '/services/' },
             { name: `Commercial Furniture Installation ${city}`, url: `/services/${slug}/` },
           ]}
-          h1={`Commercial Furniture Installation in ${cityState}`}
+          h1={h1}
           imageSrc={heroImageSrc}
           imageAlt={heroImageAlt}
           imageWidth={heroImageWidth}

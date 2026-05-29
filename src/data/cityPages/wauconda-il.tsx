@@ -10,6 +10,7 @@ const waucondaPage: CityServicePageProps = {
   slug: 'commercial-furniture-installation-wauconda-il',
   city: 'Wauconda',
   cityState: 'Wauconda, IL',
+  h1: 'Commercial Furniture Installation in Wauconda, IL',
 
   openingParagraph:
     "Wauconda is where we're headquartered. On Point Installations operates out of 1220 Karl Court, and we've been serving Wauconda and the surrounding Lake County commercial market since 2010. When a business in Wauconda needs commercial furniture installation, we're not driving an hour to get there. Our crew, our warehouse, our trucks, and our staging space are all here. That means faster response, no extended travel charges, and a deeper familiarity with the commercial building stock from downtown Wauconda out through the Bonner Road corridor and the surrounding business parks.",

@@ -10,6 +10,7 @@ const schaumburgPage: CityServicePageProps = {
   slug: 'commercial-furniture-installation-schaumburg-il',
   city: 'Schaumburg',
   cityState: 'Schaumburg, IL',
+  h1: 'Commercial Furniture Installation in Schaumburg, IL',
 
   // Verbatim from Prompt 11 opening paragraph.
   // Sub 1: "suburbs [em-dash] and when" -> "suburbs. When" (sentence split)

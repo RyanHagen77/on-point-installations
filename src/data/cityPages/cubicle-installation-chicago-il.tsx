@@ -9,6 +9,7 @@ const cubicleChicagoPage: CityServicePageProps = {
   slug: 'cubicle-installation-chicago-il',
   city: 'Chicago',
   cityState: 'Chicago, IL',
+  h1: 'Cubicle Installation in Chicago, IL',
 
   openingParagraph:
     "Getting cubicles installed in a Chicago office requires more than just reading the assembly manual. Tight floor plates, freight elevator windows, union building protocols, and delivery timing all have to align. When they don't, the project stalls. On Point Installations has been handling cubicle installation in Chicago for over 15 years, and we know how to work within Chicago building constraints without losing a day to logistics problems. Whether your Chicago office is rolling out a first-time cubicle installation or reconfiguring an existing layout, our experienced crew installs to your dealer's drawings and leaves the floor clean and complete.",

@@ -14,6 +14,8 @@ export interface CityServicePageProps {
   // Location
   city: string;      // e.g. "Schaumburg"
   cityState: string; // e.g. "Schaumburg, IL"
+  /** Visible H1 on the city service page; required so every page declares its own. */
+  h1: string;
 
   // Content
   openingParagraph: string;

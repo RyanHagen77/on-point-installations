@@ -167,7 +167,7 @@ export default function HomePage() {
                 From{' '}
                 <Link href="/services/commercial-furniture-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial furniture installation Chicago</Link>{' '}
                 businesses rely on, to{' '}
-                <Link href="/services/commercial-furniture-installation-chicago-il/#cubicle-installation" className="text-[#800000] underline hover:text-[#5A0000]">cubicle installation</Link>,{' '}
+                <Link href="/services/cubicle-installation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">cubicle installation</Link>,{' '}
                 <Link href="/services/office-relocation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">office relocation services</Link>,{' '}
                 and{' '}
                 <Link href="/services/commercial-space-planning-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">commercial space planning</Link>,
