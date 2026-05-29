@@ -673,3 +673,43 @@ The Session 7 handoff calls for regenerating the alt-text worksheet from current
 - Group B items 7-10: Brian-gated (Nodemailer SMTP credentials, GTM container ID, Sanity Studio access confirmation, Wikidata entity)
 - Group C item 11: Rich Results Test re-run (browser UI -- Ryan-side)
 - Group D item 14: IntegrePro client report for Brian
+
+---
+
+## Session 7 - Voice-Rule Findings (for Brian's review pass)
+
+The following voice violations were surfaced during the Session 7 Closeout A voice audit of three data files. No copy was changed in Session 7 -- fixes are deferred to a Brian-review lane after launch. Rewrite suggestions are advisory only.
+
+### src/app/services/office-relocation-chicago-il/page.tsx -- credibility paragraph
+
+Phrase: "when the relocation has to work, On Point Installations delivers"
+Voice rule: No consultant verbs. "Delivers" used abstractly (not literal physical delivery).
+Suggested replacement: Recast as a direct statement: "On Point Installations has executed office relocations across Chicago's business districts since 2010."
+Flagged in: Session 7 Lane 7
+
+---
+
+### src/data/cityPages/cubicle-installation-chicago-il.tsx -- whyChooseUs
+
+Phrase: "On Point Installations is the crew you call when you need cubicle installation done right the first time"
+Voice rule: Reads as marketing tagline / ad-copy voice rather than direct contractor language. Fails the voice test ("sounds like a consultant's slide deck").
+Suggested replacement: "On Point Installations is the crew Chicago furniture dealers and facilities directors call back -- the track record is in the 5.0-star rating and 11,000+ completed projects."
+Flagged in: Session 7 Lane 8
+
+---
+
+### src/data/cityPages/cubicle-installation-chicago-il.tsx -- openingParagraph
+
+Phrase: "Whether your Chicago office is rolling out a first-time cubicle installation or reconfiguring an existing layout"
+Voice rule: Structural variant of the AI-tell "Whether you're X or Y" pattern. Uses possessive "your" not the banned "you're", so the pre-commit hook does not catch it, but the construct reads as machine-generated framing.
+Suggested replacement: Lead with a factual statement: "If your Chicago office is doing a first-time cubicle installation, we work from your dealer's drawings and leave the floor clean. If you're reconfiguring an existing layout, we disassemble, adjust, and rebuild to your new plan."
+Flagged in: Session 7 Closeout A
+
+---
+
+### src/data/cityPages/cubicle-installation-schaumburg-il.tsx -- serviceDetailsPara2
+
+Phrase: "so that each phase delivers without holding up the next one"
+Voice rule: "Delivers" used abstractly, not as literal physical delivery. CLAUDE.md permits "deliver" only for literal physical delivery of goods.
+Suggested replacement: "so that each phase completes on time without holding up the next one"
+Flagged in: Session 7 Closeout A

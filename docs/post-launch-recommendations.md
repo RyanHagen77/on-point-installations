@@ -145,4 +145,64 @@ Project detail pages use `text-3xl sm:text-4xl font-bold text-[#800000]` for the
 
 ---
 
+## Session 7 - Post-Launch Backlog
+
+Items deferred to post-launch per Session 7 decisions.
+
+### City service page tier (build this month per Prompt 11)
+
+Twelve pages remain to build, matching the Schaumburg/Naperville/Wauconda CFI plus Cubicle Chicago plus Cubicle Schaumburg pattern. Use the CityServicePage template with `h1`, `serviceType`, and other required props per Session 7's Lane 8.6 refactor.
+
+- Commercial Furniture Installation: Waukegan
+- Cubicle Installation: Naperville, Waukegan
+- Systems Furniture Installation: Chicago, Schaumburg, Naperville
+- Office Furniture Delivery and Setup: Chicago, Schaumburg, Naperville
+- Office Relocation: Schaumburg, Naperville
+
+When each Systems Chicago, Office Furniture Delivery Chicago, etc. standalone page is built, the corresponding consolidation redirect in next.config.ts must be removed, and the corresponding section on CFI Chicago must be trimmed to a one-paragraph teaser (same pattern as Session 7 Lane 8 Cubicle Chicago work).
+
+### City service page tier (build in 90 days per Prompt 11)
+
+Seven additional lower-volume pages. Follow the same template pattern.
+
+### Brian-side tasks (no engineering required)
+
+- GA4 conversion event configuration. The contact form fires `dataLayer.push({ event: 'contact_form_submit' })` on success. To capture this in GA4, configure a Custom Event in GA4 Admin > Events with `contact_form_submit` as the event name.
+- Google Search Console verification once DNS access is available. Add a TXT record to the domain DNS per GSC's verification flow, then verify in GSC and submit the sitemap.
+- Termageddon subscription cancellation, if applicable, since Session 7 replaced the four Termageddon legal pages with hardcoded Privacy Policy and Disclaimer.
+- Voice review of city pages per docs/known-issues.md "Session 7" section.
+
+### Content review items (parked from Session 7)
+
+- Park Ridge case study (modular-installation-services-park-ridge-il) mentions Corporate Concepts twice in body prose. External links to corpconc.com were removed in Lane 12 per the manufacturer-and-dealer rule; the prose mentions stayed per the decision to leave content untouched. May warrant a follow-up content edit if Brian wants the dealer credit removed from the narrative.
+- Project-image-at-top request (parked from original handoff): Ryan wants the first image higher on project detail pages. Partially reverses the Lane 2A.4 hero-image removal from an earlier session. Needs its own recon plus write lane.
+- Restaurant slug-collision project: the project document `the-benefits-of-a-professional-restaurant-furniture-installation` has no case-study content (duplicates the blog post of the same slug) and shares the identical slug. Needs real content or removal from the gallery.
+
+### Code and data cleanup (parked, low priority)
+
+- serviceType is null on all 9 project documents in Sanity. Only matters if frontend or GROQ filters or displays by it.
+- tel: href normalization: 6 tel: links carry dashes (tel:847-550-4042). Functional (dialers strip non-digits), cosmetic only. Schema permits the scheme.
+
+### Session 6 follow-ups
+
+- 14 blog-to-project cross-links inserted via Sanity mutation in Session 6. Eyeball review of anchor text and placement in context is recommended.
+
+### Old route 404s
+
+Terms of Service (/terms-of-service/) and Cookie Policy (/cookie-policy/) were removed in Lane 15. Old bookmarks or cached search results may briefly serve 404s until search engines re-crawl. No redirects added per the launch decision; intentional.
+
+### External link removal decision log (Session 7 Lane 12)
+
+Decision: Remove external links from project case studies. Keep booksbythefoot.com as the only exception.
+
+Rationale: Outbound links to manufacturer sites (Steelcase, Knoll, Haworth, etc.) and dealer sites (Corporate Concepts, Wehrli Furniture) create a path where readers leave for sites that can refer them to a competitor installer. On Point Installations sits upstream of dealer choice. Removing these links keeps readers on pages controlled by On Point.
+
+Items affected: 19 link annotations removed across 6 project case studies. Anchor text preserved as plain prose. Books by the Foot link preserved (book staging service, no furniture industry overlap).
+
+Reversibility: Stored as Sanity mutations to markDefs arrays. Anchor text intact. Restoring any specific link requires restoring the markDef and re-marking the relevant spans in Sanity Studio. No text rewriting needed.
+
+Related open: Park Ridge case study mentions Corporate Concepts twice in body prose. Text mentions stayed per Ryan's decision. May warrant separate content review.
+
+---
+
 End of file.
