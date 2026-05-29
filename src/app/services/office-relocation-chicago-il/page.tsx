@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
-import { SITE } from '@/lib/constants';
+import { SITE, NAP_SCHEMA, STATS_CALLOUT } from '@/lib/constants';
 import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
@@ -8,8 +8,8 @@ import ServiceSchema from '@/components/schema/ServiceSchema';
 import FAQSchema from '@/components/schema/FAQSchema';
 
 export const metadata = generatePageMetadata({
-  title: 'Office Relocation Services Chicago | On Point Installations',
-  description: 'Commercial office relocation in Chicago, IL. Teardown, transport, reinstallation, electrical disconnect/reconnect. Trusted since 2010. Call (847) 550-4042.',
+  title: 'Office Relocation Services Chicago │ On Point Installs',
+  description: 'Full-service office relocation in Chicago. On Point Installations handles teardown, transport, reinstallation & electrical. Same-day quote available.',
   canonical: `${SITE.domain}/services/office-relocation-chicago-il/`,
 });
 
@@ -48,6 +48,29 @@ export default function OfficeRelocationChicagoPage() {
         serviceType="Office Relocation"
       />
       <FAQSchema items={FAQS} />
+      {/* LocalBusiness schema for Office Relocation Chicago service focus.
+          @id "#chicago-office-relocation-localbusiness" distinguishes from
+          homepage "#business" and CFI Chicago "#chicago-localbusiness". */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "ProfessionalService"],
+            "@id": `${SITE.domain}/#chicago-office-relocation-localbusiness`,
+            name: "On Point Installations - Office Relocation Chicago",
+            url: `${SITE.domain}/services/office-relocation-chicago-il/`,
+            telephone: SITE.phoneHref.replace('tel:', ''),
+            address: NAP_SCHEMA,
+            description: "Commercial office relocation services in Chicago, IL, including teardown, transport, reinstallation, and electrical disconnect and reconnect for systems furniture.",
+            areaServed: {
+              "@type": "City",
+              name: "Chicago",
+              containedInPlace: { "@type": "State", name: "Illinois" },
+            },
+          }),
+        }}
+      />
       <main>
 
         {/* ── BREADCRUMB + H1 + HERO ───────────────────────────────────── */}
@@ -78,6 +101,33 @@ export default function OfficeRelocationChicagoPage() {
             </a>.
           </p>
         </ServiceHero>
+
+        {/* ── WHY CHOOSE ON POINT ─────────────────────────────────────── */}
+        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
+              Why Chicago Businesses Choose On Point Installations
+            </h2>
+            <p className="text-[#292929] leading-relaxed">
+              Chicago office relocations move fast. Lease overlap windows are tight, movers are on the clock, and the building management team isn&apos;t interested in extension requests. On Point Installations understands the pace of commercial moves in Chicago because we&apos;ve been executing them for 15 years. Our 12-15 person crew can scale to meet your move date, and Brian Vetter&apos;s direct involvement in project coordination means nothing falls through the cracks between your moving company, your furniture dealer, and your IT team. We&apos;ve handled office relocations throughout Chicago&apos;s business districts including the Loop, River North, Fulton Market, and Wacker Drive. Our 5.0-star client rating and approximately 11,000 completed projects reflect what Chicago project managers already know: when the relocation has to work, On Point Installations delivers.
+            </p>
+          </div>
+        </section>
+
+        {/* ── STATS CALLOUT ───────────────────────────────────────────── */}
+        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
+          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <p className="text-2xl mb-3 text-[#F5A623]" aria-label="5 stars">
+                {STATS_CALLOUT.stars}
+              </p>
+              <p className="text-[#292929] text-lg leading-relaxed font-bold mb-2">
+                {STATS_CALLOUT.headline}
+              </p>
+              <p className="text-[#535353]">{STATS_CALLOUT.subline}</p>
+            </div>
+          </div>
+        </section>
 
         {/* ── H2: WHAT WE HANDLE ──────────────────────────────────────── */}
         {/* Bullets verbatim from live site. Surrounding copy drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
@@ -164,9 +214,8 @@ export default function OfficeRelocationChicagoPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">
               Office Relocation Services for Chicago Furniture Dealers
             </h2>
-            {/* Verbatim from onpointinstallations.com/services/company-office-relocation-chicago-il/, fetched 2026-05-15 */}
             <p className="text-[#292929] leading-relaxed mb-4">
-              If you're a commercial furniture dealer working with a company that is relocating within the Chicago Tristate Area, we can help.
+              Dealer-side office relocation work is a core part of our business. When you bring On Point Installations into a relocation, you&apos;re adding a crew that&apos;s used to working alongside dealer project managers, end-client facilities teams, and building management on the same job.
             </p>
             {/* Drafted per Voice Rules : needs Brian review. See docs/known-issues.md */}
             <p className="text-[#292929] leading-relaxed mb-4">

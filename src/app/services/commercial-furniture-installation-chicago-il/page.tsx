@@ -320,7 +320,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
         </section>
 
         {/* ── STATS CALLOUT ───────────────────────────────────────────── */}
-        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+        <section className="bg-white border-b border-[#E9E9E9] py-14 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <p className="text-2xl mb-3 text-[#F5A623]" aria-label="5 stars">
