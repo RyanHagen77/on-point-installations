@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { CityServicePageProps } from '@/types/cityPage';
 
 // Source: Prompt 11 (docs/seo-audit/prompt-11-service-city-page-builder.md)
@@ -33,18 +34,25 @@ const napervillePage: CityServicePageProps = {
   serviceDetailsPara2:
     "All major commercial furniture platforms used in Naperville offices are familiar to our crew: Knoll, Haworth, Herman Miller, Steelcase, AIS, KI, and more. For Naperville projects that require phased installation or staged deliveries, we offer commercial furniture warehousing at our Wauconda facility. Our non-union status gives Naperville clients the schedule flexibility to move quickly, and our proximity to the DuPage County market means fast response when project timelines shift.",
 
-  // Verbatim placeholder structure from Prompt 11.
-  // Sub 6: "[REVIEW PLACEHOLDER [em-dash] replace" -> "[REVIEW PLACEHOLDER: replace" (colon)
-  // Sub 7: attribution uses [em-dash] (Unicode escape); renders as em dash in DOM,
-  //        does not appear as literal character in source; passes pre-commit hook.
-  //        Same pattern as Schaumburg data file. See known-issues.md.
-  // kind: 'review' added in Session 7 Lane 4; placeholder guard in CityServicePage
-  // suppresses render until real quote/attribution are provided.
-  socialProof: {
-    kind: 'review',
-    quote: '[REVIEW PLACEHOLDER: replace with real review from a Naperville, IL customer when available]',
-    attribution: '\u2014 [Customer First Name], Naperville, IL',
-  },
+  // Added in Session 7 Lane 5; mirrors the Schaumburg-to-Naperville cross-link pattern.
+  // Anchor text uses "near Schaumburg" (not "in Schaumburg") to avoid competing with
+  // the Schaumburg page's own H1 keyword.
+  serviceDetailsPara3: (
+    <>
+      On Point also serves the I-90 corridor to the north, including{' '}
+      <Link
+        href="/services/commercial-furniture-installation-schaumburg-il/"
+        className="text-[#800000] underline hover:text-[#5A0000]"
+      >
+        commercial furniture installation near Schaumburg
+      </Link>
+      {'. '}Clients with projects across both markets work with the same crew and the same standard of work.
+    </>
+  ),
+
+  // Switched to stats variant in Session 7 Lane 5.
+  // Replace with kind: 'review' when a verified Naperville review is available.
+  socialProof: { kind: 'stats' },
 
   // Verbatim from Prompt 11 FAQ section (3 Q&As).
   // Sub 8: "12[en-dash]15" -> "12-15" (en dash to hyphen in Q2 answer)

@@ -51,17 +51,9 @@ const schaumburgPage: CityServicePageProps = {
     </>
   ),
 
-  // Verbatim placeholder structure from Prompt 11.
-  // Attribution uses [em-dash] (Unicode escape) so the em dash renders in the DOM
-  // but does not appear as a literal character in source; passes pre-commit hook.
-  // Same pattern as Colleen C. review on /reviews/. See known-issues.md.
-  // kind: 'review' added in Session 7 Lane 4; placeholder guard in CityServicePage
-  // suppresses render until real quote/attribution are provided.
-  socialProof: {
-    kind: 'review',
-    quote: '[REVIEW PLACEHOLDER: replace with real review from a Schaumburg, IL customer when available]',
-    attribution: '\u2014 [Customer First Name], Schaumburg, IL',
-  },
+  // Switched to stats variant in Session 7 Lane 5.
+  // Replace with kind: 'review' when a verified Schaumburg review is available.
+  socialProof: { kind: 'stats' },
 
   // Verbatim from Prompt 11 FAQ section (3 Q&As).
   // Sub 7: "5[en-dash]10" -> "5-10" (en dash to hyphen in Q1 answer)
