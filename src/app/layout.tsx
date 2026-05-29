@@ -22,29 +22,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${wixMadeforText.variable} h-full`}>
-      {SITE.gtmId && (
-        <Script id="gtm-datalayer" strategy="beforeInteractive">
-          {`window.dataLayer = window.dataLayer || [];`}
-        </Script>
-      )}
-      {SITE.gtmId && (
-        <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtm.js?id=${SITE.gtmId}`}
-        />
+      {process.env.VERCEL_ENV === 'production' && SITE.ga4Id && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${SITE.ga4Id}');
+            `}
+          </Script>
+        </>
       )}
       <body className="min-h-full flex flex-col">
-        {SITE.gtmId && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${SITE.gtmId}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
-        )}
         <Navigation />
         {children}
         <Footer />

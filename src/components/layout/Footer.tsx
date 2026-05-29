@@ -148,8 +148,6 @@ export default function Footer() {
           <p>&copy; {currentYear} On Point Installations, Inc. All rights reserved.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/privacy-policy/" className="hover:text-[#800000] transition-colors">Privacy Policy</Link>
-            <Link href="/terms-of-service/" className="hover:text-[#800000] transition-colors">Terms of Service</Link>
-            <Link href="/cookie-policy/" className="hover:text-[#800000] transition-colors">Cookie Policy</Link>
             <Link href="/disclaimer/" className="hover:text-[#800000] transition-colors">Disclaimer</Link>
           </div>
         </div>

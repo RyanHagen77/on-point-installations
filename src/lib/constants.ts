@@ -40,7 +40,6 @@ export const SITE = {
     teamExperience: "130+ years combined",
     employees: "12-15",
   },
-  gtmId: "", // TBD : new GTM container ID
   ga4Id: "G-1GSQDRFR9D",
 };
 
