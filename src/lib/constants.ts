@@ -4,7 +4,7 @@ export const SITE = {
   domain: "https://onpointinstallations.com",
   phone: "(847) 550-4042",
   phoneHref: "tel:+18475504042",
-  email: "", // TBD : get from Brian
+  email: "info@onpointinstall.com",
   address: {
     street: "1220 Karl Court",
     city: "Wauconda",
