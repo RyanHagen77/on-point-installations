@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
-import { SITE, NAP_SCHEMA } from '@/lib/constants';
+import { SITE, NAP_SCHEMA, STATS_CALLOUT } from '@/lib/constants';
 import ServiceHero from '@/components/ui/ServiceHero';
 import FAQAccordion from '@/components/ui/FAQAccordion';
 import CTABlock from '@/components/ui/CTABlock';
@@ -8,8 +8,8 @@ import ServiceSchema from '@/components/schema/ServiceSchema';
 import FAQSchema from '@/components/schema/FAQSchema';
 
 export const metadata = generatePageMetadata({
-  title: 'Commercial Furniture Installation Chicago | On Point Installations',
-  description: 'Professional commercial furniture installation in Chicago, IL. Office systems, cubicles, systems furniture & more. Non-union. Serving Chicagoland since 2010. Call (847) 550-4042.',
+  title: 'Commercial Furniture Installation Chicago │ On Point Installations',
+  description: "Chicago's trusted commercial furniture installers. On Point Installations deploys cubicles, systems furniture & office builds citywide. Same-day quote.",
   canonical: `${SITE.domain}/services/commercial-furniture-installation-chicago-il/`,
 });
 
@@ -315,6 +315,21 @@ export default function CommercialFurnitureInstallationChicagoPage() {
                   <p className="text-sm text-[#535353] leading-relaxed">{item.body}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── STATS CALLOUT ───────────────────────────────────────────── */}
+        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-14 px-4">
+          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <p className="text-2xl mb-3 text-[#F5A623]" aria-label="5 stars">
+                {STATS_CALLOUT.stars}
+              </p>
+              <p className="text-[#292929] text-lg leading-relaxed font-bold mb-2">
+                {STATS_CALLOUT.headline}
+              </p>
+              <p className="text-[#535353]">{STATS_CALLOUT.subline}</p>
             </div>
           </div>
         </section>
