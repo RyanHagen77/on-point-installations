@@ -13,8 +13,8 @@
 | Phase 2 | Homepage, 8 Chicago service pages, /about/, /contact/, /reviews/ | **COMPLETE** | — | 2026-05-16 |
 | Phase 3 | City CFI pages (Schaumburg, Naperville), money page retrofit | **COMPLETE** | `93d3712` | 2026-05-17 |
 | Phase 4 | Blog infrastructure (Sanity CMS + ISR), sandbox proof-of-concept, Wave 1 page retrofits | **COMPLETE** | `8657f88` | 2026-05-18 |
-| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, image SEO pass, launch prep | In progress | `3ee1a05` (Session 8 GTM scaffold) | 2026-05-22 |
-| Phase 5.5 | Project gallery migration, Nodemailer contact wiring, alt-text worksheet, closeout reconciliation, CLAUDE.md size pass | In progress | — | 2026-05-22 |
+| Phase 5 | Schema audit, Postmark, GA4/GTM, Core Web Vitals, 25-post blog migration, image SEO pass, launch prep | **COMPLETE** | `3ee1a05` | 2026-05-29 |
+| Phase 5.5 | Project gallery migration, Nodemailer/Graph contact wiring, Prompt 11 city pages, GA4 activation, legal simplification, Session 7 closeout | **COMPLETE** | `a0e59e1` | 2026-05-29 |
 
 **Phase 3 delivered (6 commits, 2026-05-17):**
 - `5d5f464` — Restored background alternation on Chicago money page (regression from What's Included section insertion)
@@ -249,6 +249,13 @@ Verification: after deploy, edit a post title in Studio, publish, wait ~10s, ref
 
 **"Eight-signal audit" documentation gap:**
 The Session 7 handoff and content-source-map.md reference an "eight-signal audit" document. No such document was ever committed to the repo -- it exists only as forward references in handoff docs and content-source-map.md. The two actionable items it described (item 6: sizes prop; item 7: ImageObject enrichment) are now shipped. The document itself was a planning artifact that was summarized in the handoff rather than committed. No recovery action needed; the items are closed.
+
+Phase 5 completed: 2026-05-29 (Session 7)
+
+**Phase 5.5 — Session 7 closeout (2026-05-29):**
+
+Phase 5.5 — Session 7 closeout (2026-05-29). Closeout work after the priority tier shipped. Covered: PRIMARY_SERVICES.image fields correction note, voice audit findings appended to known-issues.md, post-launch backlog documentation, GSC verification parked for next week pending DNS access, link-removal rationale captured in post-launch-recommendations.md.
+Status: COMPLETE.
 
 ---
 

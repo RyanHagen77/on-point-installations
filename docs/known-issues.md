@@ -713,3 +713,11 @@ Phrase: "so that each phase delivers without holding up the next one"
 Voice rule: "Delivers" used abstractly, not as literal physical delivery. CLAUDE.md permits "deliver" only for literal physical delivery of goods.
 Suggested replacement: "so that each phase completes on time without holding up the next one"
 Flagged in: Session 7 Closeout A
+
+---
+
+## Resolved Corrections
+
+### PRIMARY_SERVICES.image and PRIMARY_SERVICES.imageAlt: NOT DEAD
+
+An earlier session (or early Session 7 misreading) suggested these fields were dead and could be removed. They are not dead. `src/app/page.tsx` lines 185 through 192 actively consume both fields to render the homepage service grid (8 service cards with images). Removing them breaks the homepage. The `/services` route was the source of the confusion: that route does not consume the fields (it renders text-only ServiceCard), but the homepage does.
