@@ -1,22 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ProjectImage } from '@/types/project';
 
 interface ImageGalleryProps {
   images: ProjectImage[];
+  gridCols?: string;
 }
 
-export default function ImageGallery({ images }: ImageGalleryProps) {
+export default function ImageGallery({ images, gridCols = 'grid-cols-2 sm:grid-cols-3' }: ImageGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const prev = () => setLightboxIndex((i) => (i === null ? null : i === 0 ? images.length - 1 : i - 1));
   const next = () => setLightboxIndex((i) => (i === null ? null : i === images.length - 1 ? 0 : i + 1));
 
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxIndex(null);
+      else if (e.key === 'ArrowLeft') setLightboxIndex((i) => (i === null ? null : i === 0 ? images.length - 1 : i - 1));
+      else if (e.key === 'ArrowRight') setLightboxIndex((i) => (i === null ? null : i === images.length - 1 ? 0 : i + 1));
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, images.length]);
+
   return (
     <>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div className={`grid ${gridCols} gap-3`}>
         {images.map((image, index) => (
           <button
             key={index}
@@ -31,6 +43,9 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 
       {lightboxIndex !== null && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={images[lightboxIndex].alt}
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setLightboxIndex(null)}
         >

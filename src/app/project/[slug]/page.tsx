@@ -9,6 +9,7 @@ import { urlFor } from '@/lib/sanity-image';
 import { groupImageBlocks, portableTextComponents } from '@/lib/portable-text';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import CTABlock from '@/components/ui/CTABlock';
+import ProjectLayoutHero from '@/components/project/ProjectLayoutHero';
 
 interface Project {
   title: string;
@@ -26,6 +27,7 @@ interface Project {
     _type: 'image';
     asset: { _ref: string; _type: 'reference' };
     alt: string | null;
+    assetDimensions: { width: number; height: number } | null;
   } | null;
   imageGallery: Array<{
     _key: string;
@@ -61,7 +63,7 @@ const projectQuery = `*[_type == "project" && slug.current == $slug && status ==
     ...,
     "assetDimensions": asset->metadata.dimensions
   },
-  featuredImage { _type, asset, alt },
+  featuredImage { _type, alt, "assetDimensions": asset->metadata.dimensions, asset },
   imageGallery[]{
     _key,
     alt,
@@ -81,6 +83,9 @@ const projectQuery = `*[_type == "project" && slug.current == $slug && status ==
 }`;
 
 const allProjectSlugsQuery = `*[_type == "project" && status == "published"]{ "slug": slug.current }`;
+
+// Projects using the hero-first layout. Extend this set when rollout is approved.
+const HERO_LAYOUT_SLUGS = new Set(['acoustic-ceiling-panels-design-installation-chicago-il']);
 
 export const revalidate = 86400;
 
@@ -122,6 +127,8 @@ export default async function ProjectPage({
   );
 
   if (!post) notFound();
+
+  if (HERO_LAYOUT_SLUGS.has(slug)) return <ProjectLayoutHero post={post} slug={slug} />;
 
   const pageHeading = post.h1 ?? post.title;
 
