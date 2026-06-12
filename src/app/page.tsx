@@ -178,7 +178,7 @@ export default function HomePage() {
                 <ul className="space-y-2 mb-8">
                   <li className="flex items-start gap-3 text-[#292929]">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
-                    <Link href="/blog/the-importance-of-strong-relationships-between-office-furniture-dealerships-and-installation-providers/" className="text-[#800000] underline hover:text-[#5A0000]">Office Furniture Dealerships</Link>{' '}and Sales Staff
+                    <span><Link href="/blog/the-importance-of-strong-relationships-between-office-furniture-dealerships-and-installation-providers/" className="text-[#800000] underline hover:text-[#5A0000]">Office Furniture Dealerships</Link>{' '}and Sales Staff</span>
                   </li>
                   <li className="flex items-start gap-3 text-[#292929]">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
@@ -194,11 +194,11 @@ export default function HomePage() {
                   </li>
                   <li className="flex items-start gap-3 text-[#292929]">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
-                    <Link href="/blog/the-benefits-of-a-professional-restaurant-furniture-installation/" className="text-[#800000] underline hover:text-[#5A0000]">Restaurants</Link>, Bars, and the Hospitality Industry
+                    <span><Link href="/blog/the-benefits-of-a-professional-restaurant-furniture-installation/" className="text-[#800000] underline hover:text-[#5A0000]">Restaurants</Link>, Bars, and the Hospitality Industry</span>
                   </li>
                   <li className="flex items-start gap-3 text-[#292929]">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
-                    Healthcare Facilities, including medical offices and{' '}<Link href="/project/furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il/" className="text-[#800000] underline hover:text-[#5A0000]">long-term care facilities</Link>
+                    <span>Healthcare Facilities, including medical offices and{' '}<Link href="/project/furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il/" className="text-[#800000] underline hover:text-[#5A0000]">long-term care facilities</Link></span>
                   </li>
                 </ul>
                 <Link
