@@ -73,25 +73,14 @@ export default function HomePage() {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-14 lg:py-20">
               <div>
                 <h1 className="text-[32px] leading-[1.15] sm:text-[42px] sm:leading-tight lg:text-5xl font-bold text-[#800000] mb-4">
-                  Commercial Office Furniture Installer in Chicago, IL
+                  Commercial Office Furniture Installation in Chicago, IL
                 </h1>
-                <p className="text-lg text-[#535353] mb-6 font-medium">
-                  Non-union. Fully insured. 11,000+ projects since 2010.
+                <p className="text-lg text-[#535353] mb-4 font-medium">
+                  At On Point Installations, our mission is to provide exceptional, customer-focused commercial furniture installation services. We are committed to quality workmanship, client satisfaction, and long-term relationships built on professionalism, precision, and integrity.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href={SITE.phoneHref}
-                    className="bg-[#800000] text-white font-semibold uppercase tracking-wide px-7 py-3.5 rounded-[3px] hover:bg-[#5A0000] transition-colors text-center"
-                  >
-                    Call {SITE.phone}
-                  </a>
-                  <Link
-                    href="/contact/"
-                    className="border-2 border-[#800000] text-[#800000] font-semibold uppercase tracking-wide px-7 py-3.5 rounded-[3px] hover:bg-[#800000] hover:text-white transition-colors text-center"
-                  >
-                    Get a Free Quote
-                  </Link>
-                </div>
+                <p className="text-lg text-[#535353] font-medium">
+                  From our Wauconda, IL headquarters, we provide fully insured, non-union commercial office furniture installation throughout Chicagoland and the Tri-State Area, including Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
+                </p>
               </div>
               <div className="relative rounded-sm overflow-hidden shadow-md">
                 <Image
@@ -113,7 +102,7 @@ export default function HomePage() {
         {/* Source: Phase 2 spec : see docs/spec-additions.md */}
         <section className="bg-[#800000] py-8 px-4">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center text-white">
               <div>
                 <div className="text-2xl sm:text-3xl font-bold">5.0★</div>
                 <div className="text-sm text-white/80 mt-1">25 Google Reviews</div>
@@ -125,10 +114,6 @@ export default function HomePage() {
               <div>
                 <div className="text-2xl sm:text-3xl font-bold">11,000+</div>
                 <div className="text-sm text-white/80 mt-1">Projects Completed</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-bold">12-15</div>
-                <div className="text-sm text-white/80 mt-1">Person Crew</div>
               </div>
             </div>
           </div>
