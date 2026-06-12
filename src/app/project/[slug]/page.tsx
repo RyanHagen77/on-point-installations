@@ -84,8 +84,11 @@ const projectQuery = `*[_type == "project" && slug.current == $slug && status ==
 
 const allProjectSlugsQuery = `*[_type == "project" && status == "published"]{ "slug": slug.current }`;
 
-// Projects using the hero-first layout. Extend this set when rollout is approved.
-const HERO_LAYOUT_SLUGS = new Set(['acoustic-ceiling-panels-design-installation-chicago-il']);
+// Projects using the hero-first layout. Maps slug → layout variant.
+const HERO_LAYOUT_PROJECTS = new Map<string, 'acoustic-ceiling' | 'senior-living'>([
+  ['acoustic-ceiling-panels-design-installation-chicago-il', 'acoustic-ceiling'],
+  ['furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il', 'senior-living'],
+]);
 
 export const revalidate = 86400;
 
@@ -128,7 +131,8 @@ export default async function ProjectPage({
 
   if (!post) notFound();
 
-  if (HERO_LAYOUT_SLUGS.has(slug)) return <ProjectLayoutHero post={post} slug={slug} />;
+  const heroVariant = HERO_LAYOUT_PROJECTS.get(slug);
+  if (heroVariant) return <ProjectLayoutHero post={post} slug={slug} variant={heroVariant} />;
 
   const pageHeading = post.h1 ?? post.title;
 
