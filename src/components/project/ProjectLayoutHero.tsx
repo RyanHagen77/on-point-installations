@@ -58,7 +58,7 @@ export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps
       alt: b.alt ?? '',
       width: b.assetDimensions?.width ?? 1024,
       height: b.assetDimensions?.height ?? 768,
-      caption: b.alt ?? '',
+      caption: b.caption ?? b.alt ?? '',
     }));
 
   const metaBadge = [

@@ -84,6 +84,12 @@ export default defineType({
               type: 'string',
               description: "Describe what's in the image for screen readers and search engines.",
             }),
+            defineField({
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              description: 'Optional caption displayed below the image in project layouts.',
+            }),
           ],
         },
       ],
