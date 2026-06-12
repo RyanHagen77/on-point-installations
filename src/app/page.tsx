@@ -72,13 +72,13 @@ export default function HomePage() {
           <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-14 lg:py-20">
               <div>
-                <h1 className="text-[32px] leading-[1.15] sm:text-[42px] sm:leading-tight lg:text-5xl font-bold text-[#800000] mb-4">
+                <h1 className="text-[26px] leading-[1.15] sm:text-[34px] sm:leading-tight lg:text-[42px] font-bold text-[#800000] mb-4">
                   Commercial Office Furniture Installation in Chicago, IL
                 </h1>
-                <p className="text-lg text-[#535353] mb-4 font-medium">
+                <p className="text-base text-[#535353] mb-4 font-medium">
                   At On Point Installations, our mission is to provide exceptional, customer-focused commercial furniture installation services. We are committed to quality workmanship, client satisfaction, and long-term relationships built on professionalism, precision, and integrity.
                 </p>
-                <p className="text-lg text-[#535353] font-medium">
+                <p className="text-base text-[#535353] font-medium">
                   From our Wauconda, IL headquarters, we provide fully insured, non-union commercial office furniture installation throughout Chicagoland and the Tri-State Area, including Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center text-white">
               <div>
                 <div className="text-2xl sm:text-3xl font-bold">5.0★</div>
-                <div className="text-sm text-white/80 mt-1">25 Google Reviews</div>
+                <div className="text-sm text-white/80 mt-1">Google Reviews</div>
               </div>
               <div>
                 <div className="text-2xl sm:text-3xl font-bold">15+</div>
@@ -119,29 +119,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── 3. MISSION ────────────────────────────────────────────── */}
-        {/* Ported from onpointinstallations.com, fetched 2026-05-15; first paragraph rewritten for voice : removed consultant-speak tricolon */}
-        <section className="bg-[#F3F3F3] border-b border-[#E9E9E9] py-12 px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-[#800000] mb-4">Our Mission</h2>
-            <p className="text-[#292929] leading-relaxed mb-5">
-              On Point Installations installs commercial office furniture for dealers, facility managers, and corporate clients across the Chicago metro. Fully insured and non-union, we’ve handled 11,000+ projects since 2010.
-            </p>
-            <p className="text-[#292929] leading-relaxed mb-8">
-              From our Wauconda, IL, headquarters, On Point Installations provides fully insured,
-              non-union commercial furniture services throughout Chicagoland and the Tri-State Area,
-              including the city of Chicago, its suburbs, Northwest Indiana, and Southeastern Wisconsin.
-            </p>
-            <Link
-              href="/about/"
-              className="inline-block bg-[#800000] text-white font-semibold uppercase tracking-wide px-6 py-3 rounded-[3px] hover:bg-[#5A0000] transition-colors"
-            >
-              Read About Us
-            </Link>
-          </div>
-        </section>
-
-        {/* ── 4. SERVICES GRID ──────────────────────────────────────── */}
+        {/* ── 3. SERVICES GRID ──────────────────────────────────────── */}
         <section className="bg-white py-16 px-4 border-b border-[#E9E9E9]">
           <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
             <div className="text-center mb-10">
