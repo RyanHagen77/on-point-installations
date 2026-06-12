@@ -33,15 +33,6 @@ const SERVICE_DESCRIPTIONS: Record<string, string> = {
     'At On Point Installations, we offer commercial specialty deep cleaning services for our installation customers in the Chicago Tristate Area.',
 };
 
-// Who We Serve : verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
-const WHO_WE_SERVE = [
-  'Office Furniture Dealerships and Sales Staff',
-  'Corporate Facilities Managers and Procurement Teams',
-  'Commercial Property Managers (move-ins and move-outs)',
-  'Commercial Office Furniture Manufacturers',
-  'Restaurants, Bars, and the Hospitality Industry',
-  'Healthcare Facilities, including medical offices and long-term care facilities',
-];
 
 // Projects We Handle : verbatim from live site (onpointinstallations.com, fetched 2026-05-15)
 const FURNITURE_SERVICES = [
@@ -183,13 +174,32 @@ export default function HomePage() {
                   throughout the Chicago Metropolitan Area. Although we're capable of installing all
                   commercial furniture, our focus has been on serving:
                 </p>
+                {/* Who We Serve bullets : verbatim from live site (onpointinstallations.com, fetched 2026-05-15) */}
                 <ul className="space-y-2 mb-8">
-                  {WHO_WE_SERVE.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[#292929]">
-                      <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
+                  <li className="flex items-start gap-3 text-[#292929]">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
+                    <Link href="/blog/the-importance-of-strong-relationships-between-office-furniture-dealerships-and-installation-providers/" className="text-[#800000] underline hover:text-[#5A0000]">Office Furniture Dealerships</Link>{' '}and Sales Staff
+                  </li>
+                  <li className="flex items-start gap-3 text-[#292929]">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
+                    Corporate Facilities Managers and Procurement Teams
+                  </li>
+                  <li className="flex items-start gap-3 text-[#292929]">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
+                    Commercial Property Managers (move-ins and move-outs)
+                  </li>
+                  <li className="flex items-start gap-3 text-[#292929]">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
+                    Commercial Office Furniture Manufacturers
+                  </li>
+                  <li className="flex items-start gap-3 text-[#292929]">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
+                    <Link href="/blog/the-benefits-of-a-professional-restaurant-furniture-installation/" className="text-[#800000] underline hover:text-[#5A0000]">Restaurants</Link>, Bars, and the Hospitality Industry
+                  </li>
+                  <li className="flex items-start gap-3 text-[#292929]">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-[#800000] flex-shrink-0" />
+                    Healthcare Facilities, including medical offices and{' '}<Link href="/project/furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il/" className="text-[#800000] underline hover:text-[#5A0000]">long-term care facilities</Link>
+                  </li>
                 </ul>
                 <Link
                   href="/about/"
