@@ -32,6 +32,13 @@ interface ProjectLayoutHeroProps {
   variant?: 'acoustic-ceiling' | 'senior-living';
 }
 
+// Per-slug split H2 marker for the senior-living variant.
+// Each project's gallery section starts with a different h2 heading.
+const SPLIT_MARKERS: Record<string, string> = {
+  'furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il': 'See the Finished',
+  'haworth-intuity-modular-installation-chicago-il': 'Results of',
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function blockText(block: any): string {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,7 +49,8 @@ function parseSeniorLivingBody(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   allBodyBlocks: any[],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  introBlock: any | null
+  introBlock: any | null,
+  splitMarker: string
 ): {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   narrativeBlocks: any[];
@@ -51,13 +59,13 @@ function parseSeniorLivingBody(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   galleryPairs: Array<{ image: any; captionText: string }>;
 } {
-  // The h2 that separates the narrative from the finished-rooms gallery
+  // The h2 that separates the narrative from the gallery section
   const splitH2 = allBodyBlocks.find(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (b: any) =>
       b._type === 'block' &&
       b.style === 'h2' &&
-      blockText(b).includes('See the Finished')
+      blockText(b).includes(splitMarker)
   ) ?? null;
 
   const introIdx = introBlock ? allBodyBlocks.indexOf(introBlock) : -1;
@@ -117,7 +125,8 @@ export default function ProjectLayoutHero({ post, slug, variant = 'acoustic-ceil
   let gridImages: ProjectImage[];
 
   if (variant === 'senior-living') {
-    const { narrativeBlocks, splitH2, galleryPairs } = parseSeniorLivingBody(allBodyBlocks, introBlock);
+    const splitMarker = SPLIT_MARKERS[slug] ?? 'See the Finished';
+    const { narrativeBlocks, splitH2, galleryPairs } = parseSeniorLivingBody(allBodyBlocks, introBlock, splitMarker);
     proseBlocks = narrativeBlocks;
     sectionHeading = splitH2 ? blockText(splitH2) : 'Finished Rooms';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

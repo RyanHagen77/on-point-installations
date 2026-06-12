@@ -88,6 +88,7 @@ const allProjectSlugsQuery = `*[_type == "project" && status == "published"]{ "s
 const HERO_LAYOUT_PROJECTS = new Map<string, 'acoustic-ceiling' | 'senior-living'>([
   ['acoustic-ceiling-panels-design-installation-chicago-il', 'acoustic-ceiling'],
   ['furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il', 'senior-living'],
+  ['haworth-intuity-modular-installation-chicago-il', 'senior-living'],
 ]);
 
 export const revalidate = 86400;
