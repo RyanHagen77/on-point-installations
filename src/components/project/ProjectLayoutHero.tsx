@@ -44,6 +44,11 @@ const SPLIT_MARKERS: Record<string, string> = {
   'modular-installation-services-park-ridge-il': 'See the Result',
 };
 
+// Per-slug ImageGallery gridCols override. Absent slugs use the 3-up default.
+const GRID_COLS_OVERRIDE: Record<string, string> = {
+  'modular-installation-services-park-ridge-il': 'grid-cols-1 sm:grid-cols-2',
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function blockText(block: any): string {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -231,7 +236,7 @@ export default function ProjectLayoutHero({ post, slug, variant = 'acoustic-ceil
           <h2 className="text-2xl font-bold text-[#800000] mb-6">{sectionHeading}</h2>
           <ImageGallery
             images={gridImages}
-            gridCols="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            gridCols={GRID_COLS_OVERRIDE[slug] ?? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}
           />
         </section>
       )}
