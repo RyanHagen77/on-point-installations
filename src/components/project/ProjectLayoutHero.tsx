@@ -41,6 +41,8 @@ export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps
   const pageHeading = post.h1 ?? post.title;
 
   const featuredRef = post.featuredImage?.asset?._ref;
+  const heroW = post.featuredImage?.assetDimensions?.width ?? 1024;
+  const heroH = post.featuredImage?.assetDimensions?.height ?? 768;
 
   // Text-only body blocks for the prose column
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,26 +70,27 @@ export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps
 
   return (
     <main>
-      {/* Hero */}
+      {/* Hero -- contained to match content column, displays at or below native 1024px */}
       {post.featuredImage && (
-        <div className="relative overflow-hidden bg-[#1a1a1a] h-64 sm:h-80 md:h-[440px] lg:h-[520px]">
-          <Image
-            src={urlFor(post.featuredImage).width(1024).url()}
-            alt={post.featuredImage.alt ?? pageHeading}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          {/* Bottom gradient overlay */}
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-          {/* Title overlay */}
-          <div className="absolute inset-x-0 bottom-0 px-4 sm:px-8 pb-6 sm:pb-10">
-            <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+          <div className="relative w-full overflow-hidden rounded-[3px] bg-[#1a1a1a]">
+            <Image
+              src={urlFor(post.featuredImage).width(1024).url()}
+              alt={post.featuredImage.alt ?? pageHeading}
+              width={heroW}
+              height={heroH}
+              priority
+              sizes="(min-width: 1024px) 960px, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
+              className="w-full h-auto block"
+            />
+            {/* Bottom gradient overlay */}
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+            {/* Title overlay */}
+            <div className="absolute inset-x-0 bottom-0 px-4 sm:px-6 pb-4 sm:pb-6">
               {metaBadge && (
-                <p className="text-white/80 text-sm font-medium mb-2 tracking-wide">{metaBadge}</p>
+                <p className="text-white/80 text-sm font-medium mb-1 tracking-wide">{metaBadge}</p>
               )}
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
                 {pageHeading}
               </h1>
             </div>
