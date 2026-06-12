@@ -31,9 +31,6 @@ interface ProjectLayoutHeroProps {
   slug: string;
 }
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-}
 
 export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps) {
   const pageHeading = post.h1 ?? post.title;
@@ -66,12 +63,7 @@ export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps
     ? allTextBlocks.filter((b: any) => b._key !== introBlock._key)
     : allTextBlocks;
 
-  const metaBadge = [
-    post.location,
-    post.completedDate ? formatDate(post.completedDate) : null,
-  ]
-    .filter(Boolean)
-    .join(' · ');
+  const metaBadge = post.location ?? '';
 
   const imgW = post.featuredImage?.assetDimensions?.width ?? 1024;
   const imgH = post.featuredImage?.assetDimensions?.height ?? 768;
