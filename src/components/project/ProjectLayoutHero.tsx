@@ -56,6 +56,7 @@ export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps
       alt: b.alt ?? '',
       width: b.assetDimensions?.width ?? 1024,
       height: b.assetDimensions?.height ?? 768,
+      caption: b.alt ?? '',
     }));
 
   const metaBadge = [
@@ -71,7 +72,7 @@ export default function ProjectLayoutHero({ post, slug }: ProjectLayoutHeroProps
       {post.featuredImage && (
         <div className="relative overflow-hidden bg-[#1a1a1a] h-64 sm:h-80 md:h-[440px] lg:h-[520px]">
           <Image
-            src={urlFor(post.featuredImage).width(1600).url()}
+            src={urlFor(post.featuredImage).width(1024).url()}
             alt={post.featuredImage.alt ?? pageHeading}
             fill
             priority

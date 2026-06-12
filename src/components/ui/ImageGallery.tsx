@@ -30,14 +30,18 @@ export default function ImageGallery({ images, gridCols = 'grid-cols-2 sm:grid-c
     <>
       <div className={`grid ${gridCols} gap-3`}>
         {images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => setLightboxIndex(index)}
-            className="aspect-video relative rounded overflow-hidden hover:opacity-90 transition-opacity"
-            aria-label={`View ${image.alt}`}
-          >
-            <Image src={image.src} alt={image.alt} fill quality={85} sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
-          </button>
+          <figure key={index}>
+            <button
+              onClick={() => setLightboxIndex(index)}
+              className="aspect-video relative rounded overflow-hidden hover:opacity-90 transition-opacity block w-full"
+              aria-label={`View ${image.alt}`}
+            >
+              <Image src={image.src} alt={image.alt} fill quality={85} sizes="(min-width: 640px) 33vw, 50vw" className="object-cover" />
+            </button>
+            {image.caption && (
+              <figcaption className="text-sm text-gray-600 mt-2">{image.caption}</figcaption>
+            )}
+          </figure>
         ))}
       </div>
 
