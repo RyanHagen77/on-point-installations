@@ -37,6 +37,7 @@ interface ProjectLayoutHeroProps {
 const SPLIT_MARKERS: Record<string, string> = {
   'furniture-assembly-for-a-design-studio-senior-living-community-oak-brook-il': 'See the Finished',
   'haworth-intuity-modular-installation-chicago-il': 'Results of',
+  'ki-unite-corporate-office-installation-warrenville-il': 'See the Finished Workspaces of the KI Unite',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
