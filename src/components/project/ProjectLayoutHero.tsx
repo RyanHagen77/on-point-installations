@@ -39,6 +39,7 @@ const SPLIT_MARKERS: Record<string, string> = {
   'haworth-intuity-modular-installation-chicago-il': 'Results of',
   'ki-unite-corporate-office-installation-warrenville-il': 'See the Finished Workspaces of the KI Unite',
   'ais-divi-office-furniture-installation-addison-il': 'Project Results',
+  'complete-office-system-installation-downers-grove-il': 'See the Results',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
