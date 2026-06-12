@@ -40,6 +40,7 @@ const SPLIT_MARKERS: Record<string, string> = {
   'ki-unite-corporate-office-installation-warrenville-il': 'See the Finished Workspaces of the KI Unite',
   'ais-divi-office-furniture-installation-addison-il': 'Project Results',
   'complete-office-system-installation-downers-grove-il': 'See the Results',
+  'knoll-office-system-installations-northfield-il': 'Project Results',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
