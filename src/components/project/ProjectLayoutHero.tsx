@@ -41,6 +41,7 @@ const SPLIT_MARKERS: Record<string, string> = {
   'ais-divi-office-furniture-installation-addison-il': 'Project Results',
   'complete-office-system-installation-downers-grove-il': 'See the Results',
   'knoll-office-system-installations-northfield-il': 'Project Results',
+  'modular-installation-services-park-ridge-il': 'See the Result',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -113,7 +114,7 @@ function parseSeniorLivingBody(
 }
 
 export default function ProjectLayoutHero({ post, slug, variant = 'acoustic-ceiling' }: ProjectLayoutHeroProps) {
-  const pageHeading = post.h1 ?? post.title;
+  const pageHeading = (post.h1 ?? post.title).replace(/ {2,}/g, ' ').trim();
   const allBodyBlocks = post.body ?? [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const allTextBlocks = allBodyBlocks.filter((b: any) => b._type === 'block');

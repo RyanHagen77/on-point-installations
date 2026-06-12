@@ -93,6 +93,7 @@ const HERO_LAYOUT_PROJECTS = new Map<string, 'acoustic-ceiling' | 'senior-living
   ['ais-divi-office-furniture-installation-addison-il', 'senior-living'],
   ['complete-office-system-installation-downers-grove-il', 'senior-living'],
   ['knoll-office-system-installations-northfield-il', 'senior-living'],
+  ['modular-installation-services-park-ridge-il', 'senior-living'],
 ]);
 
 export const revalidate = 86400;
