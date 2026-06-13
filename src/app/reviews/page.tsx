@@ -1,6 +1,6 @@
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import BreadcrumbBar from '@/components/ui/BreadcrumbBar';
 import CTABlock from '@/components/ui/CTABlock';
 // BreadcrumbSchema is rendered by the Breadcrumb component.
 // Do not add a second BreadcrumbSchema here -- that would produce duplicate JSON-LD.
@@ -93,17 +93,7 @@ export default function ReviewsPage() {
     <>
       <main>
 
-        {/* ── BREADCRUMB ──────────────────────────────────────────────── */}
-        <div className="bg-white border-b border-[#E9E9E9] py-3 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <Breadcrumb
-              items={[
-                { name: 'Home', url: '/' },
-                { name: 'Reviews', url: '/reviews/' },
-              ]}
-            />
-          </div>
-        </div>
+        <BreadcrumbBar items={[{ name: 'Home', url: '/' }, { name: 'Reviews', url: '/reviews/' }]} />
 
         {/* ── PAGE HEADER ─────────────────────────────────────────────── */}
         {/* No hero image per Phase 2 content-image rule. Live /reviews/ had a hero

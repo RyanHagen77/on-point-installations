@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import BreadcrumbBar from '@/components/ui/BreadcrumbBar';
 import CTABlock from '@/components/ui/CTABlock';
 import PersonSchema from '@/components/schema/PersonSchema';
 // BreadcrumbSchema is rendered by the Breadcrumb component above the hero.
@@ -20,12 +20,7 @@ export default function AboutPage() {
       <PersonSchema />
       <main>
 
-        {/* ── BREADCRUMB (above hero, standard white strip) ─────────────── */}
-        <div className="bg-white border-b border-[#E9E9E9] py-3 px-4">
-          <div className="max-w-[1320px] mx-auto sm:px-6 lg:px-8">
-            <Breadcrumb items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
-          </div>
-        </div>
+        <BreadcrumbBar items={[{ name: 'Home', url: '/' }, { name: 'About', url: '/about/' }]} />
 
         {/* ── FULL-BLEED HERO ──────────────────────────────────────────── */}
         {/* Team warehouse photo restored after initial removal -- see docs/spec-additions.md.
