@@ -40,7 +40,7 @@ export const SITE = {
     teamExperience: "130+ years combined",
     employees: "12-15",
   },
-  ga4Id: "G-1GSQDRFR9D",
+  ga4Id: "G-CG2EYSMRXB",
 };
 
 export const SERVICE_CITIES = [
