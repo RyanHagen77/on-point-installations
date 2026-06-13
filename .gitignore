@@ -46,3 +46,4 @@ public/robots.txt
 
 # WordPress XML exports (migration source, do not commit)
 *.WordPress.*.xml
+package-lock.json
