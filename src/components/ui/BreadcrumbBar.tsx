@@ -7,7 +7,7 @@ interface BreadcrumbItem {
 
 export default function BreadcrumbBar({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Breadcrumb items={items} />
     </div>
   );
