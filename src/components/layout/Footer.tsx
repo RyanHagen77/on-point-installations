@@ -151,6 +151,17 @@ export default function Footer() {
             <Link href="/disclaimer/" className="hover:text-[#800000] transition-colors">Disclaimer</Link>
           </div>
         </div>
+        <p className="text-center text-xs text-[#717171] pb-4">
+          Developed by{' '}
+          <a
+            href="https://integrepro.com"
+            target="_blank"
+            rel="noopener"
+            className="hover:text-[#800000] transition-colors"
+          >
+            IntegrePro Software LLC
+          </a>
+        </p>
       </div>
     </footer>
   );
