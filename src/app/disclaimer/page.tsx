@@ -1,6 +1,6 @@
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import BreadcrumbBar from '@/components/ui/BreadcrumbBar';
 
 export const metadata = generatePageMetadata({
   title: 'Disclaimer | On Point Installations, Inc.',
@@ -10,8 +10,9 @@ export const metadata = generatePageMetadata({
 
 export default function DisclaimerPage() {
   return (
-    <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Breadcrumb items={[{ name: 'Home', url: '/' }, { name: 'Disclaimer', url: '/disclaimer/' }]} />
+    <main>
+      <BreadcrumbBar items={[{ name: 'Home', url: '/' }, { name: 'Disclaimer', url: '/disclaimer/' }]} />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Disclaimer - Lane 15 (May 2026). Hardcoded JSX for launch.
           Consider migration to Sanity-driven legalPage schema post-launch
           if content updates become frequent. */}
@@ -35,6 +36,7 @@ export default function DisclaimerPage() {
       <p className="text-[#292929] leading-relaxed mb-4">
         Questions? Contact On Point Installations, Inc. at info@onpointinstall.com or (847) 550-4042.
       </p>
+      </div>
     </main>
   );
 }

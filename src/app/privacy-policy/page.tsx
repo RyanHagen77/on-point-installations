@@ -1,6 +1,6 @@
 import { generatePageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/constants';
-import Breadcrumb from '@/components/ui/Breadcrumb';
+import BreadcrumbBar from '@/components/ui/BreadcrumbBar';
 
 export const metadata = generatePageMetadata({
   title: 'Privacy Policy | On Point Installations, Inc.',
@@ -10,8 +10,9 @@ export const metadata = generatePageMetadata({
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Breadcrumb items={[{ name: 'Home', url: '/' }, { name: 'Privacy Policy', url: '/privacy-policy/' }]} />
+    <main>
+      <BreadcrumbBar items={[{ name: 'Home', url: '/' }, { name: 'Privacy Policy', url: '/privacy-policy/' }]} />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Privacy Policy - Lane 15 (May 2026). Hardcoded JSX for launch.
           Consider migration to Sanity-driven legalPage schema post-launch
           if content updates become frequent. */}
@@ -53,6 +54,7 @@ export default function PrivacyPolicyPage() {
       <p className="text-[#292929] leading-relaxed mb-4">
         Questions about this policy? Contact On Point Installations, Inc. at 1220 Karl Court, Wauconda, IL 60084, or call (847) 550-4042.
       </p>
+      </div>
     </main>
   );
 }
