@@ -125,7 +125,7 @@ export default async function BlogPostPage({
       {post.faqs && post.faqs.length > 0 && (
         <FAQSchema items={post.faqs} />
       )}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Breadcrumb
           items={[
             { name: 'Home', url: '/' },
@@ -143,29 +143,31 @@ export default async function BlogPostPage({
         <h1 className="text-3xl sm:text-4xl font-bold text-[#800000] mb-6">
           {pageHeading}
         </h1>
-        {heroImageUrl && (
-          <div className="mb-8">
-            <Image
-              src={heroImageUrl}
-              alt={post.featuredImage?.alt || post.title}
-              width={1200}
-              height={630}
-              priority
-              sizes="(min-width: 768px) 768px, 100vw"
-              className="rounded-lg w-full h-auto"
-            />
-          </div>
-        )}
-        {post.body && post.body.length > 0 && (
-          <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
-            <PortableText value={groupImageBlocks(post.body)} components={portableTextComponents} />
-          </div>
-        )}
-        {post.faqs && post.faqs.length > 0 && (
-          <div className="mt-12">
-            <FAQAccordion items={post.faqs} />
-          </div>
-        )}
+        <div className="max-w-3xl mx-auto">
+          {heroImageUrl && (
+            <div className="mb-8">
+              <Image
+                src={heroImageUrl}
+                alt={post.featuredImage?.alt || post.title}
+                width={1200}
+                height={630}
+                priority
+                sizes="(min-width: 768px) 768px, 100vw"
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
+          )}
+          {post.body && post.body.length > 0 && (
+            <div className="prose prose-lg max-w-none prose-headings:text-[#800000] prose-a:text-[#800000] prose-a:no-underline hover:prose-a:underline mt-2">
+              <PortableText value={groupImageBlocks(post.body)} components={portableTextComponents} />
+            </div>
+          )}
+          {post.faqs && post.faqs.length > 0 && (
+            <div className="mt-12">
+              <FAQAccordion items={post.faqs} />
+            </div>
+          )}
+        </div>
       </div>
       <CTABlock variant="banner" heading="Ready to Start Your Project?" />
     </main>
