@@ -137,10 +137,10 @@ export default function ElectricalVoiceDataCablingPage() {
               <div>
                 {/* Drafted per Voice Rules: needs Brian review. See docs/known-issues.md */}
                 <h3 className="font-bold text-[#292929] mb-3">Why Electrical and Furniture Go Together</h3>
-                <p className="text-sm text-[#535353] leading-relaxed mb-3">
+                <p className="text-[#535353] leading-relaxed mb-3">
                   Office furniture systems need power connected at the right points in the right sequence. If the electrical isn't planned with the furniture install in mind, you end up with panels that don't line up with the feeds, or a crew waiting on an electrician who isn't on-site.
                 </p>
-                <p className="text-sm text-[#535353] leading-relaxed">
+                <p className="text-[#535353] leading-relaxed">
                   We do both. One call covers the furniture installation and the electrical work.
                 </p>
               </div>
@@ -186,10 +186,10 @@ export default function ElectricalVoiceDataCablingPage() {
               <div>
                 {/* Verbatim from live site */}
                 <h3 className="font-bold text-[#292929] mb-3">Testing and Certification</h3>
-                <p className="text-sm text-[#535353] leading-relaxed mb-3">
+                <p className="text-[#535353] leading-relaxed mb-3">
                   We install, test, and certify all cabling runs. Your network and data lines are confirmed working before we leave the site.
                 </p>
-                <p className="text-sm text-[#535353] leading-relaxed">
+                <p className="text-[#535353] leading-relaxed">
                   If your project includes an office relocation with electrical disconnect and reconnect, see our{' '}
                   <Link href="/services/office-relocation-chicago-il/" className="text-[#800000] underline hover:text-[#5A0000]">
                     office relocation services
