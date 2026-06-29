@@ -20,12 +20,28 @@ export default function Navigation() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
     setMobileServicesOpen(false);
   }, [pathname]);
+
+  const openServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+
+  const closeServices = () => {
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 180);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -74,8 +90,8 @@ export default function Navigation() {
             <div
               ref={dropdownRef}
               className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
+              onMouseEnter={openServices}
+              onMouseLeave={closeServices}
             >
               <button
                 className={`text-xs font-semibold uppercase tracking-wide transition-colors flex items-center gap-1 ${
@@ -100,7 +116,7 @@ export default function Navigation() {
               </button>
 
               {servicesOpen && (
-                <div className="absolute top-full left-0 mt-0.5 w-80 bg-white border border-gray-200 shadow-lg z-50">
+                <div className="absolute top-full left-0 mt-0 w-80 bg-white border border-gray-200 shadow-lg z-50">
                   {PRIMARY_SERVICES.map((service) => (
                     <Link
                       key={service.slug}
