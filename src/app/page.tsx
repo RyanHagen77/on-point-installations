@@ -99,11 +99,11 @@ export default function HomePage() {
                 <div className="text-sm text-white/80 mt-1">Google Reviews</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold">15+</div>
+                <div className="text-2xl sm:text-3xl font-bold">16+</div>
                 <div className="text-sm text-white/80 mt-1">Years in Business</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold">11,000+</div>
+                <div className="text-2xl sm:text-3xl font-bold">13,000+</div>
                 <div className="text-sm text-white/80 mt-1">Projects Completed</div>
               </div>
             </div>
