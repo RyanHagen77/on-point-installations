@@ -25,7 +25,7 @@ export const SITE = {
   social: {
     facebook: "https://www.facebook.com/onpointinstallationsinc",
     instagram: "https://www.instagram.com/onpointinstallations/",
-    linkedin: "https://www.linkedin.com/company/on-point-installations-inc/",
+    linkedin: "https://www.linkedin.com/company/on-point-installations-inc-",
     youtube: "", // TBD : confirm corrected channel URL
     twitter: "", // TBD : account to be created
   },
