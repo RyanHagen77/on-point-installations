@@ -178,6 +178,10 @@ Seven additional lower-volume pages. Follow the same template pattern.
 - Project-image-at-top request (parked from original handoff): Ryan wants the first image higher on project detail pages. Partially reverses the Lane 2A.4 hero-image removal from an earlier session. Needs its own recon plus write lane.
 - Restaurant slug-collision project: the project document `the-benefits-of-a-professional-restaurant-furniture-installation` has no case-study content (duplicates the blog post of the same slug) and shares the identical slug. Needs real content or removal from the gallery.
 
+### Stat values: refactor to single source
+
+`src/lib/constants.ts` exports `SITE.stats.yearsInBusiness` and `SITE.stats.projectsCompleted`. The about page stat block already reads from these. However, several other pages hardcode the same values in body copy and schema: the homepage stat band, `schema.ts` PersonSchema description, office-relocation and commercial-furniture-installation body paragraphs, and the cubicle city page. This means stat updates require touching multiple files across the codebase rather than one constant. Post-launch: refactor all hardcoded stat references to read from `SITE.stats` so future updates are a single change.
+
 ### Code and data cleanup (parked, low priority)
 
 - serviceType is null on all 9 project documents in Sanity. Only matters if frontend or GROQ filters or displays by it.

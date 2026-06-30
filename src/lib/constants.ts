@@ -35,8 +35,8 @@ export const SITE = {
     platform: "Google",
   },
   stats: {
-    yearsInBusiness: 15,
-    projectsCompleted: "11,000+",
+    yearsInBusiness: 16,
+    projectsCompleted: "13,000+",
     teamExperience: "130+ years combined",
     employees: "12-15",
   },
@@ -136,6 +136,6 @@ export const SAME_AS_URLS = [
 export const STATS_CALLOUT = {
   stars: "★★★★★",
   headline:
-    "5.0 stars across 25 verified Google reviews · 11,000+ commercial furniture projects completed · 130+ years of combined crew experience",
+    "5.0 stars across 25 verified Google reviews · 13,000+ commercial furniture projects completed · 130+ years of combined crew experience",
   subline: "On Point Installations, serving Chicagoland and the Tri-State since 2010",
 };

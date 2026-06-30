@@ -58,7 +58,7 @@ export default function AboutPage() {
                 <dd className="mt-1 text-xs sm:text-sm text-white/80">Completed Projects</dd>
               </div>
               <div>
-                <dt className="text-2xl sm:text-3xl lg:text-4xl font-bold">15+</dt>
+                <dt className="text-2xl sm:text-3xl lg:text-4xl font-bold">16+</dt>
                 <dd className="mt-1 text-xs sm:text-sm text-white/80">Years in Business</dd>
               </div>
               <div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               <div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#800000] mb-6">Our Beginnings</h2>
                 <p className="text-[#292929] leading-relaxed mb-4">
-                  After serving as a union installer for many years, Brian Vetter packed up his toolbox and ventured out on his own. That was in 2010. Since then, On Point Installations has grown to include a 15,000+ square foot office complex and commercial furniture storage warehouse. Brian and his team have completed 11,000+ projects.
+                  After serving as a union installer for many years, Brian Vetter packed up his toolbox and ventured out on his own. That was in 2010. Since then, On Point Installations has grown to include a 15,000+ square foot office complex and commercial furniture storage warehouse. Brian and his team have completed 13,000+ projects.
                 </p>
                 <p className="text-[#292929] leading-relaxed mb-4">
                   These projects involve an array of{' '}

@@ -95,7 +95,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
           {/* Verbatim from Prompt 11 Chicago CFI opening paragraph (docs/seo-audit/prompt-11-service-city-page-builder.md).
               Voice edits: both em dashes to commas; AI-tell opener replaced with "On a..."; 12-15 hyphen per hook. */}
           <p className="text-[#292929] leading-relaxed mb-4">
-            When a Chicago business needs commercial furniture installation done right, on deadline, on budget, and without crew problems on the floor, On Point Installations is the team facilities directors and project managers call. We&apos;ve completed approximately 11,000 commercial furniture installation projects since 2010, and Chicago is at the center of our service territory. On a new Loop high-rise buildout, a River North reconfiguration, or a full furniture rollout across a Chicago campus, our 12-15 person crew handles it. We&apos;re on-site when we say we&apos;ll be, and we don&apos;t leave until the job is done right.
+            When a Chicago business needs commercial furniture installation done right, on deadline, on budget, and without crew problems on the floor, On Point Installations is the team facilities directors and project managers call. We&apos;ve completed approximately 13,000 commercial furniture installation projects since 2010, and Chicago is at the center of our service territory. On a new Loop high-rise buildout, a River North reconfiguration, or a full furniture rollout across a Chicago campus, our 12-15 person crew handles it. We&apos;re on-site when we say we&apos;ll be, and we don&apos;t leave until the job is done right.
           </p>
           <p className="text-[#535353] leading-relaxed mb-6">
             From{' '}
@@ -296,7 +296,7 @@ export default function CommercialFurnitureInstallationChicagoPage() {
                   body: 'We install furniture, handle electrical and voice/data cabling, install artwork and window treatments, and warehouse your materials. No juggling multiple vendors on the same project.',
                 },
                 {
-                  title: '11,000+ completed projects',
+                  title: '13,000+ completed projects',
                   body: "We've been doing this since 2010. Furniture dealers, facilities directors, and property managers come back to us because we show up, communicate, and finish the job.",
                 },
               ].map((item) => (
