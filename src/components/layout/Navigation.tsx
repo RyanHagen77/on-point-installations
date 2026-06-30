@@ -82,7 +82,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-7" aria-label="Main navigation">
+          <nav className="hidden xl:flex items-center gap-7" aria-label="Main navigation">
 
             <Link href="/" className={linkClass('/')}>Home</Link>
 
@@ -139,7 +139,7 @@ export default function Navigation() {
           </nav>
 
           {/* Desktop right: phone + CTA */}
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden xl:flex items-center gap-5">
             <a
               href={SITE.phoneHref}
               className="text-sm font-semibold text-[#292929] hover:text-[#800000] transition-colors whitespace-nowrap"
@@ -155,7 +155,7 @@ export default function Navigation() {
           </div>
 
           {/* Mobile: phone icon + hamburger */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex xl:hidden items-center gap-3">
             <a
               href={SITE.phoneHref}
               className="text-[#800000] hover:text-[#5A0000] transition-colors p-1"
@@ -187,7 +187,7 @@ export default function Navigation() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
+        <div className="xl:hidden bg-white border-t border-gray-200">
           <nav className="max-w-[1320px] mx-auto px-4 py-4 space-y-1" aria-label="Mobile navigation">
 
             <Link
