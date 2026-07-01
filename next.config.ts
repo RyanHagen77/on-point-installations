@@ -30,6 +30,9 @@ const nextConfig: NextConfig = {
       // ── Audit-only URLs absorbed into Office Installations money page ─────────
       { source: '/services/systems-furniture-installation-chicago-il/', destination: '/services/commercial-furniture-installation-chicago-il/', permanent: true },
       { source: '/services/office-furniture-delivery-setup-chicago-il/', destination: '/services/commercial-furniture-installation-chicago-il/', permanent: true },
+
+      // ── Removed content → surviving equivalent ───────────────────────────────
+      { source: '/blog/the-benefits-of-a-professional-restaurant-furniture-installation/', destination: '/project/the-benefits-of-a-professional-restaurant-furniture-installation/', permanent: true },
     ];
   },
   images: {
