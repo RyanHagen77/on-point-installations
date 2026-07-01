@@ -5,7 +5,7 @@ module.exports = {
   trailingSlash: true,
   changefreq: 'weekly',
   priority: 0.7,
-  exclude: ['/api/*', '/studio/*'],
+  exclude: ['/api/*', '/studio/*', '/icon.png', '/icon.png/'],
   robotsTxtOptions: {
     policies: [
       { userAgent: '*', allow: '/' },
